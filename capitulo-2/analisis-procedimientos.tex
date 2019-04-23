@@ -1,0 +1,57 @@
+\section{Análisis de Procedimientos}
+
+En esta sección se analiza el desempeño de los procedimientos, comparándolos entre sí, observando la rapidez de convergencia de cada uno de ellos.
+
+\subsection{Complejidad de cada iteración}
+
+Los procedimientos cambian en la forma en que se elige la siguiente estrategia en cada iteración. En los procedimientos A y B se utiliza un regret condicional, en el que se mide el \textit{arrepentimiento} de cambiar una estrategia por otra en específica. Esta métrica se debe mantener a lo largo de todas las iteraciones, por lo que cada iteración necesita memoria adicional de complejidad $\mathcal{O}(N^2 + M^2)$, donde $N$ y $M$ es el número de acciones posibles para el jugador $1$ y $2$, respectivamente. En el procedimiento C se utiliza únicamente el regret incondicional, por lo que la cantidad de memoria adicional es del orden $\mathcal{O}(N + M)$.
+
+Con respecto a la complejidad de tiempo se tiene que los procedimientos de regret condicional e incondicional (A y C), son lineales al número de acciones. Sin embargo, en el procedimiento B es necesario resolver un sistema de ecuaciones lineales para elegir cada estrategia nueva, del tamaño del número de acciones del jugador respectivo, obteniendo que la complejidad total es $\mathcal{O}(N^3 + M^3)$. La Tabla \ref{tab:complejidades-iteraciones} muestra un resumen de la complejidad es tiempo y memoria adicional.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c|c}
+         Procedimiento & Memoria & Tiempo  \\ \hline
+         A & $\mathcal{O}(N^2 + M^2)$ & $\mathcal{O}(N + M)$ \\ 
+         B & $\mathcal{O}(N^2 + M^2)$ & $\mathcal{O}(N^3 + M^3)$ \\
+         C & $\mathcal{O}(N + M)$     & $\mathcal{O}(N + M)$ \\ \hline
+    \end{tabular}
+    \caption{Complejidad por iteración de cada uno de los procedimientos}
+    \label{tab:complejidades-iteraciones}
+\end{table}
+
+Por lo anterior, se observa que la velocidad de las iteraciones del procedimiento que calcula el vector invariante de probabilidad es más lenta en todos los casos, estando uno o dos órdenes de magnitud por encima, según el tamaño de la matriz. Por lo que, si la matriz es sumamente grande, el segundo método sería el menos adecuado.
+
+\subsection{Número de iteraciones}
+
+La Tabla \ref{tab:resumen-iteraciones} muestra un resumen de las iteraciones promedio de los tres procedimientos en cada uno de los juegos. En esta tabla se observa que el procedimiento A, regret incondicional es el que necesita muchas más iteraciones para converger. Con respecto a los procedimientos B y C, se observa que en algunos casos el promedio en el procedimiento B fue menor y en otros el promedio del procedimiento C. También es importante desctacar que en el juego de piedra, papel o tijera se tienen varios casos donde se obtiene la convergencia en menos de $10$ iteraciones, esos son casos donde se obtiene el equilibrio de Nash exacto en pocas iteraciones.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|r|r|r|r}
+       \scriptsize{Procedimiento}  & \scriptsize{Matching Pennies} & \scriptsize{Piedra, Papel o Tijeras} & \multicolumn{1}{c|}{\scriptsize{Domino}} & \multicolumn{1}{c}{\scriptsize{Coronel Blotto}}  \\ \hline
+       A & $5609971.5$ & $3671952.7$ & $91116271.5$ & $201963700.9$ \\
+       B & $30277.9$   & $10007.0$ & $63267.8$ & $54061.6$ \\
+       C & $14806.8$   & $30293.6$ & $95233.3$ & $47502.7$ \\ \hline
+    \end{tabular}
+    \caption{Resumen del número de iteraciones promedio}
+    \label{tab:resumen-iteraciones}
+\end{table}
+
+\subsection{Tiempo transcurrido}
+
+La Tabla \ref{tab:resumen-tiempo} muestra un resumen del tiempo promedio de los tres procedimientos en cada uno de los juegos. Se observa que el procedimiento A es el que emplea más tiempo en todos los casos, esto ocurre porque necesita muchas más iteraciones que los otros dos procedimientos. Por otra parte el procedimiento C es también más rápido que el procedimiento B, ya que la complejidad en cada iteración para resolver el sistema de ecuaciones enlentece el tiempo total necesario, incluso, si la matriz es muy grande este procedimiento podría ser más lento que el procedimiento A y no sería factible.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|r|r|r|r}
+       \scriptsize{Procedimiento}  & \scriptsize{Matching Pennies} & \scriptsize{Piedra, Papel o Tijeras} & \multicolumn{1}{c|}{\scriptsize{Domino}} & \multicolumn{1}{c}{\scriptsize{Coronel Blotto}}  \\ \hline
+       A & $85.314$ & $56.231$ & $1520.421$ & $4460.876$ \\
+       B & $3.503$   & $1.732$ & $28.381$ & $183.683$ \\
+       C & $0.217$   & $0.449$ & $1.510$ & $0.923$ \\ \hline
+    \end{tabular}
+    \caption{Resumen del tiempo promedio}
+    \label{tab:resumen-tiempo}
+\end{table}
+
+Aunque el procedimiento donde se aplica regret matching al regret incondicional (C), es el más sencillo de implementar y el más rápido en converger, este procedimiento tiene una desventaja con respecto a los otros dos. Al utilizar el regret condicional, los dos primeros procedimientos garantizan que el regret condicional tiende a cero para cualquier par de estrategias de cada jugador y por lo tanto, conducen siempre a un equilibrio correlacionado. El tercer procedimiento sólo minimiza el regret incondicional y por lo tanto, si el juego es de más de dos jugadores o no es de suma cero, entonces ya no es de utilidad para hallar alguna solución del juego.

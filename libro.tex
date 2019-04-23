@@ -1,0 +1,84 @@
+\documentclass[pregrado]{tesis-usb}
+
+% paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{verbatim}
+\usepackage{acronym}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{chngcntr}
+\usepackage{babelbib}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{graphicx}
+% \usepackage{hyperref}
+\allowdisplaybreaks
+
+\newtheorem{definition}{Definición}
+\newtheorem{theorem}[definition]{Teorema}
+\newtheorem{lemma}[definition]{Lema}
+\newtheorem{proposition}[definition]{Proposición}
+\newtheorem{example}[definition]{Ejemplo}
+\renewcommand*{\proofname}{Prueba}
+\counterwithin{definition}{chapter}
+
+% estilo de las referencias
+\bibliographystyle{babunsrt}
+
+\autor{Rubmary Rojas Linárez}
+\autori{R. Rojas Linárez}
+\usbid{13-11263}
+\titulo{Algoritmos para Juegos con Información Incompleta y No Determinismo}
+\fecha{Septiembre~de~2019}
+\agno{2019}
+%\fechadefensa{31~de~abril~de~2015}
+\tutor{Blai Bonet}
+\usarcotutor
+\cotutor{Carolina Chang} 
+\trabajo{Trabajo de Grado}
+\coord{Ingeniería de Computación} %Coloca la coordinación
+\grado{Ingeniero de Computación}
+\carrera{Ingeniería de Computación}
+\programa{Ingeniería de Computación}
+%\juradouno{Ren\'e Escalante}
+%\juradodos{Johana Figueroa \mbox{(UC)}}
+%\juradotres{Irene Garc\'ia}
+%\juradocuatro{José Luis Palacios}
+
+% Cambia comillas simple por comilla cerrada en ambiente verbatim 
+\makeatletter
+\let \@sverbatim \@verbatim
+\def \@verbatim {\@sverbatim \verbatimplus}
+{\catcode`'=13 \gdef \verbatimplus{\catcode`'=13 \chardef '=13 }} 
+\makeatother
+
+\newcommand{\Blai}[1]{\textcolor{red}{#1}}
+
+\begin{document}
+\frontmatter
+\maketitle
+\input{preambulo/dedicatoria}
+\input{preambulo/agradecimientos}
+\input{preambulo/resumen}
+\tableofcontents
+\listoffigures
+\listoftables
+\useacronyms
+\input{preambulo/notacion}
+
+\mainmatter
+\input{preambulo/introduccion}
+\input{capitulo-1/capitulo-1}
+\input{capitulo-2/capitulo-2}
+\input{conclusiones}
+\nocite{*}
+\bibliography{referencias}
+\appendix
+\input{apendices/apendice-a.tex}
+
+
+\end{document}

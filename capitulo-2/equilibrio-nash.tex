@@ -1,0 +1,64 @@
+\section{Regret Matching y Equilibrio de Nash}
+En el capítulo anterior se describieron procedimientos universalmente consistente, algunos de los cuales permiten obtener equilibrios correlacionados. Sin embargo, éstos no garantizan obtener un equilibrio de Nash, surgiendo la siguiente interrogante: ?`Bajo que condiciones se puede garantizar que un procedimiento universalmente consistente conduce a un equilibrio de Nash? El Teorema \ref{UC-EN} responde esta pregunta.
+
+\begin{theorem}
+\label{UC-EN}
+Sea $\Gamma$ un juego de dos jugadores de suma cero y sea $(s^t)_{t=1,2,..., T}$ una secuencia de juegos de $\Gamma$, tales que, para todo $s_i \in S_i$, para todo $i \in {1, 2}$:
+\begin{alignat}{1}
+\frac{1}{T}\sum_{t = 1}^{T}u_i(s_i, s_{-i}^t) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \leq \varepsilon
+\end{alignat}
+para algún $\varepsilon > 0$. Sea $\bar{\sigma}^T = (\bar{\sigma_1}^T, \bar{\sigma_2}^T)$, donde:
+\begin{alignat}{1}
+\bar{\sigma}_i^T(s_i) = \frac{ |\{ 1 \leq T : s_i^t = s_i\}|}{T} = \frac{\#(s_i)}{T}
+\end{alignat}
+es decir, $\bar{\sigma}^T$, es la distribución empírica de probabilidad. Entonces $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
+\end{theorem}
+
+\begin{proof}
+Por hipótesis del teorema, se tiene que:
+\begin{alignat}{1}
+\frac{1}{T} \sum_{t = 1}^T u_i(s_i, s_{-i}^t) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \leq \varepsilon
+\end{alignat}
+
+Reordenado la sumatoria del primer término y utilizando la definición de $\bar\sigma$, se obtiene:
+\begin{alignat}{2}
+& \frac{1}{T} \sum_{s_{-i} \in S_{-i}} \#(s_{-i})u_i(s_i, s_{-i}) - \frac{1}{T} \sum_{t = 1}^Tu_i(s^t)  & \leq \varepsilon \\
+\Rightarrow & \sum_{s_{-i} \in S_{-i}} \bar{\sigma}_{-i}^T(s_{-i})u_i(s_i, s_{-i}) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) & \leq \varepsilon
+\end{alignat}
+
+Sea $\sigma_i \in \Delta(S_i)$ cualquier estrategia del jugador $i$, luego
+
+\begin{alignat}{4}
+& & \sum_{s_i \in S_i} \sigma_i(s_i) \left[ \sum_{s_{-i} \in S_{-i}} \bar{\sigma}_{-i}^T(s_{-i})u_i(s_i, s_{-i}) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \right] & \leq & \sum_{s_i \in S_i} \sigma_i(s_i) \varepsilon \\
+& \Rightarrow & \sum_{s_i \in S_i} \sum_{s_{-i} \in S_{-i}} \sigma_i(s_i)\bar{\sigma}_{-i}^T(s_{-i}) u_i(s_i, s_{-i}) - \sum_{s_i \in S_i} \sigma_i(s_i)u_i(s^t) & \leq & \varepsilon \\
+& \Rightarrow & u_i(\sigma_i, \bar{\sigma}_{-i}^T) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) & \leq & \varepsilon
+\end{alignat}
+
+En particular, se tiene que, para estrategias cualesquiera $\sigma_1 \in \Delta(S_1)$ y $\sigma_2 \in \Delta(S_2)$
+\begin{alignat}{1}
+\label{eq:star1}
+u_1(\sigma_1, \bar{\sigma}_2^T) - \frac{1}{T} \sum_{t=1}^T u_1(s^t) \leq \varepsilon \\
+u_2(\bar{\sigma}_1^T, \sigma_2) - \frac{1}{T} \sum_{t=1}^T u_2(s^t) \leq \varepsilon
+\end{alignat}
+
+Además, como $\Gamma$ es un juego de suma cero, se tiene que $u_2(\bar{\sigma}_1^T, \sigma_2) = -u_1(\bar{\sigma}_1^T, \sigma_2)$ y $u_2(s^t) = -u_1(s^t)$, luego:
+\begin{alignat}{1}
+u_2(\bar{\sigma}_1^T, \sigma_2) - \frac{1}{T} \sum_{t=1}^T u_2(s^t) = -u_1(\bar{\sigma}_1^T, \sigma_2) - \frac{1}{T} \sum_{t=1}^T -u_1(s^t) \leq \varepsilon
+\end{alignat}
+
+En particular, si $\sigma_2 = \bar{\sigma_2}^T$ entonces:
+\begin{alignat}{1}
+\label{eq:star2}
+-u_1(\bar{\sigma}_1^T, \bar{\sigma_2}^T) + \frac{1}{T} \sum_{t=1}^T u_1(s^t) \leq \varepsilon
+\end{alignat}
+
+Al sumar las desigualdades \ref{eq:star1} y \ref{eq:star2} se obtiene que:
+\begin{alignat}{2}
+& u_1(\sigma_1, \bar{\sigma}_2^T) - u_1(\bar{\sigma}_1^T, \bar{\sigma}_2^T) \leq 2\varepsilon \\
+\Rightarrow & u_1(\bar{\sigma}^T) + 2\varepsilon \geq u_1(\sigma_1, \bar{\sigma}_2^T)
+\end{alignat}
+
+Análogamente se tiene que $u_2(\bar{\sigma}^T) + 2\varepsilon \geq u_2(\bar{\sigma_1}^T, \sigma_2)$, con lo que se concluye que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
+\end{proof}
+
+Se obtiene entonces que, en juegos de dos jugadores de suma cero, si un procedimiento es universalmente consistente, su distribución empírica llevará a un equilibrio de Nash. Los procedimientos propuestos en la sección anterior son universalmente consistentes, por lo que se pueden utilizar para encontrar un equilibrio de Nash en un juego particular. Estos algoritmos fueron implementados y probados en diferentes juegos de suma cero para encontrar una aproximación a un equilibrio de Nash en cada uno de ellos.

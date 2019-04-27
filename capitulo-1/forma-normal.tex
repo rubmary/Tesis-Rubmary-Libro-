@@ -3,8 +3,6 @@
 
 En un juego en formal normal los jugadores eligen una única acción (o estrategia) de forma simultánea, obteniendo un pago de acuerdo a las acciones realizada por cada uno de ellos. Estos juegos también se llaman frecuentemente \textit{``one-shot game"}   (juegos de un sólo disparo), ya que cada uno de los jugadores realiza una única acción \cite{bib:introductionCFR}. El ejemplo clásico es \textit{piedra, papel o tijera}. En este juego cada jugador elige una de las tres opciones mediante un gesto con sus manos: piedra (con un puño cerrado), papel (con la mano extendida) o tijera (con los dedos índice y medio levantados en forma de ``V"). La piedra gana contra la tijera, la tijera gana contra el papel y el papel gana contra la piedra. Si los jugadores eligen la misma opción, entonces es un empate.
 
-%El concepto de un juego en forma normal se formaliza en la Definición \ref{def:forma-normal} \cite{bib:correlated-equilibrium}.
-
 \begin{definition}[\cite{bib:correlated-equilibrium}]
 \label{def:forma-normal}
 Un juego de N personas en \textbf{forma normal} (o estratégica) es una tupla $\Gamma = (N, (S_i)_{i \in N}, (u_i)_{i \in N})$, donde:
@@ -22,14 +20,14 @@ Otros conceptos básicos como: estrategias, perfiles estratégicos, soporte de u
 
 Se denotará con $s_{-i}$ la combinación de las estrategias de todos los jugadores excepto la del jugador $i$, es decir, $s_{-i} = (s_{i'})_{i' \neq i}$.
 
-\textit{Piedra, papel o tijera}, es un juego para dos jugadores y las acciones (o estrategias puras) son las mismas para cada jugador: piedra (R), papel (P), tijera (S). Es decir, $S_1 = S_2 = \{R, P, S \}$. Estos juegos pueden representarse como una tabla $n$-dimensional, donde cada dimensión está asociada a un jugador y sus filas/columnas corresponden a las acciones de su jugador correspondiente. Cada una de las entradas de la tabla corresponden a un único perfil estratégico (pues representan la intersección de una única acción de cada jugador) y éstas contienen un vector de pagos para cada jugador \cite{bib:introductionCFR}. La Tabla \ref{table:pago-RPS} es la tabla de pagos correspondiente al juego piedra, papel o tijera.
+\textit{Piedra, Rapel o Tijeras}, es un juego para dos jugadores y las acciones (o estrategias puras) son las mismas para cada jugador: piedra (R), papel (P), tijera (S). Es decir, $S_1 = S_2 = \{R, P, S \}$. Estos juegos pueden representarse como una tabla $n$-dimensional, donde cada dimensión está asociada a un jugador y sus filas/columnas corresponden a las acciones de su jugador correspondiente. Cada una de las entradas de la tabla corresponden a un único perfil estratégico (pues representan la intersección de una única acción de cada jugador) y éstas contienen un vector de pagos para cada jugador \cite{bib:introductionCFR}. La Tabla \ref{table:pago-RPS} es la tabla de pagos correspondiente al juego piedra, papel o tijera.
 
 \begin{table}[h]
 \begin{center}
-\caption[Tabla de pagos de piedra, papel o tijera]{Tabla de pagos de piedra, papel o tijera. \Blai{**** Usar captions con explicación para que se entienda el contenido sin tener que ir al texto ****}}
+\caption{Tabla de pagos de la forma normal del juego \textit{Piedra, Papel o Tijeras}}
 \label{table:pago-RPS}
 \begin{tabular}{c | c | c | c |}
-  & R & P & S \\ \hline
+  & R (piedra) & P (papel) & S (tijeras) \\ \hline
 R & $0,0$ & $-1,1$ & $1,-1$ \\ \hline
 P & $1,-1$ & $0,0$ & $-1,1$ \\ \hline
 S & $-1,1$ & $1,-1$ & $0,0$ \\ \hline
@@ -37,7 +35,6 @@ S & $-1,1$ & $1,-1$ & $0,0$ \\ \hline
 \end{center}
 \end{table}
 
-%Sin embargo, 
 En vez de realizar siempre la misma acción, un jugador puede elegir su jugada de acuerdo a una distribución de probabilidad, la cual se denominará \textbf{estrategia mixta}. Dado un conjunto finito $A$, se denotará con $\Delta(A)$ al conjunto de distribuciones de probabilidad sobre $A$, es decir $\Delta(A) = \{ (x_a)_{a \in A} : x_a \geq 0, \sum_{a \in A} x_a = 1\}$. Se presentan a continuación, definiciones formales para estrategia mixta, soporte de una estrategia mixta, perfil estratégico mixto y ganancia esperada.
 
 \begin{definition} Una \textbf{estrategia mixta} del jugador $i$, denotada con $\sigma_i$ es una distribución de probabilidad sobre el conjunto $S_i$, es decir $\sigma_i \in \Delta(S_i)$. Denotaremos con $\sigma_i(s_i)$ la probabilidad que el jugador $i$ elija la acción $s_i \in S_i$. 
@@ -46,16 +43,16 @@ En vez de realizar siempre la misma acción, un jugador puede elegir su jugada d
 \begin{definition}
 El \textbf{soporte} (support) de una estrategia mixta $\sigma_i \in \Delta(S_i)$ del jugador $i$ es el conjunto de estrategias puras con una probabilidad positiva de ser elegidas, es decir:
 \begin{alignat}{1}
-\text{support}(\sigma_i) = \{s_i | \sigma_i(s_i) > 0 \} \,.
+\text{support}(\sigma_i) = \{s_i : \sigma_i(s_i) > 0 \} \,.
 \end{alignat}
-\Blai{*** conjunto por extensi\'on denotado con el s\'{\i}mbolo `:' y `$|$': elegir una misma forma de hacerlo a lo largo de la tesis ***}
+%\Blai{*** conjunto por extensi\'on denotado con el s\'{\i}mbolo `:' y `$|$': elegir una misma forma de hacerlo a lo largo de la tesis ***}
 \end{definition}
 
 \begin{definition}
 Un \textbf{perfil estratégico mixto} consiste en una estrategia mixta para cada jugador; es decir, $\sigma \in \Pi_{i \in N} \Delta(S_i)$ es una tupla $\sigma=(\sigma_i)_{i \in N}$.
 \end{definition}
 
-Para $\sigma = (\sigma_i)_{i \in N}$ y $s = (s_i)_{i \in N}$, $\sigma(s)$ denota la probabilidad que el perfil estratégico mixto elija la estrategia mixta $s$; i.e., $\sigma(s)=\prod_{i\in N} \sigma_i(s_i)$. Para un perfil $\sigma$ y jugador $i$, descomponemos $\sigma$ en $(\sigma_i,\sigma_{-i})$ como la combinaci\'on de la estrategia para el jugador $i$ y el perfil $\sigma_{-i}$ para el resto de los jugadores. Similarmente, $\sigma_{-i}(s_{-i})=\prod_{j\in N,j\neq i}\sigma_j(s_j)$ denota la probabilidad de que los jugadores diferentes al jugador $i$ elijan las estrategias mixtas en el perfil $\sigma_{-i}$. Finalmente, si $x$ es una estrategia pura para el jugador $i$, tambi\'en utilizamos $x$ para denotar la estrategia mixta $\sigma_i$ para el jugador $i$ tal que $\sigma_i(x)=1$.
+Para $\sigma = (\sigma_i)_{i \in N}$ y $s = (s_i)_{i \in N}$, $\sigma(s)$ denota la probabilidad que el perfil estratégico mixto elija la estrategia mixta $s$; i.e., $\sigma(s)=\prod_{i\in N} \sigma_i(s_i)$. Para un perfil $\sigma$ y jugador $i$, descomponemos $\sigma$ en $(\sigma_i,\sigma_{-i})$ como la combinación de la estrategia para el jugador $i$ y el perfil $\sigma_{-i}$ para el resto de los jugadores. Similarmente, $\sigma_{-i}(s_{-i})=\prod_{j\in N,j\neq i}\sigma_j(s_j)$ denota la probabilidad de que los jugadores diferentes al jugador $i$ elijan las estrategias mixtas en el perfil $\sigma_{-i}$. Finalmente, si $x$ es una estrategia pura para el jugador $i$, también utilizamos $x$ para denotar la estrategia mixta $\sigma_i$ para el jugador $i$ tal que $\sigma_i(x)=1$.
 
 La ganancia esperada del jugador $i$ asociada al perfil $\sigma$ es
 
@@ -69,35 +66,34 @@ La \textbf{ganancia esperada} del jugador $i$ dado un perfil estratégico mixto 
 
 \begin{lemma}
 \label{lemma:1}
-\Blai{Este lemma hace las cosas mas sencillas abajo...}
+Sea $u_i(\sigma)$ la ganancia esperada del jugador $i$ dado el perfil estratégico $\sigma$, entonces
 \begin{alignat}{1}
 u_i(\sigma)\ =\ \sum_{x\in S_i} \sigma_i(x) \sum_{s_{-i}\in S_{-i}} \sigma_{-i}(s_{-i}) u_i(x,s_{-i}) \,.
 \end{alignat}
 \end{lemma}
 \begin{proof}
-\Blai{terminar statement of lemma, y hacer prueba}
+Partiendo de la Definición \ref{def:ganancia-esperada} se obtiene
+\begin{alignat}{1}
+	u_i(\sigma)\  &=\ \sum_{s \in S} u_i(s) \sigma_i(s_i) \sigma_{-i}(s_{-i}) =\ \sum_{s_i \in S_i} \sum_{s_{-i} \in S_{-i}} u_i(s_i, s_{-i}) \sigma_i(s_i) \sigma_{-i}(s_{-i}) \\
+	&=\ \sum_{s_i\in S_i} \sigma_i(s_i) \sum_{s_{-i}\in S_{-i}} \sigma_{-i}(s_{-i}) u_i(s_i,s_{-i})
+\end{alignat}
 \end{proof}
 
-%La ganancia esperada es la esperanza de la función de pago obtenida al utilizar una estrategia mixta, permitiendo medir la efectividad de la estrategia utilizada. 
 También es importante definir el concepto de mejor respuesta; término que se utiliza para caracterizar una estrategia que maximiza la ganancia esperada de un jugador fijo, conociendo las estrategias del resto de los jugadores.
 
 \begin{definition}
 \label{def:mejor-respuesta}
-Sea $i\in N$ un jugador, $\sigma_i$ una estrategia mixta para el jugador $i$, y $\sigma_{-i}$ un perfil estrat\'egico mixto para el resto de los jugadores. Decimos que $\sigma_i$ es una \textbf{mejor respuesta} con respecto a $\sigma_{-i}$ si y s\'olo si
+Sea $i\in N$ un jugador, $\sigma_i$ una estrategia mixta para el jugador $i$, y $\sigma_{-i}$ un perfil estratégico mixto para el resto de los jugadores. Decimos que $\sigma_i$ es una \textbf{mejor respuesta} con respecto a $\sigma_{-i}$ si y s\'olo si
 $u_i(\sigma_i,\sigma_{-i}) \geq u_i(\sigma'_i,\sigma_{-i})$ para toda estrategia mixta $\sigma'_i$ para el jugador $i$.
-%Una estrategia $\sigma_i$ es \textbf{mejor respuesta} para el jugador $i$ si, dadas las estrategias de los otros jugadores, la ganancia esperada del jugador $i$ se maximiza con $\sigma_i$. Es decir, $\sigma_i$ es mejor respuesta a $\sigma_{-i}$, si para toda estrategia $\sigma_i' \in \Delta(S_i)$, se cumple que: 
-%\begin{alignat}{1}
-%	u_i(\sigma_i, \sigma_{-i}) \geq u_i(\sigma_i', \sigma_{-i})
-%\end{alignat}
 \end{definition}
 
-Una mejor respuesta no es necesariamente única. En efecto, salvo el caso extremo en el que hay una única mejor respuesta, la cual es una estrategia pura, el número de mejores respuestas es infinito. Cuando el soporte de una estrategia mixta que es mejor respuesta incluye más de dos acciones (estrategias puras), el agente debe ser indiferente a cualquiera de éstas y cualquier mezcla de estas acciones también será mejor respuesta \cite{bib:tutorial-existence-nash}. %Esto se prueba en el Teorema \ref{theo:mejor-respuesta}.
+Una mejor respuesta no es necesariamente única. En efecto, salvo el caso extremo en el que hay una única mejor respuesta, la cual es una estrategia pura, el número de mejores respuestas es infinito. Cuando el soporte de una estrategia mixta que es mejor respuesta incluye más de dos acciones (estrategias puras), el agente debe ser indiferente a cualquiera de éstas y cualquier mezcla de estas acciones también será mejor respuesta \cite{bib:tutorial-existence-nash}.
 
 \begin{lemma}
 \label{lemma:2}
 Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$, y sea $x\in S_i$ una estrategia pura para el jugador $i$. Entonces, para toda estrategia pura $y\in S_i$ diferente de $x$,
 \begin{alignat}{1}
-  \sigma^*_i(x) \sum_{s_{-i}} \mu_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ \geq\ \sigma^*_i(x) \sum_{s_{-i}} \mu_i(y,s_{-i}) \sigma_{-i}(s_){-i}) \,.
+  \sigma^*_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ \geq\ \sigma^*_i(x) \sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
 \end{alignat}
 \end{lemma}
 
@@ -129,62 +125,17 @@ $u_i(\sigma^*_i, \sigma_{-i})=\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z
 
 \begin{theorem}
 \label{theo:mejor-respuesta}
-Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$. Cualquier estrategia mixta $\sigma_i$ para el jugador $i$ cuyo soporte sea un subconjunto del soporte de $\sigma^*_i$ es tambi\'en una mejor respuesta a $\sigma_{-i}$
+Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$. Cualquier estrategia mixta $\sigma_i$ para el jugador $i$ cuyo soporte sea un subconjunto del soporte de $\sigma^*_i$ es también una mejor respuesta a $\sigma_{-i}$
 \end{theorem}
 
 \begin{proof}
-%Partiendo de la Definición \ref{def:mejor-respuesta} se obtiene
-%\begin{alignat}{1}
-%	u_i(\sigma)\  &=\ %\sum_{s \in S} u_i(s) \prod_{j \in N} \sigma_j(s_j)\ % \\
-%	\sum_{s \in S} u_i(s) \sigma_i(s_i) \sigma_{-i}(s_{-i})\ =\ \sum_{s_i\in S_i} \sigma_i(s_i) \sum_{s_{-i}\in S_{-i}} \sigma_{-i}(s_{-i}) u_i(s_i,s_{-i})  \\ % \prod_{\substack{j \in N \\ j \neq i}}	\sigma_j(s_j) \\
-%	&=\ \sum_{s \in S} \frac{1}{T}\sum_{t = 1}^{T}u_i(s) \sigma_i(s_i) \sigma_{-i}(s_{-i}) \\
-%	&=\ \sum_{x \in S_i} \sigma_i(x) \sum_{ \substack{s \in S \\ s_i = x} } u_i(s) \sigma_{-i}(s_{-i})
-%\end{alignat}
-%
-Sea $x \in S_i$ una \emph{estrategia pura} perteneciente al soporte de $\sigma^*_i$, y sea $y \in S_i$ una estrategia mixta \emph{diferente} de $x$. 
-%Considere la estrategia mixta $\sigma'_i$ definida por:
-%\begin{alignat}{1}
-%	\sigma'_{i}(s_i)\ =\  
-%	\begin{cases}
-%		0 &  \text{si } s_i = x \\
-%		\sigma^*_i(x) + \sigma^*_i(y) & \text{si } s_i = y \\
-%		\sigma^*_i(s_i) & \text{en otro caso} 
-%	\end{cases}
-%\end{alignat}
-%Como $\sigma^*_i$ es mejor respuesta,
-%\begin{alignat}{1}
-%  u_i(\sigma^*_i, \sigma_{-i})\ 
-%    &\geq\ u_i(\sigma'_i, \sigma_{-i}) \\
-%    &=\ \sum_{z \in S_i} \sigma'_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) \\
-%    &=\ \sum_{z\neq x} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) + \sigma^*_i(x)\sum_{s_{-i}} u_i(y,s_{-i})\sigma_{-i}(s_{-i}) \,.
-%\end{alignat}
-%Como $u_i(\sigma^*_i, \sigma_{-i})=\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i})$,
-%\begin{alignat}{1}
-%  \label{eq:ineq-ganancias}
-%  \sigma^*_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\
-%    &\geq\ \sigma^*_i(x)\sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
-%\end{alignat}
-%Por lo tanto, ya que $\sigma^*_i(x)>0$ puesto que $x\in support(\sigma^*_i)$,
+Sea $x \in S_i$ una \emph{estrategia pura} perteneciente al soporte de $\sigma^*_i$, y sea $y \in S_i$ una estrategia pura \emph{diferente} de $x$. 
+
 Por el Lema~\ref{lemma:2},
 \begin{alignat}{1}
   \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ \geq\  \sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
 \end{alignat}
-%\begin{alignat}{2}
-%	&&\ u_i(\sigma^*_i, \sigma_{-i}) &\geq\ u_i(\sigma'_i, \sigma{-i}) \\
-%	&\Rightarrow\quad
-%	&\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) &\geq\ \sum_{z \in S_i} \sigma'_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) \\
-	%
-%	&\Rightarrow\quad
-%	&\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) &\geq\ \sum_{z\neq x} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) + \sigma^*_i(x)\sum_{s_{-i}} u_i(y,s_{-i})\sigma_{-i}(s_{-i}) \\
-	%
-	%& \Rightarrow\quad & \sum_{z \in S_i} \sigma_i(z) \sum_{\substack{s \in S \\ s_i = z}} u_i(s) \sigma_{-i}(s_{-i}) &\geq\ \sum_{\substack{z \in S_i \\ z \neq x}} \sigma_i(z) \sum_{\substack{s \in S \\ s_i = z}} u_i(s) \sigma_{-i}(s_{-i}) + \sigma_i(x)\sum_{\substack{s \in S \\ s_i = y}} u_i(s) \sigma_{-i}(s_{-i}) \\
-    %\label{eq:ineq-ganancias}
-%	&\Rightarrow\quad
-%	&\sigma^*_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i}) &\geq\ \sigma^*_i(x)\sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \\
-	%
-%	&\Rightarrow\quad
-%	&\sum_{s_{-i}} u_i(x,s) \sigma_{-i}(s_{-i}) &\geq\  \sum_{s_{-i}} u_i(y,s) \sigma_{-i}(s_{-i}) \,.
-%\end{alignat}
+
 En particular, si $x$ y $x'$ son distintos, y ambos pertenecen al soporte de $\sigma_i$,
 \begin{alignat}{1}
 \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ =\ \sum_{s_{-i}} u_i(x',s_{-i}) \sigma_{-i}(s_{-i})\ =\ C
@@ -193,14 +144,11 @@ donde $C$ es una constante que s\'olo depende de $\sigma_{-i}$.
 Luego, para cualquier estrategia $\sigma_i$, tal que $support(\sigma_i) \subseteq support(\sigma^*_i)$, se tiene:
 \begin{alignat}{1}
 u_i(\sigma_i, \sigma_{-i})\ &=\ \sum_{x \in S_i} \sigma_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ =\ \sum_{x \in S_i} \sigma_i(x) C\ =\ C \,.
-% &=\ c \sum_{x \in S_i} \sigma^*_i(x) \\
-% &=\ c \\
-% &=\ u_i(\sigma_i, \sigma_{-i})
 \end{alignat}
 En particular, $u_i(\sigma^*_i,\sigma_{-i})=C$, y $\sigma_i$ es también mejor respuesta a $\sigma_{-i}$.
 \end{proof}
 
-Cuando cada jugador juega con una mejor respuesta frente a las estrategias del resto de los jugadores, se obtiene un Equilibrio de Nash (Definición \ref{def:equilibrio-nash}). En un Equilibrio de Nash ningún jugador puede mejorar su ganancia esperada cambiando su estrategia de forma aislada. Por otra parte, si el juego es finito, siempre existe, al menos, un equilibrio de Nash (Teorema \ref{theo:existencia-nash}). Un juego es finito se el n\'umero de jugadores es finito, y si el conjunto de estrategias puras para cada jugador es tambi\'en finito. E, concepto de equilibrio de Nash es uno de los conceptos de solución más importantes en el \'area de juegos no cooperativos, y es el principal concepto de solución utilizado en el presente trabajo.
+Cuando cada jugador juega con una mejor respuesta frente a las estrategias del resto de los jugadores, se obtiene un Equilibrio de Nash (Definición \ref{def:equilibrio-nash}). En un Equilibrio de Nash ningún jugador puede mejorar su ganancia esperada cambiando su estrategia de forma aislada. Por otra parte, si el juego es finito, siempre existe, al menos, un equilibrio de Nash (Teorema \ref{theo:existencia-nash}). Un juego es finito si el número de jugadores es finito, y si el conjunto de estrategias puras para cada jugador es también finito. El concepto de equilibrio de Nash es uno de los conceptos de solución más importantes en el área de juegos no cooperativos, y es el principal concepto de solución utilizado en el presente trabajo.
 
 \begin{definition}
 \label{def:equilibrio-nash} Un perfil estratégico mixto $\sigma$ es un \textbf{equilibrio de Nash} si y s\'olo si para todo jugador $i$, la estrategia $\sigma_i$ es mejor respuesta para $\sigma_{-i}$.

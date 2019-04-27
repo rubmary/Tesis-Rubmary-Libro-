@@ -10,7 +10,7 @@ La Figura \ref{fig:game-allocation} representa el árbol correspondiente al jueg
 
 \begin{figure}[ht]
 \begin{center}
-\caption{Juego de distribución. \Blai{**** Usar captions con explicación para que se entienda el contenido sin tener que ir al texto ****}}
+\caption{Árbol del juego en forma extensiva del Ejemplo~\ref{ex:game-allocation}}
 \label{fig:game-allocation}
 \begin{tikzpicture}[
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
@@ -56,7 +56,7 @@ Considere un juego de dos jugadores, el jugador $1$ y el jugador $2$, el cual oc
 
 \begin{figure}
 \begin{center}
-\caption{Ejemplo de juego con información incompleta. \Blai{**** Usar captions con explicación para que se entienda el contenido sin tener que ir al texto ****}}
+\caption{Árbol del juego en forma extensiva presentado en el Ejemplo~\ref{ex:informacion-incompleta}}
 \label{fig:informacion-incompleta}
 \begin{tikzpicture}[
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
@@ -95,7 +95,7 @@ Se puede observar que los nodos unidos por líneas punteadas son indistinguibles
 
 \begin{definition}
 \label{def:informacion-incompleta}
-Un juego finito en \textbf{forma extensa} con \textbf{información incompleta} tiene los siguientes componentes:
+Un juego finito en \textbf{forma extensiva} con \textbf{información incompleta} tiene los siguientes componentes:
 \begin{itemize}[noitemsep]
   \item Un conjunto finito $N$ de \textbf{jugadores}.
   \item Un conjunto finito $H$ de secuencias, las posible \textbf{historias} de acciones, tal que la secuencia vacía está en $H$, y cada prefijo de una secuencia en $H$ también está en $H$. $Z \subseteq H$ son las historias terminales (aquellas que no son prefijo de ninguna otra secuencia). $A(h) = \{ a : (h, a) \in H \}$ son las acciones disponibles después de una historia no terminal $h \in H$.
@@ -133,7 +133,7 @@ Debido a qué es un juego de suma $0$, el jugador perdedor pierde el número de 
 
 \begin{figure}
 \begin{center}
-\caption{Árbol del juego de Kunh Poker. \Blai{**** Usar captions con explicación para que se entienda el contenido sin tener que ir al texto ****}}
+\caption{Árbol completo del juego Kunh Poker.}
 \label{fig:kunh-poker}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
@@ -313,7 +313,7 @@ En Kunh Poker una estrategia pura para el jugador $2$ puede ser la siguiente: si
 
 \begin{table}[ht]
 \begin{center}
-\caption[Ejemplo de estrategia pura en un juego en forma extensiva]{Ejemplo de una estrategia pura para el jugador $2$ en el juego de Kunh Poker.}
+\caption{Ejemplo de una estrategia pura para el jugador $2$ en el juego Kunh Poker.}
 \label{table:ejemplo-estrategia-pura}
 \begin{tabular}{ c c | c }
 \hline
@@ -385,7 +385,7 @@ Por otra parte, dado un juego en forma normal, siempre es posible construir el �
 
 \begin{figure}
 \begin{center}
-\caption{Árbol del juego de piedra, papel o tijera}
+\caption{Árbol de la forma extensiva del juego \textit{Piedra, Papel o Tijeras}}
 \label{fig:RPS}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
@@ -482,7 +482,7 @@ En juegos en forma extensiva, el jugador puede utilizar un tipo de estrategia di
 
 \begin{definition}
 \label{def:estrategia-comportamiento}
-Una \textbf{estrategia de comportamiento} para el jugador $i$ consiste en una distribución de probabilidad para cada conjunto de información $I_i\in\matchcak{I}_i$ sobre el conjunto $A(I_i)$ que pueden ejecutarse en $I_i$.
+Una \textbf{estrategia de comportamiento} para el jugador $i$ consiste en una distribución de probabilidad para cada conjunto de información $I_i \in \mathcal{I}_i$ sobre el conjunto $A(I_i)$ que pueden ejecutarse en $I_i$.
 Es decir, una estrategia de comportamiento es una tupla $(\sigma^b_i(I_i))_{I_i \in \mathcal{I}_i}$ donde $\sigma^b_i(I_i) \in \Delta(A(I_i))$.
 \end{definition}
 
@@ -507,17 +507,18 @@ u_i(\sigma) + \varepsilon\ \geq\ u_i(\sigma'_i, \sigma_{-i}) \,.
 El perfil $\sigma\in\Sigma$ es un \textbf{equilibrio de Nash} si y sólo si $\sigma$ es un $0$-equilibrio de Nash.
 \end{definition}
 
-En el Ejemplo~\ref{ex:informacion-incompleta} se tienen $4$ estrategias puras para el jugador $1$ (Tabla \ref{table:estrategias-puras}). Una estrategia mixta $\sigma^m_1$ es una distribución de probabilidad sobre el conjunto $\{s_1, s_2, s_3, s_4\}$, donde las probabilidades son $\sigma^m_1(s_1)$, $\sigma^m_1(s_2)$, $\sigma^m_1(s_3)$ y $\sigma^m_1(s_4)$. Por otra parte una estrategia de comportamiento $\sigma^b_1$ son dos distribuciones de probabilidad, $\sigma^m_1(I^1)$ y $\sigma^m(I_2)$, sobre los conjuntos $A(I^1) = \{L, R\}$ y $A(I^2) = \{l, r\}$ respectivamente.
+En el Ejemplo~\ref{ex:informacion-incompleta} se tienen $4$ estrategias puras para el jugador $1$ (Tabla \ref{table:estrategias-puras}). Una estrategia mixta $\sigma^m_1$ es una distribución de probabilidad sobre el conjunto $\{s_1, s_2, s_3, s_4\}$, donde las probabilidades son $\sigma^m_1(s_1)$, $\sigma^m_1(s_2)$, $\sigma^m_1(s_3)$ y $\sigma^m_1(s_4)$. Por otra parte una estrategia de comportamiento $\sigma^b_1$ son dos distribuciones de probabilidad, $\sigma^b_1(I^1)$ y $\sigma^b_1(I_2)$, sobre los conjuntos $A(I^1) = \{L, R\}$ y $A(I^2) = \{l, r\}$ respectivamente.
 
-Sea $\sigma$ un perfil estratégico mixto o de comportamiento. Se denotará con $\sigma_{-i}$ la combinación de todas las estrategias de $\sigma$ excepto $\sigma_i$, con $\pi^{\sigma}(h)$ la probabilidad de que la historia $h$ ocurra si todos los jugadores eligen las acciones acorde al perfil estratégico  $\sigma$. Análogamente se denotará con $\pi^{\sigma_i}(h)$ la probabilidad que, bajo la estrategia $\sigma_i$ del jugador $i$, se alcance la historia $h$ asumiendo que todos los jugadores distintos de $i$ juegan para alcanzar $h$. Es decir, $\pi^{\sigma_i}(h)$ es la probabilidad que para toda historia (prefijo propio) $h' \sqsubset h$ tal que $P(h') = i$, el $i$-ésimo jugador elija la acción correspondiente en $h$, es decir, el jugador elija la acción $a$ tal que $(h', a) \sqsubseteq h$.
+Sea $\sigma$ un perfil estratégico mixto o de comportamiento. Sea  $\sigma_{-i} = (\sigma_j)_{j \neq i}$ la combinación de todas las estrategias de $\sigma$ excepto $\sigma_i$. Sea $\pi^{\sigma_i}(h)$ la probabilidad de alcanzar $h$ dado que el jugador $i$ utiliza la estrategia $\sigma_i$ y que los demás jugadores juegan para alcanzar $h$. Note que $\pi^{\sigma_i}(h)$ es la probabilidad de que para todo prefijo propio $h' \sqsubset h$ tal que $P(h') = i$, el $i$-ésimo jugador elija la acción $a$ correspondiente en $h$; i.e., $(h', a) \sqsubseteq h$.
 
-\Blai{*** Necesita hacerse mas claro. La notación tambien debe introducirse de forma mas adecuada. ****}
-En particular, se puede descomponer $\pi^{\sigma}(h) = \prod_{i \in N \cup {c}} \pi^\sigma_i(h)$. Donde $\pi^c(h)$ representa la probabilidad de alcanzar $h$ asumiendo que todos los jugadores juegan para alcanzar $h$, es decir:
+Sea $\pi^c(h)$ la probabilidad de alcanzar $h$ asumiendo que todos los jugadores juegan para alcanzar $h$, es decir:
 \begin{alignat}{1}
-\pi^c(h) = \prod_{\substack{(h', a) \sqsubset h \\ P(h') = c}} f_c(a | h')
+\pi^c(h) = \prod_{(h', a) \sqsubset h : P(h') = c} f_c(a | h') \, .
 \end{alignat}
 
-Se denotará con $\pi^{\sigma}_{-i}(h)$ el producto de todas las contribuciones de los jugadores (incluyendo las elecciones en las historias de azar) excepto el jugador $i$. Para cada conjunto de información  $I \subset H$, se define $\pi^{\sigma}(I) = \sum_{h \in I} \pi^\sigma(h)$ como la probabilidad de alcanzar un conjunto de información en específico dada una estrategia $\sigma$. De forma similar son definidos $\pi^\sigma_i(I)$ y $\pi^\sigma_{-i}(h)$. Note que para un perfil estratégico $\sigma$, se tiene que $u_i(\sigma) = \sum_{z \in Z} u_i(z)\pi^{\sigma}(z)$. Además, se denotará con $I(h)$ al conjunto de información al que pertenece $h$, como los conjuntos de información son una partición de las historias correspondientes a cada jugador, se tiene que $I(h)$ está bien definida. La notación presentada es la notación utilizada en \cite{bib:cfr}.
+Sea $\pi^{\sigma}(h) = \prod_{i \in N \cup {c}} \pi^{\sigma_i}(h)$ la probabilidad de que la historia $h$ ocurra si todos los jugadores eligen las acciones acorde al perfil estratégico  $\sigma$.  Sea $\pi^{\sigma_{-i}}(h) = \frac{\pi^{\sigma}(h)}{\pi^{\sigma_{i}}(h)}$ el producto de todas las contribuciones de los jugadores (incluyendo las elecciones en las historias de azar) excepto el jugador $i$. Sean $\pi^{\sigma}(I) = \sum_{h \in I},  \pi^\sigma(h)$, $\pi^{\sigma_i}(I) = \sum_{h \in I},  \pi^{\sigma_i}(h)$ y $\pi^{\sigma_{-i}}(h) = \sum_{h \in I},  \pi^{\sigma_{-i}}(h)$ la probabilidad de alcanzar el conjunto de información $I$ dado la estrategia $\sigma$, $\sigma_{i}$ y $\sigma_{-i}$, respectivamente.
+
+Para un perfil estratégico $\sigma$, sea $u_i(\sigma) = \sum_{z \in Z} u_i(z)\pi^{\sigma}(z)$ la ganancia esperada del jugador $i$ cuando todos los jugadores utilizan el perfil estratégico $\sigma$. Sea $I(h)$ el conjunto de información al que pertenece $h$, como los conjuntos de información son una partición de las historias correspondientes a cada jugador $I(h)$ está bien definida. La notación presentada es la utilizada en \cite{bib:cfr}.
 
 \subsection{Perfect Recall}
 
@@ -541,9 +542,9 @@ Intuitivamente, las condiciones presentadas representan las siguientes propiedad
 \item \textit{El jugador $i$ recuerda lo que eligió} (Ecuación \ref{eq:condicion-2}): si desde una historia $h$ el jugador elige $a$ estará siempre en un conjunto de información diferente si en ese punto hubiese elegido la acción $b \neq a$.
 \end{enumerate}
 
-Los juegos presentados previamente: Ejemplo \ref{ex:game-allocation}, Ejemplo \ref{ex:informacion-incompleta} y Kunh Poker son todos juegos con \textit{perfect recall}. El Ejemplo \ref{ex:imperfect-recall} \cite{bib:conceptos-basicos}, muestra un juego con \textit{imperfect recall}.
+Los juegos presentados previamente: Ejemplo \ref{ex:game-allocation}, Ejemplo \ref{ex:informacion-incompleta} y Kunh Poker son todos juegos con \textit{perfect recall}. El Ejemplo \ref{ex:imperfect-recall} muestra un juego con \textit{imperfect recall}.
 
-\begin{example}
+\begin{example} (\cite{bib:conceptos-basicos})
 \label{ex:imperfect-recall}
 Considere un juego de dos jugadores de suma cero en el cual el jugador $1$ consta de $2$ jugadores: Alice y su esposo Bill, y el jugador $2$ consta de una sóla persona: Zeno. Se tienen dos cartas con los números $1$ y $2$ y son repartidas aleatoriamente entre Alice y Zeno. La persona con la carta más alta recibe 1\$ de la persona con la carta más baja, y ésta decide si seguir jugando o no. Si el juego continúa, Bill, sin saber el resultado de la repartición inicial de las cartas, decide si Alice y Zeno intercambian sus cartas o no. Nuevamente, quien posea la carta más alta recibe 1\$ de quien posea la carta más baja.
 \end{example}
@@ -552,7 +553,7 @@ Considere un juego de dos jugadores de suma cero en el cual el jugador $1$ const
 
 \begin{figure}[ht]
 \begin{center}
-\caption{Árbol del juego del Ejemplo \ref{ex:imperfect-recall}}
+\caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo \ref{ex:imperfect-recall}}
 \label{fig:imperfect-recall}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
@@ -641,7 +642,7 @@ recall} corresponde al árbol de la Figura \ref{fig:imperfect-recall-2}.
 
 \begin{figure}[ht]
 \begin{center}
-\caption{Árbol del Ejemplo \ref{ex:imperfect-recall-2}}
+\caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo~\ref{ex:imperfect-recall-2}}
 \label{fig:imperfect-recall-2}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
@@ -773,5 +774,5 @@ Se puede observar que cuando se tiene un juego con \textit{perfect recall}, se c
 En un juego con \textit{perfect recall}, cualquier estrategia mixta de un agente dado puede ser remplazada por una estrategia de comportamiento equivalente, y cualquier estrategia de comportamiento puede ser remplazada por una estrategia mixta equivalente. Dos estrategias son equivalentes en el sentido en que inducen los mismos resultados de probabilidades, para cualquier perfil estratégico fijo (mixto o de comportamiento) del resto de los agentes.
 \end{theorem}
 
-Como corolario del teorema anterior se obtiene que el conjunto de los equilibrios de Nash o cambia si el estudio se restringe a estrategias de comportamiento. Los juegos estudiados en este trabajo presentan \textit{perfect recall}, por lo tanto, en las próximas secciones se restringirá el estudio a estrategias de comportamientos. Se asumirá que todas las estrategias son de comportamiento y por lo tanto se denotarán únicamente por $\sigma$ (en vez de $\sigma^b$). Sin embargo, es importante resaltar nuevamente, que esta equivalencia es cierto sólamente si el juego tiene \textit{perfect recall}. En juegos generales con información incompleta, estrategias mixtas y de comportamiento mantienen conjuntos de equilibrio no comparables \cite[p.~45]{bib:handbook-blai}.
+Como corolario del teorema anterior se obtiene que el conjunto de los equilibrios de Nash o cambia si el estudio se restringe a estrategias de comportamiento. Los juegos estudiados en este trabajo presentan \textit{perfect recall}, por lo tanto, en las próximas secciones se restringirá el estudio a estrategias de comportamientos. Se asumirá que todas las estrategias son de comportamiento y por lo tanto se denotarán únicamente por $\sigma$ (en vez de $\sigma^b$). Sin embargo, es importante resaltar nuevamente, que esta equivalencia es cierto solamente si el juego tiene \textit{perfect recall}. En juegos generales con información incompleta, estrategias mixtas y de comportamiento mantienen conjuntos de equilibrio no comparables \cite[p.~45]{bib:handbook-blai}.
 

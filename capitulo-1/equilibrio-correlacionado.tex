@@ -1,4 +1,4 @@
-\section{Equilibrio correlacionado}
+\section{Equilibrio Correlacionado}
 
 Aunque el equilibrio de Nash es uno de los principales conceptos de solución, es importante destacar que éste no garantiza el mejor resultado si los jugadores toman sus decisiones en conjunto. Si los jugadores pueden correlacionar sus acciones, pueden existir estrategias con mayores ganancias para ellos. 
 Esto puede ser obtenido mediante un equilibrio correlacionado (Definición \ref{def:equilibrio-correlacionado}, \cite{bib:correlated-equilibrium}), una generalización del equilibrio de Nash. Todo equilibrio de Nash es un equilibrio correlacionado, pero este último permite otras soluciones importantes \cite{bib:correlated-equilibrium}. La relación entre los conceptos de equilibro de Nash y correlacionado se muestra en los Teoremas \ref{theo:nash-correlacionado} y \ref{theo:correlacionado-nash}.
@@ -28,13 +28,6 @@ Es decir,
 \begin{alignat}{1}
   0\ \leq\ \sigma_i(x) \sum_{s_{-i}} \sigma_{-i}(s_{-i}) [u_i(x,s_{-i}) - u_i(y,s_{-i})]\ =\ \sum_{s_{-i}} \sigma(x,s_{-i}) [u_i(x,s_{-i}) - u_i(y,s_{-i})] \,.
 \end{alignat}
-%\begin{alignat}{2}
-%  &\Rightarrow\quad
-%  &&\sigma_i(x)\sum_{\substack{s \in S \\ s_i = y}} u_i(s) \sigma_{-i}(s_{-i})  \leq\ \sigma_i(x) \sum_{\substack{s \in S \\ s_i = x}} u_i(s) \sigma_{-i}(s_{-i}) \\
-%	& \Rightarrow\quad & 0\ &\leq\ \sigma_i(x) \sum_{\substack{s \in S \\ s_i = x}} u_i(s) \sigma_{-i}(s_{-i}) -  \sigma_i(x)\sum_{\substack{s \in S \\ s_i = y}} u_i(s) \sigma_{-i}(s_{-i}) \\
-%	& \Rightarrow\quad & 0\ &\leq\  \sum_{\substack{s \in S \\ s_i = x}} u_i(s) \sigma(s) -  \sum_{\substack{s \in S \\ s_i = y}} u_i(s) \sigma(s) \\
-%	& \Rightarrow\quad & 0\ &\leq\  \sum_{\substack{s \in S \\ s_i = x}} \sigma(s) [u_i(s)  -  u_i(y, s)]
-%\end{alignat}
 Luego, $\sigma$ es un equilibrio correlacionado.
 \end{proof}
 
@@ -50,8 +43,7 @@ Sean $x$ y $y$ estrategias puras para el jugador $i$.
 Como $\sigma$ es un equilibrio correlacionado,
 \begin{alignat}{1}
 \label{eq:1:theo:correlacionado-nash}
-0\ \leq\ %\sum_{\substack{s \in S \\ s_i = x}} \sigma(s)[u_i(s) - u_i(y, s_{-i})] = 
-\sigma_i(x) \sum_{s_{-i}} \sigma_{-i}(s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \,.
+0\ \leq\ \sigma_i(x) \sum_{s_{-i}} \sigma_{-i}(s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \,.
 \end{alignat}
 Al sumar sobre $x\in S_i$ obtenemos, 
 \begin{alignat}{2}
@@ -87,13 +79,22 @@ Como $\sigma'_i$ es una estrategia cualquiera para el jugador $i$, $\sigma$ es u
 A diferencia del conjunto de equilibrios de Nash, el cual es un conjunto matemáticamente complejo (un conjunto de puntos fijos), el conjunto de equilibrios correlacionados en un conjunto bastante simple. En particular, el conjunto de equilibrios correlacionado es un politopo (generalización de un polígono en $\mathbb{R}^N$) convexo. Por lo tanto puede esperarse que existan procedimientos simples para calcular equilibrios correlacionados \cite{bib:correlated-equilibrium}.
 
 \begin{theorem}
-Sean $\sigma$ y $\sigma'$ dos equilibrios correlacionados, y $\alpha$ un número real en $(0,1)$. Entonces, la distribucion $\alpha\sigma + (1-\alpha)\sigma'$ es un equilibrio correlacionado.
+Sean $\sigma$ y $\sigma'$ dos equilibrios correlacionados, y $\alpha$ un número real en $(0,1)$. Entonces, la distribución $\alpha\sigma + (1-\alpha)\sigma'$ es un equilibrio correlacionado.
 \end{theorem}
 \begin{proof}
-\Blai{hacer demostracion}
+Como $\sigma$ y $\sigma'$ son equilibrios correlacionados y $\alpha, 1 - \alpha \in (0, 1)$ se cumple que para cualesquiera $x$ e $y$:
+\begin{alignat}{1}
+ \alpha \sum_{s_{-i} \in S_{-i}} \sigma(x, s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \geq 0 & \, \text{ y } \\
+ (1 - \alpha) \sum_{s_{-i} \in S_{-i}} \sigma'(x, s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \geq 0
+\end{alignat}
+Sumando las ecuaciones anteriores y factorizando se obtiene:
+\begin{alignat}{1}
+ \sum _{s_{-i} \in S_{-i}} [ \alpha \sigma(x, s_{-i}) +  (1 - \alpha) \sigma'(x, s_{-i})][u_i(x, s_{-i}) - u_i(y, s_{-i})] \geq 0
+\end{alignat}
+Por lo que $\alpha \sigma +  (1 - \alpha) \sigma'$ es un equilibrio correlacionado.
 \end{proof}
 
-\subsection{Blackwell's Approachability Theorem}
+\subsection{Teorema de Aproximación de Blackwell}
 Antes de presentar los procedimientos que llevan a equilibrios correlacionados, es importante enunciar el Teorema de Aproximación de Blackwell, \textit{Blackwell's Approachability Theorem}, base para la obtención de los procedimientos que calculan equilibrios correlacionados. El enunciado del teorema, las definiciones utilizadas y los procedimientos mostrados son presentados en \cite{bib:correlated-equilibrium}.
 
 El marco teórico en el cual se aplica el teorema está conformado por: (1)~un \textbf{decididor} $i$ que toma decisiones de un conjunto finito de acciones $S_i$, (2)~un \textbf{oponente} $-i$ que toma decisiones de un conjunto finito de acciones $S_{-i}$, (3)~un \textbf{conjunto indexado} denotado por $L$, y (4)~un \textbf{vector de pagos} $v(s_i, s_{-i}) \in \mathbb{R}^{|L|}$.
@@ -123,8 +124,8 @@ Sea $\mathcal{C} \in \mathbb{R}^n$ un conjunto. La \textbf{función de soporte} 
 donde $\cdot$ denota el producto interno en $\mathbb{R}^n$.
 \end{definition}
 
-Dado un conjunto convexo y cerrado $\mathcal{C}$ denotaremos con $F(x)$ el punto (único) más cercano a $x$ de $C$, y con $\lambda(x)= x - F(x)$ el \emph{vector normal exterior} a $\mathcal{C}$ en el punto $x$ \Blai{*** def? ***}.
-El Teorema de Blackwell (Te)orema~\ref{theo:blackwell} establece una condición necesaria y suficiente para el problema planteado previamente.
+Dado un conjunto convexo y cerrado $\mathcal{C}$ denotaremos con $F(x)$ el punto (único) más cercano a $x$ de $C$, y con $\lambda(x)= x - F(x)$.
+El Teorema de Aproximación de Blackwell (Teorema~\ref{theo:blackwell}) establece una condición necesaria y suficiente para el problema planteado previamente.
 
 \begin{theorem}
 \label{theo:blackwell}
@@ -136,7 +137,7 @@ En esta expresión, $v(q, s_{-i})$ denota $\sum_{s_i \in S_i} q(s_i)u_i(s_i, s_{
 Además, el siguiente procedimiento garantiza que $dist(D_t, \mathcal{C}) \rightarrow 0$ (a.s.) cuando $t \rightarrow \infty$: en el tiempo $t+1$, jugar $q_{\lambda(D_t)}$ si $D_t \notin \mathcal{C}$, y jugar arbitrariamente si $D_t \in \mathcal{C}$.
 \end{theorem}
 
-\Blai{**** Algún ejemplo? ****}
+%\Blai{**** Algún ejemplo? ****}
 
 \subsection{Regret Matching}
 Una vez enunciado el Teorema de Aproximación de Blackwell, es posible plantear la siguiente pregunta ?`Hay procedimientos adaptativos simples que siempre lleven a un equilibrio correlacionado? A continuación se describen tres procedimientos, dos de los cuales llevan a equilibrios correlacionados \cite{bib:correlated-equilibrium}.
@@ -190,12 +191,12 @@ Es importante destacar que $z_t$ no tiene que converger necesariamente a un punt
 
 En el procedimiento descrito cada jugador tiene dos opciones en cada período: continuar jugando con la última estrategia, o cambiarla por otra estrategia cuyas probabilidades son proporcionales a cuanto mayor hubiese sido su ganancia acumulada si hubiese hecho ese cambio en el pasado. El procedimiento planteado es simple, tanto de entender y explicar, como de implementar. Además en cada período no sólo se elige la mejor respuesta, todas las respuestas mejores a la actual pueden ser escogidas con probabilidades que son proporcionales a sus ganancias aparentes (medidas por el \textit{regret}). Este tipo de procedimientos son llamados procedimientos de \textit{regret matching}. Por último, el procedimiento tiene inercia: la estrategia jugada previamente importa, siempre hay una probabilidad positiva de continuar jugando la misma estrategia, y más aún, sólo se cambiará de estrategia si hay una razón para hacerlo.
 
-La siguiente proposición conecta el conjunto de equilibrios correlacionados con la noción de regret: \Blai{*** La relevancia de la siguiente proposición, así como su prueba, no están claras. Revisar esto. Me imagino que lo que se quiere establecer es que el regret tiendo a cero cuando se utiliza el procedimiento, pero esto no esta claro ***}
+El \textit{regret} juega un papel importante para la elección de la siguiente distribución de probabilidad, lo cual conlleva a la siguiente pregunta: ?`Cuál es la relación entre los \textit{regrets} y el equilibrio correlacionado? Una condición necesaria y suficiente para que la distribución empírica converja al conjunto de equilibrio correlacionado es que todos los \textit{regrets} converjan a cero (Proposición \ref{prop:no-regret}).
 
 \begin{proposition}
 \label{prop:no-regret}
-Sea $(s_t)_{t = 1, 2, ...}$ una secuencia de juegos de $\Gamma$, y sea $\varepsilon \geq 0$ un número no negativo.
-Entonces, $\limsup_{t \rightarrow \infty} R_i^t(j, k) \leq \varepsilon$ para cada $i$ y cada $j, k \in S_i$, con $j \neq k$, si y sólo si la secuencia de distribuciones empíricas $z_t$ converge al conjunto de $\varepsilon$-equilibrio correlacionado.
+Sea $(s_t)_{t = 1, 2, ...}$ una secuencia de juegos de $\Gamma$.
+Entonces, $R_i^t(j, k)$ converge a $0$ para cada $i$ y cada $j, k \in S_i$, con $j \neq k$, si y sólo si la secuencia de distribuciones empíricas $z_t$ converge al conjunto de equilibrio correlacionado.
 \end{proposition}
 
 \begin{proof}
@@ -206,18 +207,21 @@ Note que:
     &=\ \sum_{ \substack{s \in S \\ s_i = j}} \frac{1}{t} |\{1\leq\tau \leq t : s^{\tau} = s\}|\,[u_i(k, s_{-i}) - u_i(s)] \\
     &=\ \sum_{ \substack{s \in S \\ s_i = j}} z_t(s)\,[u_i(k, s_{-i}) - u_i(s)] \,.
 \end{alignat}
-Entonces, para cualquier subsecuencia $z_{t'}$ de $z_t$ tal que $z_{t'} \rightarrow \psi \in \Delta(s)$ (es decir, converge) se tiene que:
+
+Dado $\varepsilon > 0$, $R_i^t(j, k) \leq \varepsilon$ si y sólo si:
 \begin{alignat}{1}
-	D'_{t'}(j, k)\ \longrightarrow\ \sum_{\substack{s\in S \\ s_i = j}}\psi(s)[u_i(k, s_{-i}) - u_i(s)] \,.
+    \sum_{s \in S : s_i = j} z_t(s)\,[u_i(k, s_{-i}) - u_i(s)] \, = D_i^t(j, k) \, \leq \, \varepsilon
 \end{alignat}
-Luego, el resultado es inmediato de la definición de $\varepsilon$-equilibrio correlacionado y de la definición de $R_i^t(j, k)$.
+
+Obteniendo que $R_i^t(j, k) \leq \varepsilon$ para todo $i \in N$ y todo $j, k \in S_i$ si y sólo si $z_t$ es un $\varepsilon$-equilibrio correlacionado. Por lo tanto, todos los \textit{regrets} convergen a cero si y sólo si $z_t$ converge al conjunto de equilibrio correlacionado.
+
 \end{proof}
 
 \subsubsection{Procedimiento B: Vector invariante de probabilidad}
 
 Este procedimiento es una variación del anterior. Sin embargo, a tiempo $t+1$ las probabilidades de transición de la estrategia utilizada por el jugador $i$ son determinadas por la matriz estocástica (derecha) $M^i_t$ definida en \eqref{eq:proc-A}; i.e., $M^i_t(j,k)=\frac{1}{\mu}R^i_t(j,k)$ si $k\neq j$, y $M^i_t(j,j)=1-\frac{1}{\mu}\sum_{k\in S_i,k\neq j} R^i_t(j,k)$.
 
-Considere un vector (fila) invariante de probabilidad $q^i_t$, donde $q^i_t\in \Delta(S_i)$, para la matriz $M^t$. Es decir, $q^i_t$ satisface $q^i_t \times M^i_t = q^i_t$ (dicho vector simpre existe):
+Considere un vector (fila) invariante de probabilidad $q^i_t$, donde $q^i_t\in \Delta(S_i)$, para la matriz $M^t$. Es decir, $q^i_t$ satisface $q^i_t \times M^i_t = q^i_t$ (dicho vector siempre existe):
 \begin{alignat}{1}
   q^i_t(j)\ 
     =\ \sum_{k\in S_i} q^i_t(k) M^i_t(k,j)\ 
@@ -259,7 +263,7 @@ La prueba es una aplicación directa del Teorema de Aproximación de Blackwell c
 Demostraremos que $\mathcal{C}$ es alcanzable por $i$.
 Note que:
 \begin{alignat}{1}
-	w_{\mathcal{C}}(\lambda)\ =\ \sup\{\lambda \cdot c : c \in \mathcal{C} \}\ =\ \sup \{\sum_{i \in L} \lambda_i c_i : c_i \leq 0 \} \,.
+	w_{\mathcal{C}}(\lambda)\ =\ \sup\{\lambda \cdot c : c \in \mathcal{C} \}\ =\ \sup \left \{ \sum_{i \in L} \lambda_i c_i : c_i \leq 0 \right \} \,.
 \end{alignat}
 Luego, si $\lambda_i \geq 0$, $\forall i \in L$, entonces $\lambda \cdot c \leq 0$ para todo $c \in \mathcal{C}$, y $w_{\mathcal{C}}(\lambda) = 0$. Por otra parte, si $\lambda_i < 0$ para algún $i\in N$, entonces $c_i \lambda_i$ no está acotado superiormente y  $w_{\mathcal{C}}(\lambda) = \infty$. Luego,
 \begin{alignat}{1}

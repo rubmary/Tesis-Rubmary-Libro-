@@ -5,27 +5,27 @@ Para todos los juegos, con excepción del juego Coronel Blotto, se presenta una 
 \begin{alignat}{1}
 min_{s_{-i} \in S_{-i}} u_i(\sigma_i, s_{-i})
 \end{alignat}
-Donde $u_i(\sigma_i, s_{-i})$ representa la utilidad esperada del jugador $i$, cuando juega con la estrategia mixta $\sigma_i$ y su oponente juega con la estrategia pura $s_i$. Estos valores son representados con las variables $v_1$ y $v_2$ en cada una de las tablas con las estrategias respectivas.
+Donde $u_i(\sigma_i, s_{-i})$ representa la utilidad esperada del jugador $i$, cuando juega con la estrategia mixta $\sigma_i$ y su oponente juega con la estrategia pura $s_{-i}$. Estos valores son representados con las variables $v_1$ y $v_2$ en cada una de las tablas con las estrategias respectivas.
 
-Por otra parte, para todos los juegos se presenta una tabla que indica el tiempo de cada corrida ($T$), el número de iteraciones para alcanzar la cota deseada ($I$) y el tiempo promedio de cada iteración en cada una de las corridas ($T/I$), así como el promedio del tiempo y del número de iteraciones para cada procedimiento. Además, también se muestran las gráficas del regret por iteraciones, para observar su convergencia. Estas gráficas se presentan en una escala logarítmica en el eje $x$ para apreciar mejor los resultados.
+Por otra parte, para todos los juegos se presenta una tabla que indica el tiempo de cada corrida ($T$), el número de iteraciones para alcanzar la cota deseada ($I$) y el tiempo promedio de cada iteración en cada una de las corridas ($T/I$), así como el promedio del tiempo y del número de iteraciones para cada procedimiento. Además, también se muestran las gráficas del \textit{regret} por iteraciones, para observar su convergencia. Estas gráficas se presentan en una escala logarítmica en el eje $x$ para apreciar mejor los resultados.
 
 \subsection{Matching Pennies}
-En este juego ambos jugadores pueden garantizar una utilidad esperada de $0$, sin importar la estrategia utilizada por su oponente, que se obtiene al jugar con una estrategia de $0.5$ para ambas acciones posibles de cada jugador. Las estrategias obtenidas no corresponden al equilibrio de Nash exacto, sin embargo, garantizan una utilidad cercana a $0$ en todos los casos, siendo la más baja igual a $-0.01$, como se muestra en la Tabla \ref{tab:estrategias-matching-pennies}.
+En este juego ambos jugadores pueden garantizar una utilidad esperada de $0$, sin importar la estrategia utilizada por su oponente, que se obtiene al jugar con una estrategia de $0.5$ para ambas acciones posibles de cada jugador. Las estrategias obtenidas no corresponden al equilibrio de Nash exacto, sin embargo, garantizan una utilidad cercana a $0$ en todos los casos, siendo la más baja igual a $-0.008$, como se muestra en la Tabla \ref{tab:estrategias-matching-pennies}.
 
 \begin{table}[ht]
     \centering
     \begin{tabular}{c|c|c|c|c}
         & E.N. & A & B & C \\ \hline
-        $\sigma_1$   & $(0.500, 0.500)$ & $( 0.505, 0.495)$ & $( 0.504, 0.496)$ & $(0.500,  0.500)$ \\
-        $\sigma_2$   & $(0.500, 0.500)$ & $( 0.500, 0.500)$ & $( 0.500, 0.500)$ & $(0.505,  0.495)$ \\ \hline
-        $(v_1, v_2)$ & $(0.000, 0.000)$ & $(-0.010, 0.000)$ & $(-0.008, 0.000)$ & $(0.000, -0.010)$ \\ \hline
+        $\sigma_1$   & $(0.500, 0.500)$ & $(0.500, 0.500)$ & $(0.500, 0.500)$ & $(0.500,  0.500)$ \\
+        $\sigma_2$   & $(0.500, 0.500)$ & $(0.497, 0.503)$ & $(0.503, 0.497)$ & $(0.504,  0.496)$ \\ \hline
+        $(v_1, v_2)$ & $(0.000, 0.000)$ & $(0.000, -0.006)$ & $(0.000, -0.006)$ & $(0.000, -0.008)$ \\ \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Matching Pennies}
     \label{tab:estrategias-matching-pennies}
 \end{table}
 
 
-La Tabla \ref{tab:resultados-matching-pennies} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos. El procedimiento A, regret condicional, tuvo una duración promedio de $85.314$ segundos, con un número promedio de iteraciones de $5609971.5$, obteniendo un promedio de $1.52 {\times} 10^{-5}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $3.503$ segundos, $30277.9$ iteraciones y $1.16 {\times} 10^{-4}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.217$, el número de iteraciones promedio fue de $14806.8$, obteniendo un promedio de $1.47 {\times} 10^{-5}$ segundos por iteración. 
+La Tabla \ref{tab:resultados-matching-pennies} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos. El procedimiento A, regret condicional, tuvo una duración promedio de $10.276$ segundos, con un número promedio de iteraciones de $3892550.4$, obteniendo un promedio de $2.64 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $3.777$ segundos, $25616.6$ iteraciones y $3.03 {\times} 10^{-5}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.042$, el número de iteraciones promedio fue de $16260.5$, obteniendo un promedio de $2.58 {\times} 10^{-6}$ segundos por iteración. 
 
 \begin{table}[ht]
 \scriptsize
@@ -33,23 +33,23 @@ La Tabla \ref{tab:resultados-matching-pennies} muestra los resultados obtenidos 
     \begin{tabular}{r r r | r r r | r r r}
     \multicolumn{3}{c}{A} & \multicolumn{3}{c}{B} & \multicolumn{3}{c}{C} \\ \hline
     $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ \\  \hline
-    $375.559$ & $24597798$ & $1.53 {\times} 10 ^{-5}$ & $10.616$ & $91683$ & $1.16 {\times} 10 ^{-4}$ & $0.155$ & $10553$ & $1.47 {\times} 10 ^{-5}$ \\
-    $20.442$ & $1349708$ & $1.51 {\times} 10 ^{-5}$ & $2.407$ & $20797$ & $1.16 {\times} 10 ^{-4}$ & $0.173$ & $11847$ & $1.46 {\times} 10 ^{-5}$ \\
-    $22.030$ & $1455882$ & $1.51 {\times} 10 ^{-5}$ & $1.465$ & $12674$ & $1.16 {\times} 10 ^{-4}$ & $0.048$ & $3302$ & $1.46 {\times} 10 ^{-5}$ \\
-    $39.273$ & $2591911$ & $1.52 {\times} 10 ^{-5}$ & $0.529$ & $4576$ & $1.16 {\times} 10 ^{-4}$ & $0.047$ & $3201$ & $1.46 {\times} 10 ^{-5}$ \\
-    $141.703$ & $9307528$ & $1.52 {\times} 10 ^{-5}$ & $9.403$ & $81270$ & $1.16 {\times} 10 ^{-4}$ & $0.373$ & $25370$ & $1.47 {\times} 10 ^{-5}$ \\
-    $73.271$ & $4837112$ & $1.51 {\times} 10 ^{-5}$ & $1.453$ & $12570$ & $1.16 {\times} 10 ^{-4}$ & $0.453$ & $30866$ & $1.47 {\times} 10 ^{-5}$ \\
-    $21.917$ & $1451479$ & $1.51 {\times} 10 ^{-5}$ & $0.692$ & $6017$ & $1.15 {\times} 10 ^{-4}$ & $0.147$ & $10040$ & $1.47 {\times} 10 ^{-5}$ \\
-    $10.238$ & $678965$ & $1.51 {\times} 10 ^{-5}$ & $4.205$ & $36371$ & $1.16 {\times} 10 ^{-4}$ & $0.263$ & $17963$ & $1.46 {\times} 10 ^{-5}$ \\
-    $61.776$ & $4087347$ & $1.51 {\times} 10 ^{-5}$ & $2.201$ & $19018$ & $1.16 {\times} 10 ^{-4}$ & $0.193$ & $13176$ & $1.47 {\times} 10 ^{-5}$ \\
-    $86.932$ & $5741985$ & $1.51 {\times} 10 ^{-5}$ & $2.057$ & $17803$ & $1.16 {\times} 10 ^{-4}$ & $0.319$ & $21750$ & $1.47 {\times} 10 ^{-5}$ \\ \hline
-    $85.314$ & $5609971.5$ & $1.52 {\times} 10 ^{-5}$ & $3.503$ & $30277.9$ & $1.16 {\times} 10 ^{-4}$ & $0.217$ & $14806.8$ & $1.47 {\times} 10 ^{-5}$ \\ \hline
+	$7.663$ & $3068341$ & $2.50 {\times} 10^{-06}$ & $0.985$ & $32510$ & $3.03 {\times} 10^{-05}$ & $0.002$ & $955$ & $2.53 {\times} 10^{-06}$ \\
+	$9.650$ & $3857071$ & $2.50 {\times} 10^{-06}$ & $1.748$ & $56946$ & $3.07 {\times} 10^{-05}$ & $0.064$ & $24968$ & $2.55 {\times} 10^{-06}$ \\
+	$23.313$ & $8950013$ & $2.60 {\times} 10^{-06}$ & $0.552$ & $18401$ & $3.00 {\times} 10^{-05}$ & $0.061$ & $23854$ & $2.57 {\times} 10^{-06}$ \\
+	$11.757$ & $4240611$ & $2.77 {\times} 10^{-06}$ & $0.309$ & $10197$ & $3.03 {\times} 10^{-05}$ & $0.025$ & $9724$ & $2.57 {\times} 10^{-06}$ \\
+	$2.377$ & $877335$ & $2.71 {\times} 10^{-06}$ & $0.747$ & $24892$ & $3.00 {\times} 10^{-05}$ & $0.011$ & $4188$ & $2.59 {\times} 10^{-06}$ \\
+	$5.062$ & $1818992$ & $2.78 {\times} 10^{-06}$ & $0.848$ & $28142$ & $3.01 {\times} 10^{-05}$ & $0.025$ & $9666$ & $2.60 {\times} 10^{-06}$ \\
+	$4.281$ & $1557496$ & $2.75 {\times} 10^{-06}$ & $0.132$ & $4405$ & $3.01 {\times} 10^{-05}$ & $0.045$ & $16951$ & $2.64 {\times} 10^{-06}$ \\
+	$22.110$ & $8230100$ & $2.69 {\times} 10^{-06}$ & $1.307$ & $43116$ & $3.03 {\times} 10^{-05}$ & $0.021$ & $8155$ & $2.64 {\times} 10^{-06}$ \\
+	$3.691$ & $1432846$ & $2.58 {\times} 10^{-06}$ & $0.639$ & $21311$ & $3.00 {\times} 10^{-05}$ & $0.093$ & $35270$ & $2.64 {\times} 10^{-06}$ \\
+	$12.853$ & $4892699$ & $2.63 {\times} 10^{-06}$ & $0.500$ & $16246$ & $3.08 {\times} 10^{-05}$ & $0.076$ & $28874$ & $2.64 {\times} 10^{-06}$ \\ \hline
+	$10.276$ & $3892550.4$ & $2.64 {\times} 10^{-06}$ & $0.777$ & $25616.6$ & $3.03 {\times} 10^{-05}$ & $0.042$ & $16260.5$ & $2.58 {\times} 10^{-06}$ \\ \hline
     \end{tabular}
     \caption{Resultados del juego Matching Pennies}
     \label{tab:resultados-matching-pennies}
 \end{table}
 
-La Figura \ref{fig:regret-matching-pennies} muestra el regret incondicional con respecto al tiempo de la última corrida, para los $3$ procedimientos.
+La Figura \ref{fig:regret-matching-pennies} muestra el regret incondicional con respecto al tiempo de la última corrida, para los $3$ procedimientos. Se observa que en todos los casos el \textit{regret} total de cada jugador converge a cero.
 
 \begin{figure}[ht]
 \caption{Gráficas del regret con respecto al número de iteraciones del juego Matching Pennies}
@@ -69,39 +69,38 @@ En este juego, al igual que en el anterior, ambos jugadores pueden garantizar un
     \scriptsize
     \begin{tabular}{c|c|c|c|c}
         & E.N. & A & B & C \\ \hline
-        $\sigma_1$ &  $(0.333, 0.333, 0.333)$ & $(0.330, 0.333, 0.337)$ & $(0.333, 0.333, 0.333)$ & $(0.333, 0.334, 0.333)$ \\
-        $\sigma_2$ &  $(0.333, 0.333, 0.333)$ & $(0.335, 0.330, 0.335)$ & $(0.333, 0.333, 0.333)$ & $(0.335, 0.338, 0.327)$ \\ \hline
-        $(v_1, v_2)$ & $(0.000, 0.000)$ & $(-0.004, -0.005)$ & $(0.000, 0.000)$ & $(-0.001, -0.008)$ \\ \hline
+        $\sigma_1$ &  $(0.333, 0.333, 0.333)$ & $(0.332, 0.335, 0.332)$ & $(0.330, 0.334, 0.336)$ & $(0.333, 0.337, 0.330)$ \\
+        $\sigma_2$ &  $(0.333, 0.333, 0.333)$ & $(0.331, 0.334, 0.335)$ & $(0.329, 0.335, 0.337)$ & $(0.336, 0.330, 0.335)$ \\ \hline
+        $(v_1, v_2)$ & $(0.000, 0.000)$ & $(-0.003, -0.003)$ & $(-0.004, -0.006)$ & $(-0.004, -0.005)$ \\ \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Piedra, Papel o Tijeras}
     \label{tab:estrategias-RPS}
 \end{table}
 
-La Tabla \ref{tab:resultados-RPS} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos. El procedimiento A, regret condicional, tuvo una duración promedio de $56.231$ segundos, con un número promedio de iteraciones de $3671952.7$, obteniendo un promedio de $1.53 {\times} 10^{-5}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $1.732$ segundos, $1007$ iteraciones y $1.73 {\times} 10^{-4}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.449$, el número de iteraciones promedio fue de $30293.6$, obteniendo un promedio de $1.48 {\times} 10^{-5}$ segundos por iteración.
+La Tabla \ref{tab:resultados-RPS} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos. El procedimiento A, \textit{regret} condicional, tuvo una duración promedio de $25.715$ segundos, con un número promedio de iteraciones de $4519054.1$, obteniendo un promedio de $2.7 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $0.345$ segundos, $6601.3$ iteraciones y $5.23 {\times} 10^{-5}$ segundos por iteración, respectivamente. Por último, el procedimiento C, \textit{regret} incondicional, se obtuvo un tiempo promedio de $0.049$, el número de iteraciones promedio fue de $19321.1$, obteniendo un promedio de $2.54 {\times} 10^{-6}$ segundos por iteración.
 
 \begin{table}[ht]
     \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
     \multicolumn{3}{c}{A} & \multicolumn{3}{c}{B} & \multicolumn{3}{c}{C} \\ \hline
-    $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ \\  \hline
-    $64.6323$ & $4222223$ & $1.53 {\times} 10 ^{-5}$ & $0.000448982$ & $3$ & $1.50 {\times} 10 ^{-4}$ & $0.913989$ & $61642$ & $1.48 {\times} 10 ^{-5}$ \\
-    $23.6302$ & $1549016$ & $1.53 {\times} 10 ^{-5}$ & $3.53961$ & $20371$ & $1.74 {\times} 10 ^{-4}$ & $0.16622$ & $11228$ & $1.48 {\times} 10 ^{-5}$ \\
-    $99.8796$ & $6513228$ & $1.53 {\times} 10 ^{-5}$ & $0.774109$ & $4494$ & $1.72 {\times} 10 ^{-4}$ & $0.722437$ & $48801$ & $1.48 {\times} 10 ^{-5}$ \\
-    $79.7865$ & $5192787$ & $1.54 {\times} 10 ^{-5}$ & $0.684216$ & $3951$ & $1.73 {\times} 10 ^{-4}$ & $0.314035$ & $21037$ & $1.49 {\times} 10 ^{-5}$ \\
-    $23.5387$ & $1544402$ & $1.52 {\times} 10 ^{-5}$ & $0.000385862$ & $3$ & $1.29 {\times} 10 ^{-4}$ & $0.394145$ & $26588$ & $1.48 {\times} 10 ^{-5}$ \\
-    $15.1729$ & $998763$ & $1.52 {\times} 10 ^{-5}$ & $0.000436849$ & $3$ & $1.46 {\times} 10 ^{-4}$ & $0.362224$ & $24441$ & $1.48 {\times} 10 ^{-5}$ \\
-    $49.3657$ & $3234372$ & $1.53 {\times} 10 ^{-5}$ & $6.0129$ & $34711$ & $1.73 {\times} 10 ^{-4}$ & $0.249781$ & $16869$ & $1.48 {\times} 10 ^{-5}$ \\
-    $37.4907$ & $2448062$ & $1.53 {\times} 10 ^{-5}$ & $2.32126$ & $13362$ & $1.74 {\times} 10 ^{-4}$ & $0.620189$ & $41841$ & $1.48 {\times} 10 ^{-5}$ \\
-    $124.844$ & $8144322$ & $1.53 {\times} 10 ^{-5}$ & $3.98568$ & $23166$ & $1.72 {\times} 10 ^{-4}$ & $0.369477$ & $24980$ & $1.48 {\times} 10 ^{-5}$ \\
-    $43.9675$ & $2872352$ & $1.53 {\times} 10 ^{-5}$ & $0.00085012$ & $6$ & $1.42 {\times} 10 ^{-4}$ & $0.378752$ & $25509$ & $1.48 {\times} 10 ^{-5}$ \\ \hline
-    $56.231$ & $3671952.7$ & $1.53 {\times} 10 ^{-5}$ & $1.732$ & $10007$ & $1.73 {\times} 10 ^{-4}$ & $0.449$ & $30293.6$ & $1.48 {\times} 10 ^{-5}$ \\\hline
+    $25.715$ & $9107389$ & $2.82 {\times} 10^{-06}$ & $0.724$ & $13750$ & $5.26 {\times} 10^{-05}$ & $0.034$ & $12967$ & $2.64 {\times} 10^{-06}$ \\
+    $29.494$ & $10951479$ & $2.69 {\times} 10^{-06}$ & $0.692$ & $13257$ & $5.22 {\times} 10^{-05}$ & $0.041$ & $16096$ & $2.57 {\times} 10^{-06}$ \\
+    $7.015$ & $2641656$ & $2.66 {\times} 10^{-06}$ & $0.000$ & $6$ & $4.36 {\times} 10^{-05}$ & $0.063$ & $24423$ & $2.56 {\times} 10^{-06}$ \\
+    $4.610$ & $1748365$ & $2.64 {\times} 10^{-06}$ & $0.849$ & $16255$ & $5.22 {\times} 10^{-05}$ & $0.048$ & $18613$ & $2.56 {\times} 10^{-06}$ \\
+    $8.051$ & $3033028$ & $2.65 {\times} 10^{-06}$ & $0.000$ & $3$ & $4.28 {\times} 10^{-05}$ & $0.082$ & $32222$ & $2.55 {\times} 10^{-06}$ \\
+    $9.870$ & $3717278$ & $2.66 {\times} 10^{-06}$ & $0.000$ & $3$ & $4.28 {\times} 10^{-05}$ & $0.084$ & $33042$ & $2.54 {\times} 10^{-06}$ \\
+    $2.749$ & $1037895$ & $2.65 {\times} 10^{-06}$ & $0.000$ & $3$ & $4.06 {\times} 10^{-05}$ & $0.049$ & $19316$ & $2.55 {\times} 10^{-06}$ \\
+    $11.971$ & $4517546$ & $2.65 {\times} 10^{-06}$ & $0.556$ & $10644$ & $5.23 {\times} 10^{-05}$ & $0.024$ & $9601$ & $2.54 {\times} 10^{-06}$ \\
+    $14.974$ & $5606070$ & $2.67 {\times} 10^{-06}$ & $0.000$ & $3$ & $3.74 {\times} 10^{-05}$ & $0.014$ & $5621$ & $2.55 {\times} 10^{-06}$ \\
+    $7.532$ & $2829835$ & $2.66 {\times} 10^{-06}$ & $0.631$ & $12089$ & $5.22 {\times} 10^{-05}$ & $0.054$ & $21310$ & $2.55 {\times} 10^{-06}$ \\ \hline
+    $12.198$ & $4519054.1$ & $2.70 {\times} 10^{-06}$ & $0.345$ & $6601.3$ & $5.23 {\times} 10^{-05}$ & $0.049$ & $19321.1$ & $2.54 {\times} 10^{-06}$ \\ \hline
     \end{tabular}
     \caption{Resultados del juego Piedra, Papel o Tijeras}
     \label{tab:resultados-RPS}
 \end{table}
 
-La Figura \ref{fig:regret-RPS} muestra el regret incondicional con respecto al tiempo de la última corrida para los procedimientos A, B y C.
+La Figura \ref{fig:regret-RPS} muestra el regret incondicional con respecto al tiempo de la última corrida para los procedimientos A, B y C. Se observa como el \textit{regret} total de ambos jugadores converge a cero.
 
 \begin{figure}[ht]
 \caption{Gráficas del regret con respecto al número de iteraciones del juego Piedra, Papel o Tijera}
@@ -114,7 +113,7 @@ La Figura \ref{fig:regret-RPS} muestra el regret incondicional con respecto al t
 
 \subsection{Dominó}
 
-En este juego, el primer jugador puede garantizar una ganancia esperada de, al menos $1/3$, por lo que el segundo jugador puede garantizar no perder más de $1/3$. A diferencia de los juegos anteriores, la matriz de pagos de este juegos no es simétrica y el primer jugador tiene ventaja sobre el segundo. Además, este juego no tiene un equilibrio de Nas único. En la Tabla \ref{tab:estrategias-RPS} se observa que las estrategias obtenidas para el primer jugador le permiten obtener una ganancia esperada de $0.330$, $0.326$ y $0.329$, respectivamente para los procedimientos A, B y C. Todos estos valores son menores que $1/3$, pero con una diferencia menor que $0.01$. Por otra parte el segundo jugador puede garantizar un valor esperado no menor que $-0.338$, $-0.335$, $-0.335$.
+En este juego, el primer jugador puede garantizar una ganancia esperada de, al menos $1/3$, por lo que el segundo jugador puede garantizar no perder más de $1/3$. A diferencia de los juegos anteriores, la matriz de pagos de este juegos no es simétrica y el primer jugador tiene ventaja sobre el segundo. Además, este juego no tiene un equilibrio de Nash único. En la Tabla \ref{tab:estrategias-RPS} se observa que las estrategias obtenidas para el primer jugador le permiten obtener una ganancia esperada al menos de $0.330$, $0.326$ y $0.329$, respectivamente para los procedimientos A, B y C. Todos estos valores son menores que $1/3$, pero con una diferencia menor que $0.01$. Por otra parte el segundo jugador puede garantizar un valor esperado no menor que $-0.338$, $-0.335$, $-0.335$.
 
 \begin{table}[ht]
     \centering
@@ -126,59 +125,59 @@ En este juego, el primer jugador puede garantizar una ganancia esperada de, al m
         & $\sigma_2$ & $(0.333, 0.000, 0.333, 0.000, 0.333, 0.000)$ &  $-0.333$\\
         \hline
         \multirow{2}{*}{A}
-        & $\sigma_1$ & $(0.149, 0.152, 0.115, 0.114, 0.181, 0.069, 0.220)$ & $0.330$ \\
-        & $\sigma_2$ & $(0.187, 0.148, 0.186, 0.147, 0.186, 0.147)$ & $-0.338$\\
+        & $\sigma_1$ & $(0.136, 0.137, 0.116, 0.118, 0.198, 0.081, 0.214)$ & $0.328$ \\
+        & $\sigma_2$ & $(0.165, 0.171, 0.163, 0.166, 0.166, 0.169)$ & $-0.338$\\
         \hline
         \multirow{2}{*}{B}
-        & $\sigma_1$ & $(0.143, 0.145, 0.138, 0.136, 0.192, 0.050, 0.196)$ & $0.326$ \\
-        & $\sigma_2$ & $(0.167, 0.165, 0.168, 0.163, 0.167, 0.168)$ & $-0.335$\\
+        & $\sigma_1$ & $(0.121, 0.118, 0.135, 0.137, 0.214, 0.078, 0.198)$ & $0.331$ \\
+        & $\sigma_2$ & $(0.157, 0.178, 0.156, 0.177, 0.157, 0.175)$ & $-0.335$\\
         \hline
         \multirow{2}{*}{C}
-        & $\sigma_1$ & $(0.128, 0.130, 0.135, 0.134, 0.202, 0.071, 0.201)$ & $0.329$ \\
-        & $\sigma_2$ & $(0.158, 0.177, 0.157, 0.175, 0.158, 0.176)$ & $-0.335$\\
+        & $\sigma_1$ & $(0.128, 0.128, 0.129, 0.134, 0.208, 0.073, 0.202)$ & $0.330$ \\
+        & $\sigma_2$ & $(0.169, 0.165, 0.168, 0.164, 0.169, 0.165)$ & $-0.334$\\
         \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Dominó}
     \label{tab:estrategias-domino}
 \end{table}
 
-La Tabla \ref{tab:resultados-domino} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos de este juego. El procedimiento A, regret condicional, tuvo una duración promedio de $1520.421$ segundos, con un número promedio de iteraciones de $91116271.5$, obteniendo un promedio de $1.67 {\times} 10^{-5}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $28.381$ segundos, $63267.8$ iteraciones y $4.49 {\times} 10^{-4}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $1.510098$, el número de iteraciones promedio fue de $95233.3$, obteniendo un promedio de $1.59 {\times} 10^{-5}$ segundos por iteración. 
+La Tabla \ref{tab:resultados-domino} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos de este juego. El procedimiento A, regret condicional, tuvo una duración promedio de $319.179$ segundos, con un número promedio de iteraciones de $108319272.4$, obteniendo un promedio de $2.95 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $11.275$ segundos, $75250.2$ iteraciones y $1.5 {\times} 10^{-4}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.237$, el número de iteraciones promedio fue de $84318.5$, obteniendo un promedio de $2.81 {\times} 10^{-6}$ segundos por iteración. 
 
 \begin{table}[ht]
    \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
     \multicolumn{3}{c}{A} & \multicolumn{3}{c}{B} & \multicolumn{3}{c}{C} \\ \hline
-    $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ \\  \hline
-    $740.447$ & $44412293$ & $1.67 {\times} 10 ^{-5}$ & $23.2266$ & $51679$ & $4.49 {\times} 10 ^{-4}$ & $1.41241$ & $89150$ & $1.58 {\times} 10 ^{-5}$ \\
-    $1153.83$ & $69255567$ & $1.67 {\times} 10 ^{-5}$ & $33.3787$ & $74447$ & $4.48 {\times} 10 ^{-4}$ & $1.84509$ & $116261$ & $1.59 {\times} 10 ^{-5}$ \\
-    $1344.98$ & $80595152$ & $1.67 {\times} 10 ^{-5}$ & $70.0653$ & $156038$ & $4.49 {\times} 10 ^{-4}$ & $2.13461$ & $134489$ & $1.59 {\times} 10 ^{-5}$ \\
-    $2678.05$ & $160284767$ & $1.67 {\times} 10 ^{-5}$ & $23.2227$ & $51886$ & $4.48 {\times} 10 ^{-4}$ & $0.76709$ & $48213$ & $1.59 {\times} 10 ^{-5}$ \\
-    $1091.08$ & $65511893$ & $1.67 {\times} 10 ^{-5}$ & $26.4452$ & $59056$ & $4.48 {\times} 10 ^{-4}$ & $0.334749$ & $21221$ & $1.58 {\times} 10 ^{-5}$ \\
-    $365.475$ & $22030226$ & $1.66 {\times} 10 ^{-5}$ & $19.1969$ & $42825$ & $4.48 {\times} 10 ^{-4}$ & $1.98904$ & $125803$ & $1.58 {\times} 10 ^{-5}$ \\
-    $2096.08$ & $125780618$ & $1.67 {\times} 10 ^{-5}$ & $14.4957$ & $32291$ & $4.49 {\times} 10 ^{-4}$ & $1.33082$ & $83575$ & $1.59 {\times} 10 ^{-5}$ \\
-    $2835.32$ & $169464746$ & $1.67 {\times} 10 ^{-5}$ & $24.0569$ & $53610$ & $4.49 {\times} 10 ^{-4}$ & $2.35906$ & $148921$ & $1.58 {\times} 10 ^{-5}$ \\
-    $1765.15$ & $105855204$ & $1.67 {\times} 10 ^{-5}$ & $27.2148$ & $60743$ & $4.48 {\times} 10 ^{-4}$ & $0.626211$ & $38952$ & $1.61 {\times} 10 ^{-5}$ \\
-    $1133.8$ & $67972249$ & $1.67 {\times} 10 ^{-5}$ & $22.5033$ & $50103$ & $4.49 {\times} 10 ^{-4}$ & $2.3019$ & $145748$ & $1.58 {\times} 10 ^{-5}$ \\\hline
-    $1520.421$ & $91116271.5$ & $1.67 {\times} 10 ^{-5}$ & $28.381$ & $63267.8$ & $4.49 {\times} 10 ^{-4}$ & $1.510098$ & $95233.3$ & $1.59 {\times} 10 ^{-5}$ \\ \hline
+	$669.839$ & $215859538$ & $3.10 {\times} 10^{-06}$ & $4.458$ & $29721$ & $1.50 {\times} 10^{-04}$ & $0.188$ & $66700$ & $2.81 {\times} 10^{-06}$ \\
+	$309.685$ & $117568373$ & $2.63 {\times} 10^{-06}$ & $9.019$ & $60333$ & $1.49 {\times} 10^{-04}$ & $0.260$ & $92401$ & $2.82 {\times} 10^{-06}$ \\
+	$399.170$ & $152612646$ & $2.62 {\times} 10^{-06}$ & $3.646$ & $24338$ & $1.50 {\times} 10^{-04}$ & $0.212$ & $75674$ & $2.81 {\times} 10^{-06}$ \\
+	$131.570$ & $38097125$ & $3.45 {\times} 10^{-06}$ & $12.996$ & $86898$ & $1.50 {\times} 10^{-04}$ & $0.145$ & $51776$ & $2.80 {\times} 10^{-06}$ \\
+	$263.482$ & $96741015$ & $2.72 {\times} 10^{-06}$ & $4.516$ & $30170$ & $1.50 {\times} 10^{-04}$ & $0.134$ & $47862$ & $2.80 {\times} 10^{-06}$ \\
+	$203.854$ & $77156602$ & $2.64 {\times} 10^{-06}$ & $15.420$ & $103021$ & $1.50 {\times} 10^{-04}$ & $0.385$ & $136950$ & $2.81 {\times} 10^{-06}$ \\
+	$201.267$ & $76467409$ & $2.63 {\times} 10^{-06}$ & $17.399$ & $115935$ & $1.50 {\times} 10^{-04}$ & $0.351$ & $124882$ & $2.81 {\times} 10^{-06}$ \\
+	$316.007$ & $97849871$ & $3.23 {\times} 10^{-06}$ & $17.266$ & $115056$ & $1.50 {\times} 10^{-04}$ & $0.203$ & $72315$ & $2.81 {\times} 10^{-06}$ \\
+	$383.736$ & $110341861$ & $3.48 {\times} 10^{-06}$ & $12.805$ & $85532$ & $1.50 {\times} 10^{-04}$ & $0.271$ & $96438$ & $2.81 {\times} 10^{-06}$ \\
+	$313.177$ & $100498284$ & $3.12 {\times} 10^{-06}$ & $15.227$ & $101498$ & $1.50 {\times} 10^{-04}$ & $0.220$ & $78187$ & $2.81 {\times} 10^{-06}$ \\ \hline
+	$319.179$ & $108319272.4$ & $2.95 {\times} 10^{-06}$ & $11.275$ & $75250.2$ & $1.50 {\times} 10^{-04}$ & $0.237$ & $84318.5$ & $2.81 {\times} 10^{-06}$ \\ \hline
     \end{tabular}
     \caption{Resultados del juego Dominó}
     \label{tab:resultados-domino}
 \end{table}
 
-La Figura \ref{fig:regret-domino} muestra el regret incondicional con respecto al tiempo de la última corrida, para los procedimientos B y C.
+La Figura \ref{fig:regret-domino} muestra el regret incondicional con respecto al tiempo de la última corrida, para los procedimientos A, B y C. Se observa como el \textit{regret} total va a cero para ambos jugadores.
 
 \begin{figure}[ht]
 \caption{Gráficas del regret con respecto al número de iteraciones del juego Dominó}
 \label{fig:regret-domino}
 \centering
-\includegraphics[width=0.4\textwidth]{graficas/domino/procedimiento-B.png}
-\includegraphics[width=0.4\textwidth]{graficas/domino/procedimiento-C.png}
+\includegraphics[width=0.327\textwidth]{graficas/domino/procedimiento-A.png}
+\includegraphics[width=0.327\textwidth]{graficas/domino/procedimiento-B.png}
+\includegraphics[width=0.327\textwidth]{graficas/domino/procedimiento-C.png}
 \end{figure}
 
 \subsection{Coronel Blotto}
 
-En este juego no se tiene un equilibrio de Nash exacto como referencia. Sin embargo, como la matriz de pagos es simétrica, el valor del juego debe ser $0$, así que las estrategias obtenidas, que se muestran en la Tabla \ref{tab:estrategias-coronel-blotto} deben garantizar un valor esperado cercano a $0$. 
+En este juego no se tiene un equilibrio de Nash exacto como referencia. Sin embargo, como la matriz de pagos es simétrica, el valor del juego debe ser $0$, así que las estrategias obtenidas, se mostradas en la Tabla \ref{tab:estrategias-coronel-blotto}, deben garantizar un valor esperado cercano a $0$. 
 
 \begin{table}[ht]
     \scriptsize
@@ -187,16 +186,16 @@ En este juego no se tiene un equilibrio de Nash exacto como referencia. Sin emba
         Estrategias \\
         \hline
         Procedimiento A \\ \hline
-         $(0, 0, 0.113, 0.127, 0, 0, 0, 0.113, 0, 0.097, 0, 0.105, 0, 0, 0.128, 0.092, 0.135, 0.087, 0, 0, 0)$ \\
-         $(0, 0, 0.134, 0.145, 0, 0, 0, 0.059, 0, 0.079, 0, 0.166, 0, 0, 0.114, 0.074, 0.123, 0.103, 0, 0, 0)$\\
+         $(0, 0, 0.126, 0.113, 0, 0, 0, 0.080, 0, 0.100, 0, 0.131, 0, 0.001, 0.111, 0.118, 0.094, 0.124, 0, 0, 0)$ \\
+         $(0, 0, 0.101, 0.109, 0, 0, 0, 0.116, 0, 0.139, 0, 0.132, 0, 0.002, 0.076, 0.076, 0.141, 0.106, 0, 0, 0)$\\
         \hline
         Procedimiento B \\ \hline
-         $(0, 0.001, 0.058, 0.132, 0, 0, 0, 0.149, 0, 0.133, 0.001, 0.12, 0.001, 0, 0.071, 0.061, 0.147, 0.124, 0, 0.001, 0)$ \\
-         $(0, 0.001, 0.147, 0.072, 0.001, 0, 0.001, 0.11, 0.001, 0.117, 0.001, 0.076, 0.002, 0.001, 0.141, 0.14, 0.119, 0.068, 0.002, 0.001, 0)$\\
+         $(0, 0.002, 0.093, 0.110, 0.001, 0, 0.002, 0.111, 0.001, 0.128, 0.001, 0.126, 0, 0.001, 0.076, 0.112, 0.088, 0.145, 0.001, 0.001, 0)$ \\
+         $(0, 0.001, 0.102, 0.107, 0.001, 0, 0.0, 0.154, 0.001, 0.099, 0, 0.055, 0.001, 0, 0.156, 0.113, 0.140, 0.069, 0.002, 0.001, 0)$\\
         \hline
         Procedimiento C \\ \hline
-         $(0, 0, 0.130, 0.091, 0, 0, 0, 0.108, 0, 0.109, 0, 0.093, 0, 0, 0.136, 0.137, 0.097, 0.099, 0, 0, 0)$ \\
-         $(0, 0, 0.115, 0.100, 0, 0, 0, 0.120, 0, 0.115, 0, 0.094, 0, 0, 0.120, 0.119, 0.116, 0.100, 0, 0, 0)$\\
+         $(0, 0, 0.119, 0.106, 0, 0, 0, 0.110, 0, 0.107, 0, 0.108, 0, 0, 0.122, 0.122, 0.117, 0.1, 0, 0, 0)$ \\
+         $(0, 0, 0.148, 0.096, 0, 0, 0, 0.099, 0, 0.095, 0, 0.093, 0, 0, 0.155, 0.126, 0.117, 0.070, 0, 0, 0)$\\
         \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Coronel Blotto}
@@ -210,34 +209,32 @@ La Tabla \ref{tab:utilidades-coronel-blotto}, muestra que si los jugadores utili
     \begin{tabular}{c | c | r}
          & $u$ & $(v_1, v_2)$ \\ \hline
          E.N. & $0.000$ & $( 0.000,  0.000)$ \\
-         A    & $0.000$ & $(-0.004, -0.004)$\\
-         B    & $0.000$ & $(-0.004, -0.004)$ \\
-         C    & $0.000$ & $(-0.008, -0.002)$ \\ \hline
+         A    & $0.000$ & $(-0.008, -0.002)$\\
+         B    & $0.000$ & $(-0.007, -0.004)$ \\
+         C    & $0.000$ & $(-0.005, -0.004)$ \\ \hline
     \end{tabular}
     \caption{Utilidades de las estrategias del obtenidas del juego Coronel Blotto}
     \label{tab:utilidades-coronel-blotto}
 \end{table}
 
-La Tabla \ref{tab:resultados-coronel-blotto} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos de este juego. El procedimiento A, regret condicional, tuvo una duración promedio de $4460.816$ segundos, con un número promedio de iteraciones de $201963700.9$, obteniendo un promedio de $2.21 {\times} 10^{-5}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $183.683$ segundos, $54061.6$ iteraciones y $3.4 {\times} 10^{-3}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.9226949$, el número de iteraciones promedio fue de $47502.7$, obteniendo un promedio de $1.94 {\times} 10^{-5}$ segundos por iteración.
+La Tabla \ref{tab:resultados-coronel-blotto} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos de este juego. El procedimiento A, regret condicional, tuvo una duración promedio de $875.533$ segundos, con un número promedio de iteraciones de $190222305.3$, obteniendo un promedio de $4.60 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $79.358$ segundos, $66378.4$ iteraciones y $1.2 {\times} 10^{-3}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.166$, el número de iteraciones promedio fue de $48613.5$, obteniendo un promedio de $3.41 {\times} 10^{-6}$ segundos por iteración.
 
 \begin{table}[ht]
    \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
     \multicolumn{3}{c}{A} & \multicolumn{3}{c}{B} & \multicolumn{3}{c}{C} \\ \hline
-    $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ & $T$ & $I$ & $T/I$ \\  \hline
-    $2871.6$ & $130323596$ & $2.20 {\times} 10 ^{-5}$ & $109.261$ & $32201$ & $3.39 {\times} 10 ^{-3}$ & $0.494761$ & $25426$ & $1.95 {\times} 10 ^{-5}$ \\
-$1633.43$ & $74141231$ & $2.20 {\times} 10 ^{-5}$ & $193.576$ & $56999$ & $3.40 {\times} 10 ^{-3}$ & $1.03274$ & $53146$ & $1.94 {\times} 10 ^{-5}$ \\
-$3434.98$ & $155510785$ & $2.21 {\times} 10 ^{-5}$ & $169.659$ & $49976$ & $3.39 {\times} 10 ^{-3}$ & $0.509352$ & $26220$ & $1.94 {\times} 10 ^{-5}$ \\
-$4208.34$ & $190446960$ & $2.21 {\times} 10 ^{-5}$ & $206.758$ & $60884$ & $3.40 {\times} 10 ^{-3}$ & $0.977793$ & $50374$ & $1.94 {\times} 10 ^{-5}$ \\
-$5864.62$ & $265417694$ & $2.21 {\times} 10 ^{-5}$ & $235.727$ & $69298$ & $3.40 {\times} 10 ^{-3}$ & $0.600027$ & $30860$ & $1.94 {\times} 10 ^{-5}$ \\
-$6106.85$ & $275955122$ & $2.21 {\times} 10 ^{-5}$ & $166.699$ & $48922$ & $3.41 {\times} 10 ^{-3}$ & $3.05444$ & $157144$ & $1.94 {\times} 10 ^{-5}$ \\
-$4764.86$ & $215484401$ & $2.21 {\times} 10 ^{-5}$ & $233.354$ & $68878$ & $3.39 {\times} 10 ^{-3}$ & $0.666394$ & $34392$ & $1.94 {\times} 10 ^{-5}$ \\
-$3869.74$ & $175100213$ & $2.21 {\times} 10 ^{-5}$ & $229.171$ & $67487$ & $3.40 {\times} 10 ^{-3}$ & $0.739529$ & $38154$ & $1.94 {\times} 10 ^{-5}$ \\
-$4167.24$ & $188764085$ & $2.21 {\times} 10 ^{-5}$ & $188.03$ & $55233$ & $3.40 {\times} 10 ^{-3}$ & $0.440414$ & $22649$ & $1.94 {\times} 10 ^{-5}$ \\
-$7687.1$ & $348492922$ & $2.21 {\times} 10 ^{-5}$ & $104.597$ & $30738$ & $3.40 {\times} 10 ^{-3}$ & $0.711499$ & $36662$ & $1.94 {\times} 10 ^{-5}$ \\ \hline
-$4460.876$ & $201963700.9$ & $2.21 {\times} 10 ^{-5}$ &
-$183.683$ & $54061.6$ & $3.40 {\times} 10 ^{-3}$ & $0.9226949$ & $47502.7$ & $1.94 {\times} 10 ^{-5}$ \\ \hline
+	$940.377$ & $197127165$ & $4.77 {\times} 10^{-06}$ & $90.239$ & $75420$ & $1.20 {\times} 10^{-03}$ & $0.047$ & $13559$ & $3.50 {\times} 10^{-06}$ \\
+	$532.020$ & $109697363$ & $4.85 {\times} 10^{-06}$ & $74.886$ & $62704$ & $1.19 {\times} 10^{-03}$ & $0.192$ & $56383$ & $3.41 {\times} 10^{-06}$ \\
+	$396.583$ & $82924728$ & $4.78 {\times} 10^{-06}$ & $56.735$ & $47416$ & $1.20 {\times} 10^{-03}$ & $0.046$ & $13664$ & $3.39 {\times} 10^{-06}$ \\
+	$362.203$ & $80521418$ & $4.50 {\times} 10^{-06}$ & $41.290$ & $34596$ & $1.19 {\times} 10^{-03}$ & $0.162$ & $47742$ & $3.40 {\times} 10^{-06}$ \\
+	$967.890$ & $207963652$ & $4.65 {\times} 10^{-06}$ & $69.359$ & $58123$ & $1.19 {\times} 10^{-03}$ & $0.090$ & $26547$ & $3.40 {\times} 10^{-06}$ \\
+	$1016.540$ & $245737655$ & $4.14 {\times} 10^{-06}$ & $64.457$ & $53560$ & $1.20 {\times} 10^{-03}$ & $0.118$ & $34715$ & $3.41 {\times} 10^{-06}$ \\
+	$553.971$ & $112170109$ & $4.94 {\times} 10^{-06}$ & $80.789$ & $67624$ & $1.19 {\times} 10^{-03}$ & $0.261$ & $76657$ & $3.40 {\times} 10^{-06}$ \\
+	$966.339$ & $204832370$ & $4.72 {\times} 10^{-06}$ & $138.294$ & $115846$ & $1.19 {\times} 10^{-03}$ & $0.358$ & $105149$ & $3.40 {\times} 10^{-06}$ \\
+	$1787.020$ & $384044065$ & $4.65 {\times} 10^{-06}$ & $84.924$ & $70978$ & $1.20 {\times} 10^{-03}$ & $0.121$ & $35434$ & $3.42 {\times} 10^{-06}$ \\
+	$1232.380$ & $277204528$ & $4.45 {\times} 10^{-06}$ & $92.610$ & $77517$ & $1.19 {\times} 10^{-03}$ & $0.260$ & $76285$ & $3.41 {\times} 10^{-06}$ \\ \hline
+	$875.533$ & $190222305.3$ & $4.60 {\times} 10^{-06}$ & $79.358$ & $66378.4$ & $1.20 {\times} 10^{-03}$ & $0.166$ & $48613.5$ & $3.41 {\times} 10^{-06}$ \\ \hline
     \end{tabular}
     \caption{Resultados del juego Coronel Blotto}
     \label{tab:resultados-coronel-blotto}
@@ -249,8 +246,8 @@ $183.683$ & $54061.6$ & $3.40 {\times} 10 ^{-3}$ & $0.9226949$ & $47502.7$ & $1.
 \caption{Gráficas del regret con respecto al número de iteraciones del juego Coronel Blotto}
 \label{fig:regret-coronel-blotto}
 \centering
-\includegraphics[width=0.4\textwidth]{graficas/coronel-blotto/procedimiento-B.png}
-\includegraphics[width=0.4\textwidth]{graficas/coronel-blotto/procedimiento-C.png}
+\includegraphics[width=0.327\textwidth]{graficas/coronel-blotto/procedimiento-A.png}
+\includegraphics[width=0.327\textwidth]{graficas/coronel-blotto/procedimiento-B.png}
+\includegraphics[width=0.327\textwidth]{graficas/coronel-blotto/procedimiento-C.png}
 \end{figure}
-
 \newpage

@@ -12,7 +12,7 @@ Por otra parte, para todos los juegos se presenta una tabla que indica el tiempo
 \subsection{Matching Pennies}
 En este juego ambos jugadores pueden garantizar una utilidad esperada de $0$, sin importar la estrategia utilizada por su oponente, que se obtiene al jugar con una estrategia de $0.5$ para ambas acciones posibles de cada jugador. Las estrategias obtenidas no corresponden al equilibrio de Nash exacto, sin embargo, garantizan una utilidad cercana a $0$ en todos los casos, siendo la más baja igual a $-0.008$, como se muestra en la Tabla \ref{tab:estrategias-matching-pennies}.
 
-\begin{table}[ht]
+\begin{table}[hbt!]
     \centering
     \begin{tabular}{c|c|c|c|c}
         & E.N. & A & B & C \\ \hline
@@ -27,7 +27,7 @@ En este juego ambos jugadores pueden garantizar una utilidad esperada de $0$, si
 
 La Tabla \ref{tab:resultados-matching-pennies} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos. El procedimiento A, regret condicional, tuvo una duración promedio de $10.276$ segundos, con un número promedio de iteraciones de $3892550.4$, obteniendo un promedio de $2.64 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $3.777$ segundos, $25616.6$ iteraciones y $3.03 {\times} 10^{-5}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.042$, el número de iteraciones promedio fue de $16260.5$, obteniendo un promedio de $2.58 {\times} 10^{-6}$ segundos por iteración. 
 
-\begin{table}[ht]
+\begin{table}[hbt!]
 \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
@@ -51,20 +51,20 @@ La Tabla \ref{tab:resultados-matching-pennies} muestra los resultados obtenidos 
 
 La Figura \ref{fig:regret-matching-pennies} muestra el regret incondicional con respecto al tiempo de la última corrida, para los $3$ procedimientos. Se observa que en todos los casos el \textit{regret} total de cada jugador converge a cero.
 
-\begin{figure}[ht]
+\begin{figure}[hbt!]
 \caption{Gráficas del regret con respecto al número de iteraciones del juego Matching Pennies}
 \label{fig:regret-matching-pennies}
 \centering
-\includegraphics[width=0.327\textwidth]{graficas/matching-pennies/procedimiento-A.png}
-\includegraphics[width=0.327\textwidth]{graficas/matching-pennies/procedimiento-B.png}
-\includegraphics[width=0.327\textwidth]{graficas/matching-pennies/procedimiento-C.png}
+\includegraphics[width=0.45\textwidth]{graficas/matching-pennies/procedimiento-A.png}
+\includegraphics[width=0.45\textwidth]{graficas/matching-pennies/procedimiento-B.png}
+\includegraphics[width=0.45\textwidth]{graficas/matching-pennies/procedimiento-C.png}
 \end{figure}
 
 \subsection{Piedra, Papel o Tijeras}
 
 En este juego, al igual que en el anterior, ambos jugadores pueden garantizar una utilidad esperada de $0$ sin importar la estrategia utilizada por su oponente, que se obtiene al elegir las opciones con igual probabilidad. No todas las estrategias obtenidas corresponden al equilibrio de Nash exacto, sin embargo, garantizan una utilidad cercana a $0$ en todos los casos, siendo la más baja igual a $-0.008$, como se muestra en la Tabla \ref{tab:estrategias-RPS}.
 
-\begin{table}[ht]
+\begin{table}[hbt!]
     \centering
     \scriptsize
     \begin{tabular}{c|c|c|c|c}
@@ -79,7 +79,7 @@ En este juego, al igual que en el anterior, ambos jugadores pueden garantizar un
 
 La Tabla \ref{tab:resultados-RPS} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos. El procedimiento A, \textit{regret} condicional, tuvo una duración promedio de $25.715$ segundos, con un número promedio de iteraciones de $4519054.1$, obteniendo un promedio de $2.7 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $0.345$ segundos, $6601.3$ iteraciones y $5.23 {\times} 10^{-5}$ segundos por iteración, respectivamente. Por último, el procedimiento C, \textit{regret} incondicional, se obtuvo un tiempo promedio de $0.049$, el número de iteraciones promedio fue de $19321.1$, obteniendo un promedio de $2.54 {\times} 10^{-6}$ segundos por iteración.
 
-\begin{table}[ht]
+\begin{table}[hbt!]
     \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
@@ -102,20 +102,20 @@ La Tabla \ref{tab:resultados-RPS} muestra los resultados obtenidos relacionados 
 
 La Figura \ref{fig:regret-RPS} muestra el regret incondicional con respecto al tiempo de la última corrida para los procedimientos A, B y C. Se observa como el \textit{regret} total de ambos jugadores converge a cero.
 
-\begin{figure}[ht]
+\begin{figure}[hbt!]
 \caption{Gráficas del regret con respecto al número de iteraciones del juego Piedra, Papel o Tijera}
 \label{fig:regret-RPS}
 \centering
-\includegraphics[width=0.327\textwidth]{graficas/RPS/procedimiento-A.png}
-\includegraphics[width=0.327\textwidth]{graficas/RPS/procedimiento-B.png}
-\includegraphics[width=0.327\textwidth]{graficas/RPS/procedimiento-C.png}
+\includegraphics[width=0.45\textwidth]{graficas/RPS/procedimiento-A.png}
+\includegraphics[width=0.45\textwidth]{graficas/RPS/procedimiento-B.png}
+\includegraphics[width=0.45\textwidth]{graficas/RPS/procedimiento-C.png}
 \end{figure}
 
-\subsection{Dominó}
+\subsection{Ficha vs Dominó}
 
-En este juego, el primer jugador puede garantizar una ganancia esperada de, al menos $1/3$, por lo que el segundo jugador puede garantizar no perder más de $1/3$. A diferencia de los juegos anteriores, la matriz de pagos de este juegos no es simétrica y el primer jugador tiene ventaja sobre el segundo. Además, este juego no tiene un equilibrio de Nash único. En la Tabla \ref{tab:estrategias-RPS} se observa que las estrategias obtenidas para el primer jugador le permiten obtener una ganancia esperada al menos de $0.330$, $0.326$ y $0.329$, respectivamente para los procedimientos A, B y C. Todos estos valores son menores que $1/3$, pero con una diferencia menor que $0.01$. Por otra parte el segundo jugador puede garantizar un valor esperado no menor que $-0.338$, $-0.335$, $-0.335$.
+En este juego, el primer jugador puede garantizar una ganancia esperada de, al menos $1/3$, por lo que el segundo jugador puede garantizar no perder más de $1/3$. A diferencia de los juegos anteriores, la matriz de pagos de este juegos no es simétrica y el primer jugador tiene ventaja sobre el segundo. Además, este juego no tiene un equilibrio de Nash único. En la Tabla \ref{tab:estrategias-RPS} se observa que las estrategias obtenidas para el primer jugador le permiten obtener una ganancia esperada al menos de $0.330$, $0.326$ y $0.329$, respectivamente para los procedimientos A, B y C. Todos estos valores son menores que $1/3$, pero con una diferencia menor que $0.01$. Por otra parte el segundo jugador puede garantizar un valor esperado no menor que $-0.338$ con cualquiera de los procedimientos.
 
-\begin{table}[ht]
+\begin{table}[hbt!]
     \centering
     \begin{tabular}{c c|c|r}
         & & Estrategias & $v_1 / v_2$\\
@@ -137,13 +137,13 @@ En este juego, el primer jugador puede garantizar una ganancia esperada de, al m
         & $\sigma_2$ & $(0.169, 0.165, 0.168, 0.164, 0.169, 0.165)$ & $-0.334$\\
         \hline
     \end{tabular}
-    \caption{Estrategias obtenidas del juego Dominó}
+    \caption{Estrategias obtenidas del juego Ficha vs Dominó}
     \label{tab:estrategias-domino}
 \end{table}
 
 La Tabla \ref{tab:resultados-domino} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos de este juego. El procedimiento A, regret condicional, tuvo una duración promedio de $319.179$ segundos, con un número promedio de iteraciones de $108319272.4$, obteniendo un promedio de $2.95 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $11.275$ segundos, $75250.2$ iteraciones y $1.5 {\times} 10^{-4}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.237$, el número de iteraciones promedio fue de $84318.5$, obteniendo un promedio de $2.81 {\times} 10^{-6}$ segundos por iteración. 
 
-\begin{table}[ht]
+\begin{table}[hbt!]
    \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
@@ -160,26 +160,26 @@ La Tabla \ref{tab:resultados-domino} muestra los resultados obtenidos relacionad
 	$313.177$ & $100498284$ & $3.12 {\times} 10^{-06}$ & $15.227$ & $101498$ & $1.50 {\times} 10^{-04}$ & $0.220$ & $78187$ & $2.81 {\times} 10^{-06}$ \\ \hline
 	$319.179$ & $108319272.4$ & $2.95 {\times} 10^{-06}$ & $11.275$ & $75250.2$ & $1.50 {\times} 10^{-04}$ & $0.237$ & $84318.5$ & $2.81 {\times} 10^{-06}$ \\ \hline
     \end{tabular}
-    \caption{Resultados del juego Dominó}
+    \caption{Resultados del juego Ficha vs Dominó}
     \label{tab:resultados-domino}
 \end{table}
 
-La Figura \ref{fig:regret-domino} muestra el regret incondicional con respecto al tiempo de la última corrida, para los procedimientos A, B y C. Se observa como el \textit{regret} total va a cero para ambos jugadores.
+La Figura \ref{fig:regret-domino} muestra el regret incondicional con respecto al tiempo de la última corrida, para los procedimientos A, B y C. Se observa como el \textit{regret} máximo converge a cero para ambos jugadores en cada uno de los procedimientos.
 
-\begin{figure}[ht]
-\caption{Gráficas del regret con respecto al número de iteraciones del juego Dominó}
+\begin{figure}[hbt!]
+\caption{Gráficas del regret con respecto al número de iteraciones del juego Ficha vs Dominó}
 \label{fig:regret-domino}
 \centering
-\includegraphics[width=0.327\textwidth]{graficas/domino/procedimiento-A.png}
-\includegraphics[width=0.327\textwidth]{graficas/domino/procedimiento-B.png}
-\includegraphics[width=0.327\textwidth]{graficas/domino/procedimiento-C.png}
+\includegraphics[width=0.45\textwidth]{graficas/domino/procedimiento-A.png}
+\includegraphics[width=0.45\textwidth]{graficas/domino/procedimiento-B.png}
+\includegraphics[width=0.45\textwidth]{graficas/domino/procedimiento-C.png}
 \end{figure}
 
 \subsection{Coronel Blotto}
 
-En este juego no se tiene un equilibrio de Nash exacto como referencia. Sin embargo, como la matriz de pagos es simétrica, el valor del juego debe ser $0$, así que las estrategias obtenidas, se mostradas en la Tabla \ref{tab:estrategias-coronel-blotto}, deben garantizar un valor esperado cercano a $0$. 
+En este juego no se tiene un equilibrio de Nash exacto como referencia. Sin embargo, como la matriz de pagos es simétrica, el valor del juego debe ser $0$, así que las estrategias obtenidas, se mostradas en la Tabla \ref{tab:estrategias-coronel-blotto}, deben garantizar un valor esperado cercano a $0$. La Tabla \ref{tab:utilidades-coronel-blotto}, muestra que si los jugadores utilizan las estrategias proporcionadas por cualquiera de los procedimientos, el valor esperado es igual a $0$, coincidiendo con el valor del juego real, por otra parte, cada una de las estrategias puede garantizar un valor esperado mayor o igual que $-0.008$ en todos los casos.
 
-\begin{table}[ht]
+\begin{table}[hbt!]
     \scriptsize
     \centering
     \begin{tabular}{c}
@@ -202,9 +202,9 @@ En este juego no se tiene un equilibrio de Nash exacto como referencia. Sin emba
     \label{tab:estrategias-coronel-blotto}
 \end{table}
 
-La Tabla \ref{tab:utilidades-coronel-blotto}, muestra que si los jugadores utilizan las estrategias proporcionadas por cualquiera de los procedimientos, el valor esperado es igual a $0$, coincidiendo con el valor del juego real, por otra parte, cada una de las estrategias puede garantizar un valor esperado mayor o igual que $-0.008$ en todos los casos.
 
-\begin{table}[ht]
+
+\begin{table}[hbt!]
     \centering
     \begin{tabular}{c | c | r}
          & $u$ & $(v_1, v_2)$ \\ \hline
@@ -219,7 +219,7 @@ La Tabla \ref{tab:utilidades-coronel-blotto}, muestra que si los jugadores utili
 
 La Tabla \ref{tab:resultados-coronel-blotto} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos de este juego. El procedimiento A, regret condicional, tuvo una duración promedio de $875.533$ segundos, con un número promedio de iteraciones de $190222305.3$, obteniendo un promedio de $4.60 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $79.358$ segundos, $66378.4$ iteraciones y $1.2 {\times} 10^{-3}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.166$, el número de iteraciones promedio fue de $48613.5$, obteniendo un promedio de $3.41 {\times} 10^{-6}$ segundos por iteración.
 
-\begin{table}[ht]
+\begin{table}[hbt!]
    \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
@@ -240,14 +240,14 @@ La Tabla \ref{tab:resultados-coronel-blotto} muestra los resultados obtenidos re
     \label{tab:resultados-coronel-blotto}
 \end{table}
 
- La Figura \ref{fig:regret-coronel-blotto} muestra el regret incondicional con respecto al tiempo de la última corrida para los dos últimos procedimientos.
+ La Figura \ref{fig:regret-coronel-blotto} muestra el regret incondicional con respecto al tiempo de la última corrida para los tres procedimientos. Se observa que el regret máximo tiende a cero para cada uno de los jugadores en todos los procedimientos.
  
-\begin{figure}[ht]
+\begin{figure}[hbt!]
 \caption{Gráficas del regret con respecto al número de iteraciones del juego Coronel Blotto}
 \label{fig:regret-coronel-blotto}
 \centering
-\includegraphics[width=0.327\textwidth]{graficas/coronel-blotto/procedimiento-A.png}
-\includegraphics[width=0.327\textwidth]{graficas/coronel-blotto/procedimiento-B.png}
-\includegraphics[width=0.327\textwidth]{graficas/coronel-blotto/procedimiento-C.png}
+\includegraphics[width=0.45\textwidth]{graficas/coronel-blotto/procedimiento-A.png}
+\includegraphics[width=0.45\textwidth]{graficas/coronel-blotto/procedimiento-B.png}
+\includegraphics[width=0.45\textwidth]{graficas/coronel-blotto/procedimiento-C.png}
 \end{figure}
 \newpage

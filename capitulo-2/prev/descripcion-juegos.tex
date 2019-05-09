@@ -45,25 +45,26 @@ Este juego es descrito en la sección \ref{section:forma-normal} y su matriz de 
 
 Y la solución primal y dual de este problema son $(z^*, x_1^*, x_2^*, x_3^*) = (0, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})$ y $(w^*, y_1^*, y_2^*, y_3^*) = (0, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})$, respectivamente. Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cada una de las acciones con probabilidad igual a $\frac{1}{3}$.
 
-\subsection{Dominó}
-Una pieza de dominó puede ser colocada en un tablero $2\times 3$ de $7$ formas diferentes, cada una de las cuales se muestra y etiqueta con una letra entre la A y G en la Figura \ref{fig:posiciones-domino}. De forma simultánea el primer jugador coloca la pieza de dominó y el segundo jugador elige una de las $6$ casillas del tablero, numeradas como se muestra en la Figura \ref{fig:posiciones}. Si la casilla seleccionada es cubierta por el dominó entonces el segundo jugador gana, en caso contrario gana el primer jugador \cite[p. 237]{bib:pl-chvatal}
-\begin{figure}[ht]
+\subsection{Ficha vs Dominó}
+Cada jugador tiene un tablero de tamaño $2\times 3$, el primer jugador tiene una ficha de dominó (que ocupa dos casillas con un lado en común) que puede colocar de $7$ formas diferentes, cada forma es mostrada en la figura \ref{fig:posiciones-domino}, con su respectiva eiqueta. El segundo jugador posee una ficha que ocupa una sóla casilla de su tablero y la ubica en una de las $6$ casillas, las cuales se numeran en la Figura \ref{fig:posiciones}. Luego se superponen los tableros y si la ficha es cubierta por el dominó entonces el segundo jugador gana, en caso contrario gana el primer jugador \cite[p. 237]{bib:pl-chvatal}.
+
+\begin{figure}[hbt!]
 \caption{Posibles posiciones de la ficha de dominó}
 \label{fig:posiciones-domino}
 \centering
 \includegraphics[width=1\textwidth]{figuras/posiciones-domino.png}
 \end{figure}
 
-\begin{figure}[ht]
-\caption{Posibles posiciones de la ficha de dominó}
+\begin{figure}[hbt!]
+\caption{Posibles posiciones de la ficha del segundo jugador}
 \label{fig:posiciones}
 \centering
 \includegraphics[width=0.4\textwidth]{figuras/posiciones.png}
 \end{figure}
 
-\begin{table}[ht]
+\begin{table}[hbt]
 \begin{center}
-\caption[Matriz de pagos del juego con dominó]{Matriz de pagos del juego con dominó}
+\caption{Matriz de pagos del juego Ficha vs Dominó}
 \label{table:pagos-domino}
 \begin{tabular}{ c | c | c | c | c | c | c |}
   &  1 &  2 &  3 &  4 &  5 &  6 \\ \hline
@@ -99,10 +100,12 @@ Este problema no tiene solución única (lo que implica que el juego no tiene un
 \subsection{Coronel Blotto}
 En este juego cada uno de los jugadores tiene $S$ soldados en total, y cada soldado puede ser asignado a uno de los $N$ campos de batalla. Cualquier número de soldados puede ser colocado en cualquier campo, incluyendo el cero. Un jugador obtiene un campo de batalla si asigna más soldados que su oponente en ese campo de batalla. El juego es ganado por el jugador que obtenga un mayor número de campos y su pago es igual a la diferencia entre el número de campos obtenidos por cada uno de los jugadores \cite{bib:introductionCFR}.
 
-Formalmente el juego puede ser descrito de la siguiente manera. Cada jugador debe elegir $N$ números enteros, digamos $(a_1, a_2, ..., a_N)$ y $(b_1, b_2, ..., b_N)$, para el jugador $1$ y $2$ respectivamente, tales que $a_1 + a_2 + ... + a_N = S$ y $b_1 + b_2 + ... + b_N = S$, con $N < S$. Para estas distribuciones, la ganancia del jugador $1$ viene dada por:
+Formalmente el juego puede ser descrito de la siguiente manera. Cada jugador debe elegir $N$ números enteros, digamos $(a_1, a_2, ..., a_N)$ y $(b_1, b_2, ..., b_N)$, para el jugador $1$ y $2$ respectivamente, tales que $a_1 + a_2 + ... + a_N = S$ y $b_1 + b_2 + ... + b_N = S$, con $N < S$, donde $a_i$ y $b_i$ es la cantidad de soldados ubicados el $i$-ésimo campo por el primer y segundo jugador, respectivamente. Para estas distribuciones, la ganancia del jugador $1$ viene dada por:
 \begin{alignat}{1}
 |\{ 1 \leq i \leq N : a_i > b_i\}| - |\{ 1 \leq i \leq N : a_i < b_i\}|
 \end{alignat}
+
+Este juego depende de dos parámetros: el número de soldados $S$ y el número de campos de batallas $N$, por lo que la matriz de pagos no es constante y por eso no es presentada como en los juegos anteriores. La matriz para de un juego con $S$ soldados y $N$ es una matriz cuadrada de tamaño $\binom{N+S-1}{S-1}$.
 
 \subsection{Kunh Poker}
 Este juego fue descrito en la sección \ref{section:kuhn-poker}. A diferencia de los juegos anteriores, es un juego secuencial, por lo que su representación natural es en forma extensiva. Sin embargo, como se mostró en la sección \ref{section:normal-extensiva}, todo juego en forma extensiva puede ser representado en forma normal, por lo que se pueden aplicar los algoritmos a al forma normal correspondiente.

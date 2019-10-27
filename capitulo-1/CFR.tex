@@ -1,4 +1,5 @@
 \section{Counterfactual Regret Minimization}
+\label{section:cfr}
 
 El objetivo de esta sección es presentar un algoritmo que permita encontrar un equilibrio de Nash en un juego en forma extensiva no determinista con información incompleta. Aunque todo juego en forma extensiva puede ser representado en forma normal, esto no es de mucho interés, pues la forma normal puede tener un tamaño exponencialmente más grande al tamaño del árbol. Se verá como el concepto de \textit{regret minimization} puede ser extendido a juegos secuenciales, sin necesidad de la forma normal explícita. Los conceptos, procedimientos y teoremas mostrados en esta sección, son presentados en \cite{bib:cfr}.
 
@@ -97,7 +98,7 @@ Como consecuencia del teorema anterior se obtiene que un algoritmo que lleve el 
 \label{def:utilidad-contrafactual}
 La \textbf{utilidad contrafactual} es la ganancia esperada dado que el conjunto $I$ es alcanzado y todos los jugadores juegan con la estrategia $\sigma$ con excepción del jugador $i$ que juega para alcanzar $I$. Formalmente, si $\pi^{\sigma}(h, h')$ es la probabilidad de ir de la historia $h$ a la historia $h'$, entonces:
 \begin{alignat}{1}
-u_i(\sigma, I) = \frac{\sum_{h \in H, z \in Z} \pi^{\sigma_{-i}(h)1} \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)}
+u_i(\sigma, I) = \frac{\sum_{h \in I, z \in Z} \pi^{\sigma_{-i}(h)} \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)}
 \end{alignat}
 \end{definition}
 
@@ -107,7 +108,7 @@ Para toda acción $a \in A(I)$, se define $\sigma|_{I \rightarrow a}$ como el pe
 \label{def:regret-inmediato}
 El \textbf{regret contrafactual inmediato} es:
 \begin{alignat}{1}
-R_{i, \text{imm}}^T (I) = \frac{1}{T} \max_{a \in A(I)} \sum_{t = 1}^T \pi^{\sigma_{-i}^t}(I)[u_i(\sigma^t|_{I \rightarrow a}, I) - u_i(\sigma^t, I)] ]
+R_{i, \text{imm}}^T (I) = \frac{1}{T} \max_{a \in A(I)} \sum_{t = 1}^T \pi^{\sigma_{-i}^t}(I)[u_i(\sigma^t|_{I \rightarrow a}, I) - u_i(\sigma^t, I)]
 \end{alignat}
 \end{definition}
 
@@ -138,7 +139,7 @@ Se define $R^{t, +}(a) = \max(R^t(a), 0)$. Luego la distribución $p^{t+1}$ es e
 p^t(a) = 
 \begin{cases}
 \frac{R_i^{t, +}}{\sum_{a' \in A} R^{t, +}(a)}\ & \text{si }\ \sum_{a' \in A} R^{t, +}(a) > 0\\
-\frac{1}{A}\ & \text{en otro caso}
+\frac{1}{|A|}\ & \text{en otro caso}
 \end{cases}
 \end{alignat}
 

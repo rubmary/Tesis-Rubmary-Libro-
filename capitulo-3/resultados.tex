@@ -1,0 +1,46 @@
+\subsection{Resultados experimentales}
+
+Se crearon varias instancias de los $3$ juegos explicados en la sección \ref{section-description-juegos-forma-extensiva} con diferentes parámetros. Para cada instancia se utilizó el algoritmo de CFR y se iteró sobre el árbol durante $10$ (\textit{\textbf{número tentativo}}) horas (se excluye el tiempo que se calcula el regret ya que no forma parte del algoritmo y esto se hace únicamente para obtener las gráficas). Una vez terminado el tiempo asignado se calcula la mejor respuesta para cada jugador y la explotabilidad. Una instancia de un juego se considerará resuelta si la explotabilidad de la estrategia obtenida es menor que el $1\%$ de la mínima unidad de utilidad posible según cada juego.
+
+La tabla \ref{tab:resultados-CFR} resume los resultados, donde $N$ representa el número de nodos del árbol $I$ el número de conjuntos de información, $u_{\sigma}$ el valor del juego usando la estrategia obtenida y $\varepsilon_{\sigma}$ la explotabilidad. También se agrega el número de iteraciones y la última columna indica si el juego fue resuelto o no, según lo establecido en el párrafo anterior.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{l|r|r|r|r|r|c}
+        Juego & $N$ & $I$ & Iteraciones & $u$ & $\varepsilon$ & Resuelto \\ \hline
+        OCP$(3)$    &        $55$ &    $12$ & & & & \cmark \\
+        OCP$(12)$   &      $1189$ &    $48$ & & & & \cmark \\
+        OCP$(50)$   &     $22051$ &   $200$ & & & & \cmark \\
+        OCP$(200)$  &    $358201$ &   $800$ & & & & \cmark \\
+        OCP$(1000)$ &   $8991001$ &  $4000$ & & & & \cmark \\
+        OCP$(4000)$ & $143964001$ & $16000$ & & & & \cmark \\
+        \hline
+        Dudo$(3, 1, 1)$ &      $1144$ &      $192$ & & & & \cmark \\
+        Dudo$(3, 2, 1)$ &     $18415$ &     $2304$ & & & & \cmark \\
+        Dudo$(3, 1, 2)$ &     $18415$ &     $2304$ & & & & \cmark \\
+        Dudo$(3, 2, 2)$ &    $294877$ &    $24576$ & & & & \cmark \\
+        Dudo$(4, 1, 1)$ &      $8177$ &     $1024$ & & & & \cmark \\
+        Dudo$(4, 2, 1)$ &    $327641$ &    $28672$ & & & & \cmark \\
+        Dudo$(4, 1, 2)$ &    $327641$ &    $28672$ & & & & \cmark \\
+        Dudo$(4, 2, 2)$ &  $13107101$ &   $655360$ & & & & \xmark \\
+        Dudo$(5, 1, 1)$ &     $51176$ &     $5120$ & & & & \cmark \\
+        Dudo$(5, 2, 1)$ &   $4915126$ &   $327680$ & & & & \cmark \\
+        Dudo$(5, 1, 2)$ &   $4915126$ &   $327680$ & & & & \cmark \\
+        Dudo$(5, 2, 2)$ & $471858976$ & $15728640$ & & & & \xmark \\
+        Dudo$(6, 1, 1)$ &    $294877$ &    $24576$ & & & & \cmark \\
+        Dudo$(6, 2, 1)$ &  $66060163$ &  $3538944$ & & & & \cmark \\
+        Dudo$(6, 1, 2)$ &  $66060163$ &  $3538944$ & & & & \cmark \\
+        Dudo$(6, 2, 2)$ &  $14797504071$ &  $352321536$ & & & & \xmark \\
+        \hline
+        Domino$(2, 2)$ &     $441$ &       $7321$ & & & & \cmark \\
+        Domino$(3, 2)$ &  $844437$ &   $46534657$ & & & & \cmark \\
+        Domino$(3, 3)$ & $1082290$ &  $246760993$ & & & & \cmark \\
+        Domino$(3, 4)$ &  $902218$ & $1547645185$ & & & & \cmark \\
+        Domino$(4, 2)$ & & & & & & \xmark \\
+        \hline
+    \end{tabular}
+    \caption{Resultados del algortimo CFR en los diferentes juegos}
+    \label{tab:resultados-CFR}
+\end{table}
+
+La gráfica \textit{\textbf{Mostrar una o dos gráficas interesantes y decir algo al respecto}}. En el apéndice \textit{\textbf{X}} se pueden observar todas las gráficas del regret con respecto al número de iteraciones, se nota que el regret tiende a $0$ en todos los casos (\textit{\textbf{Agregar algún otro detalle interesante que se vea en las gráficas}})

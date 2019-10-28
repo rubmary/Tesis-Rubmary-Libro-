@@ -1,23 +1,16 @@
-\section{Detalles de Implementación}
+\section{Detalles de Implementación y Ejecución}
 
 Los algoritmos fueron implementados en el lenguaje de programación C++, utilizando la librería estándar y una librería adicional llamada \textit{Eigen}, para factorizar matrices y resolver sistemas de ecuaciones.
 
 Se implementó una clase para encontrar un equilibrio de Nash mediante el algoritmo de \textit{Regret Matching}. En cada iteración la actualización de las estrategias depende de cada procedimiento según las fórmulas propuestas en la sección anterior.
 
+En el juego Coronel Blotto la matriz de pagos no tiene un tamaño fijo y además no es proporcionada de forma explícita, por lo que es necesario generarla dependiendo de los parámetros. Para esto se creó un programa que, dado el número de campos de batalla ($N$) y el número de soldados ($S$), genera todas las posibles distribuciones de cada uno de los jugadores mediante un algoritmo de \textit{backtracking} y calcula el pago para cada juego posible, obteniendo como salida del programa la matriz deseada. De esta forma se generó la matriz de pagos para este juego cuando $N = 3$ y $S = 5$.
 
-% \subsection{Juegos en forma extensiva}
+Las ejecuciones de estos algoritmos se realizaron en una máquina personal, con las siguientes características:
+\begin{itemize}[noitemsep]
+    \item Procesador: Intel\textsuperscript{\textregistered} Core\textsuperscript{\texttrademark} i5-8250U CPU  \makeatletter{@} 1.60GHz
+    \item 8CPUs
+    \item 8Gb de memoria RAM
+    \item Sistema Operativo: Ubuntu 18.04.3 LTS
+\end{itemize}
 
-% Para representar el árbol en forma extensiva se creó la clase \textit{Nodo}, la cual tiene como atributos el jugador correspondiente, el conjunto de información, la distribución de probabilidad en caso que sea un nodo de azar y la ganancia del jugador $1$ en caso que sea un nodo terminal o apuntadores a sus hijos en caso que no lo sea.
-
-% El constructor de esta clase utiliza \textit{Depth First Search} para la lectura del árbol desde un archivo. El archivo de texto debe seguir el siguiente formato, una línea con tres valores enteros: el número del jugador ($p$), el conjunto de información ($I$) y el número de hijos del nodo ($N$). El nodo es de azar si el número del jugador es igual a cero, en este caso la línea debe tener $N$ números adicionales que sean una distribución de probabilidad sobre los hijos. Por otra parte, si el nodo es terminal ($N = 0$) entonces la línea debe tener un valor adicional que representa la utilidad para el jugador $1$. Una vez leído la información del nodo actual el constructor es llamado con cada uno de los hijos para construir cada uno de los subárboles.
-
-% \subsection{Forma normal a partir de la forma extensiva}
-% \label{subsec:FN-FE}
-
-% Para aplicar los algoritmos de \textit{Regret Matching} en juegos en formas extensiva es necesario hallar la forma normal correspondiente. Para esto se utiliza \textit{dfs} para determinar la cantidad de conjuntos de información de cada jugador y cuantas acciones diferentes tiene en cada uno, el árbol debe ser una instancia de la clase descrita anteriormente. Las estrategias puras son listadas usando \textit{backtracking} y para obtener el valor de pago se recorre el árbol mediante \textit{dfs}, pero sólo expandiendo los nodos que corresponden a la estrategia dada.
-
-% \subsection{Estrategia de comportamiento a partir estrategia mixta}
-% \label{subsec:EC-EM}
-% Una vez encontrado un equilibrio de Nash para la forma normal en un juego en forma extensiva originalmente, es deseable ser capaz de encontrar la estrategia de comportamiento respectiva. Debido a que más de un árbol pueden generar la misma matriz de pagos en forma normal, es necesario que tanto el árbol como la matriz de pagos sean proporcionados de forma explícita. Por otra parte, es necesario listar nuevamente todas las estrategias puras (de la misma forma que se listaron para encontrar la forma normal), para poder hacer la correspondencia entre cada estrategia pura del jugador $1$ y cada fila de la matriz, y cada estrategia pura del jugador $2$ y cada columna.
-
-% Para encontrar la distribución de probabilidad en cada conjunto de información se utiliza \textit{dfs} por cada estrategia mixta de cada jugador para encontrar, para cada conjunto de información $I$ y cada acción $a \in A(I)$, la probabilidad de alcanzar $I$ ($\pi(I)$) y la probabilidad de elegir la acción $a$ dado que $I$ es alcanzado. Luego, es utilizada la ecuación \ref{eq:mixta-a-comportamiento} para obtener cada una de las distribuciones de probabilidad.

@@ -1066,7 +1066,7 @@
 \ifacronymactive%---
         \typeout{TESIS-USB: package acronym was detected}%---
         \typeout{TESIS-USB: acronyms will be reset at chapter level}%---
-        \input{acronimos.tex}%---
+        \input{preambulo/acronimos.tex}%---
 \else%---
         \typeout{TESIS-USB: package acronym was NOT detected}%---
 \fi}%---

@@ -1,23 +1,23 @@
-\chapter{Resultados Experimentales. Regret Matching en Juegos en Forma Normal}
+\chapter{Resultados Experimentales, Regret Matching en Juegos en Forma Normal}
 
-Para cada uno de los juegos se muestra una tabla con la estrategia obtenida en la última corrida de cada uno de los procedimientos y, en caso de conocerse, el equilibrio de Nash. Para cada estrategia se muestra el \textit{peor caso} de cada jugador. Es decir, el peor caso para el jugador $i$ cuando utiliza la estrategia $\sigma_{i}$ es $u_i(\sigma_i, \sigma^*_{-i})$, donde $\sigma^*_{-i}$ es mejor respuesta a $\sigma_i$.
+En este apéndice se presentan las tablas y gráficas detalladas para los juegos en forma normal descritos en la sección \ref{section:descripcion-juegos-fn}. Para cada juego se muestra una tabla con la estrategia obtenida en la última corrida de cada uno de los procedimientos y, en caso de conocerse, el equilibrio de Nash. Para cada estrategia se muestra la utilidad de cada jugador si utilizan una mejor respuesta frente a la estrategia calculada para el oponente $v_1$ y $v_2$, así como la explotabilidad $\varepsilon_{\sigma}$ (ver la Sección \ref{section:explotabilidad} para definiciones formales).
 
-Por otra parte, para cada juego se presenta una tabla que indica el tiempo de cada corrida ($T$), el número de iteraciones para alcanzar la cota deseada ($I$) y el tiempo promedio de cada iteración en cada una de las corridas ($T/I$), así como el promedio del tiempo y del número de iteraciones para cada procedimiento. Además, también se muestran las gráficas del \textit{regret} por iteraciones, para observar su convergencia. Estas gráficas son mostradadas con una escala logarítmica en el eje $x$ para apreciar mejor los resultados.
+Además, se presenta una tabla que indica el tiempo de cada ejecución ($T$), el número de iteraciones para alcanzar la cota deseada ($I$) y el tiempo promedio de cada iteración en cada una de las ejecuciones ($T/I$), así como el promedio del tiempo y del número de iteraciones para cada procedimiento. También se muestran las gráficas del regret por iteraciones, para observar su convergencia. Estas gráficas son mostradas con una escala logarítmica en el eje $x$ para apreciar mejor los resultados.
 
 \newcommand{\graphicsRM}[2]{
 \begin{figure}[htpb!]
     \caption{Gráficas del regret con respecto al número de iteraciones del juego #1}
     \label{fig:regret-#2}
     \centering
-    \includegraphics[width=0.497\textwidth]{graficas/#2/procedimiento-A.png}
-    \includegraphics[width=0.497\textwidth]{graficas/#2/procedimiento-B.png}
-    \includegraphics[width=0.497\textwidth]{graficas/#2/procedimiento-C.png}
+    \includegraphics[width=0.58\textwidth]{graficas/#2/procedimiento-A.png}
+    \includegraphics[width=0.58\textwidth]{graficas/#2/procedimiento-B.png}
+    \includegraphics[width=0.58\textwidth]{graficas/#2/procedimiento-C.png}
 \end{figure}
 }
 
 \section{Matching Pennies}
 
-En este juego, si un jugador elige cada acción con una probabilidad de $0.5$, entonces su ganancia esperada es igual a $0$, sin importar la estrategia de su oponente, obteniendo el equilibrio de Nash cuando ambos jugadores utilizan esta estragia. Las estrategias obtenidas no corresponden al equilibrio de Nash, sin embargo, garantizan una utilidad cercana a $0$ en todos los casos, siendo la más baja igual a $-0.008$, como se muestra en la Tabla \ref{tab:estrategias-matching-pennies}. Por lo que todas las estrategias obtenidas son un $\varepsilon$- equilibrio de Nash, con $\varepsilon < 0.008$.
+En este juego, si un jugador elige cada acción con una probabilidad de $0.5$, entonces su ganancia esperada es igual a $0$, sin importar la estrategia de su oponente, obteniendo el equilibrio de Nash cuando ambos jugadores utilizan esta estragia. Las estrategias obtenidas no corresponden al equilibrio de Nash, sin embargo, garantizan una utilidad cercana a $0$ en todos los casos, obteniendo una explotabilidad no mayor a $0.008$, como se muestra en la Tabla \ref{tab:estrategias-matching-pennies}. Por lo que todas las estrategias obtenidas son un $\varepsilon$- equilibrio de Nash, con $\varepsilon < 0.008$.
 
 \begin{table}[hbt!]
     \centering
@@ -25,7 +25,8 @@ En este juego, si un jugador elige cada acción con una probabilidad de $0.5$, e
         & E.N. & A & B & C \\ \hline
         $\sigma_1$   & $(0.500, 0.500)$ & $(0.500, 0.500)$ & $(0.500, 0.500)$ & $(0.500,  0.500)$ \\
         $\sigma_2$   & $(0.500, 0.500)$ & $(0.497, 0.503)$ & $(0.503, 0.497)$ & $(0.504,  0.496)$ \\ \hline
-        $(v_1, v_2)$ & $(0.000, 0.000)$ & $(0.000, -0.006)$ & $(0.000, -0.006)$ & $(0.000, -0.008)$ \\ \hline
+        $(v_1, v_2)$ & $(0.000, 0.000)$ & $(0.006, 0.000)$ & $(0.006, 0.000)$ & $(0.008, 0.000)$ \\ \hline
+        $\varepsilon_{\sigma}$ & $0$ & $0.006$ & $0.006$ & $0.008$ \\ \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Matching Pennies}
     \label{tab:estrategias-matching-pennies}
@@ -36,6 +37,7 @@ En este juego, si un jugador elige cada acción con una probabilidad de $0.5$, e
 La Tabla \ref{tab:resultados-matching-pennies} muestra los resultados obtenidos relacionados al tiempo y número de iteraciones de los procedimientos. El procedimiento A, regret condicional, tuvo una duración promedio de $10.276$ segundos, con un número promedio de iteraciones de $3892550.4$, obteniendo un promedio de $2.64 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $3.777$ segundos, $25616.6$ iteraciones y $3.03 {\times} 10^{-5}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.042$, el número de iteraciones promedio fue de $16260.5$, obteniendo un promedio de $2.58 {\times} 10^{-6}$ segundos por iteración. 
 
 \begin{table}[hbt!]
+    \scriptsize
     \centering
     \begin{tabular}{r r r | r r r | r r r}
     \multicolumn{3}{c}{A} & \multicolumn{3}{c}{B} & \multicolumn{3}{c}{C} \\ \hline
@@ -63,16 +65,29 @@ La Figura \ref{fig:regret-matching-pennies} muestra el regret incondicional con 
 
 \section{Piedra, Papel o Tijeras}
 
-En este juego, al igual que en el anterior, ambos jugadores pueden garantizar una utilidad esperada de $0$ sin importar la estrategia utilizada por su oponente, que se obtiene al elegir cada acción con igual probabilidad. Las estrategias obtenidas son presentadas en la tabla \ref{tab:estrategias-RPS}. No todas corresponden al equilibrio de Nash exacto, sin embargo, cada una de ellas es un $\varepsilon$-equilibrio de Nash con $\varepsilon < 0.006$.
+En este juego, al igual que en el anterior, ambos jugadores pueden garantizar una utilidad esperada de $0$ sin importar la estrategia utilizada por su oponente, que se obtiene al elegir cada acción con igual probabilidad. Las estrategias obtenidas son presentadas en la tabla \ref{tab:estrategias-RPS}. No todas corresponden al equilibrio de Nash exacto, sin embargo, cada una de ellas es un $\varepsilon$-equilibrio de Nash con $\varepsilon < 0.01$.
 
 \begin{table}[hbt]
     \centering
-    \scriptsize
-    \begin{tabular}{c|c|c|c|c}
-        & E.N. & A & B & C \\ \hline
-        $\sigma_1$ &  $(0.333, 0.333, 0.333)$ & $(0.332, 0.335, 0.332)$ & $(0.330, 0.334, 0.336)$ & $(0.333, 0.337, 0.330)$ \\
-        $\sigma_2$ &  $(0.333, 0.333, 0.333)$ & $(0.331, 0.334, 0.335)$ & $(0.329, 0.335, 0.337)$ & $(0.336, 0.330, 0.335)$ \\ \hline
-        $(v_1, v_2)$ & $(0.000, 0.000)$ & $(-0.003, -0.003)$ & $(-0.004, -0.006)$ & $(-0.004, -0.005)$ \\ \hline
+    \begin{tabular}{c c|c|r|r}
+        & & Estrategias & $v_1 / v_2$ & $\varepsilon_{\sigma}$ \\
+        \hline
+        \multirow{2}{*}{EN}
+        & $\sigma_1$ & $(0.333, 0.333, 0.333)$ & $0.000$ & \multirow{2}{*}{$0.000$}\\
+        & $\sigma_2$ & $(0.333, 0.333, 0.333)$ &  $0.000$ & \\
+        \hline
+        \multirow{2}{*}{A}
+        & $\sigma_1$ & $(0.332, 0.335, 0.332)$ & $0.003$ & \multirow{2}{*}{$0.006$}\\
+        & $\sigma_2$ & $(0.331, 0.334, 0.335)$ & $0.003$ & \\
+        \hline
+        \multirow{2}{*}{B}
+        & $\sigma_1$ & $(0.330, 0.334, 0.336)$ & $0.006$ & \multirow{2}{*}{$0.010$}\\
+        & $\sigma_2$ & $(0.329, 0.335, 0.337)$ & $0.004$ & \\
+        \hline
+        \multirow{2}{*}{C}
+        & $\sigma_1$ & $(0.333, 0.337, 0.330)$ & $0.005$ & \multirow{2}{*}{$0.009$} \\
+        & $\sigma_2$ &$(0.336, 0.330, 0.335)$  & $0.004$ & \\
+        \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Piedra, Papel o Tijeras}
     \label{tab:estrategias-RPS}
@@ -111,24 +126,24 @@ El primer jugador puede garantizar una ganancia esperada de, al menos $1/3$, por
 
 \begin{table}[hbt]
     \centering
-    \begin{tabular}{c c|c|r}
-        & & Estrategias & $v_1 / v_2$\\
+    \begin{tabular}{c c|c|r|r}
+        & & Estrategias & $v_1 / v_2$ & $\varepsilon_{\sigma}$ \\
         \hline
-        \multirow{2}{*}{E.N.}
-        & $\sigma_1$ & $(0.333, 0.333, 0.000, 0.000, 0.000, 0.000, 0.333)$ & $0.333$ \\
-        & $\sigma_2$ & $(0.333, 0.000, 0.333, 0.000, 0.333, 0.000)$ &  $-0.333$\\
+        \multirow{2}{*}{EN}
+        & $\sigma_1$ & $(0.333, 0.333, 0.000, 0.000, 0.000, 0.000, 0.333)$ & $0.333$ & \multirow{2}{*}{$0.000$}\\
+        & $\sigma_2$ & $(0.333, 0.000, 0.333, 0.000, 0.333, 0.000)$ &  $-0.333$ & \\
         \hline
         \multirow{2}{*}{A}
-        & $\sigma_1$ & $(0.136, 0.137, 0.116, 0.118, 0.198, 0.081, 0.214)$ & $0.328$ \\
-        & $\sigma_2$ & $(0.165, 0.171, 0.163, 0.166, 0.166, 0.169)$ & $-0.338$\\
+        & $\sigma_1$ & $(0.136, 0.137, 0.116, 0.118, 0.198, 0.081, 0.214)$ & $0.338$ &\multirow{2}{*}{$0.010$} \\
+        & $\sigma_2$ & $(0.165, 0.171, 0.163, 0.166, 0.166, 0.169)$ & $-0.328$ &\\
         \hline
         \multirow{2}{*}{B}
-        & $\sigma_1$ & $(0.121, 0.118, 0.135, 0.137, 0.214, 0.078, 0.198)$ & $0.331$ \\
-        & $\sigma_2$ & $(0.157, 0.178, 0.156, 0.177, 0.157, 0.175)$ & $-0.335$\\
+        & $\sigma_1$ & $(0.121, 0.118, 0.135, 0.137, 0.214, 0.078, 0.198)$ & $0.335$ & \multirow{2}{*}{$0.007$} \\
+        & $\sigma_2$ & $(0.157, 0.178, 0.156, 0.177, 0.157, 0.175)$ & $-0.331$ & \\
         \hline
         \multirow{2}{*}{C}
-        & $\sigma_1$ & $(0.128, 0.128, 0.129, 0.134, 0.208, 0.073, 0.202)$ & $0.330$ \\
-        & $\sigma_2$ & $(0.169, 0.165, 0.168, 0.164, 0.169, 0.165)$ & $-0.334$\\
+        & $\sigma_1$ & $(0.128, 0.128, 0.129, 0.134, 0.208, 0.073, 0.202)$ & $0.334$ & \multirow{2}{*}{$0.004$} \\
+        & $\sigma_2$ & $(0.169, 0.165, 0.168, 0.164, 0.169, 0.165)$ & $-0.330$ & \\
         \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Ficha vs Dominó}
@@ -158,13 +173,15 @@ La Tabla \ref{tab:resultados-domino} muestra los resultados obtenidos relacionad
     \label{tab:resultados-domino}
 \end{table}
 
+\graphicsRM{Ficha vs. Dominó}{domino}
+
 La Figura \ref{fig:regret-domino} muestra el regret incondicional con respecto al tiempo de la última corrida, para los procedimientos A, B y C. Se observa como el \textit{regret} máximo converge a cero para ambos jugadores en cada uno de los procedimientos.
 
-\graphicsRM{Ficha vs. Dominó}{domino}
+
 
 \section{Coronel Blotto}
 
-En este juego no se posee un equilibrio de Nash como referencia. Sin embargo, como la matriz de pagos es simétrica, el valor del juego debe ser $0$, así que las estrategias obtenidas, se mostradas en la Tabla \ref{tab:estrategias-coronel-blotto}, deben garantizar un valor esperado cercano a $0$. En esta tabla, también se observa que cada una de las estrategias puede garantizar un valor esperado mayor o igual que $-0.008$ en todos los casos.
+En este juego no se posee un equilibrio de Nash como referencia. Sin embargo, como la matriz de pagos es simétrica, el valor del juego debe ser $0$, así que las estrategias obtenidas, se mostradas en la Tabla \ref{tab:estrategias-coronel-blotto}, deben garantizar un valor esperado cercano a $0$. En esta tabla, también se observa que cada una de las estrategias tienen una explotabilidad menor o igual que $0.011$.
 
 \begin{table}[hbt]
     \scriptsize
@@ -174,25 +191,28 @@ En este juego no se posee un equilibrio de Nash como referencia. Sin embargo, co
         \hline
         Procedimiento A \\ \hline
          $(0, 0, 0.126, 0.113, 0, 0, 0, 0.080, 0, 0.100, 0, 0.131, 0, 0.001, 0.111, 0.118, 0.094, 0.124, 0, 0, 0)$ \\
-         $(0, 0, 0.101, 0.109, 0, 0, 0, 0.116, 0, 0.139, 0, 0.132, 0, 0.002, 0.076, 0.076, 0.141, 0.106, 0, 0, 0)$\\
-         $(v_1, v_2) = (-0.008, -0.002)$ \\
+         $(0, 0, 0.101, 0.109, 0, 0, 0, 0.116, 0, 0.139, 0, 0.132, 0, 0.002, 0.076, 0.076, 0.141, 0.106, 0, 0, 0)$ \\
+         $(v_1, v_2) = (0.002, 0.008)$ \\
+         $\varepsilon_{\sigma} = 0.01$ \\
         \hline
         Procedimiento B \\ \hline
          $(0, 0.002, 0.093, 0.110, 0.001, 0, 0.002, 0.111, 0.001, 0.128, 0.001, 0.126, 0, 0.001, 0.076, 0.112, 0.088, 0.145, 0.001, 0.001, 0)$ \\
          $(0, 0.001, 0.102, 0.107, 0.001, 0, 0.0, 0.154, 0.001, 0.099, 0, 0.055, 0.001, 0, 0.156, 0.113, 0.140, 0.069, 0.002, 0.001, 0)$ \\
-         $(v_1, v_2) = (-0.007, -0.004)$ \\
+         $(v_1, v_2) = (0.004, 0.007)$ \\
+         $\varepsilon_{\sigma} = 0.011$ \\
         \hline
         Procedimiento C \\ \hline
          $(0, 0, 0.119, 0.106, 0, 0, 0, 0.110, 0, 0.107, 0, 0.108, 0, 0, 0.122, 0.122, 0.117, 0.1, 0, 0, 0)$ \\
          $(0, 0, 0.148, 0.096, 0, 0, 0, 0.099, 0, 0.095, 0, 0.093, 0, 0, 0.155, 0.126, 0.117, 0.070, 0, 0, 0)$ \\
-         $(v_1, v_2) = (-0.005, -0.004)$ \\
+         $(v_1, v_2) = (0.004, 0.005)$ \\
+         $\varepsilon_{\sigma} = 0.009$ \\
         \hline
     \end{tabular}
     \caption{Estrategias obtenidas del juego Coronel Blotto}
     \label{tab:estrategias-coronel-blotto}
 \end{table}
 
-Los resultados obtenidos relacionados al tiempo y número de iteraciones de cada procedimiento son mostrados en la Tabla \ref{tab:resultados-coronel-blotto}. El procedimiento A, regret condicional, tuvo una duración promedio de $875.533$ segundos, con un número promedio de iteraciones de $190222305.3$, obteniendo un promedio de $4.60 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $79.358$ segundos, $66378.4$ iteraciones y $1.2 {\times} 10^{-3}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.166$, el número de iteraciones promedio fue de $48613.5$, obteniendo un promedio de $3.41 {\times} 10^{-6}$ segundos por iteración.
+Los resultados obtenidos relacionados al tiempo y número de iteraciones de cada procedimiento son mostrados en la Tabla \ref{tab:resultados-coronel-blotto}.
 
 \begin{table}[hbt]
    \scriptsize
@@ -215,6 +235,9 @@ Los resultados obtenidos relacionados al tiempo y número de iteraciones de cada
     \label{tab:resultados-coronel-blotto}
 \end{table}
 
- La Figura \ref{fig:regret-coronel-blotto} muestra el regret incondicional con respecto al tiempo de la última corrida para los tres procedimientos. Se observa que el regret máximo tiende a cero para cada uno de los jugadores en todos los procedimientos.
+ El procedimiento A, regret condicional, tuvo una duración promedio de $875.533$ segundos, con un número promedio de iteraciones de $190222305.3$, obteniendo un promedio de $4.60 {\times} 10^{-6}$ segundos por iteración. Con el procedimiento B, que utiliza un vector invariante de probabilidad, se obtuvo un tiempo, número de iteraciones y tiempo por iteración promedios de $79.358$ segundos, $66378.4$ iteraciones y $1.2 {\times} 10^{-3}$ segundos por iteración, respectivamente. Por último, el procedimiento C, regret incondicional, se obtuvo un tiempo promedio de $0.166$, el número de iteraciones promedio fue de $48613.5$, obteniendo un promedio de $3.41 {\times} 10^{-6}$ segundos por iteración.
  
  \graphicsRM{Coronel Blotto}{coronel-blotto}
+ 
+ La Figura \ref{fig:regret-coronel-blotto} muestra el regret incondicional con respecto al tiempo de la última corrida para los tres procedimientos. Se observa que el regret máximo tiende a cero para cada uno de los jugadores en todos los procedimientos.
+ 

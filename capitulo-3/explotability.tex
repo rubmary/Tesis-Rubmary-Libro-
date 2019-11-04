@@ -1,7 +1,0 @@
-\section{Evaluación de las estrategias y explotabilidad}
-
-Para evaluar la convergencia de los algoritmos y la estrategia obtenida se utilizaron las métricas de \textit{regret} y explotabilidad, respectivamente.
-
-La explotabilidad se obtiene al calcular la mejor respuesta de la estrategia de cada jugador y sumar los resultados, como se explicó en la sección \textit{\textbf{Explicar explotabilidad en el capítulo 2}}. Sin embargo, la diferencia es que en los juegos de forma extensiva no se pueden listar todas las estrategias fácilmente como en los juegos en forma normal, ya que esta tarea es exponencial en el tamaño del árbol.
-
-Para calcular la explotabilidad en estos juegos se utilizó el algoritmo propuesto en \cite{bib:thesis-marc-lanctot}, denominado \textit{Generalized Expectimax Best Response} (GEBR), descrito en el apéndice \textit{\textbf{X}}. La complejidad de este algoritmo es $\mathcal{O}(ND)$ donde $N$ es el número de nodos del árbol y $D$ es la profundidad del árbol. Note que el algoritmo tiene una alta complejidad, por lo que se usará únicamente para calcular la explotabilidad de la estrategia final.

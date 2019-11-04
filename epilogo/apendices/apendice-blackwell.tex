@@ -1,0 +1,50 @@
+\chapter{Teorema de Aproximación de Blackwell}
+Los procedimientos que calculan equilibrios correlacionados se basan en el método de aproximación de Blackwell \cite{bib:correlated-equilibrium}.
+%Antes de presentar los procedimientos que llevan a equilibrios correlacionados, es importante enunciar el Teorema de Aproximación de Blackwell, \textit{Blackwell's Approachability Theorem}, base para la obtención de los procedimientos que calculan equilibrios correlacionados. El enunciado del teorema, las definiciones utilizadas y los procedimientos mostrados son presentados en \cite{bib:correlated-equilibrium}.
+
+El marco teórico en el cual se aplica el teorema está conformado por: (1)~un \textbf{decididor} $i$ que toma decisiones de un conjunto finito de acciones $S_i$, (2)~un \textbf{oponente} $-i$ que toma decisiones de un conjunto finito de acciones $S_{-i}$, (3)~un \textbf{conjunto indexado} denotado por $L$, y (4)~un \textbf{vector de pagos} $v(s_i, s_{-i}) \in \mathbb{R}^{|L|}$.
+El decididor y oponente toman decisiones $s_t=(s^t_i,s^t_{-i})\in S_i\times S_{-i}$ indexadas en tiempo $t\geq 1$. El problema planteado consiste en ver si el decididor puede garantizar que el promedio de pagos $D_t$ a tiempo $t$, definido por
+\begin{alignat}{1}
+D_t\ =\ \frac{1}{t}\sum_{\tau=1}^t v(s_\tau)\ =\ \frac{1}{t}\sum_{\tau=1}^t v(s^\tau_i,s^\tau_{-i})
+\end{alignat}
+\emph{alcanza} el conjunto $\mathbb{R}^{|L|}$. Antes de enunciar el teorema es necesario presentar las definiciones de distancia de un punto a un conjunto (Definición \ref{def:distancia}), un conjunto alcanzable (Definición \ref{def:alcanzable}), y de función de soporte (Definición \ref{def:funcion-soporte}).
+
+\begin{definition}
+\label{def:distancia}
+Sea $A$ un conjunto cerrado y convexo en $\mathbb{R}^n$, y $x \in \mathbb{R}^n$ un punto cualquiera. La \textbf{distancia} de $x$ a $A$ es definida por
+\begin{alignat}{1}
+\text{dist}(x, A)\ =\ \min\{ \|x - a\| : a \in A \}
+\end{alignat}
+donde $\|\cdot\|$ denota la distancia euclidiana en $\mathbb{R}^n$.
+\end{definition}
+
+\begin{definition}
+\label{def:alcanzable}
+Sea $\mathcal{C}$ un conjunto convexo y cerrado en $\mathbb{R}^{|L|}$. El conjunto $\mathcal{C}$ es \textbf{alcanzable} por el decididor $i$ si hay un procedimiento para $i$ que garantiza que $D_t$ alcanza a $\mathcal{C}$; es decir. $dist(D_t, \mathcal{C}) \rightarrow 0$ (a.s.) sin importar la elección del oponente $-i$.
+\end{definition}
+
+\begin{definition}
+\label{def:funcion-soporte}
+Sea $\mathcal{C} \in \mathbb{R}^n$ un conjunto. La \textbf{función de soporte} $w_{\mathcal{C}}$ para el conjunto $\mathcal{C}$, es definida por
+\begin{alignat}{1}
+	w_{\mathcal{C}}(\lambda)\ =\ \sup\{\lambda \cdot c : c \in \mathcal{C} \}
+\end{alignat}
+donde $\cdot$ denota el producto interno en $\mathbb{R}^n$.
+\end{definition}
+
+Dado un conjunto convexo y cerrado $\mathcal{C}$ denotaremos con $F(x)$ el punto (único) más cercano a $x$ de $C$, y con $\lambda(x)= x - F(x)$.
+El Teorema de Aproximación de Blackwell establece una condición necesaria y suficiente para el problema planteado previamente.
+
+\begin{theorem}[Aproximación de Blackwell]
+\label{theo:blackwell}
+Sea $\mathcal{C} \subseteq \mathbb{R}^{|L|}$ un conjunto convexo y cerrado con función de soporte $w_{\mathcal{C}}$. Entonces, $\mathcal{C}$ es alcanzable por $i$ si y sólo si para todo $\lambda \in \mathbb{R}^{|L|}$, existe una estrategia mixta $q_{\lambda} \in \Delta(S_i)$ para el decididor $i$ tal que para todo $s_{-i}\in S_{-i}$:
+\begin{alignat}{1}
+  \lambda \cdot v(q_{\lambda}, s_{-i})\ \leq\ w_{\mathcal{C}}(\lambda) \,.
+\end{alignat}
+En esta expresión, $v(q, s_{-i})$ denota $\sum_{s_i \in S_i} q(s_i)u_i(s_i, s_{-i})$. 
+Además, el siguiente procedimiento garantiza que $dist(D_t, \mathcal{C}) \rightarrow 0$ (a.s.) cuando $t \rightarrow \infty$: en el tiempo $t+1$, jugar $q_{\lambda(D_t)}$ si $D_t \notin \mathcal{C}$, y jugar arbitrariamente si $D_t \in \mathcal{C}$.
+\end{theorem}
+
+%\Blai{**** Algún ejemplo? ****}
+
+\noindent\textcolor{red}{\bf *** Hasta aquí tenemos la descripción teórica del modelo y soluciones. Ahora vienen algoritmos. Comenzar un nueva capítulo. ***}

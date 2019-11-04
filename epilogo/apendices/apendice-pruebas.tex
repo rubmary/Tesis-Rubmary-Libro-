@@ -1,0 +1,505 @@
+\chapter{Pruebas}
+
+\section{Capítulo I}
+
+\begin{theorem}
+\label{lemma:1}
+La ganancia esperada $u_i(\sigma)$ del jugador $i$ dado el perfil estratégico $\sigma$ satisface:
+\begin{alignat}{1}
+u_i(\sigma)\ =\ \sum_{s_i\in S_i} \sigma_i(s_i) \sum_{s_{-i}\in S_{-i}} \sigma_{-i}(s_{-i}) u_i(s_i,s_{-i}) \,.
+\end{alignat}
+\end{theorem}
+\begin{proof}
+Partiendo de la Definición \ref{def:ganancia-esperada} se obtiene
+\begin{alignat}{1}
+	u_i(\sigma)\  &=\ \sum_{s \in S} u_i(s) \sigma_i(s_i) \sigma_{-i}(s_{-i})\ =\ \sum_{s_i \in S_i} \sum_{s_{-i} \in S_{-i}} u_i(s_i, s_{-i}) \sigma_i(s_i) \sigma_{-i}(s_{-i}) \\
+	&=\ \sum_{s_i\in S_i} \sigma_i(s_i) \sum_{s_{-i}\in S_{-i}} \sigma_{-i}(s_{-i}) u_i(s_i,s_{-i})\,.
+\end{alignat}
+\end{proof}
+
+
+\begin{lemma}
+\label{lemma:2}
+Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$, y sea $x\in S_i$ una estrategia pura para el jugador $i$. Entonces, para toda estrategia pura $y\in S_i$ diferente de $x$,
+\begin{alignat}{1}
+  \sigma^*_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ \geq\ \sigma^*_i(x) \sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
+\end{alignat}
+\end{lemma}
+\begin{proof}
+Considere la estrategia mixta $\sigma'_i$ definida por:
+\begin{alignat}{1}
+	\sigma'_{i}(s_i)\ =\  
+	\begin{cases}
+		0 &  \text{si } s_i = x \\
+		\sigma^*_i(x) + \sigma^*_i(y) & \text{si } s_i = y \\
+		\sigma^*_i(s_i) & \text{en otro caso} 
+	\end{cases}
+\end{alignat}
+Utilizando el Lema~\ref{lemma:1} y el hecho que $\sigma^*_i$ es mejor respuesta a $\sigma_{-i}$:
+\begin{alignat}{1}
+  u_i(\sigma^*_i, \sigma_{-i})\ 
+    &\geq\ u_i(\sigma'_i, \sigma_{-i}) \\
+    &=\ \sum_{z \in S_i} \sigma'_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) \\
+    &=\ \sum_{z\neq x} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) + \sigma^*_i(x)\sum_{s_{-i}} u_i(y,s_{-i})\sigma_{-i}(s_{-i}) \,.
+\end{alignat}
+Por el Lema~\ref{lemma:1},
+$u_i(\sigma^*_i, \sigma_{-i})=\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i})$. Entonces,
+\begin{alignat}{1}
+  \label{eq:ineq-ganancias}
+  \sigma^*_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\
+    &\geq\ \sigma^*_i(x)\sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
+\end{alignat}
+\end{proof}
+
+
+\begin{theorem}
+\label{theo:mejor-respuesta}
+Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$. Cualquier estrategia mixta $\sigma_i$ para el jugador $i$ cuyo soporte sea un subconjunto del soporte de $\sigma^*_i$ es también una mejor respuesta a $\sigma_{-i}$.
+\end{theorem}
+\begin{proof}
+Sea $x \in S_i$ una \emph{estrategia pura} perteneciente al soporte de $\sigma^*_i$, y sea $y \in S_i$ una estrategia pura \emph{diferente} de $x$. 
+
+Por el Lema~\ref{lemma:2},
+\begin{alignat}{1}
+  \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ \geq\  \sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
+\end{alignat}
+
+En particular, si $x$ y $x'$ son distintos, y ambos pertenecen al soporte de $\sigma_i$,
+\begin{alignat}{1}
+\sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ =\ \sum_{s_{-i}} u_i(x',s_{-i}) \sigma_{-i}(s_{-i})\ =\ C
+\end{alignat}
+donde $C$ es una constante que s\'olo depende de $\sigma_{-i}$.
+Luego, para cualquier estrategia $\sigma_i$, tal que $support(\sigma_i) \subseteq support(\sigma^*_i)$, se tiene:
+\begin{alignat}{1}
+u_i(\sigma_i, \sigma_{-i})\ &=\ \sum_{x \in S_i} \sigma_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ =\ \sum_{x \in S_i} \sigma_i(x) C\ =\ C \,.
+\end{alignat}
+En particular, $u_i(\sigma^*_i,\sigma_{-i})=C$, y $\sigma_i$ es también mejor respuesta a $\sigma_{-i}$.
+\end{proof}
+
+\begin{theorem}
+\label{theo:nash-correlacionado}
+Si $\sigma$ es un equilibrio de Nash, entonces $\sigma$ es un equilibrio correlacionado.
+\end{theorem}
+\begin{proof}
+Sea $\sigma$ un equilibrio de Nash, sean $x,y\in S_i$ estrategias puras distintas cualesquiera para el jugador $i$, y sea $\sigma'_i$ una estrategia mixta cualquiera para el jugador $i$. Por el Lema~\ref{lemma:2},
+\begin{alignat}{1}
+  \sigma_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ \geq\  \sigma_i(x)\sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
+\end{alignat}
+Es decir,
+\begin{alignat}{1}
+  0\ \leq\ \sigma_i(x) \sum_{s_{-i}} \sigma_{-i}(s_{-i}) [u_i(x,s_{-i}) - u_i(y,s_{-i})]\ =\ \sum_{s_{-i}} \sigma(x,s_{-i}) [u_i(x,s_{-i}) - u_i(y,s_{-i})] \,.
+\end{alignat}
+Luego, $\sigma$ es un equilibrio correlacionado.
+\end{proof}
+
+\begin{theorem}
+\label{theo:correlacionado-nash}
+Sea $\psi\in\Delta(S)$ un equilibrio correlacionado. Si $\psi$ se factoriza como $\psi=\prod_{i\in N} \sigma_i$ donde $\{\sigma_i\}_{i\in N}$ es un conjunto de estrategias mixtas para cada jugador (i.e., $\psi(s)=\prod_{i \in N} \sigma_i(s_i)$ para todo $s\in S$), entonces $\psi$ es un equilibrio de Nash.
+\end{theorem}
+\begin{proof}
+Sea $\psi= \prod_{i \in N} \sigma_i$ un equilibrio correlacionado en forma factorizada. Debemos mostrar que para cualquier jugador $i$ y estrategia mixta $\sigma'_i$ para el jugador $i$, se cumple $u_i(\sigma) \geq u_i(\sigma'_i, \sigma_{-i})$.
+
+Sean $x$ y $y$ estrategias puras para el jugador $i$.
+Como $\sigma$ es un equilibrio correlacionado,
+\begin{alignat}{1}
+\label{eq:1:theo:correlacionado-nash}
+0\ \leq\ \sigma_i(x) \sum_{s_{-i}} \sigma_{-i}(s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \,.
+\end{alignat}
+Al sumar sobre $x\in S_i$ obtenemos, 
+\begin{alignat}{2}
+\label{eq:2:theo:correlacionado-nash}
+0\ \leq\ \sum_{x\in S_i} \sum_{s_{-i}} \sigma(x,s_{-i}) [u_i(x, s_{-i}) - u_i(y, s_{-i})]\ =\ \sum_s \sigma(s) [u_i(s) - u_i(y, s_{-i})] \,.
+\end{alignat}
+Si $x^* \in S_i$ es tal que $\sigma_i(x^*)>0$, obtenemos de \eqref{eq:1:theo:correlacionado-nash} al multiplicar por $\sigma'_i(y)$ y sumar sobre $y\in S_i$:
+\begin{alignat}{1}
+\label{eq:3:theo:correlacionado-nash}
+\sum_{y \in S_i} \sigma'_i(y) \sum_{s_{-i}} \sigma_{-i} (s_{-i}) [u_i(x^*, s_{-i}) - u_i(y, s_{-i})]\ =\ \sum_{s} \sigma'(s) [u_i(x^*, s_{-i}) - u_i(s)]\ \geq\ 0
+\end{alignat}
+donde $\sigma'$ denota la estrategia $\sigma'=(\sigma'_i,\sigma_{-i})$. 
+Al sumar \eqref{eq:2:theo:correlacionado-nash} y
+\eqref{eq:3:theo:correlacionado-nash}, obtenemos que para cualquier $y$ y $x^*$ tal que $\sigma_i(x^*)>0$:
+\begin{alignat}{1}
+\label{eq:4:theo:correlacionado-nash}
+\sum_{s \in S} u_i(s) [\sigma(s) - \sigma'(s)] - \sum_{s \in S} \sigma(s)u_i(y, s_{-i}) + \sum_{s \in S} \sigma'(s) u_i(x^*, s_{-i})\ \geq\ 0\ \,.
+\end{alignat}
+Por otra parte, note que:
+\begin{alignat}{1}
+  \sum_{s \in S} \sigma(s) u_i(x^*,s_{-i}) - \sum_{s \in S} &\sigma'(s) u_i(x^*,s_{-i}) \\
+    &\qquad=\ \sum_{s_{-i}} u_i(x^*,s_{-i}) \sigma_{-i}(s_{-i}) \sum_{z\in S_i} [\sigma_i(z) - \sigma'_i(z)] \\
+    &\qquad=\ \sum_{s_{-i}} u_i(x^*,s_{-i}) \sigma_{-i}(s_{-i}) \biggl[ \sum_{z\in S_i} \sigma_i(z) - \sum_{z\in S_i} \sigma'_i(z) \biggr] \\
+    &\qquad=\ 0 \,.
+\end{alignat}
+Luego, al tomar $y=x^*$ en \eqref{eq:4:theo:correlacionado-nash},
+\begin{alignat}{1}
+ \sum_{s \in S} u_i(s) [\sigma(s) - \sigma'(s)]\ =\ \sum_{s \in S} u_i(s)\sigma(s) - \sum_{s \in S} u_i(s)\sigma'(s)\ =\ u_i(\sigma) - u_i(\sigma'_i, \sigma_{-i})\ \geq\ 0 \,.
+\end{alignat}
+Como $\sigma'_i$ es una estrategia cualquiera para el jugador $i$, $\sigma$ es un equilibrio de Nash.
+\end{proof}
+
+
+
+\begin{theorem}
+Sean $\sigma$ y $\sigma'$ dos equilibrios correlacionados, y $\alpha$ un número real en $(0,1)$. Entonces, la distribución $\alpha\sigma + (1-\alpha)\sigma'$ es un equilibrio correlacionado.
+\end{theorem}
+\begin{proof}
+Como $\sigma$ y $\sigma'$ son equilibrios correlacionados y $\alpha, 1 - \alpha \in (0, 1)$ se cumple que para cualesquiera $x$ e $y$:
+\begin{alignat}{1}
+ \alpha \sum_{s_{-i} \in S_{-i}} \sigma(x, s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \geq 0 & \, \text{ y } \\
+ (1 - \alpha) \sum_{s_{-i} \in S_{-i}} \sigma'(x, s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \geq 0
+\end{alignat}
+Sumando las ecuaciones anteriores y factorizando se obtiene:
+\begin{alignat}{1}
+ \sum _{s_{-i} \in S_{-i}} [ \alpha \sigma(x, s_{-i}) +  (1 - \alpha) \sigma'(x, s_{-i})][u_i(x, s_{-i}) - u_i(y, s_{-i})] \geq 0
+\end{alignat}
+Por lo que $\alpha \sigma +  (1 - \alpha) \sigma'$ es un equilibrio correlacionado.
+\end{proof}
+
+\section{Capítulo II}
+
+\begin{theorem}
+\label{theo:comportamiento-a-mixta}
+Dado un juego en forma extensa y un jugador $i$, tal que: si $h' \sqsubset h$ y $P(h') = P(h) = i$, entonces $I(h') \neq I(h)$. Luego, para cualquier estrategia de comportamiento $\sigma^b_i \in B^i$, la estrategia mixta $\sigma^m_i$ dada por:
+\begin{alignat}{1}
+\sigma^m_i(s_i) := \prod_{I_i \in \mathcal{I}_i} \sigma^b_i(I_i)(s_i(I_i)) \label{eq:comportamiento-a-mixta}
+\end{alignat}
+es equivalente a la estrategia $\sigma^b_i$.
+\end{theorem}
+\begin{proof}
+Se quiere probar que para todo $z \in Z$, se tiene que $\pi^{\sigma^m_i}(z) = \pi^{\sigma^b_i}(z)$. 
+Para cualquier estrategia se denotará con $\sigma_i(s)$ la probabilidad de elegir la estrategia $s_i$ bajo $\sigma_i$. Además, la probabilidad de elegir una estrategia $s_i$ bajo la estrategia $\sigma^b_i$ es exactamente el lado derecho de la Ecuación \ref{eq:comportamiento-a-mixta}, la cual, por definición es la probabilidad de elegir $s_i$ bajo $\sigma^m_i$. Luego se tiene que $\sigma_i^b(s_i) = \sigma_i^m(s_i)$ para cualquier estrategia pura $s_i \in S_i$.
+
+Por otra parte, como ninguna historia atraviesa más de una vez el mismo conjunto de información, se tiene que para cualquier estrategia $\sigma_i$ (mixta o de comportamiento):
+
+\begin{alignat}{1}
+\label{eq:definicion-mixta}
+\pi^{\sigma_i}(z) = \sum_{\substack{s_i \in S_i \\  z \text{ es} \text{alcanzable} \\ \text{por } s_i} } \sigma_i(s_i)
+\end{alignat}
+
+Luego, $\pi^{\sigma_i^b}(z) = \pi^{\sigma_i^m}(z)$ para todo $z \in Z$, obteniendo el resultado deseado. 
+\end{proof}
+
+
+\begin{theorem}
+\label{theo:mixta-a-comportamiento}
+Dado un juego finito de $N$ personas en el que el jugador $i$ tiene ``perfect recall''. Entonces, para cada estrategia mixta $\sigma^m_i \in \Delta(S_i)$ del jugador $i$, existe una estrategia de comportamiento $\sigma^b_i \in B^i$, equivalente a $\sigma^m_i$.
+\end{theorem}
+\begin{proof}
+Se denotará por $\pi^{\sigma_i}(I_i, a)$ la probabilidad, bajo $\sigma_i$, que $I_i$ sea alcanzable y se elija la acción $a$. De forma más general se denotará con $\pi^{\sigma_i}(I_i, a_1, a_2, ..., a_k)$ la probabilidad que $I_i$ sea alcanzable y que luego el jugador $i$ elija las acciones $a_1, a_2, ... a_k$. Luego se elige la siguiente estrategia de comportamiento:
+\begin{alignat}{1}
+\sigma_i^b(I_i)(a)\ &=\ P[\text{se elija}\ a\ \text{bajo}\ \sigma^m_i | I_i\ \text{es alcanzable bajo}\ \sigma^m_i] \\
+&=\ \frac{P[I_i\ \text{sea alcanzable bajo}\ \sigma^m_i\ \text{y se elija la opción}\ a\ \text{bajo}\ \sigma^m_i]}{ P[I_i\ \text{es alcanzable bajo}\ \sigma^m_i] } \\
+&=\ \frac{\pi^{\sigma^m_i}(I_i, a)}{\pi^{\sigma^m_i}(I_i)} \label{eq:mixta-a-comportamiento}
+\end{alignat}
+
+En caso que $\pi^{\sigma^m_i}(I_i) > 0$ y de forma arbitraria en caso contrario.
+
+Se demostrará que $\pi^{\sigma^b_i}(z) = \pi^{\sigma^m_i}(z)$, cuando $\pi^{\sigma^m_i}(z) > 0$. 
+	
+Dado $z \in Z $, sean $a_1, a_2, ..., a_k$ las acciones elegidas por el jugador $i$ (en ese orden), y sean $I^1_i, I^2_i, ..., I^k_i$ los conjuntos de información respectivos. Note que $\pi^{\sigma^m_i}(I^j_i, a^j_i) = \pi^{\sigma^m_i}(I^{j+1}_i)$, luego:
+\begin{alignat}{1}
+\pi^{\sigma^b_i}(z)\ &=\ \prod_{j = 1}^k \sigma^b_i(I^j_i)(a^j_i)\ =\ \prod _{j = 1}^k \frac{\pi^{\sigma^m_i}(I^j_i, a_j)}{\pi^{\sigma^m_i}(I^j_i)}\ =\ \frac{\pi^{\sigma^m_i}(I^k_i, a_k)}{\pi^{\sigma^m_i}(I^1_i)}\ =\ \pi^{\sigma^m_i}(I^k_i, a_k)
+\end{alignat}
+
+Además, usando inducción, se obtiene que para cualquier $k' < k$ se tiene:
+\begin{alignat}{1}
+\pi^{\sigma^m_i}(I^k_i, a_k)\ =\ \pi^{\sigma^m_i} (I^{k'}_i, a_{k'}, a_{k'+1}, ..., a_{k})
+\end{alignat}
+
+Entonces
+\begin{alignat}{1}
+\pi^{\sigma^m_i}(I^k_i, a_k) = \pi^{\sigma^m_i}(I^1_i, a_1, a_2, ..., a_k) = \pi^{\sigma^m_i}(z)
+\end{alignat}
+
+Obteniendo $\pi^{\sigma^b_i}(z) = \pi^{\sigma^m_i}(z)$, que era lo que se quería demostrar.
+\end{proof}
+
+
+\section{Capítulo IV}
+
+\begin{theorem}
+\label{prop:no-regret}
+Sea $(s_t)_{t = 1, 2, ...}$ una secuencia de juegos de $\Gamma$.
+Entonces, $R_i^t(j, k)$ converge a $0$ para cada $i$ y cada $j, k \in S_i$, con $j \neq k$, si y sólo si la secuencia de distribuciones empíricas $z_t$ converge al conjunto de equilibrio correlacionado.
+\end{theorem}
+\begin{proof}
+Note que:
+\begin{alignat}{1}
+  D_i^t(j, k)\ 
+    &=\ \frac{1}{t} \sum_{\substack{1\leq \tau \leq t \\ s_i^{\tau}=j}} u_i(k, s_{-i}^{\tau}) - u_i(s^{\tau}) \\
+    &=\ \sum_{ \substack{s \in S \\ s_i = j}} \frac{1}{t} |\{1\leq\tau \leq t : s^{\tau} = s\}|\,[u_i(k, s_{-i}) - u_i(s)] \\
+    &=\ \sum_{ \substack{s \in S \\ s_i = j}} z_t(s)\,[u_i(k, s_{-i}) - u_i(s)] \,.
+\end{alignat}
+
+Dado $\varepsilon > 0$, $R_i^t(j, k) \leq \varepsilon$ si y sólo si:
+\begin{alignat}{1}
+    \sum_{s \in S : s_i = j} z_t(s)\,[u_i(k, s_{-i}) - u_i(s)] \, = D_i^t(j, k) \, \leq \, \varepsilon
+\end{alignat}
+
+Obteniendo que $R_i^t(j, k) \leq \varepsilon$ para todo $i \in N$ y todo $j, k \in S_i$ si y sólo si $z_t$ es un $\varepsilon$-equilibrio correlacionado. Por lo tanto, todos los \textit{regrets} convergen a cero si y sólo si $z_t$ converge al conjunto de equilibrio correlacionado.
+\end{proof}
+
+
+\begin{theorem}
+Supongamos que a cada período $t+1$, el jugador $i$ elige las estrategias acorde a un vector de distribución de probabilidad $q_t^i$ que satisface \eqref{eq:proc-B}. Entonces, $R^i_t(j, k)$ converge a cero (a. s.) para todo $j, k \in S_i$ con $j \neq k$.
+\end{theorem}
+\begin{proof}
+La prueba es una aplicación directa del Teorema de Aproximación de Blackwell con $L$, $v$ y $\mathcal{C}$ definidos de la siguiente manera:
+\begin{itemize}[noitemsep]
+  \item $L = \{ (j, k) \in S_i \times S_{i}  : j \neq k \}$
+  \item $v(s_i, s_{-i}) \in \mathbb{R}^L$ dado por
+    \begin{alignat}{1}
+      [v(s_i, s_{-i})](j, k)\ =\  
+        \begin{cases}
+          u_i(k, s_{-i}) - u_i(j, s_{-i}) & \text{si } s_i = j \\
+          0 & \text{en otro caso,}
+        \end{cases}
+    \end{alignat}
+  \item $\mathcal{C} = \mathbb{R}^L_{-} = \{x \in \mathbb{R}^L : x_i \leq 0\ \forall i \in L \}$ es decir, el ortante negativo.
+\end{itemize}
+Demostraremos que $\mathcal{C}$ es alcanzable por $i$.
+Note que:
+\begin{alignat}{1}
+	w_{\mathcal{C}}(\lambda)\ =\ \sup\{\lambda \cdot c : c \in \mathcal{C} \}\ =\ \sup \left \{ \sum_{i \in L} \lambda_i c_i : c_i \leq 0 \right \} \,.
+\end{alignat}
+Luego, si $\lambda_i \geq 0$, $\forall i \in L$, entonces $\lambda \cdot c \leq 0$ para todo $c \in \mathcal{C}$, y $w_{\mathcal{C}}(\lambda) = 0$. Por otra parte, si $\lambda_i < 0$ para algún $i\in N$, entonces $c_i \lambda_i$ no está acotado superiormente y  $w_{\mathcal{C}}(\lambda) = \infty$. Luego,
+\begin{alignat}{1}
+  w_{\mathcal{C}}\ =\  
+	\begin{cases}
+	  0 & \text{si } \lambda \in \mathbb{R}^L_+ \,, \\
+	  \infty & \text{en caso contrario.}
+	\end{cases}
+\end{alignat}
+Por otra parte, se tiene que:
+\begin{alignat}{1}
+	\lambda \cdot v(q_{\lambda}, s_{-i})\ 
+	  &=\ \sum_{(j,k) \in L} \lambda(j,k) \cdot [v(q_{\lambda}, s_{-i})](j, k) \\
+	&=\ \sum_{(j,k) \in L} \lambda(j, k)\left[\sum_{s_i \in S_i} q_{\lambda}(s_i) v(s_i, s_{-i}) \right](j, k) \\
+	&=\ \sum_{(j,k) \in L} \lambda(j, k) q_{\lambda}(j) [v(j, s_{-i})](j, k) \\
+	&=\ \sum_{(j,k) \in L} \lambda(j, k) q_{\lambda}(j) [u_i(k, s_{-i}) - u_i(j, s_{-i})] \\
+	&=\ \sum_{(j,k) \in L} \lambda(j, k) q_{\lambda}(j)u_i(k, s_{-i}) - \sum_{(j,k) \in L} \lambda(j, k) q_{\lambda}(j)u_i(j, s_{-i}) \\
+	&=\ \sum_{k \in S_i} u_i(k, s_{-i}) \sum_{j \in S_i} \lambda(j, k) q_{\lambda}(j) - \sum_{j \in S_i} q_{\lambda}(j)u_i(j, s_{-i}) \sum_{k \in S_i} \lambda(j, k) \\
+	&=\ \sum_{j \in S_i} u_i(j, s_{-i}) \sum_{k \in S_i} \lambda(k, j) q_{\lambda}(k) - \sum_{j \in S_i} q_{\lambda}(j)u_i(j, s_{-i}) \sum_{k \in S_i} \lambda(j, k) \\
+	&=\ \sum_{j \in S_i} u_i(j, s_{-i}) \left[ \sum_{k \in S_i} \lambda(k, j) q_{\lambda}(k) - q_{\lambda}(j) \sum_{k \in S_i} \lambda(j, k) \right] \,.
+\end{alignat}
+Defina
+\begin{alignat}{1}
+  \alpha(j)\ =\ \sum_{k \in S_i} \lambda(k, j) q_{\lambda}(k) - q_{\lambda}(j) \sum_{k \in S_i} \lambda(j, k) \,.
+\end{alignat}
+Entonces, $\lambda \cdot v(q_{\lambda}, s_{-i}) = \sum_{j \in S_i} u_i(j, s_{-i}) \alpha(j)$.
+Luego, en este caso, la condición del Teorema \ref{theo:blackwell} es equivalente a:
+\begin{alignat}{1}
+	\sum_{j \in S_i} u_i(j, s_{-i}) \alpha(j)\ \leq\ 0 \,.
+\end{alignat}
+Si se elige $q_{\lambda}$ que cumpla:
+\begin{alignat}{1}
+  q_{\lambda}(j) \sum_{k \in S_i} \lambda(j, k)\ =\ \sum_{k \in S_i} \lambda(k, j) q_{\lambda}(k)
+\end{alignat}
+para todo $j \in S_i$, entonces $\alpha(j)=0$ para $j\in S_i$, y la condición del Teorema~\ref{theo:blackwell} se cumple como igualdad cuando $\mathcal{C} = \mathbb{R}^{L}_-$.
+
+Por otra parte, sea $D_t=\frac{1}{t}\sum_{\tau=1}^t v(s_\tau)$ el promedio de los vectores de pago a tiempo $t$. Entonces,
+\begin{alignat}{1}
+  D_t[j, k]\ &=\ \sum_{\tau=1}^{t} v(s_{\tau})[j,k]\
+	=\ \sum_{1\leq\tau \leq t, s_i^{\tau} = j} u_i(k, s_{-i}^{\tau}) - u_i(j, s_{-i}^{\tau})\
+	=\ D_i^t(j, k) \,.
+\end{alignat}
+Para $x \notin \mathbb{R}^-$, $F(x) = x^-$ y $\lambda (x) = x - x^- = x^+$, obteniendo 
+\begin{alignat}{1}
+	\lambda(D_t)\ =\ (R_t^i(j, k))_{(j, k) \in L} \,.
+\end{alignat}
+Luego, usar una estrategia que cumpla
+\begin{alignat}{1}
+	q_{\lambda}(j) \sum_{k \in S_i} \lambda(j, k)\ =\  \sum_{k \in S_i} q_{\lambda}(k) \lambda(k, j)
+\end{alignat}
+cuando $\lambda(j, k) = [D_i^t(j, k)]^+ = R_t^i(j, k)$ es equivalente que la estrategia $p_{t+1}^i \in \Delta(S_i)$ cumpla con
+\begin{alignat}{1}
+	p_{t+1}^i (j) \sum_{k \in S_i} R_i^t(j, k)\ =\ \sum_{k \in S_i} R_i^t(k, j) p_{t+1}^i(k)
+\end{alignat}
+Aplicando el Teorema \ref{theo:blackwell} se tiene que al usar dicha estrategia, $D_t$ alcanza a $\mathbb{R}^-$ que es equivalente a que $R_i^t(j, k) \rightarrow 0$ para todo $j, k \in S_i$.
+\end{proof}
+
+
+\begin{theorem}
+\label{theo:conv-proc-C}
+El procedimiento adaptativo definido en \eqref{eq:proc-C} es universalmente consistente para el jugador $i$.
+\end{theorem}
+\begin{proof}
+La prueba es similar a la del procedimiento anterior. Se definen $L$, $v$ y $\mathcal{C}$ del Teorema \ref{theo:blackwell} de la siguiente manera:
+\begin{itemize}[noitemsep]
+  \item $L = S_i$,
+  \item $v = v(s_i, s_{-i}) \in \mathbb{R}^L$ dada por:
+    $[v(s_i, s_{-i})](k)=u_i(k, s_{-i}) - u_i(s_i, s_{-i})$,
+  \item $\mathcal{C} = \mathbb{R}^L_- = \{x \in \mathbb{R}^L : x_i \leq 0\ \forall i \in L \}$ (i.e.\ el ortante negativo).
+\end{itemize}
+Se demostrará que $\mathcal{C}$ es alcanzable por $i$. Al igual que antes, se tiene que:
+\begin{alignat}{1}
+  w_{\mathcal{C}}\ =\ 
+    \begin{cases}
+	  0 & \text{si } \lambda \in \mathbb{R}^L_+ \,, \\
+      \infty & \text{en caso contrario.}
+    \end{cases}
+\end{alignat}
+Por otra parte,
+\begin{alignat}{1}
+	\lambda \cdot v(q_{\lambda}, s_{-i})\ 
+	&=\ \sum_{k \in L} \lambda(k) \cdot [v(q_{\lambda}, s_{-i})](k) \\
+	&=\ \sum_{k \in S_i} \lambda(k) \cdot \sum_{j \in S_i} q_{\lambda}(j)[v(j, s_{-i})] (k) \\
+	&=\ \sum_{k \in S_i} \lambda(k) \cdot \sum_{j \in S_i} q_{\lambda}(j) [u_i(k, s_{-i}) - u_i(j, s_{-i})] \\
+	&=\ \sum_{\substack{k \in S_i \\ j \in S_i}} \lambda(k) q_{\lambda}(j) [u_i(k, s_{-i}) - u_i(j, s_{-i})] \\
+	&=\ \sum_{\substack{k \in S_i \\ j \in S_i}} \lambda(k) q_{\lambda}(j) u_i(k, s_{-i}) - \sum_{\substack{k \in S_i \\ j \in S_i}} \lambda(k) q_{\lambda}(j) u_i(j, s_{-i}) \\
+	&=\ \sum_{\substack{j \in S_i \\ k \in S_i}} u_i(j, s_{-i}) \lambda(j) q_{\lambda}(k)  - \sum_{\substack{j \in S_i \\ j \in S_i}} u_i(j, s_{-i}) \lambda(k) q_{\lambda}(j) \\
+	&=\ \sum_{\substack{j \in S_i \\ k \in S_i}} u_i(j, s_{-i}) [\lambda(j) q_{\lambda}(k)  - \lambda(k) q_{\lambda}(j)] \\
+	&=\ \sum_{j \in S_i} u_i(j, s_{-i}) \left[ \lambda(j) \sum_{k \in S_i} q_{\lambda}(k)  - q_{\lambda}(j) \sum_{k \in S_i} \lambda(k)  \right] \\
+	&=\ \sum_{j \in S_i} u_i(j, s_{-i}) \left[ \lambda(j) - q_{\lambda}(j) \sum_{k \in S_i} \lambda(k) \right] \,.
+\end{alignat}
+La última igualdad porque $\sum_{k\in S_i} q_{\lambda}(k)=1$. Luego, si se define:
+\begin{alignat}{1}
+	\alpha(j)\ =\ \lambda(j) - q_{\lambda}(j) \sum_{k \in S_i} \lambda(k) \,,
+\end{alignat}
+obtenemos $\lambda \cdot v(q_{\lambda}, s_{-i}) = \sum_{j \in S_i} u_i(j, s_{-i})\alpha(j)$.
+Note que si $q_{\lambda(j)} = \frac{\lambda(j)}{\sum_{k \in S_i} \lambda(k)}$, entonces $\alpha(j) = 0$ para todo $j \in S_i$ y se cumple la condición del Teorema \ref{theo:blackwell} en forma de igualdad. Además, para $D_t=\frac{1}{t} \sum_{\tau = 1}^{t} v(s_{\tau})$, tenemos
+\begin{alignat}{1}
+	D_t[k]\ =\ \sum_{\tau = 1}^{t} v(s_{\tau})[k]\ =\ \sum_{\tau \leq t }[u_i(k, s_{-i}^{\tau}) - u_i(s_{\tau})]\ =\  D_i^t(k) \,.
+\end{alignat}
+Luego $F(D_t) = D_t^-$ y $\lambda(D_t) = D_t^+ = (R_i^t(k))_{k \in S_i}$, obteniendo:
+\begin{alignat}{1}
+	q_{\lambda(D_t)}\ =\ \frac{[\lambda(D_t)](j)}{\sum_{k \in S_i}[\lambda(D_t)](k)}\ =\ \frac{R_i^t(j)}{\sum_{k \in S_i} R_i^t(k)}
+\end{alignat}
+Al elegir $p_{t+1}(j) = q_{\lambda(D_t)}(j) = \frac{R_i^t (j)}{\sum_{k \in S_i} R_i^t(k)}$, se obtiene que $D_t$ alcanza a $\mathbb{R^-}$, lo cual es equivalente a que $R_i^t(j) \rightarrow 0$ para todo $j \in S_i$.
+\end{proof}
+
+
+\begin{theorem}
+\label{UC-EN}
+Sea $\Gamma$ un juego de dos jugadores de suma cero y sea $(s^t)_{t=1,2,..., T}$ una secuencia de juegos de $\Gamma$, tales que, para todo $s_i \in S_i$, para todo $i \in {1, 2}$:
+\begin{alignat}{1}
+\frac{1}{T}\sum_{t = 1}^{T}u_i(s_i, s_{-i}^t) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \leq \varepsilon
+\end{alignat}
+para algún $\varepsilon > 0$. Sea $\bar{\sigma}^T = (\bar{\sigma_1}^T, \bar{\sigma_2}^T)$, donde:
+\begin{alignat}{1}
+\bar{\sigma}_i^T(s_i) = \frac{ |\{ 1 \leq T : s_i^t = s_i\}|}{T} = \frac{\#(s_i)}{T}
+\end{alignat}
+es decir, $\bar{\sigma}^T$, es la distribución empírica de probabilidad. Entonces $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
+\end{theorem}
+\begin{proof}
+Por hipótesis del teorema, se tiene que:
+\begin{alignat}{1}
+\frac{1}{T} \sum_{t = 1}^T u_i(s_i, s_{-i}^t) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \leq \varepsilon
+\end{alignat}
+
+Reordenado la sumatoria del primer término y utilizando la definición de $\bar\sigma$, se obtiene:
+\begin{alignat}{2}
+& \frac{1}{T} \sum_{s_{-i} \in S_{-i}} \#(s_{-i})u_i(s_i, s_{-i}) - \frac{1}{T} \sum_{t = 1}^Tu_i(s^t)  & \leq \varepsilon \\
+\Rightarrow & \sum_{s_{-i} \in S_{-i}} \bar{\sigma}_{-i}^T(s_{-i})u_i(s_i, s_{-i}) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) & \leq \varepsilon
+\end{alignat}
+
+Sea $\sigma_i \in \Delta(S_i)$ cualquier estrategia del jugador $i$, luego
+
+\begin{alignat}{4}
+& & \sum_{s_i \in S_i} \sigma_i(s_i) \left[ \sum_{s_{-i} \in S_{-i}} \bar{\sigma}_{-i}^T(s_{-i})u_i(s_i, s_{-i}) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \right] & \leq & \sum_{s_i \in S_i} \sigma_i(s_i) \varepsilon \\
+& \Rightarrow & \sum_{s_i \in S_i} \sum_{s_{-i} \in S_{-i}} \sigma_i(s_i)\bar{\sigma}_{-i}^T(s_{-i}) u_i(s_i, s_{-i}) - \sum_{s_i \in S_i} \sigma_i(s_i)u_i(s^t) & \leq & \varepsilon \\
+& \Rightarrow & u_i(\sigma_i, \bar{\sigma}_{-i}^T) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) & \leq & \varepsilon
+\end{alignat}
+
+En particular, se tiene que, para estrategias cualesquiera $\sigma_1 \in \Delta(S_1)$ y $\sigma_2 \in \Delta(S_2)$
+\begin{alignat}{1}
+\label{eq:star1}
+u_1(\sigma_1, \bar{\sigma}_2^T) - \frac{1}{T} \sum_{t=1}^T u_1(s^t) \leq \varepsilon \\
+u_2(\bar{\sigma}_1^T, \sigma_2) - \frac{1}{T} \sum_{t=1}^T u_2(s^t) \leq \varepsilon
+\end{alignat}
+
+Además, como $\Gamma$ es un juego de suma cero, se tiene que $u_2(\bar{\sigma}_1^T, \sigma_2) = -u_1(\bar{\sigma}_1^T, \sigma_2)$ y $u_2(s^t) = -u_1(s^t)$, luego:
+\begin{alignat}{1}
+u_2(\bar{\sigma}_1^T, \sigma_2) - \frac{1}{T} \sum_{t=1}^T u_2(s^t) = -u_1(\bar{\sigma}_1^T, \sigma_2) - \frac{1}{T} \sum_{t=1}^T -u_1(s^t) \leq \varepsilon
+\end{alignat}
+
+En particular, si $\sigma_2 = \bar{\sigma_2}^T$ entonces:
+\begin{alignat}{1}
+\label{eq:star2}
+-u_1(\bar{\sigma}_1^T, \bar{\sigma_2}^T) + \frac{1}{T} \sum_{t=1}^T u_1(s^t) \leq \varepsilon
+\end{alignat}
+
+Al sumar las desigualdades \ref{eq:star1} y \ref{eq:star2} se obtiene que:
+\begin{alignat}{2}
+& u_1(\sigma_1, \bar{\sigma}_2^T) - u_1(\bar{\sigma}_1^T, \bar{\sigma}_2^T) \leq 2\varepsilon \\
+\Rightarrow & u_1(\bar{\sigma}^T) + 2\varepsilon \geq u_1(\sigma_1, \bar{\sigma}_2^T)
+\end{alignat}
+
+Análogamente se tiene que $u_2(\bar{\sigma}^T) + 2\varepsilon \geq u_2(\bar{\sigma_1}^T, \sigma_2)$, con lo que se concluye que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
+\end{proof}
+
+
+\section{Capítulo V}
+
+\begin{theorem}
+\label{theo:regret-nash}
+En un juego de $2$ jugadores de suma cero si el average overall regret a tiempo $T$ es menor que $\varepsilon$ entonces $\sigma^{-T}$ es un $2\varepsilon$-equilibrio de Nash
+\end{theorem}
+\begin{proof}
+Se probará que la probabilidad de alcanzar $z$ bajo $\bar{\sigma}_i^T$ viene dada por el promedio de alcanzar $z$ en cada estrategia. Sean $h_1 \sqsubset h_2 \sqsubset h_3 \sqsubset ... \sqsubset h_m \sqsubset z$ todos los prefijos de $z$ correspondientes al jugador $i$, es decir $P(h_k) = i\ \forall k : 1 \leq k \leq m$ y sean $a_1, a_2, ..., a_m$ las acciones correspondientes en $z$ en cada historia respectiva. Luego:
+\begin{alignat}{2}
+\pi^{\bar{\sigma}_i^T}(z)\ &=\ \prod_{k = 1}^m \bar{\sigma}_i^T(I(h_k))(a_k) \\	&=\ \prod_{k = 1}^m \frac{\sum_{t = 1}^{T}  \pi^{\sigma_i^t}(I(h_k))\sigma^t_i(I(h_k))(a)}{\sum_{t = 1}^T \pi^{\sigma_i^t}(I(h_k))}
+\end{alignat}
+
+Por otra parte, note que $\pi^{\sigma_i^t}(I)\sigma_i^t(I(h_k))(a_k) = \pi^{\sigma_i^t}(I(h_{k+1}))$. Entonces:
+\begin{alignat}{1}
+	\pi^{\bar{\sigma}_i^T}(z)\ &=\ \frac{\sum_{t = 1}^T\pi^{\sigma_i^t}(I_m) \sigma_i^t(I_m)(a_m)}{\sum_{t = 1}^T \pi^{\sigma_i^t}(I_1)} \\
+	&=\ \frac{\sum_{t = 1}^T \pi^{\sigma_i^t}(z)}{\sum_{t = 1}^T 1} \\
+	&=\ \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma_i^t}(z)
+\end{alignat}
+
+Además, se tiene que, para cualquier jugador $i$ y cualquier estrategia de $\sigma_i$:
+\begin{alignat}{2}
+\frac{1}{T} \sum_{t = 1}^T u_i(\sigma'_i, \sigma_{-i}^t)\ &=\ \frac{1}{T} \sum_{t = 1}^T \left( \sum_{z \in Z} \pi^{\sigma'_i}(z) \pi^{\sigma_{-i}^t}(z) \pi^c(z) \right) \\
+	&=\ \sum_{z \in Z} u_i(z) \pi^{\sigma'_i}(z) \pi^c(z) \left( \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma_{-i}^t}(z) \right) \\
+	&=\ \sum_{z \in Z} u_i(z) \pi^{\sigma'_i}(z) \pi^{\bar{\sigma}_i^T}(z) \pi^c(z) \\
+	&=\ u_i(\sigma'_i, \bar{\sigma}_{-i}^T)
+\end{alignat}
+
+Por otra parte, como $R_2^T \leq \varepsilon$, para todo $\sigma'_2 \in B_2$ se tiene que:
+\begin{alignat}{2}
+	& \frac{1}{T} \sum_{t = 1}^T[u_2(\sigma_1^t, \sigma'_2) - u_2(\sigma^t)]\  \leq\  \varepsilon\\
+	\Rightarrow\ & \frac{1}{T} \sum_{t = 1}^T u_2(\sigma^t) + \varepsilon\  \geq\  \frac{1}{T} \sum_{t = 1}^T u_2(\sigma_1^t, \sigma'_2) \\
+	\Rightarrow\ & \frac{1}{T} \sum_{t = 1}^T u_2(\sigma^t) + \varepsilon\ \geq\ u_2(\bar{\sigma}_1^T, \sigma'_2)
+\end{alignat}
+
+Luego, como se cumple para cualquier $\sigma'_2$, se cumple para $\sigma_2^t$ para $t = 1, 2, ..., T$, obteniendo:
+\begin{alignat}{2}
+\frac{1}{T} \sum_{t = 1}^T u_2(\sigma^t) + \varepsilon\ & \geq\ \frac{1}{T} \sum_{t = 1}^T u_2(\bar{\sigma}_1^T, \sigma_2^t) \\
+&=\ \frac{1}{T} \sum_{t = 1}^T \sum_{z \in Z} u_2(z) \pi^{\bar{\sigma}_1^T}\pi^{\sigma_2^t}(z) \pi^c(z) \\
+&=\  \sum_{z \in Z} u_2(z) \pi^{\bar{\sigma}_1^T} \pi^c(z) \left( \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma_2^t}(z) \right)\\
+&=\  \sum_{z \in Z} u_2(z) \pi^{\bar{\sigma}_1^T} \pi^{\bar{\sigma}_2^T} \pi^c(z) \\
+&=\ u_2(\bar{\sigma}^T)
+\end{alignat}
+
+Como $\Gamma$ es un juego de suma cero, se tiene que $u_2 = -u_1(\sigma)$ para toda estrategia $\sigma$, luego:
+\begin{alignat}{2}
+	& \frac{1}{T} \sum_{t = 1}^T u_2(\sigma^t) + \varepsilon\ \geq\  u_2(\bar{\sigma}^T) \\
+	\Rightarrow\ & \frac{1}{T} \sum_{t = 1}^T -u_1(\sigma^t) + \varepsilon\ \geq\  -u_1(\bar{\sigma}^T) \\
+	\Rightarrow\ &  u_1(\bar{\sigma}^T)\ + \varepsilon\ \geq\   \frac{1}{T} \sum_{t = 1}^T u_1(\sigma^t)  \\
+	\Rightarrow\ &  u_1(\bar{\sigma}^T)\ + 2\varepsilon\ \geq\   \frac{1}{T} \sum_{t = 1}^T u_1(\sigma^t) + \varepsilon
+\end{alignat}
+
+Por otra parte, como $R_i^t \leq \varepsilon$ se tiene que, para cualquier $\sigma'_1 \in B_1$:
+\begin{alignat}{1}
+	\frac{1}{T} \sum_{t = 1}^T u_1(\sigma^t) + \varepsilon\ \geq\ \frac{1}{T} \sum_{t = 1} u_1(\sigma'_1, \sigma_2^t)\ =\ u_1(\sigma'_1, \bar{\sigma}_2^T)
+\end{alignat}
+
+Luego, se obtiene que:
+\begin{alignat}{1}
+	& u_1(\bar{\sigma}^T)\ + 2\varepsilon\ \geq\   \frac{1}{T} \sum_{t = 1}^T u_1(\sigma^t) + \varepsilon\ \geq\ u_1(\sigma'_1, \bar{\sigma}_2^T)\\
+	\Rightarrow\ & u_1(\bar{\sigma}^T)\ + 2\varepsilon\ \geq\ u_1(\sigma'_1, \bar{\sigma}_2^T)
+\end{alignat}
+
+Análogamente, se demuestra que:
+\begin{alignat}{1}
+	u_2(\bar{\sigma}^T)\ + 2\varepsilon\ \geq\ u_2( \bar{\sigma}_1^T, \sigma'_2)
+\end{alignat}
+
+Concluyendo que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio correlacionado.
+\end{proof}
+
+
+
+
+
+

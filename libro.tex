@@ -19,6 +19,8 @@
 \usepackage{pifont}
 \allowdisplaybreaks
 
+\usepackage{booktabs}
+
 \newtheorem{definition}{Definición}
 \newtheorem{theorem}[definition]{Teorema}
 \newtheorem{lemma}[definition]{Lema}
@@ -75,9 +77,16 @@
 
 \mainmatter
 \input{preambulo/introduccion}
-\input{capitulo-1/capitulo-1}
-\input{capitulo-2/capitulo-2}
-\input{capitulo-3/capitulo-3}
+\input{REORGANIZED/ch1-forma-normal}
+\input{REORGANIZED/ch2-forma-extensa}
+\input{REORGANIZED/ch3-evaluacion-explotabilidad}
+\input{REORGANIZED/ch4-regret-matching}
+\input{REORGANIZED/ch5-CFR}
+
+%\input{capitulo-1/capitulo-1}
+%\input{capitulo-2/capitulo-2}
+%\input{capitulo-3/capitulo-3}
+
 \input{epilogo/conclusiones}
 \nocite{*}
 \bibliography{epilogo/referencias}

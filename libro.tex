@@ -17,6 +17,7 @@
 \usepackage{graphicx}
 \usepackage{dirtytalk}
 \usepackage{pifont}
+\usepackage{float}
 \allowdisplaybreaks
 
 \usepackage{booktabs}
@@ -60,8 +61,12 @@
 \makeatother
 
 \newcommand{\Blai}[1]{\textcolor{red}{#1}}
-\newcommand{\cmark}{\ding{51}}
-\newcommand{\xmark}{\ding{55}}
+\newcommand{\Rubmary}[1]{\noindent\textcolor{orange}{#1}}
+\newcommand{\functionname}[1]{\mbox{\textit{#1}}}
+
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0}
+\newcommand{\cmark}{\textcolor{ao}{\ding{51}}}
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}}
 
 \begin{document}
 \frontmatter
@@ -77,21 +82,15 @@
 
 \mainmatter
 \input{preambulo/introduccion}
-\input{REORGANIZED/ch1-forma-normal}
-\input{REORGANIZED/ch2-forma-extensa}
-\input{REORGANIZED/ch3-evaluacion-explotabilidad}
-\input{REORGANIZED/ch4-regret-matching}
-\input{REORGANIZED/ch5-CFR}
-
-%\input{capitulo-1/capitulo-1}
-%\input{capitulo-2/capitulo-2}
-%\input{capitulo-3/capitulo-3}
+\input{cuerpo/ch1-forma-normal}
+\input{cuerpo/ch2-forma-extensa}
+\input{cuerpo/ch3-evaluacion-explotabilidad}
+\input{cuerpo/ch4-regret-matching}
+\input{cuerpo/ch5-CFR}
 
 \input{epilogo/conclusiones}
 \nocite{*}
 \bibliography{epilogo/referencias}
 \input{epilogo/apendices/apendices}
-
-
 
 \end{document}

@@ -1,4 +1,5 @@
 \chapter{Pruebas}
+\label{apex:chapter:pruebas}
 
 \section{Capítulo I}
 
@@ -53,7 +54,7 @@ $u_i(\sigma^*_i, \sigma_{-i})=\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z
 
 
 \begin{theorem}
-\label{theo:mejor-respuesta}
+\label{theo-apex:mejor-respuesta}
 Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$. Cualquier estrategia mixta $\sigma_i$ para el jugador $i$ cuyo soporte sea un subconjunto del soporte de $\sigma^*_i$ es también una mejor respuesta a $\sigma_{-i}$.
 \end{theorem}
 \begin{proof}
@@ -77,7 +78,7 @@ En particular, $u_i(\sigma^*_i,\sigma_{-i})=C$, y $\sigma_i$ es también mejor r
 \end{proof}
 
 \begin{theorem}
-\label{theo:nash-correlacionado}
+\label{theo-apex:nash-correlacionado}
 Si $\sigma$ es un equilibrio de Nash, entonces $\sigma$ es un equilibrio correlacionado.
 \end{theorem}
 \begin{proof}
@@ -93,7 +94,7 @@ Luego, $\sigma$ es un equilibrio correlacionado.
 \end{proof}
 
 \begin{theorem}
-\label{theo:correlacionado-nash}
+\label{theo-apex:correlacionado-nash}
 Sea $\psi\in\Delta(S)$ un equilibrio correlacionado. Si $\psi$ se factoriza como $\psi=\prod_{i\in N} \sigma_i$ donde $\{\sigma_i\}_{i\in N}$ es un conjunto de estrategias mixtas para cada jugador (i.e., $\psi(s)=\prod_{i \in N} \sigma_i(s_i)$ para todo $s\in S$), entonces $\psi$ es un equilibrio de Nash.
 \end{theorem}
 \begin{proof}
@@ -157,10 +158,10 @@ Por lo que $\alpha \sigma +  (1 - \alpha) \sigma'$ es un equilibrio correlaciona
 \section{Capítulo II}
 
 \begin{theorem}
-\label{theo:comportamiento-a-mixta}
+\label{theo-apex:comportamiento-a-mixta}
 Dado un juego en forma extensa y un jugador $i$, tal que: si $h' \sqsubset h$ y $P(h') = P(h) = i$, entonces $I(h') \neq I(h)$. Luego, para cualquier estrategia de comportamiento $\sigma^b_i \in B^i$, la estrategia mixta $\sigma^m_i$ dada por:
 \begin{alignat}{1}
-\sigma^m_i(s_i) := \prod_{I_i \in \mathcal{I}_i} \sigma^b_i(I_i)(s_i(I_i)) \label{eq:comportamiento-a-mixta}
+\sigma^m_i(s_i) := \prod_{I_i \in \mathcal{I}_i} \sigma^b_i(I_i)(s_i(I_i)) \label{eq-apex:comportamiento-a-mixta}
 \end{alignat}
 es equivalente a la estrategia $\sigma^b_i$.
 \end{theorem}
@@ -180,7 +181,7 @@ Luego, $\pi^{\sigma_i^b}(z) = \pi^{\sigma_i^m}(z)$ para todo $z \in Z$, obtenien
 
 
 \begin{theorem}
-\label{theo:mixta-a-comportamiento}
+\label{theo-apex:mixta-a-comportamiento}
 Dado un juego finito de $N$ personas en el que el jugador $i$ tiene ``perfect recall''. Entonces, para cada estrategia mixta $\sigma^m_i \in \Delta(S_i)$ del jugador $i$, existe una estrategia de comportamiento $\sigma^b_i \in B^i$, equivalente a $\sigma^m_i$.
 \end{theorem}
 \begin{proof}
@@ -217,7 +218,7 @@ Obteniendo $\pi^{\sigma^b_i}(z) = \pi^{\sigma^m_i}(z)$, que era lo que se querí
 \section{Capítulo IV}
 
 \begin{theorem}
-\label{prop:no-regret}
+\label{theo-apex:no-regret}
 Sea $(s_t)_{t = 1, 2, ...}$ una secuencia de juegos de $\Gamma$.
 Entonces, $R_i^t(j, k)$ converge a $0$ para cada $i$ y cada $j, k \in S_i$, con $j \neq k$, si y sólo si la secuencia de distribuciones empíricas $z_t$ converge al conjunto de equilibrio correlacionado.
 \end{theorem}
@@ -319,7 +320,7 @@ Aplicando el Teorema \ref{theo:blackwell} se tiene que al usar dicha estrategia,
 
 
 \begin{theorem}
-\label{theo:conv-proc-C}
+\label{theo-apex:conv-proc-C}
 El procedimiento adaptativo definido en \eqref{eq:proc-C} es universalmente consistente para el jugador $i$.
 \end{theorem}
 \begin{proof}
@@ -369,7 +370,7 @@ Al elegir $p_{t+1}(j) = q_{\lambda(D_t)}(j) = \frac{R_i^t (j)}{\sum_{k \in S_i} 
 
 
 \begin{theorem}
-\label{UC-EN}
+\label{theo-apex:UC-EN}
 Sea $\Gamma$ un juego de dos jugadores de suma cero y sea $(s^t)_{t=1,2,..., T}$ una secuencia de juegos de $\Gamma$, tales que, para todo $s_i \in S_i$, para todo $i \in {1, 2}$:
 \begin{alignat}{1}
 \frac{1}{T}\sum_{t = 1}^{T}u_i(s_i, s_{-i}^t) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \leq \varepsilon
@@ -431,7 +432,7 @@ Análogamente se tiene que $u_2(\bar{\sigma}^T) + 2\varepsilon \geq u_2(\bar{\si
 \section{Capítulo V}
 
 \begin{theorem}
-\label{theo:regret-nash}
+\label{theo-apex:regret-nash}
 En un juego de $2$ jugadores de suma cero si el average overall regret a tiempo $T$ es menor que $\varepsilon$ entonces $\sigma^{-T}$ es un $2\varepsilon$-equilibrio de Nash
 \end{theorem}
 \begin{proof}
@@ -498,6 +499,22 @@ Análogamente, se demuestra que:
 Concluyendo que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio correlacionado.
 \end{proof}
 
+\begin{theorem}
+$E_{j \sim q_j} [\tilde{u}_i(\sigma, I | j)]\ =\ u_i(\sigma, I)$
+\end{theorem}
+
+\begin{proof}
+\begin{alignat}{2}
+    E_{j \sim q_j}[\tilde{u}_i(\sigma, I | j)] & = \sum_{j} {q_j u_i(\sigma, I)} \\
+    & = \sum_{j} { q_j \frac{\sum_{h \in I, z \in Q_j} \pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{q(z) \pi^{\sigma_{-i}}(I)}} \\ \label{eq:def-esperanza}
+    & = \sum_{j} \sum_{ \substack{h \in I \\ z \in Q_j}} \frac{q_j \pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{ q(z) \pi^{\sigma_{-i}}(I)} \\ \label{eq:reorder-sum-1}
+    & = \sum_{ \substack{h \in I \\ z \in Z} } \sum_{j | z \in Q_j} \frac{q_j \pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{ q(z) \pi^{\sigma_{-i}}(I)} \\ \label{eq:reorder-sum-2}
+    & = \sum_{ \substack{h \in I \\ z \in Z} } \left(\frac{\sum_{j | z \in Q_j} q_j }{q(z)}\right) \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)} \\
+    & = \sum_{ \substack{h \in I \\ z \in Z} } \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)}  = u_i(\sigma, I) \label{eq:lemma-final-eq}
+\end{alignat}
+
+La ecuación \ref{eq:def-esperanza} se obtiene de la definición de $\tilde{u}_i(\sigma, I | j)$. \ref{eq:reorder-sum-1} y \ref{eq:reorder-sum-2} se obtienen al reordenar las sumatorias y considerando que la unión de los bloques generan a $Z$. La ecuación \ref{eq:lemma-final-eq}
+\end{proof}
 
 
 

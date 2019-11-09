@@ -1,0 +1,43 @@
+
+
+\chapter{Resultados Experimentales Conterfactual Regret Minimization}
+\label{apex:chapter:experimentos-cfr}
+\newcommand{\graphicsCFR}[3]{
+\begin{figure}[H]
+    \caption{Gráfica del regret con respecto al número de iteraciones del juego #3}
+    \label{fig:regret-#2}
+    \centering
+    \includegraphics[width=0.675\textwidth]{graficas/cfr/#1/#2.png}
+\end{figure}
+}
+
+\subsection*{Gráficas del juego One Card Poker}
+\graphicsCFR{ocp}{OCP(3)}{One Card Poker (3)}
+\graphicsCFR{ocp}{OCP(12)}{One Card Poker (12)}
+\graphicsCFR{ocp}{OCP(50)}{One Card Poker (50)}
+\graphicsCFR{ocp}{OCP(200)}{One Card Poker (200)}
+\graphicsCFR{ocp}{OCP(1000)}{One Card Poker (1000)}
+\graphicsCFR{ocp}{OCP(5000)}{One Card Poker (5000)}
+
+\subsection*{Gráficas del juego Dudo}
+\graphicsCFR{dudo}{Dudo(3,1,1)}{Dudo (3,1,1)}
+\graphicsCFR{dudo}{Dudo(3,1,2)}{Dudo (3,1,2)}
+\graphicsCFR{dudo}{Dudo(3,2,1)}{Dudo (3,2,1)}
+\graphicsCFR{dudo}{Dudo(3,2,2)}{Dudo (3,2,2)}
+\graphicsCFR{dudo}{Dudo(4,1,1)}{Dudo (4,1,1)} 
+\graphicsCFR{dudo}{Dudo(4,1,2)}{Dudo (4,1,2)}
+\graphicsCFR{dudo}{Dudo(4,2,1)}{Dudo (4,2,1)}
+\graphicsCFR{dudo}{Dudo(4,2,2)}{Dudo (4,2,2)}
+\graphicsCFR{dudo}{Dudo(5,1,1)}{Dudo (5,1,1)}
+\graphicsCFR{dudo}{Dudo(5,1,2)}{Dudo (5,1,2)}
+\graphicsCFR{dudo}{Dudo(5,2,1)}{Dudo (5,2,1)}
+\graphicsCFR{dudo}{Dudo(5,2,2)}{Dudo (5,2,2)}
+\graphicsCFR{dudo}{Dudo(6,1,1)}{Dudo (6,1,1)}
+\graphicsCFR{dudo}{Dudo(6,1,2)}{Dudo (6,1,2)}
+\graphicsCFR{dudo}{Dudo(6,2,1)}{Dudo (6,2,1)}
+
+\subsection*{Gráficas del juego Dominó}
+\graphicsCFR{domino}{Domino(2,2)}{Dominó (2,2)}
+\graphicsCFR{domino}{Domino(3,2)}{Dominó (3,2)}
+\graphicsCFR{domino}{Domino(3,3)}{Dominó (3,3)}
+\graphicsCFR{domino}{Domino(3,4)}{Dominó (3,4)}

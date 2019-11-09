@@ -1,7 +1,7 @@
 \chapter{Counterfactual Regret Minimization}
-\label{section:cfr}
+\label{chapter:cfr}
 
-El objetivo de esta sección es presentar un algoritmo que permita encontrar un equilibrio de Nash en un juego en forma extensiva no determinista con información incompleta. Aunque todo juego en forma extensiva puede ser representado en forma normal, esto no es de mucho interés, pues la forma normal puede tener un tamaño exponencialmente más grande al tamaño del árbol. Se verá como el concepto de \textit{regret minimization} puede ser extendido a juegos secuenciales, sin necesidad de la forma normal explícita. Los conceptos, procedimientos y teoremas mostrados en esta sección, son presentados en \cite{bib:cfr}.
+El objetivo de este capítulo es presentar un algoritmo que permita encontrar un equilibrio de Nash en un juego en forma extensiva no determinista con información incompleta y probarlo empíricamente en distintos juegos. Aunque todo juego en forma extensiva puede ser representado en forma normal, esto no es de mucho interés, pues la forma normal puede tener un tamaño exponencialmente más grande al tamaño del árbol. Se verá como el concepto de \textit{regret minimization} puede ser extendido a juegos secuenciales, sin necesidad de la forma normal explícita. Los conceptos, procedimientos y teoremas mostrados en esta sección, son presentados en \cite{bib:cfr}.
 
 \section{Regret Minimization}
 
@@ -22,7 +22,7 @@ Se denotará con $\bar{\sigma}_i^{T}$ la estrategia promedio del jugador $i$ del
 
 Esta estrategia es el promedio ponderado de las probabilidades $\sigma^t(I)(a)$ con respecto a que tan probable es alcanzar $I$ dado $\sigma_i^t$.
 
-La relación entre el \textit{average overall regret} y el concepto de solución se muestra en el Teorema \ref{theo:regret-nash} \cite{bib:cfr}.
+La relación entre el \textit{average overall regret} y el concepto de solución se muestra en el Teorema~\ref{theo:regret-nash}.
 \begin{theorem}
 \label{theo:regret-nash}
 En un juego de $2$ jugadores de suma cero si el average overall regret a tiempo $T$ es menor que $\varepsilon$ entonces $\sigma^{-T}$ es un $2\varepsilon$-equilibrio de Nash.
@@ -108,7 +108,7 @@ Si el jugador $i$ selecciona las acciones de acuerdo al procedimiento anterior, 
 
 \section{Monte Carlo Conterfactual Regret Minimization}
 
-En la sección \ref{section:cfr} se explicó el algoritmo de CFR, utilizado para resolver juegos en forma extensiva. Sin embargo, en la versión presentada es necesario recorrer el árbol completo en cada iteración, esta versión suele conocerse como \textit{vanilla} CFR. En \cite{bib:montecarlo-cfr} se describe una familia general de algoritmos CFR (basados en muestreo) denominada \textbf{Monte Carlo Conterfactual Regret Minimization} (MCCRF), para evitar recorrer el árbol completo en cada iteración.
+En la sección \ref{chapter:cfr} se explicó el algoritmo de CFR, utilizado para resolver juegos en forma extensiva. Sin embargo, en la versión presentada es necesario recorrer el árbol completo en cada iteración, esta versión suele conocerse como \textit{vanilla} CFR. En \cite{bib:montecarlo-cfr} se describe una familia general de algoritmos CFR (basados en muestreo) denominada \textbf{Monte Carlo Conterfactual Regret Minimization} (MCCRF), para evitar recorrer el árbol completo en cada iteración.
 
 La idea general es restringir los estados terminales alcanzados en cada iteración, pero manteniendo el mismo valor esperado para la utilidad contrafactual. Dada la definición \ref{def:informacion-incompleta}, sea $\mathcal{Q} = \{Q_1, Q_2, ..., Q_r\}$, un conjunto de subconjuntos de $Z$ tal que su unión sea igual a $Z$. Cada uno de estos conjuntos será llamado un bloque. Sea $q_j > 0$ la probabilidad de considerar el bloque $Q_j$ para la iteración actual (donde $\sum_{j = 1}^r {q_j} = 1$). 
 Sea $q(z) = \sum_{j | j \in Q_i}$, es decir, $q(z)$ es la probabilidad de considerar $z$ en la iteración actual. La utilidad contrafactual muestreada, cuando se actualiza el bloque $j$ es:
@@ -116,45 +116,41 @@ Sea $q(z) = \sum_{j | j \in Q_i}$, es decir, $q(z)$ es la probabilidad de consid
 \tilde{u}_i(\sigma, I | j)\ =\ \sum_{h \in I, z \in Q_j} \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{q(z) \pi^{\sigma_{-i}}(I)}
 \end{alignat}
 
-\begin{lemma}
+\begin{theorem}
 $E_{j \sim q_j} [\tilde{u}_i(\sigma, I | j)]\ =\ u_i(\sigma, I)$
-\end{lemma}
-\begin{proof}
-\begin{alignat}{2}
-    E_{j \sim q_j}[\tilde{u}_i(\sigma, I | j)] & = \sum_{j} {q_j u_i(\sigma, I)} \\
-    & = \sum_{j} { q_j \frac{\sum_{h \in I, z \in Q_j} \pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{q(z) \pi^{\sigma_{-i}}(I)}} \\ \label{eq:def-esperanza}
-    & = \sum_{j} \sum_{ \substack{h \in I \\ z \in Q_j}} \frac{q_j \pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{ q(z) \pi^{\sigma_{-i}}(I)} \\ \label{eq:reorder-sum-1}
-    & = \sum_{ \substack{h \in I \\ z \in Z} } \sum_{j | z \in Q_j} \frac{q_j \pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{ q(z) \pi^{\sigma_{-i}}(I)} \\ \label{eq:reorder-sum-2}
-    & = \sum_{ \substack{h \in I \\ z \in Z} } \left(\frac{\sum_{j | z \in Q_j} q_j }{q(z)}\right) \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)} \\
-    & = \sum_{ \substack{h \in I \\ z \in Z} } \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)}  = u_i(\sigma, I) \label{eq:lemma-final-eq}
-\end{alignat}
+\end{theorem}
 
-La ecuación \ref{eq:def-esperanza} se obtiene de la definición de $\tilde{u}_i(\sigma, I | j)$. \ref{eq:reorder-sum-1} y \ref{eq:reorder-sum-2} se obtienen al reordenar las sumatorias y considerando que la unión de los bloques generan a $Z$. La ecuación \ref{eq:lemma-final-eq}
-\end{proof}
-
-Si se elige $\mathcal{Q} = {Z}$, es decir un único bloque con todas las historias terminales y $q_1 = 1$, la utilidad contrafactual es igual a la utilidad contrafactual muestreada y se obtiene el algoritmo \textit{vanilla} CFR. Si se eligen los bloques para incluir todas las historias terminales con la misma secuencia de acciones en los nodos de azar se obtiene el \textit{chance-sampled} CFR, siendo esta última versión la utilizada para estudiar los juegos presentados en este trabajo de grado. Se implementa el algoritmo como es detallado en \cite{bib:introductionCFR} que se presenta en el \textit{\textbf{apéndice X}}.
+Si se elige $\mathcal{Q} = {Z}$, es decir un único bloque con todas las historias terminales y $q_1 = 1$, la utilidad contrafactual es igual a la utilidad contrafactual muestreada y se obtiene el algoritmo \textit{vanilla} CFR. Si se eligen los bloques para incluir todas las historias terminales con la misma secuencia de acciones en los nodos de azar se obtiene el \textit{chance-sampled} CFR, siendo esta última versión la utilizada para estudiar los juegos presentados en este trabajo de grado. Se implementa el algoritmo como es detallado en \cite{bib:introductionCFR} que se presenta en el Apéndice~\ref{apex:chapter:algoritmos}.
 
 
 \section{Evaluación de las Estrategias y Explotabilidad}
 
 Para evaluar la convergencia de los algoritmos y la estrategia obtenida se utilizaron las métricas de \textit{regret} y explotabilidad, respectivamente.
 
-La explotabilidad se obtiene al calcular la mejor respuesta de la estrategia de cada jugador y sumar los resultados, como se explicó en la sección \textit{\textbf{Explicar explotabilidad en el capítulo 2}}. Sin embargo, la diferencia es que en los juegos de forma extensiva no se pueden listar todas las estrategias fácilmente como en los juegos en forma normal, ya que esta tarea es exponencial en el tamaño del árbol.
+La explotabilidad se obtiene al calcular la mejor respuesta de la estrategia de cada jugador y sumar los resultados, como se explicó en el Capítulo~\ref{chapter:explotabilidad}. Sin embargo, la diferencia es que en los juegos de forma extensiva no se pueden listar todas las estrategias fácilmente como en los juegos en forma normal, ya que esta tarea es exponencial en el tamaño del árbol.
 
-Para calcular la explotabilidad en estos juegos se utilizó el algoritmo propuesto en \cite{bib:thesis-marc-lanctot}, denominado \textit{Generalized Expectimax Best Response} (GEBR), descrito en el apéndice \textit{\textbf{X}}. La complejidad de este algoritmo es $\mathcal{O}(ND)$ donde $N$ es el número de nodos del árbol y $D$ es la profundidad del árbol. Note que el algoritmo tiene una alta complejidad, por lo que se usará únicamente para calcular la explotabilidad de la estrategia final.
+Para calcular la explotabilidad en estos juegos se utilizó el algoritmo propuesto en \cite{bib:thesis-marc-lanctot}, denominado \textit{Generalized Expectimax Best Response} (GEBR), descrito en el Apéndice~\ref{apex:chapter:algoritmos}. La complejidad de este algoritmo es $\mathcal{O}(ND)$ donde $N$ es el número de nodos del árbol y $D$ es la profundidad del árbol. Note que el algoritmo tiene una alta complejidad, por lo que se usará únicamente para calcular la explotabilidad de la estrategia final.
 
 
-\section{Detalles de implementación}
-Los algoritmos y la representación de los juegos fueron implementados en el lenguaje de programación C++. Para la representación de los juegos se utilizó una clase abstracta llamada \textit{Game}, que recibe como template los tipos para el estado, las acciones, las propiedades, los conjunto de información y el Hash del juego específico.
+\section{Detalles de implementación y ejecución}
 
-Esta clase contiene las funciones virtuales necesarias para recorrer el árbol del juego de forma \textbf{implícita}, tales como: \textit{actions}, que retornan las acciones del juegos en el estado actual, \textit{update\_state}, que actualiza el estado del juego dada una acción a realizar, \textit{terminal\_state} que indica si un estado es terminal o no, \textit{utiliy} que retorna la utilidad en un estado terminal, entre otras. Los algoritmos CFR y GEBR utilizan esta clase abstracta en su implementación.
+Los algoritmos y la representación de los juegos fueron implementados en el lenguaje de programación C++. Para la representación de los juegos se utilizó una clase abstracta llamada \functionname{Game}, que recibe como \textit{template} los tipos para el estado, las acciones, las propiedades, los conjunto de información y el Hash del juego específico.
 
-Para cada tipo de juego, se creó una clase derivada de la clase \textit{Game}, donde se implementaron las funciones según las reglas de cada juego. De esta forma se puede utilizar la misma implementación de los algoritmos para todos los juegos.
+Esta clase contiene las funciones virtuales necesarias para recorrer el árbol del juego de forma \functionname{implícita}, tales como: \functionname{actions}, que retornan las acciones del juegos en el estado actual, \functionname{update\_state}, que actualiza el estado del juego dada una acción a realizar, \functionname{terminal\_state} que indica si un estado es terminal o no, \functionname{utiliy} que retorna la utilidad en un estado terminal, entre otras. Los algoritmos CFR y GEBR utilizan esta clase abstracta en su implementación.
+
+Para cada tipo de juego, se creó una clase derivada de la clase \functionname{Game}, donde se implementaron las funciones según las reglas de cada juego. De esta forma se puede utilizar la misma implementación de los algoritmos para todos los juegos.
 
 Cabe destacar que todos los juegos fueron representados mediantes árboles con la raíz como único nodo de azar. Algunos juegos tienen esta representación de forma natural, por ejemplo, el Kuhn Poker, ya que las cartas se reparten al inicio y luego se juega acorde a esa distribución, sin volver a introducir ninguna jugada aleatoria. Otros juegos pueden tener nodos de azar distintos a la raíz, sin embargo siempre es posible transformarlos a un árbol que represente el mismo juego donde todos los nodos de azar son condensados en la raíz y cada hijo de la raíz representa una elección por cada uno de los nodos de azar del árbol original. En esta representación se asume que todas las decisiones aleatorias se toman al inicio del juego.
 
-La clase \textit{Game} y todos los algoritmos se implementados suponiendo la raíz como único nodo de azar del juego.
+La clase \functionname{Game} y todos los algoritmos se implementados suponiendo la raíz como único nodo de azar del juego. Además, se omiten los conjuntos de información donde existe una única acción posible, ya que en estos casos no hay ninguna decisión que tomar.
 
+Las ejecuciones de los algoritmos se realizaron \textit{Amazon Web Services} (AWS), utilizando el servicio \textit{Amazon Elastic Compute Cloud} (Amazon EC2). Usando máquinas virtuales con las siguientes caracteríscas:
+\begin{itemize}[noitemsep]
+    \item Procesador: Intel Broadwell E5-2686v4 2.3 GHz
+    \item 8CPUs
+    \item 32GB de memoria RAM
+    \item Sistema Operativo: Amazon Linux 2 AMI (HVM)
+\end{itemize}
 
 
 \section{Descripción de los juegos}
@@ -172,7 +168,7 @@ Una apuesta consiste en decir $2$ números $(x, y)$, esto indica que el jugador 
 
 Por otra parte, si un jugador reta al jugador previo, se descubren todos los dados de todos los jugadores. Si la cantidad de dados con la cara $y$ es mayor o igual a $x$, donde $(x, y)$ fue la apuesta realizada por el jugador, el jugador que hizo el reto pierde un dado. En caso contrario, el jugador que hizo la apuesta pierde un dado. Luego, todos los jugadores lanzan sus dados nuevamente y una nueva ronda de apuestas empieza por el jugador que perdió la ronda anterior. Un jugador pierde cuando se queda sin dados, el ganador es el último jugador con al menos un dado restante. La figura \ref{fig:dudo} muestra una foto del juego, de \textit{Perudo}, una versión comercial de este juego, que está diseñada para $6$ jugadores, donde cada jugador empieza con $5$ dados. En la figura se observan los vasos que se utilizan para lanzar los dados y evitar que cada jugador vea los dados de los demás.
 
-\begin{figure}[htb]
+\begin{figure}
 \caption[Juego Dudo]{Juego Dudo. Los vasos se utilizan para lanzar los dados y evitar que los oponentes vean el resultado}
 \label{fig:dudo}
 \centering
@@ -181,28 +177,28 @@ Por otra parte, si un jugador reta al jugador previo, se descubren todos los dad
 
 En este trabajo de grado consideraremos este juego para $2$ jugadores únicamente. Dudo$(K, D_1, D_2)$ hará referencia a una única ronda de apuestas de $2$ jugadores, donde el primer jugador tiene $D_1$ dados, el segundo jugador tiene $D_2$ dados y cada dado tiene $K$ caras. El juego completo consiste en múltiples rondas, donde $D_1$ o $D_2$ disminuye en una unidad al finalizar cada ronda. Cuando uno de los jugadores pierde todos los dados obtiene una utilidad de $-1$, mientras que su oponente obtiene una utilidad de $1$. En este juego cada ronda se considerará un subjuego y se representará con un árbol independiente, donde los valores esperados para los juegos Dudo$(K, D_1 - 1, D_2)$ y Dudo$(K, D_1, D_2 - 1)$ se precalculan y se utilizan como utilidad para las hojas del árbol Dudo$(K, D_1, D_2)$. Note que, en el juego estándar, $K$ siempre tiene un valor de $6$.
 
-Cuando el jugador $i$ lanza $D_i$ dados hay $\binom{D_i+K-1}{K-1}$ resultados posibles diferentes, ya que cada resultado puede ser representado con una tupla $(a_1, a_2, ..., a_k)$, donde $a_j$ representa el número de dados con la cara $j$, por lo que $\sum_j^K = D_i$ y $a_j \geq 0$. Por otra parte cada secuencia de apuestas puede ser representada por una secuencia binaria de longitud $K(D_1 + D_2)$, donde el $i$-ésimo bit es $1$ si la $i$-ésima secuancia más fuerte fue dicha durante la ronda y $0$ en caso contrario. Por ejemplo, si $D_1 = D_2 = 1$, las apuestas $(1, 1)-(1, 3)-(1, 6)-(2, 4)-(2, 5)-(1, 6)$ se representa con la secuencia binaria $101001000110$, por lo que hay $2^{K(D_1 + D_2)}$ secuencias diferentes. Cada secuencia pertenece a un jugador en específico, por lo que si $D_1 = D_2$, el número de conjuntos de información  es igual a  $\binom{D_i+K-1}{K-1}2^{K(D_1 + D_2)}$.
+Cuando el jugador $i$ lanza $D_i$ dados hay $\binom{D_i+K-1}{K-1}$ resultados posibles diferentes, ya que cada resultado puede ser representado con una tupla $(a_1, a_2, ..., a_k)$, donde $a_j$ representa el número de dados con la cara $j$, por lo que $\sum_j^K = D_i$ y $a_j \geq 0$. Por otra parte cada secuencia de apuestas puede ser representada por una secuencia binaria de longitud $K(D_1 + D_2)$, donde el $i$-ésimo bit es $1$ si la $i$-ésima secuancia más fuerte fue dicha durante la ronda y $0$ en caso contrario. Por ejemplo, si $D_1 = D_2 = 1$, las apuestas $(1, 1)-(1, 3)-(1, 6)-(2, 4)-(2, 5)-(1, 6)$ se representa con la secuencia binaria $101001000110$, por lo que hay $2^{K(D_1 + D_2)}$ secuencias diferentes. Cada secuencia pertenece a un jugador en específico, por lo que si $D_1 = D_2$, el número de conjuntos de información  es igual a  $\binom{D_i+K-1}{K-1}2^{K(D_1 + D_2)}$, incluye los conjuntos de información con una única acción posible. Para excluir estos conjuntos de información, debemos excluir las secuencias donde la última apuesta es la máxima apuesta posible, pues el siguiente jugador sólo podría decir \say{dudo}. La cantidad de estas secuencias es igual a $2^{K(D_1 + D_2)-1}$, luego, el número de conjuntos de información con más de una acción posible es igual a $\binom{D_i+K-1}{K-1}2^{K(D_1 + D_2)-1}$, dado que ambos jugadores tienen el mismo número de dados.
 
 Para contar el número total de nodos, se puede considerar el lanzamiento de los dados de forma independiente, pues las secuencias posibles de apuestas no dependen del resultado de los dados. Por lo expuesto anteriormente el número posible de apuestas es igual a $2^{K(D_1+D_2)}$, pero después de cada secuencia siempre se puede decir \say{dudo}, salvo para la secuencia vacía. Luego el número total de nodos (incluyendo nodos terminales y no terminales) es igual a $\binom{D_1+K-1}{K-1}\binom{D_1+K-1}{K-1}(2^{K(D_1+D_2)+1}-1)+1$.
 
 \subsection*{Juego de Dominó}
-En este trabajo se utilizó una versión de este juego para $2$ jugadores. Al inicio del juego cada jugador toma una cantidad específica de piezas de forma aleatoria, las piezas restantes se dejan sin descubrir para ser usadas en turnos posteriores. Como en el juego tradicional de dominó, los jugadores juegan por turnos alternados (el primero jugador se elige de forma arbitraria), cada uno debe colocar una ficha válida acorde a las reglas \textit{estándares} en Venezuela del juego (ver apéndice \textit{\textbf{X}}). Si un jugador no puede colocar una ficha toma una ficha de las que no están descubiertas (si todavía hay disponibles), el jugador verifica si puede colocar la ficha tomada y en caso contrario pasa el turno y juega el oponente.
+En este trabajo se utilizó una versión de este juego para $2$ jugadores. Al inicio del juego cada jugador toma una cantidad específica de piezas de forma aleatoria, las piezas restantes se dejan sin descubrir para ser usadas en turnos posteriores. Como en el juego tradicional de dominó, los jugadores juegan por turnos alternados (el primero jugador se elige de forma arbitraria), cada uno debe colocar una ficha válida acorde a las reglas \textit{estándares} en Venezuela del juego. Si un jugador no puede colocar una ficha toma una ficha de las que no están descubiertas (si todavía hay disponibles), el jugador verifica si puede colocar la ficha tomada y en caso contrario pasa el turno y juega el oponente.
 
 El juego termina cuando alguno de los jugadores usa todas las piezas o cuando ambos jugadores no pueden jugar ni tomar piezas nuevas, en este último caso se dice que el juego está bloqueado. El ganador es el jugador que se queda sin piezas o, en caso de bloqueo, el jugador que acumule menos puntos en todas las piezas que quedaron en su mano. La utilidad obtenida es el número de puntos que el jugador perdedor acumuló en las piezas que quedaron en su mano (con signo positivo para el jugador ganador y signo negativo para el perdedor). Cabe destacar que sólo se puede tomar una pieza o pasar, si no se puede realizar una jugada con la mano actual.
 
-Usualmente se utilizan $28$ piezas, donde las piezas pueden tener entre $0$ y $6$ puntos en cada extremo, y cada jugador recibe $7$ piezas al inicio del juego. En este trabajo se parametriza el número máximo de puntos que puede tener una ficha, así como la cantidad de piezas repartidas inicialmente. De esta forma se hará referencia a Domino$(M, N)$ an un juego donde las piezas tienen entre $0$ y $M$ puntos (con un total de $(M+1)(M+2)/2$ piezas) y cada jugador recibe $N$ piezas al inicio del juego.
+Usualmente se utilizan $28$ piezas, donde las piezas pueden tener entre $0$ y $6$ puntos en cada extremo, y cada jugador recibe $7$ piezas al inicio del juego. En este trabajo se parametriza el número máximo de puntos que puede tener una ficha, así como la cantidad de piezas repartidas inicialmente. De esta forma se hará referencia a Domino$(M, N)$ a un juego donde las piezas tienen entre $0$ y $M$ puntos (con un total de $(M+1)(M+2)/2$ piezas) y cada jugador recibe $N$ piezas al inicio del juego.
 
-En este juego no es fácil calcular el tamaño del árbol y el número de conjuntos de información, principalmente porque las acciones posibles en un estados dependen tanto de la mano del jugador, como de las piezas en la mesa. En el Kuhn Póker simpre hay $2$ acciones posibles ${pasar, apostar}$ y en el Dudo las acciones disponibles dependen únicamente de la última apuesta y no dependen de los dados que tengan los jugadores. Así que se decidió estimar estos parámetros recorriendo el árbol del juego mediante DFS. La tabla \ref{tab:tree-domino}, muestra el número de nodos del árbol y el número de conjuntos de información por cada juego de dominó que se presenta.
+En este juego no es fácil calcular el tamaño del árbol y el número de conjuntos de información, principalmente porque las acciones posibles en un estados dependen tanto de la mano del jugador, como de las piezas en la mesa. En el Kuhn Poker siempre hay $2$ acciones posibles ${pasar, apostar}$ y en el Dudo las acciones disponibles dependen únicamente de la última apuesta y no dependen de los dados que tengan los jugadores. Así que se decidió estimar estos parámetros recorriendo el árbol del juego mediante DFS. La tabla \ref{tab:tree-domino}, muestra el número de nodos del árbol y el número de conjuntos de información (con más de una acción disponible) por cada juego de dominó que se presenta.
 
-\begin{table}[ht]
+\begin{table}
     \centering
-    \begin{tabular}{c|r|r}
-        & Conjutos de Información & Nodos \\ \hline
-       Domino$(1, 1)$ & $3$ & $13$ \\
-       Domino$(2, 2)$ & $441$   & $7321$ \\
-       Domino$(3, 2)$ & $844437$   & $46534657$ \\
-       Domino$(3, 3)$ & $1082290$   & $246760993$ \\ 
-       Domino$(3, 4)$ & $902218$   & $1547645185$ \\ \hline
+    \begin{tabular}{c r r}
+    \hline
+        & $I$ & Nodos \\ \hline
+       Domino$(2, 2)$ &     102 &         7.321 \\
+       Domino$(3, 2)$ &  88.947 &    46.534.657 \\
+       Domino$(3, 3)$ & 107.854 &   246.760.993 \\ 
+       Domino$(3, 4)$ & 104.050 & 1.547.645.185 \\ \hline
     \end{tabular}
     \caption{Número de nodos y conjuntos de Información en diferentes juegos de Dominó}
     \label{tab:tree-domino}
@@ -211,51 +207,71 @@ En este juego no es fácil calcular el tamaño del árbol y el número de conjun
 
 \section{Resultados experimentales}
 
-Se crearon varias instancias de los $3$ juegos explicados en la sección \ref{section-description-juegos-forma-extensiva} con diferentes parámetros. Para cada instancia se utilizó el algoritmo de CFR y se iteró sobre el árbol durante $10$ (\textit{\textbf{número tentativo}}) horas (se excluye el tiempo que se calcula el regret ya que no forma parte del algoritmo y esto se hace únicamente para obtener las gráficas). Una vez terminado el tiempo asignado se calcula la mejor respuesta para cada jugador y la explotabilidad. Una instancia de un juego se considerará resuelta si la explotabilidad de la estrategia obtenida es menor que el $1\%$ de la mínima unidad de utilidad posible según cada juego.
+Se crearon varias instancias de los $3$ juegos explicados en la sección \ref{section-description-juegos-forma-extensiva} con diferentes parámetros. Para cada instancia se utilizó el algoritmo de CFR y se iteró sobre el árbol durante $10$ horas aproximadament. Una vez terminado el tiempo asignado se calcula la mejor respuesta para cada jugador y la explotabilidad. Una instancia de un juego se considerará resuelta si la explotabilidad de la estrategia obtenida es menor que el $1\%$ de la mínima unidad de utilidad posible según cada juego.
 
-La tabla \ref{tab:resultados-CFR} resume los resultados, donde $N$ representa el número de nodos del árbol $I$ el número de conjuntos de información, $u_{\sigma}$ el valor del juego usando la estrategia obtenida y $\varepsilon_{\sigma}$ la explotabilidad. También se agrega el número de iteraciones y la última columna indica si el juego fue resuelto o no, según lo establecido en el párrafo anterior.
+La tabla \ref{tab:resultados-CFR} resume los resultados, donde $N$ representa el número de nodos del árbol $I$ el número de conjuntos de información, $u({\sigma})$ el valor del juego usando la estrategia obtenida y $\varepsilon_{\sigma}$ la explotabilidad. También se agrega el número de iteraciones y la última columna indica si el juego fue resuelto o no, según lo establecido en el párrafo anterior.
 
-\begin{table}[ht]
+Se observa que se lograron resolver todas las instancias propuestas de OCP. Con respecto al juego dudo, no se alcanzó la cota deseada para la explotabilidad para las instancias Dudo$(4, 2, 2)$, Dudo$(5, 2, 2)$, Dudo$(6, 1, 2)$ y Dudo$(6, 2, 1)$, siendo la instancia Dudo$(5, 2, 2)$ la que posee la estrategia más explotable con más del $15\%$ de la ganancia posible, esto debido al bajo número de iteraciones realizadas durante el entrenamiento (menos de $4000$), debido al gran tamaño del árbol. Por último, no fue posible resolver la instancia Domino$(3, 4, 4)$ con respecto a los juegos de dominó.
+
+\begin{table}
     \centering
     \begin{tabular}{l|r|r|r|r|r|c}
-        Juego & $N$ & $I$ & Iteraciones & $u$ & $\varepsilon$ & Resuelto \\ \hline
-        OCP$(3)$        &         55 &       12 & & & & \cmark \\
-        OCP$(12)$       &       1.189 &      48 & & & & \cmark \\
-        OCP$(50)$       &      22.051 &     200 & & & & \cmark \\
-        OCP$(200)$      &     358.201 &     800 & & & & \cmark \\
-        OCP$(1000)$     &   8.991.001 &   4.000 & & & & \cmark \\
-        OCP$(4000)$     & 143.964.001 &  16.000 & & & & \cmark \\
+        Juego & $N$ & $I$ & Iteraciones & $u(\sigma)$ & $\varepsilon_{\sigma}$ (\%) & Resuelto \\ \hline
+        OCP$(3)$        &          55 &      12 & 1.181.763.638 & -0.056 & 0.0098 & \cmark \\
+        OCP$(12)$       &       1.189 &      48 & 1.147.919.240 & -0.062 & 0.0032 & \cmark \\
+        OCP$(50)$       &      22.051 &     200 & 1.145.291.974 & -0.058 & 0.0099 & \cmark \\
+        OCP$(200)$      &     358.201 &     800 & 1.128.993.847 & -0.056 & 0.0078 & \cmark \\
+        OCP$(1000)$     &   8.991.001 &   4.000 & 1.087.573.694 & -0.056 & 0.0098 & \cmark \\
+        OCP$(5000)$     & 224.955.001 &  20.000 & 1.038.367.354 & -0.056 & 0.0241 & \cmark \\
         \hline
-        Dudo$(3, 1, 1)$ &      $1144$ &      $192$ & & & & \cmark \\
-        Dudo$(3, 2, 1)$ &     $18415$ &     $2304$ & & & & \cmark \\
-        Dudo$(3, 1, 2)$ &     $18415$ &     $2304$ & & & & \cmark \\
-        Dudo$(3, 2, 2)$ &    $294877$ &    $24576$ & & & & \cmark \\
-        Dudo$(4, 1, 1)$ &      $8177$ &     $1024$ & & & & \cmark \\
-        Dudo$(4, 2, 1)$ &    $327641$ &    $28672$ & & & & \cmark \\
-        Dudo$(4, 1, 2)$ &    $327641$ &    $28672$ & & & & \cmark \\
-        Dudo$(4, 2, 2)$ &  $13107101$ &   $655360$ & & & & \xmark \\
-        Dudo$(5, 1, 1)$ &     $51176$ &     $5120$ & & & & \cmark \\
-        Dudo$(5, 2, 1)$ &   $4915126$ &   $327680$ & & & & \cmark \\
-        Dudo$(5, 1, 2)$ &       4.915.126 &   $327680$ & & & & \cmark \\
-        Dudo$(5, 2, 2)$ &     471.858.976 & $15728640$ & & & & \xmark \\
-        Dudo$(6, 1, 1)$ &         294.877 &    $24576$ & & & & \cmark \\
-        Dudo$(6, 2, 1)$ &      66.060.163 &  $3538944$ & & & & \cmark \\
-        Dudo$(6, 1, 2)$ &      66.060.163 &  $3538944$ & & & & \cmark \\
-        Dudo$(6, 2, 2)$ &  14.797.504.071 &  $352321536$ & & & & \xmark \\
+        Dudo$(3, 1, 1)$ &         1.144 &          96 & 77.243.464 & -0.111 &  0.0098 & \cmark \\
+        Dudo$(3, 1, 2)$ &        18.415 &       1.152 & 10.050.143 & -0.465 &  0.0211 & \cmark \\
+        Dudo$(3, 2, 1)$ &        18.415 &       1.152 &  9.903.467 &  0.506 &  0.0111 & \cmark \\
+        Dudo$(3, 2, 2)$ &       294.877 &      12.288 &  1.137.993 & 0.0054 &  0.2887 & \cmark \\
+        Dudo$(4, 1, 1)$ &         8.177 &         512 & 18.697.532 & -0.125 &  0.0259 & \cmark \\
+        Dudo$(4, 1, 2)$ &       327.641 &      14.366 &  1.215.600 & -0.508 &  0.0971 & \cmark \\
+        Dudo$(4, 2, 1)$ &       327.641 &      14.366 &  1.213.799 &  0.552 &  0.3701 & \cmark \\
+        Dudo$(4, 2, 2)$ &    13.107.101 &     327.680 &     63.109 & 0.0069 &  2.1132 & \xmark \\
+        Dudo$(5, 1, 1)$ &        51.176 &       2.560 &  4.521.208 & -0.120 &  0.1186 & \cmark \\
+        Dudo$(5, 1, 2)$ &     4.915.126 &     163.840 &    151.235 & -0.565 &  0.6197 & \cmark \\
+        Dudo$(5, 2, 1)$ &     4.915.126 &     163.840 &    143.698 &  0.581 &  0.0122 & \cmark \\
+        Dudo$(5, 2, 2)$ &   471.858.976 &   7.864.320 &      3.826 &  0.836 & 15.1963 & \xmark \\
+        Dudo$(6, 1, 1)$ &       294.877 &      12.288 &  1.067.782 & -0.111 &  0.0975 & \cmark \\
+        Dudo$(6, 1, 2)$ &    66.060.163 &   1.769.472 &     17.702 & -0.593 &  4.5781 & \xmark \\
+        Dudo$(6, 2, 1)$ &    66.060.163 &   1.769.472 &     17.221 &  0.592 &  3.9594 & \xmark \\
         \hline
-        Domino$(2, 2)$ &     $441$ &       $7321$ & & & & \cmark \\
-        Domino$(3, 2)$ &  $844437$ &   $46534657$ & & & & \cmark \\
-        Domino$(3, 3)$ & $1082290$ &  $246760993$ & & & & \cmark \\
-        Domino$(3, 4)$ &  $902218$ & $1547645185$ & & & & \cmark \\
-        Domino$(4, 2)$ & & & & & & \xmark \\
+        Domino$(2, 2)$ &         7.321 &     102 & 585.191.577 & 2.4    & 0      & \cmark \\
+        Domino$(3, 2)$ &    46.534.657 &  88.947 & 436.905.363 & 2.8767 & 0.0292 & \cmark \\
+        Domino$(3, 3)$ &   246.760.993 & 107.854 &  79.751.183 & 2.1539 & 0.3599 & \cmark \\
+        Domino$(3, 4)$ & 1.547.645.185 & 104.050 &  11.984.261 & 3.2034 & 1.3630 & \xmark \\
         \hline
     \end{tabular}
     \caption{Resultados del algortimo CFR en los diferentes juegos}
     \label{tab:resultados-CFR}
 \end{table}
 
-La gráfica \textit{\textbf{Mostrar una o dos gráficas interesantes y decir algo al respecto}}. En el apéndice \textit{\textbf{X}} se pueden observar todas las gráficas del regret con respecto al número de iteraciones, se nota que el regret tiende a $0$ en todos los casos (\textit{\textbf{Agregar algún otro detalle interesante que se vea en las gráficas}})
+La Gráfica~\ref{fig:cfr-regret-ocp-200} muestra el \textit{regret} con respecto al número de iteraciones en el juego OCP$(200)$. Se observa que al principio el regret aumenta, esto debido a que el regret se inicializa en $0$ y empieza a aumentar a medida que se descubren los conjuntos de información. Luego, se observa como converge a $0$ a medida que transcurren las iteraciones. La Gráfica~\ref{fig:cfr-regret-dudo-5-2-2} corresponde al juego Domino$(5, 2, 2)$, ésta tiene un comportamiento similar a la gráfica anterior, sin embargo, se observa que la convergencia está inconclusa, por lo que la estrategia tiene alta explotabilidad. La Gráfica~\ref{fig:cfr-regret-domino-3-3} muestra el \textit{regret} con respecto al número de iteraciones del juego Domino$(3, 3)$, al igual que la primera gráfica, se observa como el regret crece al principio para luego converger a $0$.
 
+\begin{figure}
+    \caption{Gráficas del regret con respecto al número de iteraciones del juego One Card Poker $(200)$}
+    \label{fig:cfr-regret-ocp-200}
+    \centering
+    \includegraphics[width=0.75\textwidth]{graficas/cfr/ocp/OCP(200).png}
+\end{figure}
 
+\begin{figure}
+    \caption{Gráficas del regret con respecto al número de iteraciones del juego Dudo $(5, 2, 2)$}
+    \label{fig:cfr-regret-dudo-5-2-2}
+    \centering
+    \includegraphics[width=0.75\textwidth]{graficas/cfr/dudo/Dudo(5,2,2).png}
+\end{figure}
 
+\begin{figure}
+    \caption{Gráficas del regret con respecto al número de iteraciones del juego Dominó $(3, 3)$}
+    \label{fig:cfr-regret-domino-3-3}
+    \centering
+    \includegraphics[width=0.75\textwidth]{graficas/cfr/domino/Domino(3,3).png}
+\end{figure}
+
+Las gráficas de los juegos restantes pueden ser encontradas en el Apéndice~\ref{apex:chapter:experimentos-cfr}, todas muestran un comportamiento similar a las gráficas presentadas en este capítulo.
 

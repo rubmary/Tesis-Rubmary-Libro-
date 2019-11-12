@@ -155,9 +155,9 @@ En este juego cada jugador tiene una moneda y selecciona cara o sello de forma s
 \caption[Tabla de pagos del juego matching pennies]{Tabla de pagos del juego \textit{matching pennies}}
 \label{table:pagos-matching-pennies}
 \begin{tabular}{ c | c | c |}
- & cara & sello  \\ \hline
- cara  &  1 & -1 \\ \hline
- sello & -1 &  1 \\ \hline
+ \multicolumn{1}{c}{} & \multicolumn{1}{c}{cara} & \multicolumn{1}{c}{sello}  \\ \cline{2-3}
+ cara  &  1 & -1 \\ \cline{2-3}
+ sello & -1 &  1 \\ \cline{2-3}
 \end{tabular}
 \end{center}
 \end{table}
@@ -226,14 +226,14 @@ En este juego cada jugador tiene un tablero de tamaño $2\times 3$. El primer ju
 \caption{Matriz de pagos del juego Ficha vs Dominó}
 \label{table:pagos-domino}
 \begin{tabular}{ c | c | c | c | c | c | c |}
-  &  1 &  2 &  3 &  4 &  5 &  6 \\ \hline
-A & -1 & -1 &  1 &  1 &  1 &  1 \\ \hline
-B &  1 &  1 &  1 & -1 & -1 &  1 \\ \hline
-C &  1 & -1 & -1 &  1 &  1 &  1 \\ \hline
-D &  1 &  1 &  1 &  1 & -1 & -1 \\ \hline
-E & -1 &  1 &  1 & -1 &  1 &  1 \\ \hline
-F &  1 & -1 &  1 &  1 & -1 &  1 \\ \hline
-G &  1 &  1 & -1 &  1 &  1 & -1 \\ \hline
+\multicolumn{1}{c}{}  &  \multicolumn{1}{c}{1} &  \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6} \\ \cline{2-7}
+A & -1 & -1 &  1 &  1 &  1 &  1 \\ \cline{2-7}
+B &  1 &  1 &  1 & -1 & -1 &  1 \\ \cline{2-7}
+C &  1 & -1 & -1 &  1 &  1 &  1 \\ \cline{2-7}
+D &  1 &  1 &  1 &  1 & -1 & -1 \\ \cline{2-7}
+E & -1 &  1 &  1 & -1 &  1 &  1 \\ \cline{2-7}
+F &  1 & -1 &  1 &  1 & -1 &  1 \\ \cline{2-7}
+G &  1 &  1 & -1 &  1 &  1 & -1 \\ \cline{2-7}
 \end{tabular}
 \end{center}
 \end{table}
@@ -298,7 +298,7 @@ La tabla \ref{tab:resumen-resultados-RM} muestra un resumen de los resultados. E
 \begin{table}[htpb]
     \centering
     \begin{tabular}{l|r|r r r|r r r}
-        &  & \multicolumn{3}{|c}{$u_e$} & \multicolumn{3}{|c}{$\varepsilon_{\sigma}$}  \\ \hline
+        \multicolumn{2}{c}{} & \multicolumn{3}{c}{$u_e$} & \multicolumn{3}{c}{$\varepsilon_{\sigma}$}  \\ \hline
         Juegos & $u_t$ & \multicolumn{1}{|c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c|}{C}
           & \multicolumn{1}{|c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \hline
         Matching Pennies
@@ -329,6 +329,7 @@ Para evaluar la convergencia se midió el tiempo necesario para alcanzar el regr
 \begin{table}[htpb]
     \centering
     \begin{tabular}{l | c |r r r}
+        \hline
         Juegos & Proc. & $T$ & $I$ & $T/I$ \\ \hline
         \multirow{3}{*}{Matching Pennies}
             & A & $10.276$ & $3892550.4$ & $2.64 {\times} 10^{-06}$ \\
@@ -361,7 +362,8 @@ Con respecto a la complejidad de tiempo se tiene que los procedimientos de regre
 
 \begin{table}[ht]
     \centering
-    \begin{tabular}{c|c|c}
+    \begin{tabular}{c c c}
+        \hline
          Procedimiento & Memoria & Tiempo  \\ \hline
          A & $\mathcal{O}(N^2 + M^2)$ & $\mathcal{O}(N + M)$ \\ 
          B & $\mathcal{O}(N^2 + M^2)$ & $\mathcal{O}(N^3 + M^3)$ \\

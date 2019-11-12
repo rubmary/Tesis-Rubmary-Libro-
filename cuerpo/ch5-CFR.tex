@@ -123,7 +123,7 @@ $E_{j \sim q_j} [\tilde{u}_i(\sigma, I | j)]\ =\ u_i(\sigma, I)$
 Si se elige $\mathcal{Q} = {Z}$, es decir un único bloque con todas las historias terminales y $q_1 = 1$, la utilidad contrafactual es igual a la utilidad contrafactual muestreada y se obtiene el algoritmo \textit{vanilla} CFR. Si se eligen los bloques para incluir todas las historias terminales con la misma secuencia de acciones en los nodos de azar se obtiene el \textit{chance-sampled} CFR, siendo esta última versión la utilizada para estudiar los juegos presentados en este trabajo de grado. Se implementa el algoritmo como es detallado en \cite{bib:introductionCFR} que se presenta en el Apéndice~\ref{apex:chapter:algoritmos}.
 
 
-\section{Evaluación de las Estrategias y Explotabilidad}
+\section{Evaluación de estrategias y explotabilidad}
 
 Para evaluar la convergencia de los algoritmos y la estrategia obtenida se utilizaron las métricas de \textit{regret} y explotabilidad, respectivamente.
 
@@ -216,6 +216,7 @@ Se observa que se lograron resolver todas las instancias propuestas de OCP. Con 
 \begin{table}
     \centering
     \begin{tabular}{l|r|r|r|r|r|c}
+        \hline
         Juego & $N$ & $I$ & Iteraciones & $u(\sigma)$ & $\varepsilon_{\sigma}$ (\%) & Resuelto \\ \hline
         OCP$(3)$        &          55 &      12 & 1.181.763.638 & -0.056 & 0.0098 & \cmark \\
         OCP$(12)$       &       1.189 &      48 & 1.147.919.240 & -0.062 & 0.0032 & \cmark \\

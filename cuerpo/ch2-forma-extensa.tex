@@ -4,7 +4,8 @@
 Muchos juegos constan de una secuencia de acciones realizadas por los jugadores a lo largo del tiempo, haciendo al modelo anterior insatisfactorio debido a que ignora la estructura secuencial de este tipo de problemas de decisión. Estos juegos pueden ser representados en forma de árbol enraizado, donde cada nodo representa un estado del juego y las ramas representan las acciones que se pueden realizar en un nodo (o estado) específico. 
 
 \begin{example}[{\cite[p. 91]{bib:course-game-theory}}]
-\label{ex:game-allocation} Dos personas utilizan el siguiente procedimiento para compartir dos objetos idénticos e indivisibles. Una de ellas propone una asignación, que la otra persona acepta o rechaza. Si la propuesta es aceptada se lleva a cabo dicha división. En caso de rechazo, ninguna persona recibe ninguno de los dos objetos. Cada persona sólo se preocupa sobre la cantidad de objetos que tiene. 
+\label{ex:game-allocation}
+Dos personas utilizan el siguiente procedimiento para compartir dos objetos idénticos e indivisibles. Una de ellas propone una asignación, que la otra persona acepta o rechaza. Si la propuesta es aceptada se lleva a cabo dicha división. En caso de rechazo, ninguna persona recibe ninguno de los dos objetos. Cada persona sólo se preocupa sobre la cantidad de objetos que tiene. 
 \end{example}
 
 La Figura \ref{fig:game-allocation} representa el árbol correspondiente al juego presentado. Cada nodo representa un estado del juego. Los nodos no terminales tienen un jugador asignado, que representa quien debe tomar la decisión en ese estado y las ramas representan las acciones posibles. En este caso la raíz corresponde al primer jugador, el cual tiene $3$ opciones posibles: quedarse con los $2$ objetos: $(2-0)$, repartir $1$ objeto para cada jugador: $(1-1)$, o darle los $2$ objetos al jugador $2$: $(0-2)$. Los $3$ nodos del primer nivel corresponden al jugador $2$, en cada uno de ellos tiene dos opciones: aceptar o rechazar la distribución. Las hojas representan los nodos terminales del juego, cada uno con la ganancia respectiva para cada jugador según el caso.
@@ -112,12 +113,12 @@ En el Ejemplo \ref{ex:informacion-incompleta}, $H = \{ \emptyset, L, R, LA, LB, 
 \subsection*{Ejemplo: Juego de Kuhn Poker}
 \label{section:kuhn-poker}
 
-Kuhn Poker es una versión simplificada del juego de Poker con tres cartas y dos jugadores (denominados jugador $1$ y jugador $2$) definido por Harold W.\ Kuhn \cite{bib:kuhn-poker}. En este juego se barajan tres cartas marcadas con los números $1$, $2$ y $3$. Posteriormente, cada jugador recibe una de ellas, manteniendo su número como información privada. Es decir, un jugador sabe su propio número pero no sabe el número de su oponente. Al inicio del juego cada jugador apuesta una ficha. El juego ocurre por turnos, los cuales se alternan entre los jugadores comenzando por el jugador $1$. En un turno un jugador puede \textit{apostar} o \textit{pasar}. Si un jugador apuesta debe apostar una ficha adicional. Si un jugador pasa después de una apuesta, el oponente gana y toma todas las fichas apostadas. Si hay dos apuestas o dos pases seguidos los jugadores muestran sus cartas y gana el jugador con el número más alto obteniendo todas las fichas apostadas. La Tabla \ref{table:kunh-poker} presenta un resumen de todas las posibles secuencias con su respectivo pago a cada jugador.
+Kuhn Poker es una versión simplificada del juego de Poker con tres cartas y dos jugadores (denominados jugador $1$ y jugador $2$) definido por Harold W.\ Kuhn \cite{bib:kuhn-poker}. En este juego se barajan tres cartas marcadas con los números $1$, $2$ y $3$. Posteriormente, cada jugador recibe una de ellas, manteniendo su número como información privada. Es decir, un jugador sabe su propio número pero no sabe el número de su oponente. Al inicio del juego cada jugador apuesta una ficha. El juego ocurre por turnos, los cuales se alternan entre los jugadores comenzando por el jugador $1$. En un turno un jugador puede \textit{apostar} o \textit{pasar}. Si un jugador apuesta debe apostar una ficha adicional. Si un jugador pasa después de una apuesta, el oponente gana y toma todas las fichas apostadas. Si hay dos apuestas o dos pases seguidos los jugadores muestran sus cartas y gana el jugador con el número más alto obteniendo todas las fichas apostadas. La Tabla \ref{table:kuhn-poker} presenta un resumen de todas las posibles secuencias con su respectivo pago a cada jugador.
 
 \begin{table}[hbt]
 \begin{center}
-\caption[Resumen de las posibles secuencias del juego Kunh Poker]{Resumen de las posibles secuencias del juego Kunh Poker}
-\label{table:kunh-poker}
+\caption[Resumen de las posibles secuencias del juego Kuhn Poker]{Resumen de las posibles secuencias del juego Kuhn Poker}
+\label{table:kuhn-poker}
 \begin{tabular}{ | c | c | c | c |}
 \multicolumn{3}{c}{Secuencia de Acciones} & \multicolumn{1}{c}{\empty} \\ \hline
 Jugador $1$ & Jugador $2$ & Jugador $1$ & Pago \\ \hline
@@ -130,12 +131,12 @@ Jugador $1$ & Jugador $2$ & Jugador $1$ & Pago \\ \hline
 \end{center}
 \end{table}
 
-Debido a qué es un juego de suma $0$, el jugador perdedor pierde el número de fichas que gana su oponente. El árbol del juego se muestra en la Figura \ref{fig:kunh-poker}. La raíz es un \textit{nodo de azar}, que representa la repartición de las cartas, con $6$ opciones diferentes, las cuales están representadas con un par ordenado indicando la carta del jugador $1$ y la del jugador $2$. Cada rama tiene una probabilidad de $\frac{1}{6}$ de ser elegida. Los nodos del primer nivel y tercer nivel corresponden al jugador $1$. Este jugador tiene $6$ conjuntos de información diferentes, cada uno con $2$ nodos, los cuales se unen mediante las líneas punteadas. Los nodos del segundo nivel corresponden al jugador $2$, los conjuntos de información se representan por nodos del mismo color y mismo estilo (relleno de color o no). En cada nodo de decisión (los nodos no terminales sin incluir la raíz), hay dos opciones: pasar, representado con una línea punteada, o apostar, representado con una línea doble. Los nodos terminales tienen la ganancia del jugador $1$, según sea el caso.
+Debido a qué es un juego de suma $0$, el jugador perdedor pierde el número de fichas que gana su oponente. El árbol del juego se muestra en la Figura \ref{fig:kuhn-poker}. La raíz es un \textit{nodo de azar}, que representa la repartición de las cartas, con $6$ opciones diferentes, las cuales están representadas con un par ordenado indicando la carta del jugador $1$ y la del jugador $2$. Cada rama tiene una probabilidad de $\frac{1}{6}$ de ser elegida. Los nodos del primer nivel y tercer nivel corresponden al jugador $1$. Este jugador tiene $6$ conjuntos de información diferentes, cada uno con $2$ nodos, los cuales se unen mediante las líneas punteadas. Los nodos del segundo nivel corresponden al jugador $2$, los conjuntos de información se representan por nodos del mismo color y mismo estilo (relleno de color o no). En cada nodo de decisión (los nodos no terminales sin incluir la raíz), hay dos opciones: pasar, representado con una línea punteada, o apostar, representado con una línea doble. Los nodos terminales tienen la ganancia del jugador $1$, según sea el caso.
 
 \begin{figure}
 \begin{center}
-\caption{Árbol completo del juego Kunh Poker.}
-\label{fig:kunh-poker}
+\caption{Árbol completo del juego Kuhn Poker}
+\label{fig:kuhn-poker}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
@@ -305,19 +306,19 @@ Note que una estrategia pura consiste en elegir una acción por cada conjunto de
 \caption{Estrategias puras para el juego con información incompleta presentado en el Ejemplo \ref{ex:informacion-incompleta}.}
 \label{table:estrategias-puras}
 \begin{tabular}{c c | c | c | }
- &  \multicolumn{1}{c}{} & \multicolumn{2}{c}{$I_2$} \\
- &  \multicolumn{1}{c | }{} & \multicolumn{1}{c | }{l} & r \\ \cline{2-4}
- \multirow{2}{*}{$I_1$} & $L$ & $s_1=$  elegir L y l & $s_2=$ elegir L y r\\ \cline{2-4}
- & $R$ & $s_3=$ elegir R y l & $s_4=$ elegir R y r \\ \cline{2-4}
+ \multicolumn{2}{c}{} & \multicolumn{2}{c}{$I_2$} \\
+ \multicolumn{2}{c}{} & \multicolumn{1}{c}{l} & \multicolumn{1}{c}{r} \\ \cline{3-4}
+ \multirow{2}{*}{$I_1$} & $L$ & $s_1=$  elegir L y l & $s_2=$ elegir L y r\\ \cline{3-4}
+ & $R$ & $s_3=$ elegir R y l & $s_4=$ elegir R y r \\ \cline{3-4}
 \end{tabular}
 \end{center}
 \end{table}
 
-En Kunh Poker una estrategia pura para el jugador $2$ puede ser la siguiente: si su carta contiene el número $1$ siempre pasa, si su carta contiene el número $2$ apuesta si y sólo si el jugador $1$ pasa en su primer turno, y si su carta contiene el número $3$ siempre apuesta. La Tabla \ref{table:ejemplo-estrategia-pura} presenta cada conjunto de información de forma explícita con su acción correspondiente. Para este juego se caracterizarán los conjuntos de información del jugador $2$ por la carta que tiene y la acción realizada por el primer jugador al inicio del juego.
+En Kuhn Poker una estrategia pura para el jugador $2$ puede ser la siguiente: si su carta contiene el número $1$ siempre pasa, si su carta contiene el número $2$ apuesta si y sólo si el jugador $1$ pasa en su primer turno, y si su carta contiene el número $3$ siempre apuesta. La Tabla \ref{table:ejemplo-estrategia-pura} presenta cada conjunto de información de forma explícita con su acción correspondiente. Para este juego se caracterizarán los conjuntos de información del jugador $2$ por la carta que tiene y la acción realizada por el primer jugador al inicio del juego.
 
 \begin{table}[hbt]
 \begin{center}
-\caption{Ejemplo de una estrategia pura para el jugador $2$ en el juego Kunh Poker.}
+\caption{Ejemplo de una estrategia pura para el jugador $2$ en el juego Kuhn Poker.}
 \label{table:ejemplo-estrategia-pura}
 \begin{tabular}{ c c | c }
 \hline
@@ -371,14 +372,13 @@ En el Ejemplo \ref{ex:informacion-incompleta}, las estrategias puras para el jug
 \begin{center}
 \caption[Forma normal de un juego en forma extensiva]{Tabla de pagos de la forma normal correspondiente a la forma extensa del juego presentado en el Ejemplo \ref{ex:informacion-incompleta}.}
 \label{table:fextensiva-a-fnormal}
-\begin{tabular}{ c | c  c }
-\hline
-\multicolumn{1}{c}{} & \multicolumn{2}{|c}{Jugador $2$} \\ 
-Jugador $1$ & \multicolumn{1}{c}{ Elegir $A$ } & Elegir $B$ \\ \hline
-Elegir $L$ y $l$ & $0,0$ & $2,4$ \\
-Elegir $L$ y $r$ & $2,4$ & $0,0$ \\
-Elegir $R$ y $l$ & $1,1$ & $1,1$ \\
-Elegir $R$ y $r$ & $1,1$ & $1,1$ \\ \hline
+\begin{tabular}{c c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Jugador $2$} \\ 
+\multicolumn{2}{c}{} & \multicolumn{1}{c}{Elegir $A$} & \multicolumn{1}{c}{Elegir $B$} \\ \cline{3-4}
+\multirow{4}{*}{Jugador $1$} & Elegir $L$ y $l$ & $0,0$ & $2,4$ \\ \cline{3-4}
+& Elegir $L$ y $r$ & $2,4$ & $0,0$ \\ \cline{3-4}
+& Elegir $R$ y $l$ & $1,1$ & $1,1$ \\ \cline{3-4}
+& Elegir $R$ y $r$ & $1,1$ & $1,1$ \\ \cline{3-4}
 \end{tabular}
 \end{center}
 \end{table}
@@ -524,7 +524,7 @@ Sea $\pi^{\sigma}(h) = \prod_{i \in N \cup {c}} \pi^{\sigma_i}(h)$ la probabilid
 
 Para un perfil estratégico $\sigma$, sea $u_i(\sigma) = \sum_{z \in Z} u_i(z)\pi^{\sigma}(z)$ la ganancia esperada del jugador $i$ cuando todos los jugadores utilizan el perfil estratégico $\sigma$. Sea $I(h)$ el conjunto de información al que pertenece $h$, como los conjuntos de información son una partición de las historias correspondientes a cada jugador $I(h)$ está bien definida. La notación presentada es la utilizada en \cite{bib:cfr}.
 
-\subsection*{Ejemplo: Equilibrio de Nash en el Juego de Kunh Poker}
+\subsection*{Ejemplo: Equilibrio de Nash en el Juego de Kuhn Poker}
 
 En el juego de Kuhn Poker si ambos jugadores juegan de forma óptima, es decir, acorde a un equilibrio de Nash, entonces el jugador $2$ tiene una ganancia esperada de $\frac{1}{18}$ por mano, como se prueba en \cite{bib:kuhn-poker}. El conjunto de equilibrios de Nash se resume en la Tabla~\ref{tab:estrategia-kuhn-poker}, donde los conjuntos de información fueron enumerados en un orden de búsqueda por profundidad (dfs).
 
@@ -547,12 +547,12 @@ En el juego de Kuhn Poker si ambos jugadores juegan de forma óptima, es decir, 
 
 El primer jugador tiene infinitas estrategias óptimas, las cuales pueden ser representadas por la elección de un parámetro $\alpha \in [ 0, \frac{1}{3} ]$. Una vez elegido este parámetro, el primer jugador en su primera jugada debe apostar con probabilidad $\alpha$ cuando su carta tenga el número $1$, apuestar con una probabilidad $3 \alpha$ cuando tenga el número $3$ y pasar siempre cuando tenga el número $2$. Si el primer jugador tiene un segundo turno, debe pasar siempre que tenga el número $1$, apostar cuando tiene el número $3$, y en el caso que tenga el número $2$ debe apostar con probabilidad $\alpha + \frac{1}{3}$.
 
-El segundo jugador tiene una única estrategia mixta óptima: apostar siempre que tenga el número $3$. Cuando tenga el número $1$, pasar siempre que el primer jugador haya apostado y apostar con probabilidad $\frac{1}{3}$ en caso contrario. Cuando tenga el número $2$, debe pasar cuando el oponente haya pasado previamente y apostar con probabilidad $\frac{2}{3}$ en caso contrario. La figura \ref{fig:kunh-poker-estrategias} muestra el árbol con las distribuciones de probabilidad de las estrategias previamente descritas en cada uno de los nodos alcanzables en el juego.
+El segundo jugador tiene una única estrategia mixta óptima: apostar siempre que tenga el número $3$. Cuando tenga el número $1$, pasar siempre que el primer jugador haya apostado y apostar con probabilidad $\frac{1}{3}$ en caso contrario. Cuando tenga el número $2$, debe pasar cuando el oponente haya pasado previamente y apostar con probabilidad $\frac{2}{3}$ en caso contrario. La figura \ref{fig:kuhn-poker-estrategias} muestra el árbol con las distribuciones de probabilidad de las estrategias previamente descritas en cada uno de los nodos alcanzables en el juego.
 
 \begin{figure}[ht]
 \begin{center}
-\caption{Equilibrio de Nash del juego de Kunh poker}
-\label{fig:kunh-poker-estrategias}
+\caption{Equilibrio de Nash del juego de Kuhn poker}
+\label{fig:kuhn-poker-estrategias}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
@@ -716,7 +716,7 @@ Intuitivamente, las condiciones presentadas representan las siguientes propiedad
 \item \textit{El jugador $i$ recuerda lo que eligió} (Ecuación \ref{eq:condicion-2}): si desde una historia $h$ el jugador elige $a$ estará siempre en un conjunto de información diferente si en ese punto hubiese elegido la acción $b \neq a$.
 \end{enumerate}
 
-Los juegos presentados previamente: Ejemplo \ref{ex:game-allocation}, Ejemplo \ref{ex:informacion-incompleta} y Kunh Poker son todos juegos con \textit{perfect recall}. El Ejemplo \ref{ex:imperfect-recall} muestra un juego con \textit{imperfect recall}.
+Los juegos presentados previamente: Ejemplo \ref{ex:game-allocation}, Ejemplo \ref{ex:informacion-incompleta} y Kuhn Poker son todos juegos con \textit{perfect recall}. El Ejemplo \ref{ex:imperfect-recall} muestra un juego con \textit{imperfect recall}.
 
 \begin{example} (\cite{bib:conceptos-basicos})
 \label{ex:imperfect-recall}
@@ -861,13 +861,12 @@ Considere nuevamente el Ejemplo \ref{ex:imperfect-recall}, el cual no tiene \tex
 \begin{center}
 \caption[Tabla de la forma normal para un juego con \textit{imperfect recall}]{Tabla de la forma normal para el Juego \ref{ex:imperfect-recall} con imperfect recall}
 \label{table:imperfect-recall}
-\begin{tabular}{l  c  c }
-\hline
-& (parar) & (continuar) \\ \hline
-(parar,     mantener)     & $0$ & $-\frac{1}{2}$ \\
-(parar,     intercambiar) & $0$ & $ \frac{1}{2}$ \\
-(continuar, mantener)     & $ \frac{1}{2}$ & $0$ \\
-(continuar, intercambiar) & $-\frac{1}{2}$ & $0$ \\ \hline
+\begin{tabular}{l | r | r |}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{(parar)} & \multicolumn{1}{c}{(continuar)} \\ \cline{2-3}
+(parar,     mantener)     & $0$ & $-0.5$ \\ \cline{2-3}
+(parar,     intercambiar) & $0$ & $0.5$ \\ \cline{2-3}
+(continuar, mantener)     & $0.5$ & $0$ \\ \cline{2-3}
+(continuar, intercambiar) & $-0.5$ & $0$ \\ \cline{2-3}
 \end{tabular}
 \end{center}
 \end{table}

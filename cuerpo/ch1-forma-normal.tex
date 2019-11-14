@@ -1,7 +1,7 @@
 \chapter{Juegos en Formal Normal o Estratégica}
 \label{chapter:forma-normal}
 
-En un juego en formal normal los jugadores eligen una única acción (o estrategia) de forma simultánea, obteniendo un pago de acuerdo a las acciones realizadas por cada uno de ellos. Estos juegos también se llaman frecuentemente \textit{``one-shot game''}   (juegos de un sólo disparo), ya que cada uno de los jugadores realiza una única acción \cite{bib:introductionCFR} (que puede representar la elección de una estrategia a usar en un juego de múltiples pasos). El ejemplo clásico es el juego de \textit{piedra, papel o tijera} (RPS por sus siglas en inglés). En este juego cada jugador elige una de las tres opciones mediante un gesto con sus manos: piedra (con un puño cerrado), papel (con la mano extendida) o tijera (con los dedos índice y medio levantados en forma de ``V"). La piedra gana contra la tijera, la tijera gana contra el papel y el papel gana contra la piedra. Si los jugadores eligen la misma opción, entonces es un empate.
+En un juego en formal normal los jugadores eligen una única acción (o estrategia) de forma simultánea, obteniendo un pago de acuerdo a las acciones realizadas por cada uno de ellos. Frecuentemente, estos juegos también se llaman \textit{one-shot game} (juegos de un sólo disparo), ya que cada uno de los jugadores realiza una única acción \cite{bib:introductionCFR} (que puede representar la elección de una estrategia a usar en un juego de múltiples pasos). El ejemplo clásico es el juego piedra, papel o tijera (RPS por sus siglas en inglés). En este juego cada jugador elige una de las tres opciones mediante un gesto con sus manos: piedra (con un puño cerrado), papel (con la mano extendida) o tijera (con los dedos índice y medio levantados en forma de ``V"). La piedra gana contra la tijera, la tijera gana contra el papel y el papel gana contra la piedra. Si los jugadores eligen la misma opción, entonces es un empate.
 
 \begin{definition}[\cite{bib:correlated-equilibrium}]
 \label{def:forma-normal}
@@ -14,18 +14,18 @@ Un juego de N personas en \textbf{forma normal} (o estratégica) es una tupla $\
 \end{definition}
 
 \section{Perfiles Estratégicos, Estrategias Mixtas, y Perfiles Estratégicos Mixtos}
-A continuación presentamos conceptos básicos que denotan las diversas formas en que los jugadores pueden comportarse para un juego en forma normal. Las estrategias puras son la base a partir de las cuales se construyen las estrategias mixtas. Las estrategias puras se agregan en perfiles estratégicos que denotan el comportamiento de todos los jugadores de forma simultánea, y los perfiles estratégicos mixtos agregan las estrategias mixtas \cite{bib:tutorial-existence-nash}.
+A continuación se presentan conceptos básicos que denotan las diversas formas en que los jugadores pueden comportarse para un juego en forma normal. Las estrategias puras son la base a partir de las cuales se construyen las estrategias mixtas. Las estrategias puras se agregan en perfiles estratégicos que denotan el comportamiento de todos los jugadores de forma simultánea, y los perfiles estratégicos mixtos agregan las estrategias mixtas \cite{bib:tutorial-existence-nash}.
 
 \begin{definition} Un \textbf{perfil estratégico} (o perfil de acción) es una $N$-tupla formada por una estrategia pura para cada jugador. $S = \Pi_{i \in N}S_i$ es el conjunto de perfiles estratégicos y $s = (s_i)_{i \in N}$ representa un elemento genérico de $S$.  
 \end{definition}
 
-Se denotará con $s_{-i}$ la combinación de las estrategias de todos los jugadores excepto la del jugador $i$, i.e., $s_{-i} = (s_{i'})_{i' \neq i}$. Frecuentemente descomponemos una estrategia $s$ es un par $(s_i,s_{-i})$ donde la primera componente es una estrategia pura para el jugador $i$ y la segunda componente es un vector de estrategias puras para los otros jugadores. Además, los juegos en forma normal pueden representarse como una tabla $N$-dimensional, donde cada dimensión está asociada a un jugador y sus filas/columnas corresponden a las acciones de su jugador correspondiente. Cada una de las entradas de la tabla corresponde a un único perfil estratégico (pues representan la intersección de una única acción de cada jugador) y éstas contienen un vector de pagos para cada jugador \cite{bib:introductionCFR}.
+Se denotará con $s_{-i}$ la combinación de las estrategias de todos los jugadores excepto la del jugador $i$, i.e., $s_{-i} = (s_{i'})_{i' \neq i}$. Frecuentemente se descompone una estrategia $s$ es un par $(s_i,s_{-i})$ donde la primera componente es una estrategia pura para el jugador $i$ y la segunda componente es un vector de estrategias puras para los otros jugadores. Además, los juegos en forma normal pueden representarse como una tabla $N$-dimensional, donde cada dimensión está asociada a un jugador y sus filas/columnas corresponden a las acciones de su jugador correspondiente. Cada una de las entradas de la tabla corresponde a un único perfil estratégico (pues representan la intersección de una única acción de cada jugador) y éstas contienen un vector de pagos para cada jugador \cite{bib:introductionCFR}.
 
-\textit{Piedra, papel o tijera} es un juego para dos jugadores y las acciones (o estrategias puras) son las mismas para cada jugador: $S_1 = S_2 = \{\mathcal{R}, \mathcal{P}, \mathcal{S} \}$ donde $\mathcal{R}$ es piedra, $\mathcal{P}$ es papel, y $\mathcal{S}$ es tijera. La Tabla \ref{table:pago-RPS} es la tabla de pagos correspondiente a este juego, en el cual $N = 2$ por lo que la tabla es de $2$ dimensiones. Las filas representan las acciones del jugador $1$ y las columnas las del jugador $2$, además cada celda corresponde a un perfil estratégico. Por ejemplo, si el primer jugador elige tijera y el segundo jugador elige papel, la estrategia pura es $s = (\mathcal{S}, \mathcal{P})$ y la celda correspondiente es la que se encuentra en la posición $(3, 2)$ (tercera fila y segunda columna). Esta celda contiene el vector $(1, -1)$ ya que en este caso el primer jugador gana obteniendo una utilidad de $1$, mientras que el segundo jugador pierde obteniendo una utilidad de $-1$.
+Piedra, papel o tijera es un juego para dos jugadores y las acciones (o estrategias puras) son las mismas para cada jugador: $S_1 = S_2 = \{\mathcal{R}, \mathcal{P}, \mathcal{S} \}$ donde $\mathcal{R}$ es piedra, $\mathcal{P}$ es papel, y $\mathcal{S}$ es tijera. La Tabla \ref{table:pago-RPS} es la tabla de pagos correspondiente a este juego, en el cual $N = 2$, por lo que la tabla es de $2$ dimensiones. Las filas representan las acciones del jugador $1$ y las columnas las del jugador $2$, además cada celda corresponde a un perfil estratégico. Por ejemplo, si el primer jugador elige tijera y el segundo jugador elige papel, la estrategia pura es $s = (\mathcal{S}, \mathcal{P})$ y la celda correspondiente es la que se encuentra en la posición $(3, 2)$ (tercera fila y segunda columna). Esta celda contiene el vector $(1, -1)$ ya que en este caso el primer jugador gana obteniendo una utilidad de $1$, mientras que el segundo jugador pierde obteniendo una utilidad de $-1$.
 
-\begin{table}[hbt!]
+\begin{table}[h]
 \begin{center}
-\caption{Tabla de pagos de la forma normal del juego \textit{Piedra, Papel o tijera}.}
+\caption{Tabla de pagos de la forma normal del juego piedra, papel o tijera.}
 \label{table:pago-RPS}
 \begin{tabular}{l |c | c | c |}
   \multicolumn{1}{c}{} & \multicolumn{1}{c}{$\mathcal{R}$ (piedra)} & \multicolumn{1}{c}{$\mathcal{P}$ (papel)} & \multicolumn{1}{c}{$\mathcal{S}$ (tijera)} \\ \cline{2-4}
@@ -36,7 +36,7 @@ $\mathcal{S}$ (tijera) & $-1,1$ & $1,-1$ & $0,0$ \\ \cline{2-4}
 \end{center}
 \end{table}
 
-En vez de realizar siempre la misma acción, un jugador puede elegir su jugada de acuerdo a una distribución de probabilidad, la cual se denomina una \textbf{estrategia mixta}. Dado un conjunto finito $A$, se denota con $\Delta(A)$ al conjunto de distribuciones de probabilidad sobre $A$, es decir $\Delta(A) = \{ (x_a)_{a \in A} : \sum_{a \in A} x_a = 1, x_a \geq 0\}$. 
+En vez de realizar siempre la misma acción, un jugador puede elegir su jugada de acuerdo a una distribución de probabilidad, la cual se denomina una \textbf{estrategia mixta}. Dado un conjunto finito $A$, se denota con $\Delta(A)$ al conjunto de distribuciones de probabilidad sobre $A$, es decir $\Delta(A) = \{ (x_a)_{a \in A} : \sum_{a \in A} x_a = 1, x_a \geq 0\}$. También se denotará a $\Delta^n$, como el simplex $n$-dimensional, i.e., $\Delta^n = \{ x \in \mathbb{R}^{n+1} : \sum_{0 \leq i \leq n}x_i = 1, x_i \geq 0 \}$.
 
 \begin{definition} Una \textbf{estrategia mixta} del jugador $i$, denotada con $\sigma_i$, es una distribución de probabilidad sobre el conjunto $S_i$; es decir $\sigma_i \in \Delta(S_i)$. Denotamos con $\sigma_i(s_i)$ la probabilidad que el jugador $i$ elija la acción $s_i \in S_i$. 
 \end{definition}
@@ -52,9 +52,9 @@ El \textbf{soporte} (support) de una estrategia mixta $\sigma_i \in \Delta(S_i)$
 Un \textbf{perfil estratégico mixto} $\sigma$ consiste en una estrategia mixta para cada jugador; es decir, $\sigma \in \Pi_{i \in N} \Delta(S_i)$ es una tupla de forma $\sigma=(\sigma_i)_{i \in N}$.
 \end{definition}
 
-Para $\sigma = (\sigma_i)_{i \in N}$ y $s = (s_i)_{i \in N}$, $\sigma(s)$ denota la probabilidad que el perfil estratégico mixto elija la estrategia mixta $s$; i.e., $\sigma(s)=\prod_{i\in N} \sigma_i(s_i)$. Para un perfil $\sigma$ y jugador $i$, descomponemos $\sigma$ en $(\sigma_i,\sigma_{-i})$ como la combinación de la estrategia para el jugador $i$ y el perfil $\sigma_{-i}$ para el resto de los jugadores. Similarmente, $\sigma_{-i}(s_{-i})=\prod_{j\in N,j\neq i}\sigma_j(s_j)$ denota la probabilidad de que los jugadores diferentes al jugador $i$ elijan las estrategias mixtas en el perfil $\sigma_{-i}$. Finalmente, si $x$ es una estrategia pura para el jugador $i$, también utilizamos $x$ para denotar la estrategia mixta $\sigma_i$ para el jugador $i$ tal que $\sigma_i(x)=1$.
+Para $\sigma = (\sigma_i)_{i \in N}$ y $s = (s_i)_{i \in N}$, $\sigma(s)$ denota la probabilidad que el perfil estratégico mixto elija la estrategia mixta $s$; i.e., $\sigma(s)=\prod_{i\in N} \sigma_i(s_i)$. Para un perfil $\sigma$ y jugador $i$, se descompone $\sigma$ en $(\sigma_i,\sigma_{-i})$ como la combinación de la estrategia para el jugador $i$ y el perfil $\sigma_{-i}$ para el resto de los jugadores. Similarmente, $\sigma_{-i}(s_{-i})=\prod_{j\in N,j\neq i}\sigma_j(s_j)$ denota la probabilidad de que los jugadores diferentes al jugador $i$ elijan las estrategias mixtas en el perfil $\sigma_{-i}$. Finalmente, si $x$ es una estrategia pura para el jugador $i$, también utilizamos $x$ para denotar la estrategia mixta $\sigma_i$ para el jugador $i$ tal que $\sigma_i(x)=1$.
 
-Consideremos nuevamente el juego piedra, papel o tijera. Una posible estrategia mixta para el jugador $i$ es que éste elija con probabilidad $\frac{1}{2}$ piedra o papel y nunca elija tijera. Si denotamos a dicha estrategia con $\sigma_i$, entonces $\sigma_i(\mathcal{R}) = \sigma_i(\mathcal{P}) = \frac{1}{2}$ y $\sigma_i(\mathcal{S}) = 0$. Esta estrategia también puede ser representada con $\sigma_i = (\frac{1}{2}, \frac{1}{2}, 0)$, donde la primera componente representa la probabilidad del jugador de elegir piedra, la segunda la probabilidad de elegir papel y la última la de elegir tijera. Otra posible estrategia mixta $\sigma'_i$ consiste en elegir piedra con probabilidad $\frac{1}{3}$, papel con probabilidad $\frac{1}{2}$ y tijera con probabilidad $\frac{1}{6}$, i.e. $\sigma'_i = \left(\frac{1}{3}, \frac{1}{2}, \frac{1}{6} \right)$. Note que el soporte de $\sigma_i$ es igual a $\text{support}(\sigma_i) = \{\mathcal{R}, \mathcal{P} \}$ y el soporte de $\sigma'_{i}$ es $\text{support}(\sigma'_i) = S_i$, pues en esta última estrategia todas las acciones tienen una probabilidad positiva de ser elegidas. Luego, si el jugador $1$ decide utilizar la estrategia $\sigma_i$ y el jugador $2$ la estrategia $\sigma'_i$, entonces $\sigma_1 = \left( \frac{1}{2}, \frac{1}{2}, 0 \right)$, $\sigma_2 = \left(\frac{1}{3}, \frac{1}{2}, \frac{1}{6}\right)$ y $\sigma = (\sigma_1, \sigma_2)$ es un perfil estratégico mixto. Sea $s = (\mathcal{P}, \mathcal{S})$ el perfil estratégico (puro), donde el primer jugador elige papel y el segundo jugador elige tijera, luego $\sigma(s) = \sigma(\mathcal{P}) \cdot \sigma(\mathcal{S}) = \frac{1}{2} \cdot \frac{1}{6} = \frac{1}{12}$. Por otra parte, si $s' = (\mathcal{S}, \mathcal{P})$ entonces $\sigma(s') = 0 \cdot \frac{1}{2} = 0$.
+En el juego piedra, papel o tijera una posible estrategia mixta para el jugador $i$ es elegir piedra o papel con probabilidad $\frac{1}{2}$ y nunca eligir tijera. Si denotamos a dicha estrategia con $\sigma_i$, entonces $\sigma_i(\mathcal{R}) = \sigma_i(\mathcal{P}) = \frac{1}{2}$ y $\sigma_i(\mathcal{S}) = 0$. Esta estrategia también puede ser representada con $\sigma_i = (\frac{1}{2}, \frac{1}{2}, 0)$, donde la primera componente representa la probabilidad del jugador de elegir piedra, la segunda la probabilidad de elegir papel y la última la de elegir tijera. Otra posible estrategia mixta $\sigma'_i$ consiste en elegir piedra con probabilidad $\frac{1}{3}$, papel con probabilidad $\frac{1}{2}$ y tijera con probabilidad $\frac{1}{6}$, i.e. $\sigma'_i = \left(\frac{1}{3}, \frac{1}{2}, \frac{1}{6} \right)$. Note que el soporte de $\sigma_i$ es igual a $\text{support}(\sigma_i) = \{\mathcal{R}, \mathcal{P} \}$ y el soporte de $\sigma'_{i}$ es $\text{support}(\sigma'_i) = S_i$, pues en esta última estrategia todas las acciones tienen una probabilidad positiva de ser elegidas. Luego, si el jugador $1$ decide utilizar la estrategia $\sigma_i$ y el jugador $2$ la estrategia $\sigma'_i$, entonces $\sigma_1 = \left( \frac{1}{2}, \frac{1}{2}, 0 \right)$, $\sigma_2 = \left(\frac{1}{3}, \frac{1}{2}, \frac{1}{6}\right)$ y $\sigma = (\sigma_1, \sigma_2)$ es un perfil estratégico mixto. Sea $s = (\mathcal{P}, \mathcal{S})$ el perfil estratégico (puro), donde el primer jugador elige papel y el segundo jugador elige tijera, luego $\sigma(s) = \sigma(\mathcal{P}) \cdot \sigma(\mathcal{S}) = \frac{1}{2} \cdot \frac{1}{6} = \frac{1}{12}$. Por otra parte, si $s' = (\mathcal{S}, \mathcal{P})$ entonces $\sigma(s') = 0 \cdot \frac{1}{2} = 0$.
 
 \section{Ganancia Esperada y Mejor Respuesta}
 La ganancia esperada del jugador $i$ asociada al perfil estratégico mixto $\sigma$ denota el valor promedio que el jugador $i$ obtendría después de jugar el juego infinitas veces cuando todos los jugadores utilizan las estrategias mixtas especificadas en $\sigma$. 
@@ -67,7 +67,7 @@ La \textbf{ganancia esperada} del jugador $i$ dado un perfil estratégico mixto 
 \end{alignat}
 \end{definition}
 
-La ganancia esperada del jugador $i$ la podemos descomponer como se muestra a continuación:
+La ganancia esperada del jugador $i$ la podemos descomponer como se muestra a continuación. (La demostración de este Teorema y otros contenidos en la tesis se encuentran en el Apéndice~\ref{apex:chapter:pruebas}).
 
 \begin{theorem}
 \label{theo:ganancia-esperada}
@@ -94,8 +94,8 @@ Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta
 
 En el juego piedra, papel o tijera, la ganancia esperada del jugador $i$ cuando utiliza la estrategia $\sigma = (\sigma_1, \sigma_2)$, viene dada por:
 \begin{alignat}{1}
-	u_i(\sigma)\ &=\ \sigma_i(\mathcal{R}) \left( \sigma_{-i}(\mathcal{R}) u_i(\mathcal{R}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{R}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{R}, \mathcal{S}) \right) \\
-    &+\ \sigma_i(\mathcal{P}) \left(\sigma_{-i}(\mathcal{R}) u_1(\mathcal{P}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{P}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{P}, \mathcal{S})\right) \\
+	u_i(\sigma)\ &=\ \sigma_i(\mathcal{R}) \left( \sigma_{-i}(\mathcal{R}) u_i(\mathcal{R}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{R}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{R}, \mathcal{S}) \right) \\ \nonumber
+    &+\ \sigma_i(\mathcal{P}) \left(\sigma_{-i}(\mathcal{R}) u_1(\mathcal{P}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{P}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{P}, \mathcal{S})\right) \\ \nonumber
 	&+\ \sigma_i(\mathcal{S}) \left(  \sigma_{-i}(\mathcal{R})  u_1(\mathcal{S}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{S}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{S}, \mathcal{S})\right)
 \end{alignat}
 
@@ -113,13 +113,13 @@ En particular, para la estrategia presentada previamente $\sigma = (\sigma_1, \s
     u_2(\sigma)\ &=\ \frac{1}{3}\left(0 -\frac{1}{2} \right) + \frac{1}{2} \left( \frac{1}{2} - 0 \right) + \frac{1}{6} \left( \frac{1}{2} - \frac{1}{2} \right) =& \frac{1}{12}
 \end{alignat}
 
-Calculemos ahora la mejores respuesta a $\sigma_1$ y $\sigma_2$. Supongamos que el jugador $1$ utiliza $\sigma_1$ y sea $\sigma^*_2 = (x, y, z)$ es la mejor respuesta a $\sigma_1$. Entonces la ganancia esperada del jugador $2$ viene dada por:
+Calculemos ahora las mejores respuesta a $\sigma_1$ y $\sigma_2$. Supongamos que el jugador $1$ utiliza $\sigma_1$ y sea $\sigma^*_2 = (x, y, z)$ la mejor respuesta a $\sigma_1$. Entonces la ganancia esperada del jugador $2$ viene dada por:
 \begin{alignat}{2}
 u_2(\sigma_1, \sigma^*_2)\ &=\ x\left(0 -\frac{1}{2}\right) + y\left(\frac{1}{2} - 0\right) + z\left(\frac{1}{2} - \frac{1}{2}\right) \\
 u_2(\sigma_1, \sigma^*_2)\ &=\ -\frac{1}{2}x + \frac{1}{2}y
 \end{alignat}
 
-Luego, la mejor respuesta a $\sigma_1$ se obtiene al maximizar $f(x, y) = -\frac{1}{2}x + \frac{1}{2}y$, con $x+y+z =1$ y $x, y, z \geq 0$. Es claro que esta función se maximiza en ese dominio cuando $x = z = 0$ y $y = 1$. Luego $\sigma^*_2 = (0, 1, 0)$, i.e, la estrategia en el que el jugador $2$ siempre elige papel. En este caso existe una única mejor respuesta a $\sigma_1 = \left(\frac{1}{2}, \frac{1}{2}, 0\right)$, cuyo soporte tiene un único elemento: $\text{support}(\sigma^*_2) = \{\mathcal{P}\}$.
+Luego, la mejor respuesta a $\sigma_1$ se obtiene al maximizar $f(x, y) = -\frac{1}{2}x + \frac{1}{2}y$, con $x+y+z =1$ y $x, y, z \geq 0$. Es claro que la función se maximiza en dicho dominio cuando $x = z = 0$ y $y = 1$. Luego $\sigma^*_2 = (0, 1, 0)$, i.e, la estrategia en el que el jugador $2$ siempre elige papel. En este caso existe una única mejor respuesta a $\sigma_1 = \left(\frac{1}{2}, \frac{1}{2}, 0\right)$, cuyo soporte tiene un único elemento: $\text{support}(\sigma^*_2) = \{\mathcal{P}\}$.
 
 De forma similar se obtiene que, si $\sigma^*_1 = (x, y, z)$ es mejor respuesta a $\sigma_2$, entonces $u_1(\sigma^*_1, \sigma_2) = -\frac{1}{3}x + \frac{1}{6}y + \frac{1}{6}z$. Note que en este caso se maximiza la función cuando $y = \alpha$ y $z = 1 -\alpha$, para cualquier $\alpha \in [0, 1]$. Luego, el jugador es indiferente ante las estrategias $\mathcal{P}$ y $\mathcal{S}$, por lo que existen infinitas estrategias que son mejor respuesta a $\sigma_1$. Finalmente se obtiene que $\sigma^*_1$ es mejor respuesta si y sólo si $\sigma^*_1 = (0, \alpha, 1 - \alpha)$ para cualquier  $\alpha \in [0, 1]$, i.e. $\sigma^*_1$ es mejor respuesta si y sólo si $\text{support}(\sigma^*_1) \subseteq \{\mathcal{P}, \mathcal{S} \}$.
 
@@ -135,16 +135,14 @@ Cuando cada jugador juega con una mejor respuesta frente a las estrategias del r
 Todo juego finito tiene al menos un equilibrio de Nash.
 \end{theorem}
 
-Es importante destacar que el Teorema \ref{theo:existencia-nash} es cierto al considerar perfiles estratégicos mixtos, pero no al considerar únicamente perfiles estratégicos puros. No todos los juegos tienen algún perfil estratégico puro que sea equilibrio de Nash, como por ejemplo, el juego RPS. Para ver esto, supongamos que el primer jugador juega con alguna estrategia pura, digamos $\mathcal{R}$, luego, la única mejor respuesta a esta estrategia es jugar con la estrategia pura $\mathcal{P}$. Pero esto no es un equilibrio de Nash, pues ahora la mejor respuesta a la estrategia del segundo jugador es que el jugador $1$ juegue con la estrategia pura $\mathcal{S}$. Con un razonamiento análogo, se nota que cuando el primer o segundo jugador juegan con cualquier estrategia pura no se puede obtener un equilibrio de Nash.
+Es importante destacar que el Teorema \ref{theo:existencia-nash} es cierto al considerar perfiles estratégicos mixtos, pero no al considerar únicamente perfiles estratégicos puros. No todos los juegos tienen algún perfil estratégico puro que sea equilibrio de Nash, como por ejemplo, el juego RPS. Para ver esto, supongamos que el primer jugador juega con alguna estrategia pura, digamos $\mathcal{R}$, luego, la única mejor respuesta a esta estrategia es jugar con la estrategia pura $\mathcal{P}$. Pero esto no es un equilibrio de Nash, pues ahora la mejor respuesta a la estrategia del segundo jugador es que el jugador $1$ juegue con la estrategia pura $\mathcal{S}$. Análogamente, cuando el primer o segundo jugador juegan con cualquier estrategia pura no se puede obtener un equilibrio de Nash.
 
 En RPS existe un único equilibrio de Nash, que ocurre cuando $\sigma^*_1 = \sigma^*_2 = \left(\frac{1}{3}, \frac{1}{3}, \frac{1}{3} \right)$. En efecto, note que si el jugador $i$ utiliza $\sigma^*_i$, para cualquier estrategia $\sigma_{-i}$, la ganancia del jugador $-i$ viene dada por:
 \begin{alignat}{1}
-	u_{-i}(\sigma^*_i, \sigma_{-i}) = \sigma_{-i}(\mathcal{R}) \left( \frac{1}{3} -  \frac{1}{3} \right) + \sigma_{-i}(\mathcal{P}) \left( \frac{1}{3} -  \frac{1}{3} \right) + \sigma_{-i}(\mathcal{S}) \left( \frac{1}{3} -  \frac{1}{3} \right)\ =\ 0
+	u_{-i}(\sigma^*_i, \sigma_{-i})\ =\ \sigma_{-i}(\mathcal{R}) \left( \frac{1}{3} -  \frac{1}{3} \right) + \sigma_{-i}(\mathcal{P}) \left( \frac{1}{3} -  \frac{1}{3} \right) + \sigma_{-i}(\mathcal{S}) \left( \frac{1}{3} -  \frac{1}{3} \right)\ =\ 0 \,.
 \end{alignat}
 
-Luego se obtiene que el jugador $-i$ es indiferente ante cualquier estrategia mixta, pues su ganancia esperada siempre es igual a $0$, y por lo tanto cualquier estrategia $\sigma_{-i}$ es mejor respuesta a $\sigma^*_i$. En particular $\sigma^*_1$ es mejor respuesta a $\sigma^*_2$ y $\sigma^*_2$ es mejor respuesta a $\sigma^*_1$, obteniendo que el perfil estratégico $\sigma^* = (\sigma^*_1, \sigma^*_2)$ es un equilibrio de Nash.
-
-% Demostrar unicidad del equilibrio de Nash para RPS?
+Luego, el jugador $-i$ es indiferente ante cualquier estrategia mixta, pues su ganancia esperada siempre es igual a $0$, y por lo tanto cualquier estrategia $\sigma_{-i}$ es mejor respuesta a $\sigma^*_i$. En particular $\sigma^*_1$ es mejor respuesta a $\sigma^*_2$ y $\sigma^*_2$ es mejor respuesta a $\sigma^*_1$ y el perfil estratégico $\sigma^* = (\sigma^*_1, \sigma^*_2)$ es un equilibrio de Nash.
 
 \section{Equilibrio Correlacionado}
 \label{section:equilibrio-correlacionado}
@@ -176,11 +174,10 @@ Sea $\psi\in\Delta(S)$ un equilibrio correlacionado. Si $\psi$ se factoriza como
 
 A diferencia del conjunto de equilibrios de Nash, el cual es un conjunto matemáticamente complejo (un conjunto de puntos fijos), el conjunto de equilibrios correlacionados en un conjunto bastante simple. En particular, el conjunto de equilibrios correlacionado es un politopo (generalización de un polígono en $\mathbb{R}^N$) convexo. Por lo tanto puede esperarse que existan procedimientos simples para calcular equilibrios correlacionados  \cite{bib:correlated-equilibrium}. En el Capítulo \ref{chapter:regret-matching} se presentan algunos procedimientos que permiten calcular equilibrios correlacionados, además, estos procedimientos permiten calcular un equilibrios de Nash si los juegos cumplen con ciertas condiciones.
 
-
-% \Rubmary{No estoy segura si lo escrito es lo que responde la pregunta}
 % \noindent\textcolor{red}{\bf *** Y esto nos va a llevar a calcular equilibrios de Nash? ***}
 
 \begin{theorem}
+\label{theo:correlacionado-linealidad}
 Sean $\sigma$ y $\sigma'$ dos equilibrios correlacionados, y $\alpha$ un número real en $(0,1)$. Entonces, la distribución $\alpha\sigma + (1-\alpha)\sigma'$ es un equilibrio correlacionado.
 \end{theorem}
 
@@ -189,9 +186,9 @@ Sean $\sigma$ y $\sigma'$ dos equilibrios correlacionados, y $\alpha$ un número
 Juego \say{batalla de los sexos}. Considere una pareja María y José, ellos tendrán una cita, por lo que deben elegir un evento. A María le gusta el ballet y a José el béisbol. Ellos prefieren ir juntos al mismo evento que ir a eventos diferentes. Sin embargo, cada uno se sentiría más feliz si deciden ir al evento de su preferencia. La Tabla~\ref{table:pagos-batallas-sexo} es la tabla de pagos correspondiente.
 \end{example}
 
-\begin{table}
+\begin{table}[h]
 \begin{center}
-\caption{Tabla de pagos del juego batalla de los sexos}
+\caption{Tabla de pagos del juego ``batalla de los sexos''.}
 \label{table:pagos-batallas-sexo}
 \begin{tabular}{ c c | c | c |}
  & \multicolumn{1}{c}{} & \multicolumn{2}{c}{José} \\
@@ -205,18 +202,18 @@ Juego \say{batalla de los sexos}. Considere una pareja María y José, ellos ten
 
 En este caso sí existen equilibrios de Nash con estrategias puras. El perfil estratégico (ballet, ballet) es un equilibrio de Nash. En efecto, si José sabe que María siempre elige ballet, lo mejor que él puede hacer es ir al ballet a su compañera, asimismo, si María sabe que José siempre elegirá ballet, lo mejor que puede hacer ella elegir también ballet. De forma análoga se obtiene que la estrategia (béisbol, béisbol) también es un equilibrio de Nash.
 
-Un tercer equilibrio de Nash ocurre cuando cada jugador utiliza una estrategia tal que su oponente sea indiferente ante la elección de su propia estrategia. Es decir, José utiliza una estrategia tal que María obtenga siempre la misma ganancia esperada indiferentemente de la estrategia que utilice. Análogamente María utiliza una estrategia para la cual José siempre obtiene la misma ganancia sin importar lo que él elija.
+Un tercer equilibrio de Nash ocurre cuando cada jugador utiliza una estrategia tal que su oponente sea indiferente ante la elección de su propia estrategia (en relación a su utilidad). Es decir, José utiliza una estrategia tal que María obtenga siempre la misma ganancia esperada indiferentemente de la estrategia que ella utilice. Análogamente María utiliza una estrategia para la cual José siempre obtiene la misma ganancia sin importar lo que él elija.
 
-Veamos cuando ocurre lo anterior. Supongamos que María (que será considerada el primer jugador. utiliza una estrategia $\sigma_1 = (x, 1-x)$ (donde la primera componente corresponde a la probabilidad de elegir ballet). Si José utiliza una estrategia $\sigma_2 = (\beta_1, \beta_2)$. Entonces su ganancia esperada es igual a $u_2(\sigma_1, \sigma_2) = x\beta_1 + 2(1-x)\beta_2$. Luego, José es indiferente a los valores $\beta_1$ y $\beta_2$ cuando $x = 2(1-x)$, lo que ocuure cuando $x = \frac{2}{3}$. En efecto, si $\sigma_1 = \left(\frac{2}{3}, \frac{1}{3} \right)$, entonces la ganancia esperada de José siempre es igual a:
+Suponga que María (que será considerada el primer jugador. utiliza una estrategia $\sigma_1 = (x, 1-x)$ (donde la primera componente corresponde a la probabilidad de elegir ballet). Si José utiliza una estrategia $\sigma_2 = (\beta_1, \beta_2)$. Entonces su ganancia esperada es igual a $u_2(\sigma_1, \sigma_2) = x\beta_1 + 2(1-x)\beta_2$. Luego, José es indiferente a los valores $\beta_1$ y $\beta_2$ cuando $x = 2(1-x)$, lo que ocuure cuando $x = \frac{2}{3}$. En efecto, si $\sigma_1 = \left(\frac{2}{3}, \frac{1}{3} \right)$, entonces la ganancia esperada de José siempre es igual a:
 \begin{alignat}{1}
-u_2(\sigma_1, \sigma_2) = \frac{2}{3}\beta_1 + 2\left(1-\frac{2}{3} \right)\beta_2 = \frac{2}{3}(\beta_1 + \beta_2) = \frac{2}{3}
+u_2(\sigma_1, \sigma_2)\ =\ \frac{2}{3}\beta_1 + 2\left(1-\frac{2}{3} \right)\beta_2\ =\ \frac{2}{3}(\beta_1 + \beta_2)\ =\ \frac{2}{3} \,.
 \end{alignat}
 
 Por otra parte, si José utiliza una estrategia $\sigma_2 = (y, 1-y)$ y María utiliza una estrategia $\sigma_1 = (\theta_1, \theta_2)$ la ganancia esperada para María es igual a $u_2(\sigma_1, \sigma_2) = 2y\theta_1 + (1-y)\theta_2$ y ella será indiferente a la elección de $\theta_1$ y $\theta_2$ cuando $2y = 1-y$, i.e, cuando $y = \frac{1}{3}$. Note que, cuando $\sigma_2 = \left(\frac{1}{3}, \frac{2}{3} \right)$, entonces:
 \begin{alignat}{1}
-u_2(\sigma_1, \sigma_2) = \frac{2}{3}\beta_1 + 2\left(1-\frac{2}{3} \right)\beta_2 = \frac{2}{3}(\beta_1 + \beta_2) = \frac{2}{3}
-\end{alignat}.
+u_2(\sigma_1, \sigma_2)\ =\ \frac{2}{3}\beta_1 + 2\left(1-\frac{2}{3} \right)\beta_2\ =\ \frac{2}{3}(\beta_1 + \beta_2)\ =\ \frac{2}{3} \,.
+\end{alignat}
 
 Luego se tiene que $\sigma = \left(\left(\frac{2}{3}, \frac{1}{3}\right), \left(\frac{1}{3}, \frac{2}{3}\right)\right)$ es un equilibrio de Nash. Sin embargo, ninguna de las $3$ soluciones parece realmente satisfactoria. Las $2$ primeras son claramente más beneficiosas para uno de los jugadores y la última, aunque podría parecer más justa, proporciona un ganancia esperada menor que las estrategias anteriores para ambos jugadores. ?`Será posible que los jugadores cooperen entre sí para obtener mejores resultados?
 
-Los jugadores podrían realizar lo siguiente: lanzar una moneda, si el resultado es cara van al ballet y si es sello van al béisbol. En este caso ya no se limitan a estrategias mixtas y están eligiendo una distribución de probabilidad sobre todos los perfiles estratégicos. La distribución propuesta es $\psi \in \Delta(S)$, tal que $\psi(\text{ballet}, \text{ballet}) = \psi(\text{beisbol}, \text{beisbol}) = \frac{1}{2}$ y $\psi(\text{ballet}, \text{beisbol}) = \psi(\text{beisbol}, \text{ballet}) =0$. $\psi$ es un equilibrio correlacionado y ambos jugadores obtendrían una ganancia esperada de $\frac{1}{2}$.
+Los jugadores podrían realizar lo siguiente: lanzar una moneda, si el resultado es cara van al ballet y si es sello van al béisbol. En este caso ya no se limitan a estrategias mixtas y están eligiendo una distribución de probabilidad sobre todos los perfiles estratégicos. La distribución propuesta es $\psi \in \Delta(S)$, tal que $\psi(\text{ballet}, \text{ballet}) = \psi(\text{beisbol}, \text{beisbol}) = \frac{1}{2}$ y $\psi(\text{ballet}, \text{beisbol}) = \psi(\text{beisbol}, \text{ballet}) =0$. $\psi$ es un equilibrio correlacionado y ambos jugadores obtendrían una ganancia esperada de $\frac{3}{2}$.

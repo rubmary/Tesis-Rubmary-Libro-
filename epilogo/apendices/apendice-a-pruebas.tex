@@ -1,15 +1,32 @@
 \chapter{Pruebas}
 \label{apex:chapter:pruebas}
 
-\section{Capítulo I}
+\makeatletter
+\newtheorem*{rep@theorem}{\rep@title}
+\newcommand{\newreptheorem}[2]{
+    \newenvironment{rep#1}[1]
+    {
+        \def\rep@title{#2 \ref{##1}}
+        \begin{rep@theorem}
+    }
+     {
+        \end{rep@theorem}
+     }
+}
+\makeatother
 
-\begin{theorem}
-\label{lemma:1}
+\newreptheorem{theorem}{Teorema}
+
+
+\section*{Capítulo I}
+
+\begin{reptheorem}{theo:ganancia-esperada}
 La ganancia esperada $u_i(\sigma)$ del jugador $i$ dado el perfil estratégico $\sigma$ satisface:
 \begin{alignat}{1}
 u_i(\sigma)\ =\ \sum_{s_i\in S_i} \sigma_i(s_i) \sum_{s_{-i}\in S_{-i}} \sigma_{-i}(s_{-i}) u_i(s_i,s_{-i}) \,.
 \end{alignat}
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Partiendo de la Definición \ref{def:ganancia-esperada} se obtiene
 \begin{alignat}{1}
@@ -18,7 +35,6 @@ Partiendo de la Definición \ref{def:ganancia-esperada} se obtiene
 \end{alignat}
 \end{proof}
 
-
 \begin{lemma}
 \label{lemma:2}
 Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$, y sea $x\in S_i$ una estrategia pura para el jugador $i$. Entonces, para toda estrategia pura $y\in S_i$ diferente de $x$,
@@ -26,6 +42,7 @@ Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta
   \sigma^*_i(x) \sum_{s_{-i}} u_i(x,s_{-i}) \sigma_{-i}(s_{-i})\ \geq\ \sigma^*_i(x) \sum_{s_{-i}} u_i(y,s_{-i}) \sigma_{-i}(s_{-i}) \,.
 \end{alignat}
 \end{lemma}
+
 \begin{proof}
 Considere la estrategia mixta $\sigma'_i$ definida por:
 \begin{alignat}{1}
@@ -36,14 +53,14 @@ Considere la estrategia mixta $\sigma'_i$ definida por:
 		\sigma^*_i(s_i) & \text{en otro caso} 
 	\end{cases}
 \end{alignat}
-Utilizando el Lema~\ref{lemma:1} y el hecho que $\sigma^*_i$ es mejor respuesta a $\sigma_{-i}$:
+Utilizando el Teorema~\ref{theo:ganancia-esperada} y el hecho que $\sigma^*_i$ es mejor respuesta a $\sigma_{-i}$:
 \begin{alignat}{1}
   u_i(\sigma^*_i, \sigma_{-i})\ 
     &\geq\ u_i(\sigma'_i, \sigma_{-i}) \\
     &=\ \sum_{z \in S_i} \sigma'_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) \\
     &=\ \sum_{z\neq x} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i}) + \sigma^*_i(x)\sum_{s_{-i}} u_i(y,s_{-i})\sigma_{-i}(s_{-i}) \,.
 \end{alignat}
-Por el Lema~\ref{lemma:1},
+Por el Teorema~\ref{theo:ganancia-esperada},
 $u_i(\sigma^*_i, \sigma_{-i})=\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z,s_{-i}) \sigma_{-i}(s_{-i})$. Entonces,
 \begin{alignat}{1}
   \label{eq:ineq-ganancias}
@@ -53,10 +70,10 @@ $u_i(\sigma^*_i, \sigma_{-i})=\sum_{z \in S_i} \sigma^*_i(z) \sum_{s_{-i}} u_i(z
 \end{proof}
 
 
-\begin{theorem}
-\label{theo-apex:mejor-respuesta}
+\begin{reptheorem}{theo:mejor-respuesta}
 Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$. Cualquier estrategia mixta $\sigma_i$ para el jugador $i$ cuyo soporte sea un subconjunto del soporte de $\sigma^*_i$ es también una mejor respuesta a $\sigma_{-i}$.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Sea $x \in S_i$ una \emph{estrategia pura} perteneciente al soporte de $\sigma^*_i$, y sea $y \in S_i$ una estrategia pura \emph{diferente} de $x$. 
 
@@ -77,10 +94,10 @@ u_i(\sigma_i, \sigma_{-i})\ &=\ \sum_{x \in S_i} \sigma_i(x) \sum_{s_{-i}} u_i(x
 En particular, $u_i(\sigma^*_i,\sigma_{-i})=C$, y $\sigma_i$ es también mejor respuesta a $\sigma_{-i}$.
 \end{proof}
 
-\begin{theorem}
-\label{theo-apex:nash-correlacionado}
+\begin{reptheorem}{theo:nash-correlacionado}
 Si $\sigma$ es un equilibrio de Nash, entonces $\sigma$ es un equilibrio correlacionado.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Sea $\sigma$ un equilibrio de Nash, sean $x,y\in S_i$ estrategias puras distintas cualesquiera para el jugador $i$, y sea $\sigma'_i$ una estrategia mixta cualquiera para el jugador $i$. Por el Lema~\ref{lemma:2},
 \begin{alignat}{1}
@@ -93,10 +110,10 @@ Es decir,
 Luego, $\sigma$ es un equilibrio correlacionado.
 \end{proof}
 
-\begin{theorem}
-\label{theo-apex:correlacionado-nash}
+\begin{reptheorem}{theo:correlacionado-nash}
 Sea $\psi\in\Delta(S)$ un equilibrio correlacionado. Si $\psi$ se factoriza como $\psi=\prod_{i\in N} \sigma_i$ donde $\{\sigma_i\}_{i\in N}$ es un conjunto de estrategias mixtas para cada jugador (i.e., $\psi(s)=\prod_{i \in N} \sigma_i(s_i)$ para todo $s\in S$), entonces $\psi$ es un equilibrio de Nash.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Sea $\psi= \prod_{i \in N} \sigma_i$ un equilibrio correlacionado en forma factorizada. Debemos mostrar que para cualquier jugador $i$ y estrategia mixta $\sigma'_i$ para el jugador $i$, se cumple $u_i(\sigma) \geq u_i(\sigma'_i, \sigma_{-i})$.
 
@@ -137,11 +154,10 @@ Luego, al tomar $y=x^*$ en \eqref{eq:4:theo:correlacionado-nash},
 Como $\sigma'_i$ es una estrategia cualquiera para el jugador $i$, $\sigma$ es un equilibrio de Nash.
 \end{proof}
 
-
-
-\begin{theorem}
+\begin{reptheorem}{theo:correlacionado-linealidad}
 Sean $\sigma$ y $\sigma'$ dos equilibrios correlacionados, y $\alpha$ un número real en $(0,1)$. Entonces, la distribución $\alpha\sigma + (1-\alpha)\sigma'$ es un equilibrio correlacionado.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Como $\sigma$ y $\sigma'$ son equilibrios correlacionados y $\alpha, 1 - \alpha \in (0, 1)$ se cumple que para cualesquiera $x$ e $y$:
 \begin{alignat}{1}
@@ -155,16 +171,16 @@ Sumando las ecuaciones anteriores y factorizando se obtiene:
 Por lo que $\alpha \sigma +  (1 - \alpha) \sigma'$ es un equilibrio correlacionado.
 \end{proof}
 
-\section{Capítulo II}
+\section*{Capítulo II}
 
-\begin{theorem}
-\label{theo-apex:comportamiento-a-mixta}
+\begin{reptheorem}{theo:comportamiento-a-mixta}
 Dado un juego en forma extensa y un jugador $i$, tal que: si $h' \sqsubset h$ y $P(h') = P(h) = i$, entonces $I(h') \neq I(h)$. Luego, para cualquier estrategia de comportamiento $\sigma^b_i \in B^i$, la estrategia mixta $\sigma^m_i$ dada por:
 \begin{alignat}{1}
 \sigma^m_i(s_i) := \prod_{I_i \in \mathcal{I}_i} \sigma^b_i(I_i)(s_i(I_i)) \label{eq-apex:comportamiento-a-mixta}
 \end{alignat}
 es equivalente a la estrategia $\sigma^b_i$.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Se quiere probar que para todo $z \in Z$, se tiene que $\pi^{\sigma^m_i}(z) = \pi^{\sigma^b_i}(z)$. 
 Para cualquier estrategia se denotará con $\sigma_i(s)$ la probabilidad de elegir la estrategia $s_i$ bajo $\sigma_i$. Además, la probabilidad de elegir una estrategia $s_i$ bajo la estrategia $\sigma^b_i$ es exactamente el lado derecho de la Ecuación \ref{eq:comportamiento-a-mixta}, la cual, por definición es la probabilidad de elegir $s_i$ bajo $\sigma^m_i$. Luego se tiene que $\sigma_i^b(s_i) = \sigma_i^m(s_i)$ para cualquier estrategia pura $s_i \in S_i$.
@@ -180,10 +196,10 @@ Luego, $\pi^{\sigma_i^b}(z) = \pi^{\sigma_i^m}(z)$ para todo $z \in Z$, obtenien
 \end{proof}
 
 
-\begin{theorem}
-\label{theo-apex:mixta-a-comportamiento}
+\begin{reptheorem}{theo:mixta-a-comportamiento}
 Dado un juego finito de $N$ personas en el que el jugador $i$ tiene ``perfect recall''. Entonces, para cada estrategia mixta $\sigma^m_i \in \Delta(S_i)$ del jugador $i$, existe una estrategia de comportamiento $\sigma^b_i \in B^i$, equivalente a $\sigma^m_i$.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Se denotará por $\pi^{\sigma_i}(I_i, a)$ la probabilidad, bajo $\sigma_i$, que $I_i$ sea alcanzable y se elija la acción $a$. De forma más general se denotará con $\pi^{\sigma_i}(I_i, a_1, a_2, ..., a_k)$ la probabilidad que $I_i$ sea alcanzable y que luego el jugador $i$ elija las acciones $a_1, a_2, ... a_k$. Luego se elige la siguiente estrategia de comportamiento:
 \begin{alignat}{1}
@@ -214,14 +230,13 @@ Entonces
 Obteniendo $\pi^{\sigma^b_i}(z) = \pi^{\sigma^m_i}(z)$, que era lo que se quería demostrar.
 \end{proof}
 
+\section*{Capítulo IV}
 
-\section{Capítulo IV}
-
-\begin{theorem}
-\label{theo-apex:no-regret}
+\begin{reptheorem}{theo:no-regret}
 Sea $(s_t)_{t = 1, 2, ...}$ una secuencia de juegos de $\Gamma$.
 Entonces, $R_i^t(j, k)$ converge a $0$ para cada $i$ y cada $j, k \in S_i$, con $j \neq k$, si y sólo si la secuencia de distribuciones empíricas $z_t$ converge al conjunto de equilibrio correlacionado.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Note que:
 \begin{alignat}{1}
@@ -239,10 +254,31 @@ Dado $\varepsilon > 0$, $R_i^t(j, k) \leq \varepsilon$ si y sólo si:
 Obteniendo que $R_i^t(j, k) \leq \varepsilon$ para todo $i \in N$ y todo $j, k \in S_i$ si y sólo si $z_t$ es un $\varepsilon$-equilibrio correlacionado. Por lo tanto, todos los \textit{regrets} convergen a cero si y sólo si $z_t$ converge al conjunto de equilibrio correlacionado.
 \end{proof}
 
+\begin{reptheorem}{theo:def-proc-B}
+Sea $R_t^i(j, j) = 0$. El vector $q_t^i$, definido en \ref{eq:def-inv-vector}, cumple que:
+\begin{alignat}{1}
+q^i_t(j)\sum_{k \in S_i} R^i_t(j,k)\ =\ \sum_{k \in S_i} q_t^i(k)R_i^t(k,j) \,.
+\end{alignat}
+\end{reptheorem}
 
-\begin{theorem}
+\begin{proof}
+\begin{alignat}{3}
+  & & q^i_t(j)\ &=\ \biggl[\sum_{k \in S_i} q^i_t(k)\frac{1}{\mu}R^i_t(k,j)\biggr] + q^i_t(j)\biggl[1 - \sum_{k \in S_i} \frac{1}{\mu} R^i_t(j,k)\biggr] \\
+  &\implies\quad
+  &\mu q_t^i(j)\ &=\ \biggl[\sum_{k \in S_i}q^i_t(k)R^i_t(k,j)\biggr] + q^i_t(j)\biggl[\mu - \sum_{k \in S_i} R^i_t(j, k)\biggr] \\
+  &\implies\quad
+  &\mu q^i_t(j)\ & =\ \biggl[\sum_{k \in S_i}q^i_t(k)R^i_t(k,j)\biggr] + \mu q^i_t(j) - q^i_t(j)\sum_{k\in S_i} R^i_t(j,k) \,.
+\end{alignat}
+Por lo tanto,
+\begin{alignat}{1}
+q^i_t(j)\sum_{k \in S_i} R^i_t(j,k)\ =\ \sum_{k \in S_i} q_t^i(k)R_i^t(k,j) \,.
+\end{alignat}
+\end{proof}
+
+\begin{reptheorem}{theo:conv-proc-B}
 Supongamos que a cada período $t+1$, el jugador $i$ elige las estrategias acorde a un vector de distribución de probabilidad $q_t^i$ que satisface \eqref{eq:proc-B}. Entonces, $R^i_t(j, k)$ converge a cero (a. s.) para todo $j, k \in S_i$ con $j \neq k$.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 La prueba es una aplicación directa del Teorema de Aproximación de Blackwell con $L$, $v$ y $\mathcal{C}$ definidos de la siguiente manera:
 \begin{itemize}[noitemsep]
@@ -318,11 +354,10 @@ cuando $\lambda(j, k) = [D_i^t(j, k)]^+ = R_t^i(j, k)$ es equivalente que la est
 Aplicando el Teorema \ref{theo:blackwell} se tiene que al usar dicha estrategia, $D_t$ alcanza a $\mathbb{R}^-$ que es equivalente a que $R_i^t(j, k) \rightarrow 0$ para todo $j, k \in S_i$.
 \end{proof}
 
-
-\begin{theorem}
-\label{theo-apex:conv-proc-C}
+\begin{reptheorem}{theo:conv-proc-C}
 El procedimiento adaptativo definido en \eqref{eq:proc-C} es universalmente consistente para el jugador $i$.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 La prueba es similar a la del procedimiento anterior. Se definen $L$, $v$ y $\mathcal{C}$ del Teorema \ref{theo:blackwell} de la siguiente manera:
 \begin{itemize}[noitemsep]
@@ -369,8 +404,7 @@ Al elegir $p_{t+1}(j) = q_{\lambda(D_t)}(j) = \frac{R_i^t (j)}{\sum_{k \in S_i} 
 \end{proof}
 
 
-\begin{theorem}
-\label{theo-apex:UC-EN}
+\begin{reptheorem}{theo:UC-EN}
 Sea $\Gamma$ un juego de dos jugadores de suma cero y sea $(s^t)_{t=1,2,..., T}$ una secuencia de juegos de $\Gamma$, tales que, para todo $s_i \in S_i$, para todo $i \in {1, 2}$:
 \begin{alignat}{1}
 \frac{1}{T}\sum_{t = 1}^{T}u_i(s_i, s_{-i}^t) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t) \leq \varepsilon
@@ -380,7 +414,8 @@ para algún $\varepsilon > 0$. Sea $\bar{\sigma}^T = (\bar{\sigma_1}^T, \bar{\si
 \bar{\sigma}_i^T(s_i) = \frac{ |\{ 1 \leq T : s_i^t = s_i\}|}{T} = \frac{\#(s_i)}{T}
 \end{alignat}
 es decir, $\bar{\sigma}^T$, es la distribución empírica de probabilidad. Entonces $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Por hipótesis del teorema, se tiene que:
 \begin{alignat}{1}
@@ -429,12 +464,12 @@ Análogamente se tiene que $u_2(\bar{\sigma}^T) + 2\varepsilon \geq u_2(\bar{\si
 \end{proof}
 
 
-\section{Capítulo V}
+\section*{Capítulo V}
 
-\begin{theorem}
-\label{theo-apex:regret-nash}
+\begin{reptheorem}{theo:regret-nash}
 En un juego de $2$ jugadores de suma cero si el average overall regret a tiempo $T$ es menor que $\varepsilon$ entonces $\sigma^{-T}$ es un $2\varepsilon$-equilibrio de Nash
-\end{theorem}
+\end{reptheorem}
+
 \begin{proof}
 Se probará que la probabilidad de alcanzar $z$ bajo $\bar{\sigma}_i^T$ viene dada por el promedio de alcanzar $z$ en cada estrategia. Sean $h_1 \sqsubset h_2 \sqsubset h_3 \sqsubset ... \sqsubset h_m \sqsubset z$ todos los prefijos de $z$ correspondientes al jugador $i$, es decir $P(h_k) = i\ \forall k : 1 \leq k \leq m$ y sean $a_1, a_2, ..., a_m$ las acciones correspondientes en $z$ en cada historia respectiva. Luego:
 \begin{alignat}{2}
@@ -499,9 +534,9 @@ Análogamente, se demuestra que:
 Concluyendo que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio correlacionado.
 \end{proof}
 
-\begin{theorem}
+\begin{reptheorem}{theo:esperanza-MCCFR}
 $E_{j \sim q_j} [\tilde{u}_i(\sigma, I | j)]\ =\ u_i(\sigma, I)$
-\end{theorem}
+\end{reptheorem}
 
 \begin{proof}
 \begin{alignat}{2}
@@ -513,10 +548,5 @@ $E_{j \sim q_j} [\tilde{u}_i(\sigma, I | j)]\ =\ u_i(\sigma, I)$
     & = \sum_{ \substack{h \in I \\ z \in Z} } \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)}  = u_i(\sigma, I) \label{eq:lemma-final-eq}
 \end{alignat}
 
-La ecuación \ref{eq:def-esperanza} se obtiene de la definición de $\tilde{u}_i(\sigma, I | j)$. \ref{eq:reorder-sum-1} y \ref{eq:reorder-sum-2} se obtienen al reordenar las sumatorias y considerando que la unión de los bloques generan a $Z$. La ecuación \ref{eq:lemma-final-eq}
+La ecuación \ref{eq:def-esperanza} se obtiene de la definición de $\tilde{u}_i(\sigma, I | j)$. \ref{eq:reorder-sum-1} y \ref{eq:reorder-sum-2} se obtienen al reordenar las sumatorias y considerando que la unión de los bloques generan a $Z$. La ecuación \ref{eq:lemma-final-eq}.
 \end{proof}
-
-
-
-
-

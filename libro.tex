@@ -18,15 +18,19 @@
 \usepackage{dirtytalk}
 \usepackage{pifont}
 \usepackage{float}
-\allowdisplaybreaks
-
+%\usepackage{flafter}
 \usepackage{booktabs}
+\usepackage{url}
+
+\decimalcomma
+\allowdisplaybreaks
 
 \newtheorem{definition}{Definición}
 \newtheorem{theorem}[definition]{Teorema}
 \newtheorem{lemma}[definition]{Lema}
 \newtheorem{proposition}[definition]{Proposición}
 \newtheorem{example}[definition]{Ejemplo}
+
 \renewcommand*{\proofname}{Prueba}
 \counterwithin{definition}{chapter}
 
@@ -37,8 +41,8 @@
 \autori{R. Rojas Linárez}
 \usbid{13-11263}
 \titulo{Algoritmos para Juegos con Información Incompleta y No Determinismo}
-\fecha{Septiembre~de~2019}
-\agno{2019}
+\fecha{Enero~de~2020}
+\agno{2020}
 %\fechadefensa{31~de~abril~de~2015}
 \tutor{Blai Bonet}
 %\usarcotutor
@@ -68,6 +72,9 @@
 \newcommand{\cmark}{\textcolor{ao}{\ding{51}}}
 \newcommand{\xmark}{\textcolor{red}{\ding{55}}}
 
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
 \begin{document}
 \frontmatter
 \maketitle
@@ -83,7 +90,7 @@
 \mainmatter
 \input{preambulo/introduccion}
 \input{cuerpo/ch1-forma-normal}
-\input{cuerpo/ch2-forma-extensa}
+\input{cuerpo/ch2-forma-extensiva}
 \input{cuerpo/ch3-evaluacion-explotabilidad}
 \input{cuerpo/ch4-regret-matching}
 \input{cuerpo/ch5-CFR}

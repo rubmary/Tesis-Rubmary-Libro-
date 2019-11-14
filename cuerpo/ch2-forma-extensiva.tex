@@ -1,5 +1,5 @@
-\chapter{Juegos en Forma Extensa}
-\label{chapter:juegos-forma-extensa}
+\chapter{Juegos en Forma Extensiva}
+\label{chapter:juegos-forma-extensiva}
 
 Muchos juegos constan de una secuencia de acciones realizadas por los jugadores a lo largo del tiempo, haciendo al modelo anterior insatisfactorio debido a que ignora la estructura secuencial de este tipo de problemas de decisión. Estos juegos pueden ser representados en forma de árbol enraizado, donde cada nodo representa un estado del juego y las ramas representan las acciones que se pueden realizar en un nodo (o estado) específico. 
 
@@ -10,16 +10,14 @@ Dos personas utilizan el siguiente procedimiento para compartir dos objetos idé
 
 La Figura \ref{fig:game-allocation} representa el árbol correspondiente al juego presentado. Cada nodo representa un estado del juego. Los nodos no terminales tienen un jugador asignado, que representa quien debe tomar la decisión en ese estado y las ramas representan las acciones posibles. En este caso la raíz corresponde al primer jugador, el cual tiene $3$ opciones posibles: quedarse con los $2$ objetos: $(2-0)$, repartir $1$ objeto para cada jugador: $(1-1)$, o darle los $2$ objetos al jugador $2$: $(0-2)$. Los $3$ nodos del primer nivel corresponden al jugador $2$, en cada uno de ellos tiene dos opciones: aceptar o rechazar la distribución. Las hojas representan los nodos terminales del juego, cada uno con la ganancia respectiva para cada jugador según el caso.
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \begin{center}
-\caption{Árbol del juego en forma extensiva del Ejemplo~\ref{ex:game-allocation}}
-\label{fig:game-allocation}
 \begin{tikzpicture}[
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=5cm, level distance=3cm},
-level 2/.style={sibling distance=2.5cm},
+level 1/.style={sibling distance=5cm, level distance=2cm},
+level 2/.style={sibling distance=2.5cm, level distance=1.5cm},
 ]
 \node[player1] [label=$1$]{}
     child { node [player2] [label=above:{$2$}] {}
@@ -27,7 +25,7 @@ level 2/.style={sibling distance=2.5cm},
         		edge from parent node[left] {acepta} }
         child { node [terminal] [label=below:{$(0,0)$}] {}
         		edge from parent node[right] {rechaza} }
-        edge from parent node[left] {$(2-0)$}
+        edge from parent node[left] {$\ (2-0)$}
     }
     child { node [player2] [label=45:{$2$}] {}
     	child { node [terminal] [label=below:{$(1,1)$}] {}
@@ -41,9 +39,11 @@ level 2/.style={sibling distance=2.5cm},
         		edge from parent node[left] {acepta} }
         child { node [terminal] [label=below:{$(0,0)$}] {}
         		edge from parent node[right] {rechaza} }
-        edge from parent node[right] {$(0-2)$}
+        edge from parent node[right] {$\ (0-2)$}
     };
 \end{tikzpicture}
+\caption[Árbol del juego en forma extensiva del Ejemplo~\ref{ex:game-allocation}.]{Árbol del juego en forma extensiva del Ejemplo~\ref{ex:game-allocation}. Los nodos del primer jugador son representados con círculos sin relleno, los nodos del segundo jugador con círculos con relleno negro y los nodos terminales con cuadrados con relleno negro.}
+\label{fig:game-allocation}
 \end{center}
 \end{figure}
 
@@ -56,17 +56,15 @@ En juegos con información incompleta el jugador no tiene toda la información d
 Considere un juego de dos jugadores, el jugador $1$ y el jugador $2$, el cual ocurre como sigue: primero, el jugador $1$ debe elegir una opción entre $L$ y $R$. Si elige $R$ el juego termina; si elige $L$ se le informa al jugador $2$ que el jugador $1$ eligió $L$ y este debe elegir una opción entre $A$ y $B$. Por último, el jugador $1$ debe escoger una nueva opción entre $l$ y $r$, pero sin saber que opción eligió el jugador $2$. Los pagos son mostrados en las hojas del árbol del juego, presentado en la Figura~\ref{fig:informacion-incompleta}.
 \end{example}
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
-\caption{Árbol del juego en forma extensiva presentado en el Ejemplo~\ref{ex:informacion-incompleta}}
-\label{fig:informacion-incompleta}
 \begin{tikzpicture}[
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=6cm, level distance=3cm},
-level 2/.style={sibling distance=5cm},
-level 3/.style={sibling distance=2.5cm, level distance=2cm},
+level 1/.style={sibling distance=4cm, level distance=1.5cm},
+level 2/.style={sibling distance=4cm},
+level 3/.style={sibling distance=1.5cm, level distance=1cm},
 ]
 \node[player1] [label=$1$] {}
 	child { node [player2] [label=above:{$2$}]  {}
@@ -75,36 +73,38 @@ level 3/.style={sibling distance=2.5cm, level distance=2cm},
                 		edge from parent node[left] {$l$} }
                 child { node [terminal] [label=below:{$(2,4)$}] {}
                 		edge from parent node[right] {$r$}}
-                edge from parent node[left] {A}
+                edge from parent node[left] {A\, }
         }
         child { node (B) [player1] [label=right:{$1$}] {}
         		child { node [terminal] [label=below:{$(2,4)$}] {}
                 		edge from parent node[left] {$l$} }
                 child { node [terminal] [label=below:{$(0,0)$}] {} 
                 		edge from parent node[right] {$r$} }
-                edge from parent node[right] {B}
+                edge from parent node[right] {\, B}
         }
-        edge from parent node[left] {L}
+        edge from parent node[left] {L \, }
     }
     child { node [terminal] [label=below:{$(1,1)$}] {}
-    		edge from parent node[right] {R} };
+    		edge from parent node[right] {\, R} };
 \draw[dotted] (A) -- (B);
 \end{tikzpicture}
+\caption[Árbol del juego en forma extensiva presentado en el Ejemplo~\ref{ex:informacion-incompleta}]{Árbol del juego en forma extensiva presentado en el Ejemplo~\ref{ex:informacion-incompleta}. Los nodos que pertenecen al mismo conjunto de información son unidos por líneas punteadas.}
+\label{fig:informacion-incompleta}
 \end{center}
 \end{figure}
 
-Se puede observar que los nodos unidos por líneas punteadas son indistinguibles para el jugador $1$, pues él no sabe cuál fue la elección del jugador $2$. Este tipo de nodos originan los llamados \textbf{conjuntos de información}; cf.\ Definición~\ref{def:informacion-incompleta} y \cite[p.~200]{bib:course-game-theory}. El concepto de conjunto de información es intrínsica a los juegos en forma extensa y no es necesaria para juegos en forma normal. Nosotros asumimos que los conjuntos de información vienen definidos de forma explícita en el modelo de juego en forma extensa; una definición basada en el árbol del juego puede ser encontrada en \cite{bib:conceptos-basicos}.
+Se puede observar que los nodos unidos por líneas punteadas son indistinguibles para el jugador $1$, pues él no sabe cuál fue la elección del jugador $2$. Este tipo de nodos originan los llamados \textbf{conjuntos de información}; cf.\ Definición~\ref{def:informacion-incompleta} y \cite[p.~200]{bib:course-game-theory}. El concepto de conjunto de información es intrínsica a los juegos en forma extensiva y no es necesaria para juegos en forma normal. Nosotros asumimos que los conjuntos de información vienen definidos de forma explícita en el modelo de juego en forma extensiva; una definición basada en el árbol del juego puede ser encontrada en \cite{bib:conceptos-basicos}.
 
 \begin{definition}
 \label{def:informacion-incompleta}
-Un juego finito en \textbf{forma extensa} con \textbf{información incompleta} tiene los siguientes componentes:
+Un juego finito en \textbf{forma extensiva} con \textbf{información incompleta} tiene los siguientes componentes:
 \begin{itemize}[]
   \item Un conjunto finito $N$ de \textbf{jugadores}.
   \item Un conjunto finito $H$ de secuencias, las posible \textbf{historias} de acciones, tal que la secuencia vacía está en $H$, y cada prefijo de una secuencia en $H$ también está en $H$. $Z \subseteq H$ son las historias terminales (aquellas que no son prefijo de ninguna otra secuencia). $A(h) = \{ a : (h, a) \in H \}$ son las acciones disponibles después de una historia no terminal $h \in H$.
   \item Una función $P$ que asigna a cada historia no terminal (cada elemento de $H \setminus Z)$ un elemento de $N \cup \{c \}$. $P$ es la \textbf{función de jugador}. $P(h)$ es el jugador que toma una acción después de la historia $h$. Si $P(h) = c$ entonces la acción tomada después de la historia $h$ es determinada por el azar. Este tipo de nodos serán denominados \textbf{nodos de azar}.
   \item Una función $f_c$ que asocia con cada historia $h$ para la cual $P(h) = c$ una medida de probabilidad $f_c(.|h)$ sobre $A(h)$: $f_c(a|h)$ es la probabilidad que la acción $a$ ocurra dado $h$.  Cada medida de probabilidad es independiente de cualquier otra de estas medidas.
   \item Para cada jugador $i \in N$, una partición $\mathcal{I}_i$ de $\{h \in H : P(h) = i\}$ con la propiedad que $A(h) = A(h')$ siempre que $h$ y $h'$ estén en el mismo bloque de la partición. Para $I_i \in \mathcal{I}_i$ denotamos por $A(I_i)$ el conjunto $A(h)$ y por $P(I_i)$ el jugador $P(h)$ para cualquier $h \in I_i$. $\mathcal{I}_i$ es la \textbf{partición de información} del jugador $i$, un conjunto $I_i \in \mathcal{I}_i$ es un \textbf{conjunto de información} del jugador $i$.
-  \item Para cada jugador $i \in N$, una función de utilidad $u_i$ de los estados terminales $Z$ a los reales $\mathbb{R}$. Si $N = \{1,2\}$ y $u_1 = -u_2$, decimos que tenemos un \textbf{juego de dos jugadores de suma cero en forma extensa}. Definimos $\Delta_{u,i} = \max_z u_i(z) - \min_z u_i(z)$ como el rango de utilidades del jugador $i$.
+  \item Para cada jugador $i \in N$, una función de utilidad $u_i$ de los estados terminales $Z$ a los reales $\mathbb{R}$. Si $N = \{1,2\}$ y $u_1 = -u_2$, decimos que tenemos un \textbf{juego de dos jugadores de suma cero en forma extensiva}. Definimos $\Delta_{u,i} = \max_z u_i(z) - \min_z u_i(z)$ como el rango de utilidades del jugador $i$.
 \end{itemize}
 \end{definition}
 
@@ -115,13 +115,14 @@ En el Ejemplo \ref{ex:informacion-incompleta}, $H = \{ \emptyset, L, R, LA, LB, 
 
 Kuhn Poker es una versión simplificada del juego de Poker con tres cartas y dos jugadores (denominados jugador $1$ y jugador $2$) definido por Harold W.\ Kuhn \cite{bib:kuhn-poker}. En este juego se barajan tres cartas marcadas con los números $1$, $2$ y $3$. Posteriormente, cada jugador recibe una de ellas, manteniendo su número como información privada. Es decir, un jugador sabe su propio número pero no sabe el número de su oponente. Al inicio del juego cada jugador apuesta una ficha. El juego ocurre por turnos, los cuales se alternan entre los jugadores comenzando por el jugador $1$. En un turno un jugador puede \textit{apostar} o \textit{pasar}. Si un jugador apuesta debe apostar una ficha adicional. Si un jugador pasa después de una apuesta, el oponente gana y toma todas las fichas apostadas. Si hay dos apuestas o dos pases seguidos los jugadores muestran sus cartas y gana el jugador con el número más alto obteniendo todas las fichas apostadas. La Tabla \ref{table:kuhn-poker} presenta un resumen de todas las posibles secuencias con su respectivo pago a cada jugador.
 
-\begin{table}[hbt]
+\begin{table}[h]
 \begin{center}
-\caption[Resumen de las posibles secuencias del juego Kuhn Poker]{Resumen de las posibles secuencias del juego Kuhn Poker}
+\caption[Resumen de las posibles secuencias del juego Kuhn Poker]{Resumen de las posibles secuencias del juego Kuhn Poker.}
 \label{table:kuhn-poker}
-\begin{tabular}{ | c | c | c | c |}
-\multicolumn{3}{c}{Secuencia de Acciones} & \multicolumn{1}{c}{\empty} \\ \hline
-Jugador $1$ & Jugador $2$ & Jugador $1$ & Pago \\ \hline
+\begin{tabular}{ c c c c }
+\hline
+\multicolumn{3}{c}{Secuencia de Acciones} & \multirow{2}{*}{Pago} \\ \cmidrule{1-3}
+Jugador $1$ & Jugador $2$ & Jugador $1$ &  \\ \midrule
 \multirow{3}{*}{pasar} & pasar & & $+1$ al jugador con la carta más alta\\
 & apostar & pasar & $+1$ al jugador $2$\\
 & apostar & apostar & $+2$ al jugador con la carta más alta \\ \hline
@@ -133,10 +134,8 @@ Jugador $1$ & Jugador $2$ & Jugador $1$ & Pago \\ \hline
 
 Debido a qué es un juego de suma $0$, el jugador perdedor pierde el número de fichas que gana su oponente. El árbol del juego se muestra en la Figura \ref{fig:kuhn-poker}. La raíz es un \textit{nodo de azar}, que representa la repartición de las cartas, con $6$ opciones diferentes, las cuales están representadas con un par ordenado indicando la carta del jugador $1$ y la del jugador $2$. Cada rama tiene una probabilidad de $\frac{1}{6}$ de ser elegida. Los nodos del primer nivel y tercer nivel corresponden al jugador $1$. Este jugador tiene $6$ conjuntos de información diferentes, cada uno con $2$ nodos, los cuales se unen mediante las líneas punteadas. Los nodos del segundo nivel corresponden al jugador $2$, los conjuntos de información se representan por nodos del mismo color y mismo estilo (relleno de color o no). En cada nodo de decisión (los nodos no terminales sin incluir la raíz), hay dos opciones: pasar, representado con una línea punteada, o apostar, representado con una línea doble. Los nodos terminales tienen la ganancia del jugador $1$, según sea el caso.
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
-\caption{Árbol completo del juego Kuhn Poker}
-\label{fig:kuhn-poker}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
@@ -285,14 +284,13 @@ level 3/.style={sibling distance=6.5mm, level distance=15mm},
 \draw[dotted] (P5.east) -- (P6.west);
 \end{tikzpicture}
 \end{center}
+\caption[Árbol completo del juego Kuhn Poker]{Árbol completo del juego Kuhn Poker. Los nodos unidos con líneas punteadas o con el mismo diseño y color pertenecen a el mismo conjunto de información.}
+\label{fig:kuhn-poker}
 \end{figure}
 
+\section{Estrategias Puras y Mixtas para Juegos en Forma Extensiva}
 
-
-
-\section{Estrategias Puras y Mixtas para Juegos en Forma Extensa}
-
-Al igual que en juegos en forma normal es necesario establecer las definiciones de estrategias. Las Definiciones \ref{def:estrategia-pura-fe} y \ref{def:estrategia-mixta-fe}, presentan los conceptos de estrategia pura y estrategia mixta, análogas a las presentadas en los juegos en forma normal. Las definiciones de perfiles estratégicos son equivalentes a las anteriores pero usando los conceptos de estrategias para juegos en forma extensa. Además, se procura utilizar una notación similar a la utilizada en la sección anterior. Sin embargo, se presenta un nuevo concepto, las \textbf{estrategias de comportamiento}, que son exclusivas para juegos en forma extensa. A continuación seguimos la formulación de \cite{bib:conceptos-basicos} y \cite{bib:course-game-theory}.
+Al igual que en juegos en forma normal es necesario establecer las definiciones de estrategias. Las Definiciones \ref{def:estrategia-pura-fe} y \ref{def:estrategia-mixta-fe}, presentan los conceptos de estrategia pura y estrategia mixta, análogas a las presentadas en los juegos en forma normal. Las definiciones de perfiles estratégicos son equivalentes a las anteriores pero usando los conceptos de estrategias para juegos en forma extensiva. Además, se procura utilizar una notación similar a la utilizada en la sección anterior. Sin embargo, se presenta un nuevo concepto, las \textbf{estrategias de comportamiento}, que son exclusivas para juegos en forma extensiva. A continuación seguimos la formulación de \cite{bib:conceptos-basicos} y \cite{bib:course-game-theory}.
 
 \begin{definition}
 \label{def:estrategia-pura-fe}
@@ -301,7 +299,7 @@ Una \textbf{estrategia pura} para el jugador $i$ es una función $s_i : \mathcal
 
 Note que una estrategia pura consiste en elegir una acción por cada conjunto de información de un jugador en específico. Considere nuevamente el Ejemplo \ref{ex:informacion-incompleta}. En este juego el jugador $1$ tiene dos conjuntos de información, $I^1 = \{\emptyset\}$ e $I^2 = \{LA, LB\}$, cada uno con dos posibles elecciones, dando lugar a $4$ estrategias puras que son denotadas por $s_1$, $s_2$, $s_3$ y $s_4$, y presentadas en la Tabla~\ref{table:estrategias-puras}. En dicha tabla las acciones posibles en el conjunto de información $I^1$ están representadas por las filas, y las acciones en $I^2$ por las columnas. De esta forma cada celda representa una única estrategia pura determinada por una acción en cada conjunto de información.
 
-\begin{table}[ht]
+\begin{table}[h]
 \begin{center}
 \caption{Estrategias puras para el juego con información incompleta presentado en el Ejemplo \ref{ex:informacion-incompleta}.}
 \label{table:estrategias-puras}
@@ -316,14 +314,14 @@ Note que una estrategia pura consiste en elegir una acción por cada conjunto de
 
 En Kuhn Poker una estrategia pura para el jugador $2$ puede ser la siguiente: si su carta contiene el número $1$ siempre pasa, si su carta contiene el número $2$ apuesta si y sólo si el jugador $1$ pasa en su primer turno, y si su carta contiene el número $3$ siempre apuesta. La Tabla \ref{table:ejemplo-estrategia-pura} presenta cada conjunto de información de forma explícita con su acción correspondiente. Para este juego se caracterizarán los conjuntos de información del jugador $2$ por la carta que tiene y la acción realizada por el primer jugador al inicio del juego.
 
-\begin{table}[hbt]
+\begin{table}[h]
 \begin{center}
 \caption{Ejemplo de una estrategia pura para el jugador $2$ en el juego Kuhn Poker.}
 \label{table:ejemplo-estrategia-pura}
-\begin{tabular}{ c c | c }
+\begin{tabular}{ c c c }
 \hline
-\multicolumn{2}{c | }{Conjunto de Información} & \multirow{2}{*}{Acción del jugador $2$} \\ 
-Carta del jugador $2$ & Acción del jugador $1$ &  \\ \hline
+\multicolumn{2}{c }{Conjunto de Información} & \multirow{2}{*}{Acción del jugador $2$} \\ \cmidrule{1-2}
+Carta del jugador $2$ & Acción del jugador $1$ &  \\ \midrule
 $1$ & pasar & pasar \\
 $1$ & apostar & pasar \\
 $2$ & pasar & apostar \\
@@ -360,17 +358,16 @@ u_i(\sigma^m)\ =\ \sum_{s \in S} \sigma^m(s)u_i(s)
 \end{alignat}
 donde $\sigma^m(s)$ es la probabilidad de que $s$ sea elegida, es decir $\sigma^m(s) = \prod_{i \in N} \sigma_i^m(s_i)$.
 
-\section{Forma Normal vs. Forma Extensa}
+\section{Forma Normal vs. Forma Extensiva}
 \label{section:normal-extensiva}
 
-Un juego en forma normal %(Definición \ref{def:forma-normal})
-se caracteriza por el conjunto de estrategias puras $S_i$ y la función de pago $u_i$ para cada jugador $i\in N$. Estos elementos pueden obtenerse a partir de la descripción de un juego en forma extensiva utilizando las definiciones \ref{def:estrategia-pura-fe} y \ref{eq:funcion-pago-fe}. De esta forma, es posible asociar un único juego en forma normal a cualquier juego en forma extensa.
+Un juego en forma normal se caracteriza por el conjunto de estrategias puras $S_i$ y la función de pago $u_i$ para cada jugador $i\in N$. Estos elementos pueden obtenerse a partir de la descripción de un juego en forma extensiva utilizando las definiciones \ref{def:estrategia-pura-fe} y \ref{eq:funcion-pago-fe}. De esta forma, es posible asociar un único juego en forma normal a cualquier juego en forma extensiva.
 
 En el Ejemplo \ref{ex:informacion-incompleta}, las estrategias puras para el jugador $1$ están definidas en la Tabla \ref{table:estrategias-puras}. El jugador dos tiene sólo dos estrategias puras, elegir $A$ o $B$. Luego, la Tabla \ref{table:fextensiva-a-fnormal} es la tabla de pagos para juego en forma normal que corresponde al Ejemplo \ref{ex:informacion-incompleta}.
 
-\begin{table}[hbt]
+\begin{table}[h]
 \begin{center}
-\caption[Forma normal de un juego en forma extensiva]{Tabla de pagos de la forma normal correspondiente a la forma extensa del juego presentado en el Ejemplo \ref{ex:informacion-incompleta}.}
+\caption[Forma normal de un juego en forma extensiva]{Tabla de pagos de la forma normal correspondiente a la forma extensiva del juego presentado en el Ejemplo \ref{ex:informacion-incompleta}.}
 \label{table:fextensiva-a-fnormal}
 \begin{tabular}{c c|c|c|}
 \multicolumn{2}{c}{} & \multicolumn{2}{c}{Jugador $2$} \\ 
@@ -387,17 +384,15 @@ Note que la tabla obtenida tiene $8$ configuraciones a pesar que el árbol origi
 
 Por otra parte, dado un juego en forma normal, siempre es posible construir el árbol de una forma extensiva como sigue \cite{bib:conceptos-basicos}: se comienza por la raíz, la cual es el único nodo del jugador $1$, de ésta salen $|S_1|$ ramas, una para cada estrategia pura $s_1 \in S_1$, estos nodos, los hijos de la raíz, serán los nodos del jugador $2$. De cada uno de los nodos del jugador $2$ salen $|S_2|$ ramas, una por cada elemento $s_2 \in S_2$ que serán los hijos del jugador $3$, y así sucesivamente hasta llegar a los hijos de los nodos del jugador $N$, que serán los nodos terminales. La Figura \ref{fig:RPS}, muestra el árbol para una forma extensiva del juego piedra (R), papel (P) o tijera (S).
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
-\caption{Árbol de la forma extensiva del juego \textit{Piedra, Papel o Tijeras}}
-\label{fig:RPS}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=45mm, level distance=3cm},
-level 2/.style={sibling distance=15mm, level distance=20mm},
+level 1/.style={sibling distance=35mm, level distance=25mm},
+level 2/.style={sibling distance=12mm, level distance=15mm},
 ]
 \node[player1] [label=$1$] {}
 	child { node (A) [player2] [label=above:{$2$}]  {}
@@ -407,7 +402,7 @@ level 2/.style={sibling distance=15mm, level distance=20mm},
         		edge from parent node[right] {P} }
         child { node [terminal] [label=below:{$1$}] {}
         		edge from parent node[right] {S} }
-    edge from parent node[left] {R}
+    edge from parent node[left] {R\ }
     }
     child { node (B) [player2] [label=45:{$2$}] {}
     	child { node [terminal] [label=below:{$1$}] {}
@@ -425,19 +420,19 @@ level 2/.style={sibling distance=15mm, level distance=20mm},
         		edge from parent node[right] {P} }
         child { node [terminal] [label=below:{$0$}] {}
         		edge from parent node[right] {S} }
-    edge from parent node[right] {S}
+    edge from parent node[right] {\ S}
     };
 \draw[dotted] (A) -- (B) -- (C);
 \end{tikzpicture}
+\caption{Árbol de la forma extensiva del juego piedra, papel o tijera.}
+\label{fig:RPS}
 \end{center}
 \end{figure}
 
 Pueden haber diferentes formas extensivas que lleven a la misma forma normal. Si aplicamos el procedimiento descrito anteriormente a la Tabla \ref{table:fextensiva-a-fnormal} se obtiene un árbol de $13$ nodos  (Figura \ref{fig:arbol-de-tabla}), en contraste a los $9$ nodos del árbol original. En efecto, la forma extensiva proporciona más información sobre los juegos que la forma normal. Particularmente, la forma extensiva proporciona información acerca del orden y las posibles secuencias de acciones.
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
-\caption{Árbol correspondiente a la forma normal de la Tabla \ref{table:fextensiva-a-fnormal}}
-\label{fig:arbol-de-tabla}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
@@ -477,6 +472,8 @@ level 2/.style={sibling distance=17mm, level distance=17mm},
     };
 \draw[dotted] (A) -- (B) -- (C) -- (D);
 \end{tikzpicture}
+\caption{Árbol correspondiente a la forma normal de la Tabla \ref{table:fextensiva-a-fnormal}.}
+\label{fig:arbol-de-tabla}
 \end{center}
 \end{figure}
 
@@ -517,7 +514,7 @@ Sea $\sigma$ un perfil estratégico mixto o de comportamiento. Sea  $\sigma_{-i}
 
 Sea $\pi^c(h)$ la probabilidad de alcanzar $h$ asumiendo que todos los jugadores juegan para alcanzar $h$, es decir:
 \begin{alignat}{1}
-\pi^c(h) = \prod_{(h', a) \sqsubset h : P(h') = c} f_c(a | h') \, .
+\pi^c(h)\ =\ \prod_{(h', a) \sqsubset h : P(h') = c} f_c(a | h') \, .
 \end{alignat}
 
 Sea $\pi^{\sigma}(h) = \prod_{i \in N \cup {c}} \pi^{\sigma_i}(h)$ la probabilidad de que la historia $h$ ocurra si todos los jugadores eligen las acciones acorde al perfil estratégico  $\sigma$.  Sea $\pi^{\sigma_{-i}}(h) = \frac{\pi^{\sigma}(h)}{\pi^{\sigma_{i}}(h)}$ el producto de todas las contribuciones de los jugadores (incluyendo las elecciones en las historias de azar) excepto el jugador $i$. Sean $\pi^{\sigma}(I) = \sum_{h \in I},  \pi^\sigma(h)$, $\pi^{\sigma_i}(I) = \sum_{h \in I},  \pi^{\sigma_i}(h)$ y $\pi^{\sigma_{-i}}(h) = \sum_{h \in I},  \pi^{\sigma_{-i}}(h)$ la probabilidad de alcanzar el conjunto de información $I$ dado la estrategia $\sigma$, $\sigma_{i}$ y $\sigma_{-i}$, respectivamente.
@@ -528,11 +525,15 @@ Para un perfil estratégico $\sigma$, sea $u_i(\sigma) = \sum_{z \in Z} u_i(z)\p
 
 En el juego de Kuhn Poker si ambos jugadores juegan de forma óptima, es decir, acorde a un equilibrio de Nash, entonces el jugador $2$ tiene una ganancia esperada de $\frac{1}{18}$ por mano, como se prueba en \cite{bib:kuhn-poker}. El conjunto de equilibrios de Nash se resume en la Tabla~\ref{tab:estrategia-kuhn-poker}, donde los conjuntos de información fueron enumerados en un orden de búsqueda por profundidad (dfs).
 
-\begin{table}[hbt]
-    \centering
-    \begin{tabular}{c|r r}
+\begin{table}[h]
+\begin{center}
+    \caption{Equilibrio de Nash para el juego de Kuhn Poker}
+    \label{tab:estrategia-kuhn-poker}
+    \begin{tabular}{c r r}
         \hline
-        I & \multicolumn{2}{|c}{Equilibrio de Nash}  \\ \hline
+        \multirow{2}{*}{Conjunto de} & \multicolumn{2}{c}{Equilibrio de Nash}  \\ \cmidrule{2-3}
+        información & pasar & apostar \\ 
+        \midrule
          $1$ & $1-\alpha$ & $\alpha$ \\
          $2, 3, 6, 10$ & $1$ & $0$ \\
          $4$ & $\frac{2}{3}$ & $\frac{1}{3}$ \\
@@ -541,18 +542,15 @@ En el juego de Kuhn Poker si ambos jugadores juegan de forma óptima, es decir, 
          $9$ & $\frac{2}{3} - \alpha$ & $\alpha + \frac{1}{3}$ \\
         $11$ & $1 - 3 \alpha$ & $3 \alpha$ \\ \hline
     \end{tabular}
-    \caption{Equilibrio de Nash para el juego de Kuhn Poker}
-    \label{tab:estrategia-kuhn-poker}
+\end{center}
 \end{table}
 
-El primer jugador tiene infinitas estrategias óptimas, las cuales pueden ser representadas por la elección de un parámetro $\alpha \in [ 0, \frac{1}{3} ]$. Una vez elegido este parámetro, el primer jugador en su primera jugada debe apostar con probabilidad $\alpha$ cuando su carta tenga el número $1$, apuestar con una probabilidad $3 \alpha$ cuando tenga el número $3$ y pasar siempre cuando tenga el número $2$. Si el primer jugador tiene un segundo turno, debe pasar siempre que tenga el número $1$, apostar cuando tiene el número $3$, y en el caso que tenga el número $2$ debe apostar con probabilidad $\alpha + \frac{1}{3}$.
+El primer jugador tiene infinitas estrategias óptimas, las cuales pueden ser representadas por la elección de un parámetro $\alpha \in \left[ 0, \frac{1}{3} \right]$. Una vez elegido este parámetro, el primer jugador en su primera jugada debe apostar con probabilidad $\alpha$ cuando su carta tenga el número $1$, apuestar con una probabilidad $3 \alpha$ cuando tenga el número $3$ y pasar siempre cuando tenga el número $2$. Si el primer jugador tiene un segundo turno, debe pasar siempre que tenga el número $1$, apostar cuando tiene el número $3$, y en el caso que tenga el número $2$ debe apostar con probabilidad $\alpha + \frac{1}{3}$.
 
 El segundo jugador tiene una única estrategia mixta óptima: apostar siempre que tenga el número $3$. Cuando tenga el número $1$, pasar siempre que el primer jugador haya apostado y apostar con probabilidad $\frac{1}{3}$ en caso contrario. Cuando tenga el número $2$, debe pasar cuando el oponente haya pasado previamente y apostar con probabilidad $\frac{2}{3}$ en caso contrario. La figura \ref{fig:kuhn-poker-estrategias} muestra el árbol con las distribuciones de probabilidad de las estrategias previamente descritas en cada uno de los nodos alcanzables en el juego.
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \begin{center}
-\caption{Equilibrio de Nash del juego de Kuhn poker}
-\label{fig:kuhn-poker-estrategias}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
@@ -691,20 +689,22 @@ level 3/.style={sibling distance=6.5mm, level distance=15mm},
 	}
 };
 \end{tikzpicture}
+\caption{Equilibrio de Nash del juego de Kuhn Poker.}
+\label{fig:kuhn-poker-estrategias}
 \end{center}
 \end{figure}
 
 \section{Perfect Recall}
 
-El concepto de \textit{perfect recall} hace referencia a juegos en los cuales, en cualquier punto cualquier jugador \textit{recuerda} lo que sabía previamente \cite[p.~203]{bib:course-game-theory}. En particular, cada jugador recuerda los movimientos que hizo previamente. La definición de \textit{perfect recall} puede ser dada mediante el árbol del juego \cite{bib:conceptos-basicos} o mediante la subsecuencia correspondiente a los nodos de un jugador \cite[p.~203]{bib:course-game-theory} y \cite[p.~44]{bib:handbook-blai}. Sin embargo, se utiliza una definición equivalente, proporcionada en la Definición \ref{def:perfect-recall}.
+El concepto de \textit{perfect recall} hace referencia a juegos en los cuales, en cualquier punto cualquier jugador \textit{recuerda} lo que sabía previamente \cite[p.~203]{bib:course-game-theory}. En particular, cada jugador recuerda los movimientos públicos que se han hecho durante el juego. La definición de \textit{perfect recall} puede ser dada mediante el árbol del juego \cite{bib:conceptos-basicos} o mediante la subsecuencia correspondiente a los nodos de un jugador \cite[p.~203]{bib:course-game-theory} y \cite[p.~44]{bib:handbook-blai}. Sin embargo, se utiliza una definición equivalente, proporcionada en la Definición \ref{def:perfect-recall}.
 
 \begin{definition}
 \label{def:perfect-recall}
-Se dice que el jugador $i$ tiene \textbf{\textit{perfect recall}} en el juego $\Gamma$ (en forma extensiva) si para cualquier par de historias $h_1, h_2$ con $P(h_1) = P(h_2) = i$, tales que $I(h_1) = I(h_2)$ las siguientes condiciones se cumplen
+Se dice que el jugador $i$ tiene \textbf{\textit{perfect recall}} en el juego $\Gamma$ (en forma extensiva) si para cualquier par de historias $h_1, h_2$ con $P(h_1) = P(h_2) = i$, tales que $I(h_1) = I(h_2)$ las siguientes condiciones se cumplen:
 \begin{alignat}{1}
-& h \sqsubseteq h_1\ \Rightarrow\ (\exists h' \sqsubseteq h_2 : I(h) = I(h') )
+& h \sqsubseteq h_1\ \implies\ (\exists h' \sqsubseteq h_2 : I(h) = I(h')) \,,
 \label{eq:condicion-1}\\
-& (h_1, a) \sqsubseteq h\  \land\ (h_2, b)\sqsubseteq h'\ \land\ a \neq b\ \  \Rightarrow\ I(h) \neq I(h')
+& (h_1, a) \sqsubseteq h\  \land\ (h_2, b)\sqsubseteq h'\ \land\ a \neq b\ \  \implies\ I(h) \neq I(h') \,.
 \label{eq:condicion-2}
 \end{alignat}
 \end{definition}
@@ -720,15 +720,13 @@ Los juegos presentados previamente: Ejemplo \ref{ex:game-allocation}, Ejemplo \r
 
 \begin{example} (\cite{bib:conceptos-basicos})
 \label{ex:imperfect-recall}
-Considere un juego de dos jugadores de suma cero en el cual el jugador $1$ consta de $2$ personas: Alice y su esposo Bill, y el jugador $2$ consta de una sóla persona: Zeno. Se tienen dos cartas con los números $1$ y $2$ y son repartidas aleatoriamente entre Alice y Zeno. La persona con la carta más alta recibe 1\$ de la persona con la carta más baja, y ésta decide si seguir jugando o no. Si el juego continúa, Bill, sin saber el resultado de la repartición inicial de las cartas, decide si Alice y Zeno intercambian sus cartas o no. Nuevamente, quien posea la carta más alta recibe 1\$ de quien posea la carta más baja.
+Considere un juego de dos jugadores de suma cero en el cual el jugador $1$ consta de $2$ personas: Alicia y su esposo Bernardo, y el jugador $2$ consta de una sóla persona: Zoe. Se tienen dos cartas con los números $1$ y $2$ y son repartidas aleatoriamente entre Alicia y Zoe. La persona con la carta más alta recibe 1\$ de la persona con la carta más baja, y ésta decide si seguir jugando o no. Si el juego continúa, Bernardo, sin saber el resultado de la repartición inicial de las cartas, decide si Alicia y Zoe intercambian sus cartas o no. Nuevamente, quien posea la carta más alta recibe 1\$ de quien posea la carta más baja.
 \end{example}
 
- La Figura \ref{fig:imperfect-recall} representa el juego en forma extensiva. Note que cuando es el turno de Bill, él no sabe quien tiene la carta más alta, cosa que su esposa sí sabía en el turno anterior.  Al considerar a la pareja como un sólo jugador, se obtiene que el jugador $1$ \textit{olvidó} como fueron repartidas las cartas. En efecto, el jugador $1$ tiene dos conjuntos de información $I^1_1 = \{(2-1) \}$ e $I^2_1 = \{(2-1, continuar), (1-2, continuar) \}$. En particular, no se cumple la primera condición (Ecuación \ref{eq:condicion-1}), pues la secuencia $(2-1) \sqsubset (2-1, continuar)$, pero no existe una subsecuencia de $(1-2, continuar)$ que pertenezca a $I^1_1$.
+ La Figura \ref{fig:imperfect-recall} representa el juego en forma extensiva. Note que cuando es el turno de Bernardo, él no sabe quien tiene la carta más alta, cosa que su esposa sí sabía en el turno anterior. Al considerar a la pareja como un sólo jugador, se obtiene que el jugador $1$ \textit{olvidó} como fueron repartidas las cartas. En efecto, el jugador $1$ tiene dos conjuntos de información $I^1_1 = \{(2-1) \}$ e $I^2_1 = \{(2-1, continuar), (1-2, continuar) \}$. En particular, no se cumple la primera condición (Ecuación \ref{eq:condicion-1}), pues la secuencia $(2-1) \sqsubset (2-1, continuar)$, pero no existe una subsecuencia de $(1-2, continuar)$ que pertenezca a $I^1_1$.
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \begin{center}
-\caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo \ref{ex:imperfect-recall}}
-\label{fig:imperfect-recall}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
@@ -767,6 +765,8 @@ level 3/.style={sibling distance=30mm, level distance=28mm},
 
 \draw[dotted] (A.east) .. controls ++(135:-15mm) and ++(45:-15mm) .. (B.west);
 \end{tikzpicture}
+\caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo \ref{ex:imperfect-recall}.}
+\label{fig:imperfect-recall}
 \end{center}
 \end{figure}
 
@@ -782,9 +782,7 @@ Dadas dos estrategias $\sigma$ y $\sigma'$, se dice que son equivalentes si la p
 Sea $s_i \in S_i$ y $I_i \in \mathcal{I}$, diremos que $I_i$ es alcanzable bajo $s_i$ si $\exists h \in H$ tal que $h \in I_i$ y para toda historia $h' \sqsubset h$, con $P(h') = i$, se tiene que $(h', s_i(h'))$ también es prefijo de $h$.  
 \end{definition}
 
-Note que la definición anterior puede ser aplicada tanto a perfiles estratégicos como a estrategias para un jugador en particular, utilizando la definición de $\pi^{\sigma}(z)$ correspondiente.
-
-Luego, las preguntas que se desean responder son las siguientes: (i) ?`Dada una estrategia mixta $\sigma^m$, existe una estrategia de comportamiento $\sigma^b$ tal que $\sigma^m$ y $\sigma^b$ son equivalentes? (ii) ?`Dada una estrategia de comportamiento $\sigma^b$ existe una estrategia mixta $\sigma^m$ tal que $\sigma^b$ y $\sigma^m$ son equivalentes?. Los Teoremas \ref{theo:comportamiento-a-mixta} y \ref{theo:mixta-a-comportamiento} ofrecen respuestas a estas interrogantes.
+La definición anterior puede ser aplicada tanto a perfiles estratégicos como a estrategias para un jugador en particular, utilizando la definición de $\pi^{\sigma}(z)$ correspondiente. Luego, las preguntas que se desean responder son las siguientes: (i) ?`Dada una estrategia mixta $\sigma^m$, existe una estrategia de comportamiento $\sigma^b$ tal que $\sigma^m$ y $\sigma^b$ son equivalentes? (ii) ?`Dada una estrategia de comportamiento $\sigma^b$ existe una estrategia mixta $\sigma^m$ tal que $\sigma^b$ y $\sigma^m$ son equivalentes?. Los Teoremas \ref{theo:comportamiento-a-mixta} y \ref{theo:mixta-a-comportamiento} ofrecen respuestas a estas interrogantes.
 
 El Teorema \ref{theo:comportamiento-a-mixta} establece lo siguiente: si para cualquier camino de la raíz a un nodo no se atraviesa $2$ veces o más el mismo conjunto de información, entonces para cualquier estrategia de comportamiento existe una estrategia mixta equivalente. Por otra parte, el Teorema \ref{theo:mixta-a-comportamiento} estable que si todos los jugadores tienen \textit{perfect-recall} entonces para toda estrategia mixta existe una estrategia de comportamiento equivalente.
 
@@ -792,9 +790,9 @@ En particular, si se tiene \textit{perfect-recall} entonces ningún camino pasa 
 
 \begin{theorem}
 \label{theo:comportamiento-a-mixta}
-Dado un juego en forma extensa y un jugador $i$, tal que: si $h' \sqsubset h$ y $P(h') = P(h) = i$, entonces $I(h') \neq I(h)$. Luego, para cualquier estrategia de comportamiento $\sigma^b_i \in B^i$, la estrategia mixta $\sigma^m_i$ dada por:
+Dado un juego en forma extensiva y un jugador $i$, tal que: si $h' \sqsubset h$ y $P(h') = P(h) = i$, entonces $I(h') \neq I(h)$. Luego, para cualquier estrategia de comportamiento $\sigma^b_i \in B^i$, la estrategia mixta $\sigma^m_i$ dada por:
 \begin{alignat}{1}
-\sigma^m_i(s_i) := \prod_{I_i \in \mathcal{I}_i} \sigma^b_i(I_i)(s_i(I_i)) \label{eq:comportamiento-a-mixta}
+\sigma^m_i(s_i)\ :=\ \prod_{I_i \in \mathcal{I}_i} \sigma^b_i(I_i)(s_i(I_i)) \label{eq:comportamiento-a-mixta}
 \end{alignat}
 es equivalente a la estrategia $\sigma^b_i$.
 \end{theorem}
@@ -805,26 +803,23 @@ El Ejemplo~\ref{ex:imperfect-recall-2} muestra un juego en el que no se cumple l
 \label{ex:imperfect-recall-2}
 Considere un juego de dos jugadores tal que:
 \begin{alignat}{1}
-H = \{ \emptyset, (L), (R), (L,L), (L,R), (R, U), (R, D)\} \\
- P(\emptyset) = P(L) = 1, \ P(R) = 2 \\
- f(L, L) = (1, 0), \ f(L, R) = (100, 100), \ f(R, U) = (5, 1), \ f(R, D) = (2, 2) \\
-\mathcal{I}_1 = \{ \{ \emptyset, (L)\} \}, \ \mathcal{I}_2 = \{ \{ R \} \}
+    H = \{ \emptyset, (L), (R), (L,L), (L,R), (R, U), (R, D)\} \,, \\
+    P(\emptyset) = P(L) = 1, \ P(R) = 2 \,, \\
+    f(L, L) = (1, 0), \ f(L, R) = (100, 100), \ f(R, U) = (5, 1), \ f(R, D) = (2, 2) \,, \\
+\mathcal{I}_1 = \{ \{ \emptyset, (L)\} \}, \ \mathcal{I}_2 = \{ \{ R \} \} \,.
 \end{alignat}
-Este juego de \textit{imperfect
-recall} corresponde al árbol de la Figura \ref{fig:imperfect-recall-2}.
+Este juego de \textit{imperfect recall} corresponde al árbol de la Figura \ref{fig:imperfect-recall-2}.
 \end{example}
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \begin{center}
-\caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo~\ref{ex:imperfect-recall-2}}
-\label{fig:imperfect-recall-2}
 \begin{tikzpicture}[
 chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=60mm, level distance=30mm},
-level 2/.style={sibling distance=40mm, level distance=25mm},
+level 1/.style={sibling distance=40mm, level distance=20mm},
+level 2/.style={sibling distance=20mm, level distance=15mm},
 ]
 \node[player1] (A) [label=$1$] {}
 	child { node (B) [player1] [label=left:{$1$}]  {}
@@ -842,8 +837,10 @@ level 2/.style={sibling distance=40mm, level distance=25mm},
         edge from parent node[right] {$R$}
     };
 \draw [dotted]
-(A.west) .. controls ++(left:+15mm) and ++(90:+15mm) .. (B.north);
+(A.west) .. controls ++(left:+10mm) and ++(90:+10mm) .. (B.north);
 \end{tikzpicture}
+\caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo~\ref{ex:imperfect-recall-2}.}
+\label{fig:imperfect-recall-2}
 \end{center}
 \end{figure}
 
@@ -857,9 +854,9 @@ Note que en el Ejemplo \ref{ex:imperfect-recall-2}, para esta estrategia de comp
 
 Considere nuevamente el Ejemplo \ref{ex:imperfect-recall}, el cual no tiene \textit{perfect recall}. Las estrategias puras para el jugador $1$ en este juego son: (parar, intercambiar), (parar, mantener), (continuar, intercambiar), (continuar, mantener). Las estrategias puras para el jugador $2$ son: (parar) y (continuar). Luego, la Tabla \ref{table:imperfect-recall} es la tabla correspondiente a la forma normal del juego, la cual incluye sólo la función del pago del jugador $1$, ya que al ser un juego de suma $0$, el pago del jugador $2$ se obtiene de forma trivial.
 
-\begin{table}[hbt]
+\begin{table}[h]
 \begin{center}
-\caption[Tabla de la forma normal para un juego con \textit{imperfect recall}]{Tabla de la forma normal para el Juego \ref{ex:imperfect-recall} con imperfect recall}
+\caption[Tabla de la forma normal para un juego con \textit{imperfect recall}]{Tabla de la forma normal para el Juego \ref{ex:imperfect-recall} con \textit{imperfect recall}.}
 \label{table:imperfect-recall}
 \begin{tabular}{l | r | r |}
 \multicolumn{1}{c}{} & \multicolumn{1}{c}{(parar)} & \multicolumn{1}{c}{(continuar)} \\ \cline{2-3}
@@ -875,9 +872,9 @@ Note que el pago que proporciona la estrategia (parar, intercambiar) al jugador 
 
 La respuesta a la interrogante es no. Para observarlo, considere una estrategia de comportamiento en la que se elige parar con probabilidad $\alpha$ y mantener con una probabilidad $\beta$. La probabilidad de elegir cada una de las estrategias puras se observa en la Tabla~\ref{table:proba-ep}.
 
-\begin{table}[hbt]
+\begin{table}[h]
 \begin{center}
-\caption[Probabilidades de las Estrategias Puras]{Probabilidades de cada estrategia pura dada una estrategia de comportamiento para el jugador $1$ del Ejemplo \ref{ex:imperfect-recall}}
+\caption[Probabilidades de las Estrategias Puras]{Probabilidades de cada estrategia pura dada una estrategia de comportamiento para el jugador $1$ del Ejemplo \ref{ex:imperfect-recall}.}
 \label{table:proba-ep}
 \begin{tabular}{c c c}
 \hline
@@ -896,12 +893,11 @@ Dado un juego finito de $N$ personas en el que el jugador $i$ tiene ``perfect re
 \end{theorem}
 
 
-Se puede observar que cuando se tiene un juego con \textit{perfect recall}, se cumplen las condiciones de los Teoremas \ref{theo:mixta-a-comportamiento} y \ref{theo:comportamiento-a-mixta}. Por lo tanto se pueden intercambiar estrategias mixtas por estrategias de comportamiento y viceversa sin perder poder expresivo. Esto se enuncia con el Teorema \ref{theo:equivalencia-estrategias} \cite[p.~45]{bib:handbook-blai}.
+Se puede observar que cuando se tiene un juego con \textit{perfect recall}, se cumplen las condiciones de los Teoremas \ref{theo:mixta-a-comportamiento} y \ref{theo:comportamiento-a-mixta}. Por lo tanto se pueden intercambiar estrategias mixtas por estrategias de comportamiento y viceversa sin perder poder expresivo. Esto se enuncia con el Teorema \ref{theo:equivalencia-estrategias}.
 
-\begin{theorem}
+\begin{theorem}[{ \cite[p.~45]{bib:handbook-blai}}]
 \label{theo:equivalencia-estrategias}
 En un juego con \textit{perfect recall}, cualquier estrategia mixta de un agente dado puede ser remplazada por una estrategia de comportamiento equivalente, y cualquier estrategia de comportamiento puede ser remplazada por una estrategia mixta equivalente. Dos estrategias son equivalentes en el sentido en que inducen los mismos resultados de probabilidades, para cualquier perfil estratégico fijo (mixto o de comportamiento) del resto de los agentes.
 \end{theorem}
 
 Como corolario del teorema anterior se obtiene que el conjunto de los equilibrios de Nash no cambia si el estudio se restringe a estrategias de comportamiento. Los juegos estudiados en este trabajo presentan \textit{perfect recall}, por lo tanto, en las próximas secciones se restringirá el estudio a estrategias de comportamientos. Se asumirá que todas las estrategias son de comportamiento y por lo tanto se denotarán únicamente por $\sigma$ (en vez de $\sigma^b$). Sin embargo, es importante resaltar nuevamente, que esta equivalencia es cierto solamente si el juego tiene \textit{perfect recall}. En juegos generales con información incompleta, estrategias mixtas y de comportamiento mantienen conjuntos de equilibrio no comparables \cite[p.~45]{bib:handbook-blai}.
-

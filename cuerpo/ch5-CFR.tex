@@ -34,7 +34,7 @@ Como consecuencia del teorema anterior se obtiene que un algoritmo que lleve el 
 \label{def:utilidad-contrafactual}
 La \textbf{utilidad contrafactual} es la ganancia esperada dado que el conjunto $I$ es alcanzado y todos los jugadores juegan con la estrategia $\sigma$ con excepción del jugador $i$ que juega para alcanzar $I$. Formalmente, si $\pi^{\sigma}(h, h')$ es la probabilidad de ir de la historia $h$ a la historia $h'$, entonces:
 \begin{alignat}{1}
-u_i(\sigma, I)\ =\ \frac{\sum_{h \in I, z \in Z} \pi^{\sigma_{-i}(h)} \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)} \,.
+u_i(\sigma, I)\ =\ \frac{\sum_{h \in I, z \in Z} \pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)} \,.
 \end{alignat}
 \end{definition}
 
@@ -93,6 +93,7 @@ R_i^T(I, a)\ =\ \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma^t_{-i}}(I)[u_i(\sigma^t|_
 
 Se define $R_i^{T, +}(I, a) = \max(R_i^T(I, a), 0)$, luego a tiempo $T+1$ la estrategia elegida es:
 \begin{alignat}{1}
+\label{eq:cfr-regret-matching}
 \sigma_i^{T+1}(I)(a)\ =\
 \begin{cases}
 \frac{R_i^{T, +}(I, a)}{\sum_{a' \in A(I) R_i^{T, +}(I, a')}}\ & \text{si } \sum_{a' \in A(I) R_i^{T, +}(I, a')} > 0 \,, \\

@@ -1,2 +1,51 @@
 \chapter{Forma Normal y Programación Lineal}
 \label{apex:chapter:programacion-lineal}
+
+En el Capítulo \ref{chapter:regret-matching} se afirma que para todo juego de dos jugadores de suma cero en forma normal, encontrar el equilibrio de Nash es equivalente a un problema de programación lineal. En esta sección se detalla cómo obtener el programa de programación lineal a un juego dado en forma normal.
+
+Todo juego en forma normal puede ser descrito por una tabla $N$ dimensional, donde $N$ es el número de jugadores. En particular un juego de dos jugadores puede ser representado por una matriz, y además, si el juego es de suma $0$, basta con definir la utilidad del primer jugador. Luego, este tipo de juegos pueden ser representados con una matriz $\mathbf{A} = (a_{ij}) \in \mathbb{R}^{m \times n}$. Luego, el elemento $a_{ij}$ de la matriz $A$ es la utilidad obtenida por el primer jugador si éste utiliza la $i$-ésima estrategia y su oponente utiliza la $j$-ésima estrategia.
+
+Si el jugador $1$ juega con una estrategia $ \mathbf{x} = (x_1, x_2, ..., x_m))$ y el jugador $2$ con una estrategia $\mathbf{y} = (y_1, y_2, ..., y_n)$, entonces la ganancia esperada viene dada por
+\begin{alignat}{1}
+u_1(\mathbf{x}, \mathbf{y}) = \sum_{i = 1}^m \sum_{j = 1}^n a_{ij}x_iy_j,
+\end{alignat}
+lo cual se puede escribir matricialmente como $\mathbf{x}^\intercal \mathbf{A} \mathbf{y}$.
+
+Del Teorema \ref{theo:von-neumann} se sabe que el valor \textit{maximin} y \textit{minimax} es igual al valor del juego, al igual que los perfiles estratégicos \textit{maximin} y \textit{minimax} coinciden con equilibrios de Nash. Luego, un equilibrio de Nash $(x^*, y^*)$ cumple que:
+\begin{alignat}{1}
+x^* \in \argmax_{\mathbf{x}}{\min_{\mathbf{y}}{\mathbf{x}^\intercal \mathbf{A} \mathbf{y}}} \ \text{y} \label{apex:eq:maximin} \\
+y^* \in \argmin_{\mathbf{y}}{\max_{\mathbf{x}}{\mathbf{x}^\intercal \mathbf{A} \mathbf{y}}} \,.
+\label{apex:eq:minimax}
+\end{alignat}
+
+Ya que la ecuación \ref{apex:eq:maximin} es la definición de estrategia \textit{maximin} para el primer jugador y la ecuación \ref{apex:eq:minimax} es la definición \textit{minimax} para el segundo jugador. La primera observación importante proviene del Teorema~\ref{theo:mejor-respuesta}, ya que como corolario se obtiene que, para cualquier estrategia, siempre existe una mejor respuesta cuyo soporte tiene un único elemento. De esto último se obtiene que, dado $\mathbf{x} \in \mathbb{R}^m$ e $\mathbf{y} \in \mathbb{R}^n$:
+\begin{alignat}{1}
+\min_{\mathbf{y}}{\mathbf{x}^\intercal \mathbf{A} \mathbf{y}} = \min_{j} \sum_{i=1}^n a_{ij} x_i\\
+\max_{\mathbf{x}}{\mathbf{x}^\intercal \mathbf{A} \mathbf{y}} = \max_{i} \sum_{i=1}^m a_{ij} y_j
+\end{alignat}
+
+Luego, los problemas que se quieren resolver son equivalentes a:
+\begin{alignat}{1}
+\max_{x} \min_{j} \sum_{i=1}^n a_{ij} x_i \label{apex:eq:maximin-problema} \\
+\min_{y} \max_{i} \sum_{i=1}^m a_{ij} y_j \label{apex:eq:minimax-problema}
+\end{alignat}
+
+Sujetos a $x_i, y_j \geq 0$ y a $\sum_{i=1}^m x_i = 1$ y $\sum_{j=1}^n y_j = 1$. La observación clave consiste en ver la equivalencia de los problemas \ref{apex:eq:maximin-problema} y \ref{apex:eq:minimax-problema} con los problemas de programación lineal \ref{apex:eq:maximin-problema2} y \ref{apex:eq:minimax-problema2}, respectivamente \cite[p.~232]{bib:pl-chvatal}.
+\begin{alignat}{6}
+\label{apex:eq:maximin-problema2}
+& \max\  & z\ &  & & & &  \\ \nonumber
+& \text{sujeto a}\ & & & & & & \\  \nonumber 
+& & z\ & -\ & \sum_{i=1}^m a_{ij} x_i \ \leq\  \ 0 \ & \ \ (j=1, 2, ..., n) \\\nonumber
+& &    &    & \sum_{i=1}^m x_i\ \ =\           \ 1 \ & \\ \nonumber
+& &    &    & x_i  \ \geq\                     \ 0 \ & \ (i=1, 2, ..., m) \\
+\label{apex:eq:minimax-problema2} 
+& \min\  & w\ &  & & & &  \\ \nonumber
+& \text{sujeto a}\ & & & & & & \\  \nonumber 
+& & w\ & -\ & \sum_{j=1}^n a_{ij} y_j \ \geq\  \ 0 \ & \ \ (i=1, 2, ..., m) \\\nonumber
+& &    &    & \sum_{j=1}^n y_j\ \ =\           \ 1 \ & \\ \nonumber
+& &    &    & x_i  \ \geq\                     \ 0 \ & \ \ (j=1, 2, ..., n) \,. \nonumber
+\end{alignat}
+
+Para ver la equivalencia, note que cualquier solución óptima $z^*, x_1^*, x_2^*, ..., x_m^*$ de \ref{apex:eq:maximin-problema2} satisface al menos una restricción con el signo de igualdad y por lo tanto $z^* = \min_j \sum_i a_{ij}x_i^*$. De forma similar, cualquier solución óptima $w^*, y_1^*, y_2^*, ..., y_n^*$ de \ref{apex:eq:minimax-problema2} satisface al menos una restricción con el signo de igualdad y por lo tanto $w^* = \min_i \sum_j a_{ij}y_j$. Por último, note que \ref{apex:eq:maximin-problema2} y \ref{apex:eq:minimax-problema2} son problemas duales entre sí, lo cual confirma que $z^* = w^*$.
+
+Los juegos en el Capítulo~\ref{chapter:regret-matching}, \textit{matching pennies}, piedra, papel o tijeras y ficha vs. dominó fueron presentados con su problema de programación lineal equivalente acorde a \ref{apex:eq:maximin-problema2}.

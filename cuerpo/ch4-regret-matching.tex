@@ -3,25 +3,23 @@
 
 \newcommand{\graphicsRM}[2]{
 \begin{figure}[h]
-    \vspace{10pt}
+    % \vspace{10pt}
     \resizebox{\textwidth}{!}{
     \includegraphics{graficas/regret-matching/#1/procedimiento-A.png}
     \includegraphics{graficas/regret-matching/#1/procedimiento-B.png} 
     \includegraphics{graficas/regret-matching/#1/procedimiento-C.png}
     }
-    \caption{Gráficas del regret con respecto al número de iteraciones del juego #2.}
+    \caption{Gráficas del \textit{regret} con respecto al número de iteraciones del juego #2.}
     \label{fig:regret-rm-#1}
 \end{figure}
 }
 
-En la sección~\ref{section:equilibrio-correlacionado} se introdujo el concepto de equilibrio correlacionado (Definición~\ref{def:equilibrio-correlacionado}). Además, se afirma que el conjunto de equilibrios correlacionado es un conjunto simple. Esto conlleva a la siguiente interrogante ?`Hay procedimientos adaptativos simples que permitan calcular un equilibrio correlacionado? A continuación se describen tres procedimientos, dos de los cuales llevan a equilibrios correlacionados \cite{bib:correlated-equilibrium}.
+En la sección~\ref{section:equilibrio-correlacionado} se introdujo el concepto de equilibrio correlacionado (Definición~\ref{def:equilibrio-correlacionado}). Además, se afirma que el conjunto de equilibrios correlacionado es un conjunto simple. A continuación se describen tres procedimientos, dos de los cuales llevan a equilibrios correlacionados \cite{bib:correlated-equilibrium}.
 
 \subsection*{Procedimiento A: Regret condicional}
 
 Sea $\Gamma$ un juego en forma normal el cual es jugado repetidamente a través del tiempo $t = 1, 2, \ldots $. 
-Sea $h_t = (s^\tau)_{\tau = 1}^t \in \prod_{\tau = 1}^{t} S$ la historia del juego al inicio del tiempo $t+1$. El jugador $i \in N$ elige su estrategia con una distribución de probabilidad $p_{t+1}^i \in \Delta(S_i)$, definida de la siguiente manera.
-
-Para cada par de estrategias $j, k \in S_i$, supongamos que el jugador $i$ remplaza la estrategia $j$ (cada vez que la jugó en el pasado) por la estrategia $k$. Luego, su ganancia a tiempo $1\leq \tau \leq t$ hubiera sido:
+Sea $h_t = (s^\tau)_{\tau = 1}^t \in \prod_{\tau = 1}^{t} S$ la historia del juego al inicio del tiempo $t+1$. El jugador $i \in N$ elige su estrategia con una distribución de probabilidad $p_{t+1}^i \in \Delta(S_i)$, definida de la siguiente manera. Para cada par de estrategias $j, k \in S_i$, supongamos que el jugador $i$ remplaza la estrategia $j$ (cada vez que la jugó en el pasado) por la estrategia $k$. Luego, su ganancia a tiempo $1\leq \tau \leq t$ hubiera sido:
 \begin{alignat}{1}
 W_i^{\tau}(j,k)\ =\ 
 \begin{cases}
@@ -29,19 +27,16 @@ u_i(k, s_{-i}^{\tau}) &\text{ si } s_i = j \,, \\
 u_i(s^\tau) & \text{en otro caso.} 
 \end{cases}
 \end{alignat}
-La diferencia resultante en el promedio de la función de pago, denotada con $D_i^t(j, k)$, para el jugador $i$ sería:
+
+La diferencia resultante en el promedio de la función de pago, denotada con $D_i^t(j, k)$, para el jugador $i$ viene dada por la ecuación \ref{eq:diferencia-pago}. Por otra parte, la expresión \eqref{eq:regret} se puede interpretar como una medida de \say{arrepentimiento} del jugador $i$ de haber elegido la acción $j$ en vez de la acción $k$ en el pasado, y por lo tanto, dicha medida es denominada \textit{regret}.
 \begin{alignat}{1}
+\label{eq:diferencia-pago}
   D_i^t(j, k)\ 
     =\ \frac{1}{t} \sum_{\tau = 1}^{t} W_i^{\tau}(j, k) - \frac{1}{t} \sum_{\tau = 1}^{t} u_i(s^{\tau})\ 
-	=\ \frac{1}{t} \sum_{\substack{1\leq \tau \leq t \\s^\tau_i = j}} u_i(k, s_{-i}^{\tau}) - u_i(s^{\tau}) \,.
-\end{alignat}
-Finalmente, definimos
-\begin{alignat}{1}
+	=\ \frac{1}{t} \sum_{\substack{1\leq \tau \leq t \\s^\tau_i = j}} u_i(k, s_{-i}^{\tau}) - u_i(s^{\tau}) \\
 \label{eq:regret}
 R_i^t(j, k)\ =\ [D_i^t(j, k)]^+\ =\ \max(0, D_i^t(j, k)) \,.
 \end{alignat}
-
-La expresión \eqref{eq:regret} se puede interpretar como una medida de \say{arrepentimiento} del jugador $i$ de haber elegido la acción $j$ en vez de la acción $k$ en el pasado, y por lo tanto, dicha medida es denominada \textit{regret}.
 
 Fijemos un número $\mu > 0$ suficientemente grande. Sea $j \in S_i$ la última estrategia jugada por el jugador $i$, es decir $j = s_i^t$. Luego, la distribución de probabilidad $p_{t+1}^i \in \Delta(S_i)$ usada por el jugador $i$ a tiempo $t+1$ es definida como:
 \begin{alignat}{1}
@@ -51,9 +46,8 @@ Fijemos un número $\mu > 0$ suficientemente grande. Sea $j \in S_i$ la última 
     p_{t+1}^i(j)\ :=\ 1 - \sum_{k \in S_i, k \neq j} p_{t+1}^i(k) \,.
   \end{cases}
 \end{alignat}
-La distribución inicial $p_{1}^i \in \Delta(S_i)$, a tiempo $t=1$, es elegida de forma arbitraria.
 
-Para cada tiempo $t$, sea $z_t \in \Delta(S)$ la distribución empírica de las $N$-tuplas jugadas hasta tiempo $t$, es decir:
+La distribución inicial $p_{1}^i \in \Delta(S_i)$, a tiempo $t=1$, es elegida de forma arbitraria. Para cada tiempo $t$, sea $z_t \in \Delta(S)$ la distribución empírica de las $N$-tuplas jugadas hasta tiempo $t$, es decir:
 $z_t(s) := \frac{1}{t} |\{1\leq\tau \leq t : s^{\tau} = s \}|$. El siguiente teorema enuncia que el procedimiento arriba descrito produce un equilibrio correlacionado.
 
 \begin{theorem}[\cite{bib:correlated-equilibrium}]
@@ -61,11 +55,11 @@ $z_t(s) := \frac{1}{t} |\{1\leq\tau \leq t : s^{\tau} = s \}|$. El siguiente teo
 Si cada jugador juega de acuerdo al procedimiento descrito por \eqref{eq:proc-A}, entonces la distribución empírica del juego $z_t$ converge (a.s.) cuando $t \rightarrow \infty$ al conjunto de equilibrios correlacionado del juego $\Gamma$.
 \end{theorem}
 
-Es importante destacar que $z_t$ no tiene que converger necesariamente a un punto equilibrio correlacionado. El Teorema~\ref{theo:conv-proc-A} es equivalente al siguiente enunciado: para todo $\varepsilon > 0$, existe un tiempo $T_0 = T_0(\varepsilon)$ tal que para todo $t \geq T_0$ podemos encontrar un equilibrio correlacionado $\psi_t$ que está distancia menor que $\varepsilon$ de $z_t$.
+% Es importante destacar que $z_t$ no tiene que converger necesariamente a un punto equilibrio correlacionado. El Teorema~\ref{theo:conv-proc-A} es equivalente al siguiente enunciado: para todo $\varepsilon > 0$, existe un tiempo $T_0 = T_0(\varepsilon)$ tal que para todo $t \geq T_0$ podemos encontrar un equilibrio correlacionado $\psi_t$ que está a distancia menor que $\varepsilon$ de $z_t$.
 
 En el procedimiento descrito cada jugador tiene dos opciones en cada período: continuar jugando con la última estrategia, o cambiarla por otra estrategia cuyas probabilidades son proporcionales a cuanto mayor hubiese sido su ganancia acumulada si hubiese hecho ese cambio en el pasado. El procedimiento planteado es simple, tanto de entender y explicar, como de implementar. Además en cada período no sólo se elige la mejor respuesta, todas las respuestas mejores a la actual pueden ser escogidas con probabilidades que son proporcionales a sus ganancias aparentes (medidas por el \textit{regret}). Este tipo de procedimientos son llamados procedimientos de \textit{regret matching}. Por último, el procedimiento tiene inercia: la estrategia jugada previamente importa, siempre hay una probabilidad positiva de continuar jugando la misma estrategia, y más aún, sólo se cambiará de estrategia si hay una razón para hacerlo.
 
-El \textit{regret} juega un papel importante para la elección de la siguiente distribución de probabilidad, lo cual conlleva a la siguiente pregunta: ?`Cuál es la relación entre los \textit{regrets} y el equilibrio correlacionado? Una condición necesaria y suficiente para que la distribución empírica converja al conjunto de equilibrio correlacionado es que todos los \textit{regrets} converjan a cero (Proposición \ref{theo:no-regret}).
+El \textit{regret} juega un papel importante para la elección de la siguiente distribución de probabilidad, lo cual conlleva a la siguiente pregunta: ?`Cuál es la relación entre los \textit{regrets} y el equilibrio correlacionado? Una condición necesaria y suficiente para que la distribución empírica converja al conjunto de equilibrio correlacionado es que todos los \textit{regrets} converjan a cero (Teorema \ref{theo:no-regret}).
 
 \begin{theorem}
 \label{theo:no-regret}
@@ -115,7 +109,6 @@ El procedimiento es definido a continuación. A tiempo $t$, definimos
 D_i^t(k)\ &=\ \frac{1}{t} \sum_{\tau = 1}^{t} u_i(k, s_{-i}^{\tau}) - u_i(s_{\tau}) \,, \\
 R_i^t(k)\ &=\ [D_i^t(k)]^+\ =\ \max(0, D_i^t(k)) \,.
 \end{alignat}
-
 Luego, la distribución de probabilidad a tiempo $t+1$, $p_{t+1}^i \in \Delta(S_i)$, es definida como sigue:
 \begin{alignat}{1}
 \label{eq:proc-C}
@@ -130,7 +123,7 @@ El procedimiento adaptativo definido en \eqref{eq:proc-C} es universalmente cons
 
 \section{Regret Matching y Equilibrio de Nash}
 
-En el capítulo anterior se describieron procedimientos universalmente consistente, algunos de los cuales permiten obtener equilibrios correlacionados. Sin embargo, éstos no garantizan obtener un equilibrio de Nash, surgiendo la siguiente interrogante: ?`Bajo qué condiciones se puede garantizar que un procedimiento universalmente consistente conduzca a un equilibrio de Nash? El Teorema~\ref{theo:UC-EN} responde esta pregunta.
+?`Bajo qué condiciones se puede garantizar que un procedimiento universalmente consistente conduzca a un equilibrio de Nash? El Teorema~\ref{theo:UC-EN} permite concluir que, en juegos de dos jugadores de suma cero, si un procedimiento es universalmente consistente, su distribución empírica llevará a un equilibrio de Nash.
 
 \begin{theorem}
 \label{theo:UC-EN}
@@ -145,15 +138,13 @@ para algún $\varepsilon > 0$. Sea $\bar{\sigma}^T = (\bar{\sigma_1}^T, \bar{\si
 es decir, $\bar{\sigma}^T$ es la distribución empírica de probabilidad. Entonces $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
 \end{theorem}
 
-Se concluye que, en juegos de dos jugadores de suma cero, si un procedimiento es universalmente consistente, su distribución empírica llevará a un equilibrio de Nash. 
-
 \section{Evaluación Empírica de Regret Matching}
 
-Los algoritmos propuestos fueron probados en cuatro juegos diferentes en forma normal: \textit{matching pennies}, piedra, papel y tijera, ficha vs dominó y coronel Blotto. Todos estos juegos son de dos jugadores y, debido a que los algoritmos son universalmente consistentes, pueden ser utilizados para encontrar un equilibrio de Nash en cada uno de ellos. Además, es suficiente con definir el pago para del primer jugador para que el juego esté bien definido (ya que el pago del segundo jugador se obtiene al multiplicar por $-1$ el pago del primer jugador). 
+Los algoritmos propuestos fueron probados en cuatro juegos diferentes en forma normal: \textit{matching pennies}, piedra, papel y tijera, ficha vs dominó y coronel Blotto. Todos estos juegos son de dos jugadores y, debido a que los algoritmos son universalmente consistentes, pueden ser utilizados para encontrar un equilibrio de Nash en cada uno de ellos. Además, es suficiente con definir el pago para del primer jugador para que el juego esté bien definido. 
 
 Por otra parte, cualquier juego con estas características puede modelarse como un problema de programación lineal \cite[pp.~228-233]{bib:pl-chvatal} (ver Apéndice \ref{apex:chapter:programacion-lineal}) y resolverse mediante procedimientos destinados para esto. Esto nos permitirá encontrar, de forma teórica, un equilibrio de Nash para juegos suficientemente pequeños. Cada uno de los juegos es descrito mediante sus reglas; además, cuando sea posible, mostraremos su matriz de pagos explícitamente y el problema de programación lineal asociado con alguna solución.
 
-La implementación fue realizada en el lenguaje de programación C++, utilizando la librería estándar y una librería adicional llamada \textit{Eigen} \cite{bib:eigen}, para factorizar matrices y resolver sistemas de ecuaciones. Además, se implementó una clase para encontrar un equilibrio de Nash mediante el algoritmo de \textit{Regret Matching}. En cada iteración la actualización de las estrategias depende de cada procedimiento según las fórmulas propuestas en la sección anterior. Por otra parte, las ejecuciones de estos algoritmos se realizaron en una máquina personal con las siguientes características: 
+La implementación fue realizada en el lenguaje de programación C++, utilizando la librería estándar y una librería adicional llamada \textit{Eigen} \cite{bib:eigen}, para factorizar matrices y resolver sistemas de ecuaciones. Además, se implementó una clase para encontrar un equilibrio de Nash mediante el algoritmo de \textit{Regret Matching}. En cada iteración la actualización de las estrategias depende de cada procedimiento según las fórmulas propuestas en la sección anterior. Por otra parte, las ejecuciones de estos algoritmos se realizaron en una máquina personal con las siguientes características: % (a) procesador Intel\textsuperscript{\textregistered}, (b) 8CPUs, (c) 8GB de memoria RAM y (d) sistema operativo Ubuntu 18.04.3 LTS.
 \begin{itemize}[noitemsep]
     \item Procesador: Intel\textsuperscript{\textregistered} Core\textsuperscript{\texttrademark} i5-8250U CPU.  \makeatletter{@} 1.60GHz.
     \item 8CPUs.
@@ -161,7 +152,7 @@ La implementación fue realizada en el lenguaje de programación C++, utilizando
     \item Sistema Operativo: Ubuntu 18.04.3 LTS.
 \end{itemize}
 
-Cada procedimiento fue probado $10$ veces por cada juego, finalizando cada ejecución al obtener un regret máximo menor que $0.005$.  Para evaluar la convergencia se midió el tiempo necesario para alcanzar el regret desea y el número de iteraciones. Por cada juego se muestra una tabla con los resultados obtenidos, ésta incluye, por cada uno de los procedimientos, la ganancia esperada para el primer jugador si es utilizando la estrategia obtenida en la última corrida del algoritmo ($u_e$) y la explotabilidad ($\varepsilon_{\sigma}$) de dicha estrategia, así como el promedio de las $10$ ejecuciones de: el tiempo de ejecución ($T$), el número de iteraciones ($I$) y el tiempo por iteración ($T/I$). También se muestra las gráficas del \textit{regret} con respecto al número de iteraciones de cada uno de los procedimientos. Estas gráficas son mostradas con una escala logarítmica en el eje $x$ para apreciar mejor los resultados. En el Apéndice \ref{apex:chapter:experimentos-rm} se muestran tablas con resultados adicionales en cada una de las corridas.
+Cada procedimiento fue probado $10$ veces por cada juego, finalizando cada ejecución al obtener un regret máximo menor que $0.005$.  Para evaluar la convergencia se midió el tiempo necesario para alcanzar el \textit{regret} deseado y el número de iteraciones. Por cada juego se muestra una tabla con los resultados obtenidos, ésta incluye, por cada uno de los procedimientos, la ganancia esperada para el primer jugador si al utilizar la estrategia obtenida en la última corrida del algoritmo ($u_e$) y la explotabilidad ($\varepsilon_{\sigma}$) de dicha estrategia, así como el promedio de las $10$ ejecuciones de: el tiempo de ejecución ($T$), el número de iteraciones ($I$) y el tiempo por iteración ($T/I$). También se muestra las gráficas del \textit{regret} con respecto al número de iteraciones de cada uno de los procedimientos. Estas gráficas son mostradas con una escala logarítmica en el eje $x$ para apreciar mejor los resultados. En el Apéndice \ref{apex:chapter:experimentos-rm} se muestran tablas con resultados adicionales en cada una de las corridas.
 
 \subsection*{Juego de Matching Pennies}
 
@@ -178,7 +169,6 @@ En este juego cada jugador tiene una moneda y selecciona cara o sello de forma s
 \end{tabular}
 \end{center}
 \end{table}
-
 El problema de programación lineal asociado es el siguiente:
 \begin{samepage}
 \begin{alignat}{7}
@@ -190,28 +180,25 @@ El problema de programación lineal asociado es el siguiente:
     &    &    & x_1, &    & x_2\ \geq\ 0 \,. \nonumber
 \end{alignat}
 \end{samepage}
-
 Cuya solución primal y dual vienen dadas por:
 \begin{alignat}{1}
-(z^*, x_1^*, x_2^*) = \left(0, \frac{1}{2}, \frac{1}{2} \right) \,,\\
-(w^*, y^*_1, y^*_2) = \left(0, \frac{1}{2}, \frac{1}{2} \right) \,.
+(z^*, x_1^*, x_2^*)\ =\ (w^*, y^*_1, y^*_2)\ =\ \left(0, \frac{1}{2}, \frac{1}{2} \right) \,.
 \end{alignat}
-
-Luego el equilibrio de Nash se obtiene cuando ambos jugadores eligen cara o sello con probabilidad $\frac{1}{2}$ y el valor del juego es igual a $0$. La Tabla~\ref{table:resultados-rm-matching-pennies} muestra los resultados experimentales obtenidos para este juego, donde se puede observar que la explotabilidad es menor que $0.008$ en todos los casos. La figura~\ref{fig:regret-rm-matching-pennies} muestra el \textit{regret} con respecto al número de iteraciones en cada juego, se observa que el \textit{regret} tiende a cero en cada una de las gráficas.
+Luego el equilibrio de Nash se obtiene cuando ambos jugadores eligen cara o sello con probabilidad $\frac{1}{2}$ y el valor del juego es igual a $0$. La Tabla~\ref{table:resultados-rm-matching-pennies} muestra los resultados experimentales obtenidos, note que la explotabilidad siempre es menor que $0.008$. La Figura~\ref{fig:regret-rm-matching-pennies} muestra el \textit{regret} con respecto al número de iteraciones en cada juego, se observa que el \textit{regret} tiende a cero en cada una de las gráficas.
  
 \begin{table}[h]
 \caption{Resultados experimentales del juego matching pennies.}
 \label{table:resultados-rm-matching-pennies}
 \centering
 \begin{tabular}{c r r r}
-    \hline
+    \toprule
     & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \midrule
     $u_e$ & $0,000$ & $0,000$ & $0,000$ \\
     $\varepsilon_{\sigma}$ & $0,006$ & $0,006$ & $0,008$ \\
     Tiempo ($T$) & $10,276$ & $0,777$ & $0,042$ \\
     Iteraciones ($I$) & $3892550,4$ & $25616,6$ & $16260,5$ \\
     $T/I$ & $2,64 {\times} 10^{-06}$ & $3,03 {\times} 10^{-05}$ & $2,58 {\times} 10^{-06}$ \\
-    \hline
+    \bottomrule
 \end{tabular}
 \end{table}
 
@@ -220,7 +207,6 @@ Luego el equilibrio de Nash se obtiene cuando ambos jugadores eligen cara o sell
 \subsection*{Juego de Piedra, Papel o Tijera}
 
 Este juego es descrito en el Capítulo~\ref{chapter:forma-normal} y su matriz de pago se muestra en la Tabla \ref{table:pago-RPS}. El problema de programación lineal asociado es el siguiente:
-
 \begin{samepage}
 \begin{alignat}{9}
 \max\  & z\ &  & & & & & \\ \nonumber
@@ -232,11 +218,9 @@ Este juego es descrito en el Capítulo~\ref{chapter:forma-normal} y su matriz de
 &    &    & x_1, &    & x_2, &    & x_3\ & \ \geq\  & \ 0  \,.  \nonumber
 \end{alignat}
 \end{samepage}
-
-La solución primal y dual de este problema son
+La solución primal y dual de este problema son:
 \begin{alignat}{1}
-(z^*, x_1^*, x_2^*, x_3^*) = \left(0, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right) \,, \\
-(w^*, y_1^*, y_2^*, y_3^*) = \left(0, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right) \,.
+(z^*, x_1^*, x_2^*, x_3^*)\ =\ (w^*, y_1^*, y_2^*, y_3^*)\ =\  \left(0, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right) \,.
 \end{alignat}
 
 Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cada una de las acciones con probabilidad igual a $\frac{1}{3}$ y el valor del juego es igual a $0$. La Tabla~\ref{table:resultados-rm-RPS} muestra el resumen de los resultados para piedra, papel o tijera. Note que la explotabilidad siempre es menor o igual que $0.01$. La gráfica~\ref{fig:regret-rm-RPS} muestra el \textit{regret} con respecto al número de iteraciones para cada uno de los procedimientos.
@@ -246,14 +230,14 @@ Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cada una d
 \label{table:resultados-rm-RPS}
 \centering
 \begin{tabular}{c r r r}
-    \hline
+    \toprule
     & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \midrule
     $u_e$ & $-0,000012$ & $0,000004$ & $0,000022$ \\
     $\varepsilon_{\sigma}$ & $0,006$ & $0,01$ & $0,009$ \\
     Tiempo ($T$) & $12,198$ & $0,345$ & $0,049$ \\
     Iteraciones ($I) $ & $4519054,1$ & $6601,3$ &  $19321,1$ \\
     $T/I$ & $2,70 {\times} 10^{-06}$ & $5,23 {\times} 10^{-05}$ & $2,54 {\times} 10^{-06}$\\
-    \hline
+    \bottomrule
 \end{tabular}
 \end{table}
 
@@ -311,6 +295,7 @@ El problema de programación lineal asociado es:
 \end{samepage}
 
 Este problema no tiene solución única (lo que implica que el juego no tiene un equilibrio de Nash único), una solución (primal y dual) viene dada por:
+
 \begin{alignat}{1}
 (z^*, x^*_1, x^*_2, x^*_4, x^*_5, x^*_6, x^*_6, x^*_7)\ =\ \left(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, 0, 0, 0, 0, \frac{1}{3}\right) \,, \\
 (w^*, y^*_1, y^*_2, y^*_3,  y^*_4, y^*_5, y^*_6)\ =\ \left(\frac{1}{3}, \frac{1}{3}, 0, \frac{1}{3}, 0, \frac{1}{3}, 0\right) \,.
@@ -323,14 +308,14 @@ Esta solución corresponde a la estrategia en la que el jugador $1$ elige las po
 \label{table:resultados-rm-domino}
 \centering
 \begin{tabular}{c r r r}
-    \hline
+    \toprule
     & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \midrule
     $u_e$ & $0,333$ & $0,334$ & $0,334$  \\
     $\varepsilon_{\sigma}$ & $0,01$ & $0,007$ & $0,004$ \\
     Tiempo ($T$) & $319,179$ & $11,275$ & $0,237$  \\
     Iteraciones ($I$) & $108319272,4$ & $75250,2$ & $84318,5$ \\
     $T/I$ & $2,95 {\times} 10^{-06}$ & $1,50 {\times} 10^{-04}$ & $2,81 {\times} 10^{-06}$ \\
-    \hline
+    \bottomrule
 \end{tabular}
 \end{table}
 
@@ -345,25 +330,25 @@ Formalmente el juego puede ser descrito de la siguiente manera. Cada jugador deb
 |\{ 1 \leq i \leq N : a_i > b_i\}| - |\{ 1 \leq i \leq N : a_i < b_i\}| \,.
 \end{alignat}
 
-Este juego depende de dos parámetros: el número de soldados $S$ y el número de campos de batallas $N$, por lo que la matriz de pagos no es constante y por eso no es presentada como en los juegos anteriores. La matriz para de un juego con $S$ soldados y $N$ es una matriz cuadrada de tamaño $\binom{N+S-1}{S-1}$.
+Este juego depende de dos parámetros: el número de soldados $S$ y el número de campos de batallas $N$, por lo que la matriz de pagos no es constante y por eso no es presentada como en los juegos anteriores. La matriz para un juego con $S$ soldados y $N$ es una matriz cuadrada de tamaño $\binom{N+S-1}{S-1}$.
 
 En este juego es necesario generar la matriz de pagos dependiendo de los parámetros. Para esto se creó un programa que, dado el número de campos de batalla ($N$) y el número de soldados ($S$), genera todas las posibles distribuciones de cada uno de los jugadores mediante un algoritmo de \textit{backtracking} y calcula el pago para cada juego posible, obteniendo como salida del programa la matriz deseada. De esta forma se generó la matriz de pagos para este juego cuando $N = 3$ y $S = 5$.
 
-En este juego no se conoce un equilibrio de Nash teóricamente, sin embargo, debido la matriz de pagos es simétrica, el valor del juego debe ser igual $0$. La Tabla~\ref{table:resultados-rm-blotto} muestra los resultados experimentales y la Figura~\ref{fig:regret-rm-coronel-blotto} muestra las gráficas del \textit{regret} con respecto al número de iteraciones para cada uno de los procedimientos, note la convergencia en cada uno de los casos.
+En este juego no se conoce un equilibrio de Nash teóricamente, sin embargo, debido a que la matriz de pagos es simétrica, el valor del juego debe ser igual a $0$. La Tabla~\ref{table:resultados-rm-blotto} muestra los resultados experimentales y la Figura~\ref{fig:regret-rm-coronel-blotto} muestra las gráficas del \textit{regret} con respecto al número de iteraciones para cada uno de los procedimientos, note la convergencia en cada uno de los casos.
 
 \begin{table}[h]
 \caption{Resultados Experimentales del juego coronel blotto.}
 \label{table:resultados-rm-blotto}
 \centering
 \begin{tabular}{c r r r}
-    \hline
+    \toprule
     & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \midrule
     $u_e$ & $0,000219$ & $-0,000502$ & $0,000024$ \\
     $\varepsilon_{\sigma}$ & $0,01$ & $0,011$ & $0,009$  \\
     $T$ &  $319,179$ &  $11.275$ & $0.237$\\
     $I$ &  $108319272,4$ & $75250,2$  & $84318,5$ \\
     $T/I$ & $2,95 {\times} 10^{-06}$ & $1,50 {\times} 10^{-04}$ & $2,81 {\times} 10^{-06}$\\
-    \hline
+    \bottomrule
 \end{tabular}
 \end{table}
 
@@ -376,18 +361,18 @@ A continuación, se analiza el desempeño de los procedimientos, comparándolos 
 
 Los procedimientos cambian en la forma en que se elige la siguiente estrategia en cada iteración. En los procedimientos A y B se utiliza un regret condicional, en el que se mide el \textit{arrepentimiento} de cambiar una estrategia por otra en específica. Esta métrica se debe mantener a lo largo de todas las iteraciones, por lo que cada iteración necesita memoria adicional de complejidad $\mathcal{O}(N^2 + M^2)$, donde $N$ y $M$ es el número de acciones posibles para el jugador $1$ y $2$, respectivamente. En el procedimiento C se utiliza únicamente el regret incondicional, por lo que la cantidad de memoria adicional es del orden $\mathcal{O}(N + M)$.
 
-Con respecto a la complejidad de tiempo se tiene que los procedimientos de regret condicional e incondicional (A y C), son lineales al número de acciones. Sin embargo, en el procedimiento B es necesario resolver un sistema de ecuaciones lineales para elegir cada estrategia nueva, del tamaño del número de acciones del jugador respectivo, obteniendo que la complejidad total es $\mathcal{O}(N^3 + M^3)$. La Tabla \ref{tab:complejidades-iteraciones} muestra un resumen de la complejidad es tiempo y memoria adicional.
+Con respecto a la complejidad de tiempo se tiene que los procedimientos de regret condicional e incondicional (A y C), son lineales al número de acciones. Sin embargo, en el procedimiento B es necesario resolver un sistema de ecuaciones lineales para elegir cada estrategia nueva, del tamaño del número de acciones del jugador respectivo, obteniendo que la complejidad total es $\mathcal{O}(N^3 + M^3)$. La Tabla \ref{tab:complejidades-iteraciones} muestra un resumen de la complejidad en tiempo y memoria adicional.
 
 \begin{table}[h]
-    \caption{Complejidad por iteración de cada uno de los procedimientos}
+    \caption{Complejidad por iteración de cada uno de los procedimientos.}
     \label{tab:complejidades-iteraciones}
     \centering
     \begin{tabular}{c c c}
-        \hline
-         Procedimiento & Memoria & Tiempo  \\ \hline
+        \toprule
+         Procedimiento & Memoria & Tiempo  \\ \midrule
          A & $\mathcal{O}(N^2 + M^2)$ & $\mathcal{O}(N + M)$ \\ 
          B & $\mathcal{O}(N^2 + M^2)$ & $\mathcal{O}(N^3 + M^3)$ \\
-         C & $\mathcal{O}(N + M)$     & $\mathcal{O}(N + M)$ \\ \hline
+         C & $\mathcal{O}(N + M)$     & $\mathcal{O}(N + M)$ \\ \bottomrule
     \end{tabular}
 \end{table}
 

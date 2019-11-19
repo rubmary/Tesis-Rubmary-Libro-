@@ -1,7 +1,27 @@
-\chapter*{Notaci\'on matem\'atica}
-\begin{tabular}{ll}
-$\mathbb{R}$ & Conjunto de n\'umeros reales\\
-$M_{m,n}$ & Espacio de las matrices de tama\~no $m$ por $n$ con entradas reales\\
-$\mathcal{L}$ & Operador de Laplace\\
-$\emptyset$ & Conjunto vac\'io
+\chapter*{Notación matemática}
+\begingroup
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{l p{12cm}}
+$S_i$ & Conjunto de estrategias puras del jugador $i$ \\
+$s$ & Perfil estratégico puro \\
+$s_i$ & Estrategia pura del jugador $i$ \\
+$s_{-i}$ & Perfil estratégico $s$ excluyendo la estrategia del jugador $i$ \\
+$\Delta(A)$ & Conjunto de distribuciones de probabilidad del conjunto $A$ \\
+$\Delta^n$ & Simplex $n$-dimensional \\
+$\sigma_i$ & Estrategia mixta del jugador $i$ \\
+$\sigma_i(s_i)$ & Probabilidad de elegir $s_i$ dada la estrategia mixta $\sigma_i$ \\
+$\sigma$ & Perfil estratégico mixto \\
+$\sigma(s)$ & Probabilidad de que se elija el perfil estratégico $s$ bajo $\sigma$ \\
+$u_i$ & Función de pago (utilidad) del jugador $i$ \\
+$u_i(\sigma)$ & Ganancia esperada del jugador $i$ dado $\sigma$ \\
+$\pi^{x}(h)$ & Probabilidad de alcanzar la historia $h$ dado $x$ \\
+$\pi^c(h)$ & Probabilidad de que ocurra $h$ dado que todos los jugadores juegan para alcanzar $h$ \\
+$\pi^x(I)$ & Probabilidad de alcanzar el conjunto de información $I$ dado $x$ \\
+$\pi^x(h, h')$ & Probabilidad de ir de la historia $h$ a la historia $h'$ dado $x$ \\
+$\varepsilon_{\sigma}$ & Explotabilidad del perfil estratégico mixto $\sigma$ \\
+$R_i^T$ & \textit{Regret} promedio general del jugador $i$ a tiempo $T$ \\
+$\bar\sigma^T_i$ & Estrategia promedio del tiempo $1$ al tiempo $T$ del jugador $i$ \\
+$u_i(\sigma, I)$ & Utilidad contrafactual, dado el conjunto de información $I$ y el perfil estratégico $\sigma$, del jugador $i$ \\
+$R^T_{i, imm}(I)$ & Regret contrafactual inmediato del conjunto de información $I$
 \end{tabular}
+\endgroup

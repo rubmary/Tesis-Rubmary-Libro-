@@ -296,8 +296,8 @@
                     \@autor}%--
                     \vskip 3.0cm%---
                     {\bfseries \MakeTextUppercase \@trabajo} \\%---
-                    {Presentado ante la ilustre Universidad Sim\'on Bol\'ivar \\%---
-                    como requisito requisito parcial para optar al t\'itulo de \\%---
+                    {Presentado ante la ilustre Universidad Simón Bolívar \\%---
+                    como requisito parcial para optar al t\'itulo de \\%---
                     \@grado}%---
                     \vfill%---
                     {\bfseries Sartenejas, \@fecha}%%---
@@ -339,8 +339,8 @@
                     \@tutor \par \ifcotutor \@cotutor \par \fi}%---
                     \vskip 3.0cm%---
                     {\bfseries \MakeTextUppercase \@trabajo} \\%---
-                    {Presentado ante la ilustre Universidad Sim\'on Bol\'ivar \\%---
-                    como requisito requisito parcial para optar al t\'itulo de \\%---
+                    {Presentado ante la ilustre Universidad Simón Bolívar \\%---
+                    como requisito parcial para optar al título de \\%---
                     \@grado}%---
                     \vfill%---
                     {\bfseries Sartenejas, \@fecha}%%---
@@ -403,11 +403,11 @@
                     \vskip 2cm%--
                     {\large \textbf{\MakeTextUppercase{\@titulo}} \par}%--
                     \vskip 1.2cm%--
-                    {\large \@trabajo~presentada a la Universidad Sim\'on Bol\'ivar por%--
+                    {\large \@trabajo~presentada a la Universidad Simón Bolívar por%--
                     \vskip 1.2cm%--
                     \@autor \par%--
                     \vskip 1.2cm%--
-                    como requisito parcial para optar al grado acad\'emico de%--
+                    como requisito parcial para optar al grado académico de%--
                     \vskip 1.2cm%--
                     \@grado \par%--
                     \vskip 1.2cm%--

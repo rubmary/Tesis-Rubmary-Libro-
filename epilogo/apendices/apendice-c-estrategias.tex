@@ -1,0 +1,63 @@
+\chapter{Estrategias Minimax y Maximin}
+\label{apex:chapter:estrategias}
+
+\textcolor{red}{\bf ***** No tengo claro cual es la relevancia de está sección en esta parte de la tesis. Al parecer esto sólo es necesario para poder obtener el equilibrio de Nash via LP. De ser el caso, yo movería todo esto a un Apendice y así ganas espacio ****}
+
+Una estrategia \textit{minimax} del jugador $i$, consiste en minimizar la ganancia de la mejor respuesta del jugador $-i$. Es decir, el jugador $i$ juega para \say{castigar} al jugador $-i$, sin tomar en cuenta su propia ganancia. Por otra parte en una estrategia \textit{maximin}, el jugador busca maximizar su ganancia, suponiendo que su oponente juega para perjudicarlo.
+
+\begin{definition}[{\cite[p.~15--16]{bib:handbook-blai}}]
+El conjunto de estrategias \textit{minimax} para el jugador $i$ en contra del jugador $-i$ es
+\begin{alignat}{1}
+\{ \sigma_i : \max_{\sigma_{-i}}u_{-i}(\sigma_i, \sigma_{-i}) = \argmin_{\sigma'_i}{\max_{\sigma_{-i}} u_{-i}(\sigma'_i, \sigma_{-i})} \}\,,
+\end{alignat}
+y el valor minimax del jugador $-i$ es $\min_{\sigma_i}{\max_{\sigma_{-i}}{u_{-i}(\sigma_i, \sigma_{-i})}}$.
+El conjunto de estrategias \textit{maximin} para el jugador $i$ en contra del jugador $-i$ es
+\begin{alignat}{1}
+\{ \sigma_i : \min_{\sigma_{-i}}u_i(\sigma_i, \sigma_{-i}) = \argmax_{\sigma'_i}{\min_{\sigma_{-i}} u_i(\sigma'_i, \sigma_{-i})} \}\,,
+\end{alignat}
+y el valor \textit{maximin} del jugador $i$ es $\max_{\sigma_i}{\min_{\sigma_{-i}}{u_i(\sigma_i, \sigma_{-i})}}$.
+\end{definition}
+
+Como la estrategia \textit{minimax} o \textit{maximin} de un jugador no depende de la estrategia del oponente, se pueden definir perfiles estratégicos \textit{minimax} y \textit{maximin}. Un perfil estratégico mixto $\sigma = (\sigma_1, \sigma_2)$ es un perfil estratégico \textit{minimax} (\textit{maximin}) si $\sigma_1$ es un estrategia minimax (resp.\ \textit{maximin}) para el jugador $1$ y $\sigma_2$ es una estrategia \textit{minimax} (resp.\ \textit{maximin}) para el jugador $2$.
+
+\begin{example}
+\label{ex:ejemplos-min-max}
+Considere el juego en forma normal de $2$ jugadores mostrado en la Tabla~\ref{table:ejemplos-min-max} donde $S_1 = S_2 = \{1, 2\}$.
+\end{example}
+
+Calculemos estrategias \textit{minimax} y \textit{maximin} para el primer jugador. Las estrategias \textit{minimax} del primer jugador vienen expresadas por
+\begin{alignat}{1}
+\argmin_{(\beta_1, \beta_2) \in \Delta_2 }\ {\max_{(\theta_1, \theta_2) \in \Delta_2}
+{\theta_1(4\beta_1 -\beta_2) + \theta_2(-2\beta_1 + 2\beta_2)}} \,.
+\end{alignat}
+
+La solución es obtenida cuando la ganancia del segundo jugador no depende de las elecciones de $\theta_1$ y $\theta_2$, es decir, cuando $4\beta_1 - \beta_2 = -2\beta_1 + 2\beta_2$, lo que implica que $(\beta_1, \beta_2) = \left(\frac{1}{3}, \frac{2}{3} \right)$. 
+\textcolor{red}{\bf **** No se entiende bien como se concluye los valores de beta ****}
+El valor \textit{minimax} del segundo jugador es $\frac{2}{3}$. En este caso, el primer jugador elige su estrategia considerando, únicamente, la ganancia del oponente, sin tomar en cuenta su propia ganancia.
+Por otra parte, las estrategias \textit{maximin} se corresponden con
+\begin{alignat}{1}
+\argmax_{(\beta_1, \beta_2) \in \Delta_2 }\ {\min_{(\theta_1, \theta_2) \in \Delta_2}
+{\theta_1(2\beta_1 -\beta_2) + \theta_2(-\beta_1 + 2\beta_2)}} \,.
+\end{alignat}
+
+La estrategia \textit{maximin} es alcanzada cuando la ganancia esperada del primer jugador no depende de la elección de $\theta_1$ y $\theta_2$, es decir cuando $2\beta_1 - \beta_2 = -\beta_1 + 2\beta_2$, lo que ocurre si y sólo si $(\beta_1, \beta_2) = \left(\frac{1}{2}, \frac{1}{2}\right)$. El valor \textit{maximin} del primer jugador es $\frac{1}{2}$.
+
+\begin{table}[t]
+\begin{center}
+\caption{Tabla de pagos del juego del Ejemplo~\ref{ex:ejemplos-min-max}.}
+\label{table:ejemplos-min-max}
+\begin{tabular}{ r | c | c |}
+ %& \multicolumn{1}{c}{} & \multicolumn{2}{c}{Jugador $2$} \\
+ \multicolumn{1}{c}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}  \\ \cline{2-3}
+ %\multirow{2}{*}{Jugador $1$}
+ 1 & $2, 4$ & $-1, -2$ \\ \cline{2-3}
+ 2 & $-1, -1$ & $2, 2$ \\ \cline{2-3}
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{theorem}[\cite{bib:von-neumann}]
+\label{theo:von-neumann}
+Para cualquier juego finito para dos jugadores de suma cero, y para cualquier equilibrio de Nash del juego, cada jugador tiene una ganancia esperada cuyo valor es igual al valor minimax y valor maximin de dicho jugador. \end{theorem}
+
+El Teorema~\ref{theo:von-neumann} muestra que las estrategias \textit{minimax}, \textit{maximin} y los equilibrios de Nash coinciden en los juegos de dos jugadores con suma cero.

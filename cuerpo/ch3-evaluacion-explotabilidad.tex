@@ -1,11 +1,11 @@
-\chapter{Estrategias y Explotabilidad}
+\chapter{Explotabilidad}
 \label{chapter:explotabilidad}
 
-\section{Juegos de dos jugadores de suma cero}
+\section{Juegos de Dos Jugadores de Suma Cero}
 \label{section:dos-jugadores-suma-cero}
-Dado un juego (en forma normal o extensa) de dos jugadores, se dice que es de suma cero si $u_1 = -u_2$. Estos juegos representan competición pura, un jugador debe ganar a expensas del otro \cite[p.~5]{bib:handbook-blai}. De los juegos presentados, piedra, papel o tijera, Kuhn Poker y el Ejemplo~\ref{ex:imperfect-recall} son juegos de suma cero. Por otra parte, el juego de \say{la batalla de los sexos} (Ejemplo~\ref{ex:batalla-sexos}) y los  ejemplos \ref{ex:game-allocation}, \ref{ex:informacion-incompleta} y \ref{ex:imperfect-recall-2}, no lo son.
+Dado un juego (en forma normal o extensiva) de dos jugadores, se dice que el juego es de suma cero si $u_1 = -u_2$. Estos juegos representan competición pura, un jugador debe ganar a expensas del otro \cite[p.~5]{bib:handbook-blai}. De los juegos presentados, piedra, papel o tijera, Kuhn Poker y el Ejemplo~\ref{ex:imperfect-recall} son juegos de suma cero. Por otra parte, el juego de \say{la batalla de los sexos} (Ejemplo~\ref{ex:batalla-sexos}) y los  ejemplos \ref{ex:game-allocation}, \ref{ex:informacion-incompleta} y \ref{ex:imperfect-recall-2}, no lo son.
 
-?`Qué propiedades importantes tienen este tipo de juegos? La importancia principal es que en esto juegos el equilibrio de Nash es una solución satisfactoria en varios aspectos. Para ver esto, note lo siguiente, sea $\sigma^* = (\sigma^*_1, \sigma^*_2)$ un equilibrio de Nash. Se tiene que $\sigma^*_2$ es mejor respuesta a $\sigma^*_1$, lo que es equivalente a que $u_2(\sigma^*) \geq u_2(\sigma^*_1, \sigma_2)$, para cualquier estrategia $\sigma_2$ del segundo jugador. Como $u_2 = -u_1$, sustituyendo y multiplicando por $-1$ la inecuación, se obtiene que $u_1(\sigma^*) \leq u_1(\sigma^*_1, \sigma_2)$. Esto nos dice que, si $u_1(\sigma^*) = u$, entonces el jugador $1$ tendrá una ganancia esperada de al menos $u$, \textbf{indiferentemente} de la estrategia que utilice su oponente. Análogamente, el jugador $2$ puede garantizar una ganancia esperada de al menos $u_2(\sigma^*) = -u$.
+?`Qué propiedades importantes tienen este tipo de juegos? La importancia principal es que en estos juegos el equilibrio de Nash es una solución satisfactoria en varios aspectos. Para ver esto, note lo siguiente. Considere un equilibrio de Nash $\sigma^* = (\sigma^*_1, \sigma^*_2)$. Se tiene que $\sigma^*_2$ es mejor respuesta a $\sigma^*_1$, lo que es equivalente a que $u_2(\sigma^*) \geq u_2(\sigma^*_1, \sigma_2)$, para cualquier estrategia $\sigma_2$ del segundo jugador. Como $u_2 = -u_1$, sustituyendo y multiplicando por $-1$ la desigualdad, obtenemos $u_1(\sigma^*) \leq u_1(\sigma^*_1, \sigma_2)$. Esto nos dice que si $u_1(\sigma^*) = u$, entonces el jugador $1$ tendrá una ganancia esperada de al menos $u$, \textbf{indiferentemente} de la estrategia que utilice su oponente. Análogamente, el jugador $2$ puede garantizar una ganancia esperada de al menos $u_2(\sigma^*) = -u$.
 
 \begin{theorem}
 \label{theo:cota-ganancia-esperada}
@@ -19,79 +19,9 @@ Como consecuencia del Teorema~\ref{theo:cota-ganancia-esperada} obtenemos que, d
 Sean $\sigma = (\sigma_1, \sigma_2)$ y $\sigma' = (\sigma'_1, \sigma'_2)$ equilibrios de Nash en un juego de dos jugadores con suma cero. Entonces $\sigma'' = (\sigma_1, \sigma'_2)$ y $\sigma''' = (\sigma'_1, \sigma_2)$ son también equilibrios de Nash. Además, $u_i(\sigma) = u_i(\sigma') = u_i(\sigma'') = u_i(\sigma''')$, para $i \in \{1, 2\}$.
 \end{theorem}
 
-El Teorema~\ref{theo:EN-itercambiabilidad} no es cierto para juegos que no son de suma cero. Por ejemplo, en \say{la batalla de los sexos}, cuando ambos jugadores siempre eligen ir al ballet José obtiene una ganancia de $1$ y María de $2$, cuando los dos siempre eligen ir al béisbol José tiene una ganancia de $2$ y María de $1$, finalmente, cuando utilizan la estrategia mixta $\sigma = \left(\left(\frac{2}{3}, \frac{1}{3}\right), \left(\frac{1}{3}, \frac{2}{3}\right)\right)$ cada uno obtiene una ganancia esperada de $\frac{2}{3}$. Note que se obtienen valores diferentes en cada caso. Además, el perfil estratégico mixto $\sigma = \left((1, 0), \left(\frac{1}{3}, \frac{2}{3}\right)\right)$ no es un equilibrio de Nash.
+El Teorema~\ref{theo:EN-itercambiabilidad} no es cierto para juegos que no son de suma cero. Por ejemplo, en \say{la batalla de los sexos}, cuando ambos jugadores siempre eligen ir al ballet José obtiene una ganancia de $1$ y María de $2$, cuando los dos siempre eligen ir al béisbol José tiene una ganancia de $2$ y María de $1$, finalmente, cuando utilizan la estrategia mixta $\sigma = \left(\left(\frac{2}{3}, \frac{1}{3}\right), \left(\frac{1}{3}, \frac{2}{3}\right)\right)$ cada uno obtiene una ganancia esperada de $\frac{2}{3}$. Note que se obtienen valores diferentes en ambos casos, aún cuando ambos representan equilibrios de Nash. Además, el perfil estratégico mixto $\sigma = \left((1, 0), \left(\frac{1}{3}, \frac{2}{3}\right)\right)$ que no es un equilibrio de Nash da mejor utilidad a ambos jugadores de forma simultanea.
 
-Estas propiedades están fuertemente relacionadas a los conceptos de solución \textit{Minimax} y \textit{Maximin}, que en juegos de dos jugadores de suma cero, coinciden con los equilibrios de Nash.
-
-\section{Estrategias Minimax Maximin}
-
-Una estrategia \textit{minimax} del jugador $i$, consiste en minimizar la ganancia de la mejor respuesta del jugador $-i$. Es decir, el jugador $i$ juega para \say{castigar} al jugador $-i$, sin tomar en cuenta su propia ganancia. Por otra parte en una estrategia \textit{maximin}, el jugador busca maximizar su ganancia, suponiendo que su oponente juega para perjudicarlo.
-
-\begin{definition}[{\cite[p.~16]{bib:handbook-blai}}]
-La estrategia \textit{minimax} para el jugador $i$ en contra del jugador $-i$ es:
-\begin{alignat}{1}
-\argmin_{\sigma_i}{\max_{\sigma_{-i}}{u_{-i}(\sigma_i, \sigma_{-i})}}
-\end{alignat}
-y el valor minimax del jugador $-i$ es:
-\begin{alignat}{1}
-\min_{\sigma_i}{\max_{\sigma_{-i}}{u_{-i}(\sigma_i, \sigma_{-i})}} \,.
-\end{alignat}
-\end{definition}
-
-\begin{definition}[{\cite[p.~15]{bib:handbook-blai}}]
-La estrategia \textit{maximin} para el jugador $i$ es 
-\begin{alignat}{1}
-\argmax_{\sigma_i}{\min_{\sigma_{-i}}{u_i(\sigma_i, \sigma_{\sigma_{-i}})}}
-\end{alignat}
-y el valor \textit{maximin} del jugador $i$ es igual a
-\begin{alignat}{1}
-\max_{\sigma_i}{\min_{\sigma_{-i}}{u_i(\sigma_i, \sigma_{-i})}} \,.
-\end{alignat}
-\end{definition}
-
-Como la estrategia \textit{minimax} o \textit{maximin} de un jugador, no depende de la estrategia del oponente, se pueden definir perfiles estratégicos \textit{minimax} y \textit{maximin}. Un perfil estratégico mixto $\sigma = (\sigma_1, \sigma_2)$ es un perfil estratégico \textit{minimax} (\textit{maximin}) si $\sigma_1$ es un estrategia minimax (\textit{maximin}) para el jugador $1$ y $\sigma_2$ es una estrategia minimax (\textit{maximin}) para el jugador $2$.
-
-\begin{example}
-\label{ex:ejemplos-min-max}
-Considere un juego en forma normal de $2$ jugadores, donde $S_1 = S_2 = \{1, 2\}$. Las utilidades son presentadas en la Tabla~\ref{table:ejemplos-min-max}.
-\end{example}
-
-Calculemos estrategias \textit{minimax} y \textit{maximin} para el primer jugador. La estrategia \textit{minimax} del primer jugador viene dada por:
-\begin{alignat}{1}
-\argmin_{(\beta_1, \beta_2) \in \Delta_2 }{\max_{(\theta_1, \theta_2) \in \Delta_2}
-{\theta_1(4\beta_1 -\beta_2) + \theta_2(-2\beta_1 + 2\beta_2)}} \,.
-\end{alignat}
-
-Es obtenida cuando la ganancia del segundo jugador no depende de las elecciones de $\theta_1$ y $\theta_2$, es decir, cuando $4\beta_1 - \beta_2 = -2\beta_1 + 2\beta_2$, lo que implica que $(\beta_1, \beta_2) = \left(\frac{1}{3}, \frac{2}{3} \right)$. El valor \textit{minimax} del segundo jugador es $\frac{2}{3}$. En este caso, el primer jugador elige su estrategia considerando, únicamente, la ganancia del oponente, sin tomar en cuenta su propia ganancia.
-
-Por otra parte, la estrategia \textit{maximin}, viene dada por:
-\begin{alignat}{1}
-\argmax_{(\beta_1, \beta_2) \in \Delta_2 }{\min_{(\theta_1, \theta_2) \in \Delta_2}
-{\theta_1(2\beta_1 -\beta_2) + \theta_2(-\beta_1 + 2\beta_2)}} \,.
-\end{alignat}
-
-La estrategia \textit{maximin} es alcanzada cuando la ganancia esperada del primer jugador no depende de la elección de $\theta_1$ y $\theta_2$, es decir cuando $2\beta_1 - \beta_2 = -\beta_1 + 2\beta_2$, lo que ocurre si y sólo si $(\beta_1, \beta_2) = \left(\frac{1}{2}, \frac{1}{2}\right)$. El valor \textit{maximin} del primer jugador es $\frac{1}{2}$.
-
-\begin{table}[h]
-\begin{center}
-\caption{Tabla de pagos del juego del Ejemplo~\ref{ex:ejemplos-min-max}.}
-\label{table:ejemplos-min-max}
-\begin{tabular}{ c r | c | c |}
- & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Jugador $2$} \\
- & \multicolumn{1}{c}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}  \\ \cline{3-4}
- \multirow{2}{*}{Jugador $1$}
- & 1 & $2, 4$ & $-1, -2$ \\ \cline{3-4}
- & 1 & $-1, -1$ & $2, 2$ \\ \cline{3-4}
-\end{tabular}
-\end{center}
-\end{table}
-
-\begin{theorem}[\cite{bib:von-neumann}]
-\label{theo:von-neumann}
-En cualquier juego finito para dos jugadores de suma cero, en cualquier equilibrio de Nash, cada jugador tiene una ganancia esperada igual a ambos, su valor minimax y su valor maximin.  
-\end{theorem}
-
-El Teorema~\ref{theo:von-neumann} muestra que las estrategias \textit{minimax}, \textit{maximin} y los equilibrios de Nash coinciden en los juegos de dos jugadores con suma cero.
+%Estas propiedades están fuertemente relacionadas a los conceptos de solución \textit{Minimax} y %\textit{Maximin}, que en juegos de dos jugadores de suma cero, coinciden con el equilibrio de Nash.
 
 \section{Explotabilidad}
 \label{section:explotabilidad}
@@ -103,9 +33,9 @@ Sea $\sigma^* = (\sigma^*_1, \sigma^*_2)$ un equilibrio de Nash en un juego de d
 u_2(\sigma_1, \sigma^{\prime}_2)\ \geq\ u_2(\sigma_1, \sigma^*_2)\ \geq\ u_2(\sigma^*_1, \sigma^*_2) \,.
 \end{alignat}
 
-La primera desigualdad se obtiene porque $\sigma^{\prime}_2$ es mejor respuesta del jugador 2 a $\sigma_1$ y la segunda desigualdad ocurre porque $\sigma^*_1$ es mejor respuesta del jugador 1 a $\sigma^*_2$. Luego $u_2(\sigma_1, \sigma^{\prime}_2) = u_2(\sigma^*_1, \sigma^*_2) + \varepsilon_1$ para algún $\varepsilon_1 \geq 0$. Por lo tanto, la estrategia del jugador $1$ se volvió \textit{explotable} por una cantidad $\varepsilon_1$. De forma análoga se puede obtener que, si el jugador $2$ utiliza una estrategia $\sigma_2$ ligeramente alejada del equilibrio de Nash, esta estrategia será explotable por una cantidad no negativa $\varepsilon_2$.
+La primera desigualdad se obtiene porque $\sigma^{\prime}_2$ es mejor respuesta del jugador 2 a $\sigma_1$, y la segunda desigualdad ocurre porque $\sigma^*_1$ es mejor respuesta del jugador 1 a $\sigma^*_2$. Luego $u_2(\sigma_1, \sigma^{\prime}_2) = u_2(\sigma^*_1, \sigma^*_2) + \varepsilon_1$ para algún $\varepsilon_1 \geq 0$. Por lo tanto, la estrategia del jugador $1$ se volvió \textit{explotable} por una cantidad $\varepsilon_1$. De forma análoga se puede obtener que si el jugador $2$ utiliza una estrategia $\sigma_2$ ligeramente alejada del equilibrio de Nash, esta estrategia será explotable por una cantidad no negativa $\varepsilon_2$.
 
-La \textbf{explotabilidad} $\varepsilon_\sigma$ de una estrategia $\sigma = (\sigma_1, \sigma_2)$ es definida por la expresión $\varepsilon_{\sigma} = \varepsilon_1 + \varepsilon_2$. La explotabilidad es usada frecuentemente para medir la distancia de una estrategia al equilibrio de Nash \cite[p. 7]{bib:thesis-marc-lanctot}. Si definimos $v_i = u_i(\sigma_i, \sigma^{\prime}_{-i})$, entonces por lo anterior $v_i = u_i(\sigma^*) + \varepsilon_i$. Si $u=u_1(\sigma^*)$ es el valor del juego entonces $v_1 = u_1(\sigma^*) + \varepsilon_1 = u + \varepsilon_1$ y $v_2 = u_2(\sigma^*) + \varepsilon_2 = -u + \varepsilon_2$; luego, $\varepsilon_{\sigma} = u + \varepsilon_1 - u + \varepsilon_2 =  v_1 + v_2$. Note que la explotabilidad puede ser calculada conociendo las mejores respuestas a las estrategias, aun sin saber el valor del juego.
+La \textbf{explotabilidad} $\varepsilon_\sigma$ de una estrategia $\sigma = (\sigma_1, \sigma_2)$ es definida por la expresión $\varepsilon_{\sigma} = \varepsilon_1 + \varepsilon_2$. La explotabilidad es usada frecuentemente para medir la distancia de una estrategia al equilibrio de Nash \cite[p. 7]{bib:thesis-marc-lanctot}. Si definimos $v_i = u_i(\sigma_i, \sigma^{\prime}_{-i})$, entonces por lo anterior $v_i = u_i(\sigma^*) + \varepsilon_i$. Si $u=u_1(\sigma^*)$ es el valor del juego,  $v_1 = u_1(\sigma^*) + \varepsilon_1 = u + \varepsilon_1$ y $v_2 = u_2(\sigma^*) + \varepsilon_2 = -u + \varepsilon_2$. Luego, $\varepsilon_{\sigma} = u + \varepsilon_1 - u + \varepsilon_2 =  v_1 + v_2$. Note que la explotabilidad puede ser calculada conociendo las mejores respuestas a las estrategias, aún sin conocer el valor del juego.
 
 En los juegos en forma normal se puede calcular el valor $v_i$ de forma sencilla. Para ésto, se utilizará el hecho que para cualquier estrategia de cualquier jugador siempre existe una mejor respuesta cuyo soporte tiene un único elemento (Corolario del Teorema \ref{theo:mejor-respuesta}). Este resultado permite obtener la siguiente expresión para $v_i$ para calcular la explotabilidad $\varepsilon_\sigma$ de una estrategia dada $\sigma=(\sigma_1,\sigma_2)$:
 \begin{alignat}{1}
@@ -113,13 +43,13 @@ En los juegos en forma normal se puede calcular el valor $v_i$ de forma sencilla
 v_i\ =\ \max_{s_{i} \in S_{i}} u_i(s_i, \sigma_{-i}) \,.
 \end{alignat}
 
-Considere nuevamente el juego piedra, papel o tijera y la estrategia $\sigma = (\sigma_1, \sigma_2)$ con $\sigma_1 = (0.33, 0.33, 0.34)$ y $\sigma_2 = (0.34, 0.33, 0.33)$. Calculemos la explotabilidad de $\sigma_1$, $\sigma_2$ y $\sigma$. Sabemos que el valor del juego para este caso es igual a $0$. Por otra parte:
+Considere nuevamente el juego piedra, papel o tijera, y la estrategia $\sigma = (\sigma_1, \sigma_2)$ con $\sigma_1 = (0,33\ 0,33\ 0,34)$ y $\sigma_2 = (0,34\ 0,33\ 0,33)$. Calculemos la explotabilidad de $\sigma_1$, $\sigma_2$ y $\sigma$. Sabemos que el valor del juego para este caso es igual a $0$. Por otra parte:
 \begin{alignat}{2}
-u_1(\mathcal{R}, \sigma_2)\ &=\  0.33(0) + 0.33(-1) +  0.34(0)\ =\  0.01 \,, \\
-u_1(\mathcal{P}, \sigma_2)\ &=\  0.33(1) +  0.33(0) + 0.34(-1)\ =\ -0.01 \,, \\
-u_1(\mathcal{S}, \sigma_2)\ &=\ 0.33(-1) +  0.33(1) +  0.34(0)\ =\  0.00 \,.
+u_1(\mathcal{R}, \sigma_2)\ &=\ 0,33(0)  +  0,33(-1) +  0,34(0)\  =\  0.01 \,, \\
+u_1(\mathcal{P}, \sigma_2)\ &=\ 0,33(1)  +   0,33(0) +  0,34(-1)\ =\ -0.01 \,, \\
+u_1(\mathcal{S}, \sigma_2)\ &=\ 0,33(-1) +   0,33(1) +  0,34(0)\  =\  0.00 \,.
 \end{alignat}
 
-Luego, $v_1 = \max(0.01, -0.01, 0.00) = 0.01$ y $\varepsilon_1 = v_1 - u = 0.01$. De forma análoga se tiene que $v_2 = \varepsilon_2 = 0.01$, y finalmente, se concluye que $\varepsilon_{\sigma} = 0.02$.
+Luego, $v_1 = \max\{0,01; -0,01; 0,00\} = 0,01$ y $\varepsilon_1 = v_1 - u = 0,01$. De forma análoga se tiene que $v_2 = \varepsilon_2 = 0,01$, y finalmente, se concluye que $\varepsilon_{\sigma} = 0,02$.
 
-Estas fórmulas se usan para calcular la explotabilidad de las estrategias obtenidas al ejecutar cada uno de los procedimientos implementados en cada uno de los juegos en forma normal que se describen en el Capítulo~\ref{chapter:regret-matching}. Sin embargo, la expresión \ref{eq:best-response-fn} no es práctica para juegos en forma extensa, ya que no es factible listar todos los perfiles estratégicos, como en los juegos en forma normal. Para calcular la explotabilidad en los juegos en forma extensa (descritos en el capítulo~5) se utilizará el algoritmo propuesto en \cite{bib:thesis-marc-lanctot} para calcular la mejor respuesta a una estrategia. 
+Estas fórmulas se usan para calcular la explotabilidad de las estrategias obtenidas al ejecutar cada uno de los procedimientos implementados en cada uno de los juegos en forma normal que se describen en el Capítulo~\ref{chapter:regret-matching}. Sin embargo, la expresión \ref{eq:best-response-fn} no es práctica para juegos en forma extensiva, ya que no es factible listar todos los perfiles estratégicos, como en los juegos en forma normal. Para calcular la explotabilidad en los juegos en forma extensiva (descritos en el capítulo~5) se utiliza el algoritmo propuesto en \cite{bib:thesis-marc-lanctot} para calcular la mejor respuesta a una estrategia. 

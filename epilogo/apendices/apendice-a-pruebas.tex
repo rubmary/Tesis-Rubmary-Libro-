@@ -117,7 +117,7 @@ Sea $\psi\in\Delta(S)$ un equilibrio correlacionado. Si $\psi$ se factoriza como
 \end{reptheorem}
 
 \begin{proof}
-Sea $\psi= \prod_{i \in N} \sigma_i$ un equilibrio correlacionado en forma factorizada. Debemos mostrar que para cualquier jugador $i$ y estrategia mixta $\sigma'_i$ para el jugador $i$, se cumple $u_i(\sigma) \geq u_i(\sigma'_i, \sigma_{-i})$.
+Sea $\psi= \prod_{i \in N} \sigma_i$ un equilibrio correlacionado en forma factorizada. Se debe mostrar que para cualquier jugador $i$ y estrategia mixta $\sigma'_i$ para el jugador $i$, se cumple $u_i(\sigma) \geq u_i(\sigma'_i, \sigma_{-i})$.
 
 Sean $x$ y $y$ estrategias puras para el jugador $i$.
 Como $\sigma$ es un equilibrio correlacionado,
@@ -126,13 +126,13 @@ Como $\sigma$ es un equilibrio correlacionado,
 0\ \leq\ \sigma_i(x) \sum_{s_{-i}} \sigma_{-i}(s_{-i})[u_i(x, s_{-i}) - u_i(y, s_{-i})] \,.
 \end{alignat}
 
-Al sumar sobre $x\in S_i$ obtenemos, 
+Al sumar sobre $x\in S_i$ se obtiene, 
 \begin{alignat}{2}
 \label{eq:2:theo:correlacionado-nash}
 0\ \leq\ \sum_{x\in S_i} \sum_{s_{-i}} \sigma(x,s_{-i}) [u_i(x, s_{-i}) - u_i(y, s_{-i})]\ =\ \sum_s \sigma(s) [u_i(s) - u_i(y, s_{-i})] \,.
 \end{alignat}
 
-Si $x^* \in S_i$ es tal que $\sigma_i(x^*)>0$, obtenemos de \eqref{eq:1:theo:correlacionado-nash} al multiplicar por $\sigma'_i(y)$ y sumar sobre $y\in S_i$:
+Si $x^* \in S_i$ es tal que $\sigma_i(x^*)>0$, se obtiene de \eqref{eq:1:theo:correlacionado-nash} al multiplicar por $\sigma'_i(y)$ y sumar sobre $y\in S_i$:
 \begin{alignat}{1}
 \label{eq:3:theo:correlacionado-nash}
 \sum_{y \in S_i} \sigma'_i(y) \sum_{s_{-i}} \sigma_{-i} (s_{-i}) [u_i(x^*, s_{-i}) - u_i(y, s_{-i})]\ =\ \sum_{s} \sigma'(s) [u_i(x^*, s_{-i}) - u_i(s)]\ \geq\ 0 \,,
@@ -140,7 +140,7 @@ Si $x^* \in S_i$ es tal que $\sigma_i(x^*)>0$, obtenemos de \eqref{eq:1:theo:cor
 donde $\sigma'$ denota la estrategia $\sigma'=(\sigma'_i,\sigma_{-i})$. 
 
 Al sumar \eqref{eq:2:theo:correlacionado-nash} y
-\eqref{eq:3:theo:correlacionado-nash}, obtenemos que para cualquier $y$ y $x^*$ tal que $\sigma_i(x^*)>0$:
+\eqref{eq:3:theo:correlacionado-nash}, se obtiene que para cualquier $y$ y $x^*$ tal que $\sigma_i(x^*)>0$:
 \begin{alignat}{1}
 \label{eq:4:theo:correlacionado-nash}
 \sum_{s \in S} u_i(s) [\sigma(s) - \sigma'(s)] - \sum_{s \in S} \sigma(s)u_i(y, s_{-i}) + \sum_{s \in S} \sigma'(s) u_i(x^*, s_{-i})\ \geq\ 0\ \,.
@@ -403,8 +403,8 @@ La última igualdad ocurre porque $\sum_{k\in S_i} q_{\lambda}(k)=1$. Luego, si 
 \begin{alignat}{1}
 	\alpha(j)\ =\ \lambda(j) - q_{\lambda}(j) \sum_{k \in S_i} \lambda(k) \,,
 \end{alignat}
-obtenemos $\lambda \cdot v(q_{\lambda}, s_{-i}) = \sum_{j \in S_i} u_i(j, s_{-i})\alpha(j)$.
-Note que si $q_{\lambda(j)} = \frac{\lambda(j)}{\sum_{k \in S_i} \lambda(k)}$, entonces $\alpha(j) = 0$ para todo $j \in S_i$ y se cumple la condición del Teorema \ref{theo:blackwell} en forma de igualdad. Además, para $D_t=\frac{1}{t} \sum_{\tau = 1}^{t} v(s_{\tau})$, tenemos
+se obtiene $\lambda \cdot v(q_{\lambda}, s_{-i}) = \sum_{j \in S_i} u_i(j, s_{-i})\alpha(j)$.
+Note que si $q_{\lambda(j)} = \frac{\lambda(j)}{\sum_{k \in S_i} \lambda(k)}$, entonces $\alpha(j) = 0$ para todo $j \in S_i$ y se cumple la condición del Teorema \ref{theo:blackwell} en forma de igualdad. Además, para $D_t=\frac{1}{t} \sum_{\tau = 1}^{t} v(s_{\tau})$, se tiene
 \begin{alignat}{1}
 	D_t[k]\ =\ \sum_{\tau = 1}^{t} v(s_{\tau})[k]\ =\ \sum_{\tau \leq t }[u_i(k, s_{-i}^{\tau}) - u_i(s_{\tau})]\ =\  D_i^t(k) \,.
 \end{alignat}
@@ -425,13 +425,13 @@ Sea $\Gamma$ un juego de dos jugadores de suma cero y sea $(s^t)_{t=1,2,..., T}$
 \end{alignat}
 para algún $\varepsilon > 0$. Sea $\bar{\sigma}^T = (\bar{\sigma_1}^T, \bar{\sigma_2}^T)$, donde:
 \begin{alignat}{1}
-\bar{\sigma}_i^T(s_i)\ =\ \frac{ |\{ 1 \leq T : s_i^t = s_i\}|}{T}\ =\ \frac{\#(s_i)}{T}
+\bar{\sigma}_i^T(s_i)\ =\ \frac{|\{ t \leq T : s_i^t = s_i\}|}{T} \,,
 \end{alignat}
-es decir, $\bar{\sigma}^T$, es la distribución empírica de probabilidad. Entonces $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
+es decir, $\bar{\sigma}^T$ es la distribución empírica de probabilidad, note que $|\{ t \leq T : s_i^t = s_i\}|$ es igual al número de veces que se eligió $s_i$ hasta el tiempo $T$. Entonces, $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
 \end{reptheorem}
 
 \begin{proof}
-Por hipótesis del teorema, se tiene que:
+Se denotará con $\#(s_i)$ el número de veces que se ha elegido $s_i$ a tiempo $T$, i.e., $\#(s_i) = |\{ t \leq T : s_i^t = s_i\}|$. Por hipótesis del teorema, se tiene que:
 \begin{alignat}{1}
 \frac{1}{T} \sum_{t = 1}^T u_i(s_i, s_{-i}^t) - \frac{1}{T} \sum_{t = 1}^T u_i(s^t)\ \leq\ \varepsilon \,.
 \end{alignat}

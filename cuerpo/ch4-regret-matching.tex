@@ -3,7 +3,6 @@
 
 \newcommand{\graphicsRM}[2]{
 \begin{figure}[h]
-    % \vspace{10pt}
     \resizebox{\textwidth}{!}{
     \includegraphics{graficas/regret-matching/#1/procedimiento-A.png}
     \includegraphics{graficas/regret-matching/#1/procedimiento-B.png} 
@@ -54,8 +53,6 @@ $z_t(s) = \frac{1}{t} |\{1\leq\tau \leq t : s^{\tau} = s \}|$. El siguiente teor
 \label{theo:conv-proc-A}
 Si cada jugador juega de acuerdo al procedimiento descrito por \eqref{eq:proc-A}, entonces la distribución empírica del juego $z_t$ converge (a.s.) cuando $t \rightarrow \infty$ al conjunto de equilibrios correlacionado del juego $\Gamma$.\footnote{Convergencia a.s.\ (almost sure) indica que el conjunto de  secuencias $\{z_t\}_t$ para las cuales la convergencia no se cumple es un conjunto de probabilidad 0.}
 \end{theorem}
-
-% Es importante destacar que $z_t$ no tiene que converger necesariamente a un punto equilibrio correlacionado. El Teorema~\ref{theo:conv-proc-A} es equivalente al siguiente enunciado: para todo $\varepsilon > 0$, existe un tiempo $T_0 = T_0(\varepsilon)$ tal que para todo $t \geq T_0$ podemos encontrar un equilibrio correlacionado $\psi_t$ que está a distancia menor que $\varepsilon$ de $z_t$.
 
 En el procedimiento descrito cada jugador tiene dos opciones en cada período: continuar jugando con la última estrategia, o cambiarla por otra estrategia cuyas probabilidades son proporcionales a cuanto mayor hubiese sido su ganancia acumulada si hubiese hecho ese cambio en el pasado. El procedimiento planteado es simple, tanto de entender y explicar, como de implementar. Además en cada período no sólo se elige la mejor respuesta, todas las respuestas mejores a la actual pueden ser escogidas con probabilidades que son proporcionales a sus ganancias aparentes (medidas por el \textit{regret}). Este tipo de procedimientos son llamados procedimientos de \textit{Regret Matching}. Por último, el procedimiento tiene inercia: la estrategia jugada previamente importa, siempre hay una probabilidad positiva de continuar jugando la misma estrategia, y más aún, sólo se cambiará de estrategia si hay una razón para hacerlo.
 
@@ -123,7 +120,7 @@ El procedimiento adaptativo definido en \eqref{eq:proc-C} es universalmente cons
 
 \section{Regret Matching y Equilibrio de Nash}
 
-?`Bajo qué condiciones se puede garantizar que un procedimiento universalmente consistente conduzca a un equilibrio de Nash? El Teorema~\ref{theo:UC-EN} permite concluir que en juegos de dos jugadores de suma cero, si un procedimiento es universalmente consistente, su distribución empírica llevará a un equilibrio de Nash.
+?`Bajo qué condiciones se puede garantizar que un procedimiento universalmente consistente conduzca a un equilibrio de Nash? El Teorema~\ref{theo:UC-EN} permite concluir que en juegos de dos jugadores de suma cero, si un procedimiento es universalmente consistente, su distribución empírica llevará a un equilibrio de Nash (si $\mathcal{A}$ es un conjunto se utilizará $|\mathcal{A}|$ para denotar su cardinalidad).
 
 \begin{theorem}
 \label{theo:UC-EN}
@@ -133,27 +130,27 @@ Sea $\Gamma$ un juego de dos jugadores de suma cero y sea $(s^t)_{t=1,2,..., T}$
 \end{alignat}
 para algún $\varepsilon > 0$. Sea $\bar{\sigma}^T = (\bar{\sigma_1}^T, \bar{\sigma_2}^T)$, donde:
 \begin{alignat}{1}
-\bar{\sigma}_i^T(s_i)\ =\ \frac{ |\{ 1 \leq T : s_i^t = s_i\}|}{T}\ =\ \frac{\#(s_i)}{T} \,,
+\bar{\sigma}_i^T(s_i)\ =\ \frac{|\{ t \leq T : s_i^t = s_i\}|}{T} \,,
 \end{alignat}
-es decir, $\bar{\sigma}^T$ es la distribución empírica de probabilidad. Entonces, $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash. \textcolor{red}{\bf **** Qué siginifica la notacion $\#(s_i)$?}
+es decir, $\bar{\sigma}^T$ es la distribución empírica de probabilidad, note que $|\{ t \leq T : s_i^t = s_i\}|$ es igual al número de veces que se eligió $s_i$ hasta el tiempo $T$. Entonces, $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
 \end{theorem}
 
-\textcolor{red}{\bf ***** Parece que falta un Teorema que diga que los procedimientos A y B también son universalmente consistentes. Si no, no se tiene la garantía que llevarán a un equilibrio de Nash, sino a un equilibrio correlacionado. Cierto? ****}
+Por otra parte, los procedimientos A y B también son universalmente consistentes (corolario del Teorema~\ref{theo:a-b-universalmente-consistentes}), por lo que los tres procedimientos pueden ser utilizados para calcular una aproximación de un equilibrio de Nash en cualquier juego de dos jugadores de suman cero.
+
+\begin{theorem}
+\label{theo:a-b-universalmente-consistentes}
+En un procedimiento adaptativo de \textit{Regret Matching}, si el \textit{regret} incondicional converge a $0$, entonces el procedimiento es universalmente consistente.
+\end{theorem}
 
 \section{Evaluación Empírica de Regret Matching}
 
-Los algoritmos propuestos fueron probados en 4 juegos diferentes en forma normal: \textit{matching pennies}, piedra, papel y tijera, ficha vs dominó, y coronel Blotto. Todos estos juegos son de dos jugadores y, debido a que los algoritmos son universalmente consistentes, pueden ser utilizados para encontrar un equilibrio de Nash en cada uno de ellos. Además, es suficiente con definir el pago para el primer jugador para que el juego esté bien definido. 
+Los algoritmos propuestos fueron probados en 4 juegos diferentes en forma normal: \textit{matching pennies}, piedra, papel y tijera, ficha vs. dominó, y coronel Blotto. Todos estos juegos son de dos jugadores y, debido a que los algoritmos son universalmente consistentes, pueden ser utilizados para encontrar un equilibrio de Nash en cada uno de ellos. Además, es suficiente con definir el pago para el primer jugador para que el juego esté bien definido. 
 
 Por otra parte, un equilibro de Nash en juegos de dos jugadores de suma cero puede modelarse como un problema de programación lineal \cite[pp.~228-233]{bib:pl-chvatal} (ver Apéndice \ref{apex:chapter:programacion-lineal}) y resolverse mediante procedimientos destinados para esto. Esto nos permite encontrar por otro procedimiento un equilibrio de Nash para juegos suficientemente pequeños, y así verificar la correctitud de los algoritmos de \emph{Regret Matching}. 
 
 Cada uno de los juegos es descrito mediante sus reglas y, cuando sea factible, mostraremos la matriz de pagos explícitamente. Los problemas de programación lineal que permiten obtener un equilibrio de Nash en cada juego se encuentran en el Apéndice \ref{apex:chapter:programacion-lineal}.
 
-La implementación fue realizada en el lenguaje C++ utilizando la librería estándar y una librería adicional llamada \textit{Eigen} \cite{bib:eigen} para factorizar matrices y resolver sistemas de ecuaciones. También se implementó una clase para encontrar un equilibrio de Nash mediante el algoritmo de \textit{Regret Matching}. En cada iteración del algoritmo, la actualización de las estrategias depende de cada procedimiento según las fórmulas propuestas anteriormente. La evaluación experimental de estos algoritmos se realizó en una máquina personal con las siguientes características:
-\begin{itemize}[noitemsep]
-    \item Procesador: Intel\textsuperscript{\textregistered} Core\textsuperscript{\texttrademark} i5-8250U \makeatletter{@} 1.60GHz.
-    \item 8CPUs y 8GB de memoria RAM.
-    %\item Sistema Operativo: Ubuntu 18.04.3 LTS.
-\end{itemize}
+La implementación fue realizada en el lenguaje C++ utilizando la librería estándar y una librería adicional llamada \textit{Eigen} \cite{bib:eigen} para factorizar matrices y resolver sistemas de ecuaciones. También se implementó una clase para encontrar un equilibrio de Nash mediante el algoritmo de \textit{Regret Matching}. En cada iteración del algoritmo, la actualización de las estrategias depende de cada procedimiento según las fórmulas propuestas anteriormente. La evaluación experimental de estos algoritmos se realizó en una máquina personal con las siguientes características: procesador Intel\textsuperscript{\textregistered} Core\textsuperscript{\texttrademark} i5-8250U \makeatletter{@} 1.60GHz, 8CPUs y 8GB de memoria. RAM.
 
 Cada procedimiento fue probado $10$ veces para cada juego, finalizando cada ejecución al obtener un regret máximo menor a 0,005.  Para evaluar la convergencia se midió el tiempo necesario para alcanzar el \textit{regret} deseado y el número de iteraciones. Por cada juego se muestra una tabla con los resultados obtenidos que incluye para cada uno de los procedimientos, la ganancia esperada para el primer jugador al utilizar la estrategia obtenida en la última corrida del algoritmo ($u({\sigma})$) y la explotabilidad ($\varepsilon_{\sigma}$) de dicha estrategia, así como también el promedio sobre las $10$ ejecuciones del algoritmo del tiempo de ejecución en segundos ($T$), el número de iteraciones ($I$) y el tiempo por iteración ($T/I$). También se muestra las gráficas del \textit{regret} con respecto al número de iteraciones de cada uno de los procedimientos. Estas gráficas son mostradas con una escala logarítmica en el eje $x$ para apreciar mejor los resultados. En el Apéndice \ref{apex:chapter:experimentos-rm} se muestran tablas con resultados adicionales en cada una de las corridas.
 
@@ -172,11 +169,13 @@ En este juego cada jugador tiene una moneda y selecciona cara o sello de forma s
 \end{center}
 \end{table}
 
-El problema de programación lineal es presentado en la Ecuación~\ref{apex:eq:pl-matching-pennies} (Apéndice~\ref{apex:chapter:programacion-lineal}), cuya solución primal y dual vienen dadas por:
+El problema de programación lineal es presentado en la Ecuación~\ref{apex:eq:pl-matching-pennies} (Apéndice~\ref{apex:chapter:programacion-lineal}), cuya solución primal y dual vienen dadas por la Ecuación \ref{eq:nash-matching-pennies}. Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cara o sello con probabilidad $\frac{1}{2}$ y el valor del juego es igual a $0$.
 \begin{alignat}{1}
+\label{eq:nash-matching-pennies}
 (z^*, x_1^*, x_2^*)\ =\ (w^*, y^*_1, y^*_2)\ =\ \left(0, \frac{1}{2}, \frac{1}{2} \right) \,.
 \end{alignat}
-Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cara o sello con probabilidad $\frac{1}{2}$ y el valor del juego es igual a $0$. La Tabla~\ref{table:resultados-rm-matching-pennies} muestra los resultados experimentales obtenidos. Note que la explotabilidad siempre es menor que $0.008$. La Figura~\ref{fig:regret-rm-matching-pennies} muestra el \textit{regret} con respecto al número de iteraciones en cada juego. Se observa como el \textit{regret} tiende a cero en cada una de las gráficas.
+
+La Tabla~\ref{table:resultados-rm-matching-pennies} muestra los resultados experimentales obtenidos. Note que la explotabilidad siempre es menor que $0.008$. La Figura~\ref{fig:regret-rm-matching-pennies} muestra el \textit{regret} con respecto al número de iteraciones en cada juego. Se observa como el \textit{regret} tiende a cero en cada una de las gráficas.
  
 \begin{table}[t]
 \caption{Resultados experimentales del juego matching pennies.}
@@ -199,10 +198,11 @@ Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cara o sel
 
 Este juego es descrito en el Capítulo~\ref{chapter:forma-normal} y su matriz de pago se muestra en la Tabla \ref{table:pago-RPS}. El problema de programación lineal asociado se encuentra en la Ecuación~\ref{apex:eq:pl-RPS} y su solución (primal y dual) es:
 \begin{alignat}{1}
-(z^*, x_1^*, x_2^*, x_3^*)\ =\ (w^*, y_1^*, y_2^*, y_3^*)\ =\  \left(0, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right) \,.
+(z^*, x_1^*, x_2^*, x_3^*)\ =\ (w^*, y_1^*, y_2^*, y_3^*)\ =\  \left(0, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right) \,,
 \end{alignat}
+Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cada una de las acciones con probabilidad igual a $\frac{1}{3}$ y el valor del juego es igual a $0$. Es importante destacar que en todo juego simétrico el valor del juego es $0$ y las estrategias óptimas son iguales para ambos jugadores.
 
-Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cada una de las acciones con probabilidad igual a $\frac{1}{3}$ y el valor del juego es igual a $0$. La Tabla~\ref{table:resultados-rm-RPS} muestra el resumen de los resultados para piedra, papel o tijera. Note que la explotabilidad siempre es menor o igual que 0,01. La gráfica~\ref{fig:regret-rm-RPS} muestra el \textit{regret} con respecto al número de iteraciones para cada uno de los procedimientos.
+La Tabla~\ref{table:resultados-rm-RPS} muestra el resumen de los resultados para piedra, papel o tijera. Note que la explotabilidad siempre es menor o igual que 0,01. La gráfica~\ref{fig:regret-rm-RPS} muestra el \textit{regret} con respecto al número de iteraciones para cada uno de los procedimientos.
 
 \begin{table}[t]
 \caption{Resultados experimentales del juego piedra, papel o tijera.}
@@ -223,18 +223,18 @@ Luego, el equilibrio de Nash se obtiene cuando ambos jugadores eligen cada una d
 
 \subsection*{Ficha vs.\ Dominó}
 
-En este juego cada jugador tiene un tablero de tamaño $2\times 3$. El primer jugador tiene una ficha de dominó (la cual ocupa dos casillas con un lado en común) que puede colocar de $7$ formas diferentes. Cada una de las formas es mostrada en la Figura~\ref{fig:posiciones-domino}, con su respectiva etiqueta. El segundo jugador posee una ficha que ocupa una única casilla de su tablero y la ubica en una de las $6$ casillas, las cuales se numeran en la Figura~\ref{fig:posiciones}. Luego se superponen los tableros y si la ficha es cubierta por el dominó entonces el segundo jugador gana, en caso contrario gana el primer jugador \cite[p. 237]{bib:pl-chvatal}. La matriz de pagos de este juego se muestra en la Tabla \ref{table:pagos-domino}.
+En este juego cada jugador tiene un tablero de tamaño $2\times 3$. El primer jugador tiene una ficha de dominó que puede colocar de $7$ formas diferentes. Cada una de las formas es mostrada en la Figura~\ref{fig:posiciones-domino}, con su respectiva etiqueta. El segundo jugador posee una ficha que ocupa una única casilla de su tablero y la ubica en una de las $6$ casillas, las cuales se numeran en la Figura~\ref{fig:posiciones}. Luego se superponen los tableros y si la ficha es cubierta por el dominó entonces el segundo jugador gana, en caso contrario gana el primer jugador \cite[p. 237]{bib:pl-chvatal}. La matriz de pagos de este juego se muestra en la Tabla \ref{table:pagos-domino}.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.2\textwidth]{figuras/posiciones.png}
+\includegraphics[width=0.25\textwidth]{figuras/posiciones.png}
 \caption{Posibles posiciones de la ficha del segundo jugador en el juego ficha vs.\ dominó.}
 \label{fig:posiciones}
 \end{figure}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\textwidth]{figuras/posiciones-domino.png}
+\includegraphics[width=\textwidth]{figuras/posiciones-domino.png}
 \caption{Posibles posiciones de la ficha de dominó que representas las acciones del primer jugador en el juego ficha vs.\ dominó.}
 \label{fig:posiciones-domino}
 \end{figure}
@@ -257,6 +257,7 @@ G &  1 &  1 & -1 &  1 &  1 & -1 \\ \cline{2-7}
 \end{table}
 
 El problema de programación lineal asociado se encuentra en la Ecuación~\ref{apex:eq:pl-domino}. Este problema no tiene solución única (lo que implica que el juego no tiene un equilibrio de Nash único), una solución (primal y dual) viene dada por:
+
 \begin{alignat}{1}
 (z^*, x^*_1, x^*_2, x^*_4, x^*_5, x^*_6, x^*_6, x^*_7)\ =\ \left(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, 0, 0, 0, 0, \frac{1}{3}\right) \,, \\
 (w^*, y^*_1, y^*_2, y^*_3,  y^*_4, y^*_5, y^*_6)\ =\ \left(\frac{1}{3}, \frac{1}{3}, 0, \frac{1}{3}, 0, \frac{1}{3}, 0\right) \,.
@@ -340,7 +341,7 @@ Por lo anterior, se observa que la velocidad de las iteraciones del procedimient
 
 \subsection{Número de Iteraciones}
 
-Con respecto al número de itereaciones se nota, observando las Tablas~\ref{table:resultados-rm-matching-pennies}, \ref{table:resultados-rm-RPS}, \ref{table:resultados-rm-domino} y \ref{table:resultados-rm-blotto}, que el procedimiento A, \textit{regret} incondicional es el que necesita muchas más iteraciones para converger. Por otra parte, en algunos casos esta métrica fue menor en el procedimiento B y en otros casos el mínimo se obtuvo con el procedimiento C. También es importante destacar que en el juego de piedra, papel o tijera se tienen varios casos donde se obtiene la convergencia en menos de $10$ iteraciones (ver Apéndice \ref{apex:chapter:experimentos-rm}); esos son casos donde se obtiene el equilibrio de Nash de forma exacta en pocas iteraciones.
+Con respecto al número de iteraciones se nota, observando las Tablas~\ref{table:resultados-rm-matching-pennies}, \ref{table:resultados-rm-RPS}, \ref{table:resultados-rm-domino} y \ref{table:resultados-rm-blotto}, que el procedimiento A, \textit{regret} incondicional es el que necesita muchas más iteraciones para converger. Por otra parte, en algunos casos esta métrica fue menor en el procedimiento B y en otros casos el mínimo se obtuvo con el procedimiento C. También es importante destacar que en el juego de piedra, papel o tijera se tienen varios casos donde se obtiene la convergencia en menos de $10$ iteraciones (ver Apéndice \ref{apex:chapter:experimentos-rm}); esos son casos donde se obtiene el equilibrio de Nash de forma exacta en pocas iteraciones.
 
 \subsection{Tiempo Transcurrido}
 

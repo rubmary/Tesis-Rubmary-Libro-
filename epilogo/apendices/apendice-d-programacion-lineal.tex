@@ -48,6 +48,8 @@ Sujetos a $x_i, y_j \geq 0$ y a $\sum_{i=1}^m x_i = 1$ y $\sum_{j=1}^n y_j = 1$.
 
 Para ver la equivalencia, note que cualquier solución óptima $z^*, x_1^*, x_2^*, ..., x_m^*$ de \ref{apex:eq:maximin-problema2} satisface al menos una restricción con el signo de igualdad y por lo tanto $z^* = \min_j \sum_i a_{ij}x_i^*$. De forma similar, cualquier solución óptima $w^*, y_1^*, y_2^*, ..., y_n^*$ de \ref{apex:eq:minimax-problema2} satisface al menos una restricción con el signo de igualdad y por lo tanto $w^* = \min_i \sum_j a_{ij}y_j$. Por último, note que \ref{apex:eq:maximin-problema2} y \ref{apex:eq:minimax-problema2} son problemas duales entre sí, lo cual confirma que $z^* = w^*$.
 
+Con respecto a los juego en forma extensiva, si bien se podrían representar en forma normal para resolverlos con programación lineal, esto no es práctico, pues la forma normal es exponencialmente más grande que la forma extensiva. En \cite{bib:algoritmo-pl} se propone un modelo para calcular un equilibrio de Nash mediante programación lineal con una complejidad polinómica respecto al número de nodos del árbol, esto fue el estado del arte hasta que se desarrolló el algoritmo \textit{Counterfactual Regret Minimization} (CFR).
+
 A continuación, se presentan loa problemas de programación lineal asociados a los juegos \textit{matching pennies}, piedra, papel o tijera y ficha vs. dominó; presentados en el Capítulo~\ref{chapter:regret-matching}, con una solución primal y dual.
 
 \begin{itemize}

@@ -5,15 +5,15 @@
 \algnewcommand{\OR}{\algorithmicor}
 \algnewcommand{\AND}{\algorithmicand}
 
-En esta sección se presentan los algoritmos \textit{Counterfactual Regret Minimization} (CFR) con muestreo de los nodos de azar (Algoritmo~\ref{algorithm:CFR}) y \textit{Generilized Expectimax Best Response} (GEBR) (Algoritmos \ref{algorithm:GEBR}, \ref{algorithm:gebr-pass1} y \ref{algorithm:gebr-pass2}) este último utilizado para obtener la explotabilidad de una estrategia (Algoritmo~\ref{algorithm:explotabilidad}). Es importante notar que $h$ representa una historia (o un estado en el juego) y $ha$ representa la hitoria $h$ con la acción $a$ anexada, es decir, el estado del juego en el cual después de la historia $h$ fue elegida la acción $a$.
+En esta sección se presentan los algoritmos \textit{Counterfactual Regret Minimization} (CFR) con muestreo de los nodos de azar (Algoritmo~\ref{algorithm:CFR}) y \textit{Generilized Expectimax Best Response} (GEBR) (Algoritmos \ref{algorithm:GEBR}, \ref{algorithm:gebr-pass1} y \ref{algorithm:gebr-pass2}) este último utilizado para obtener la explotabilidad de una estrategia (Algoritmo~\ref{algorithm:explotabilidad}). Observe que $h$ representa una historia (o un estado en el juego) y $ha$ representa la hitoria $h$ con la acción $a$ anexada, es decir, el estado del juego en el cual después de la historia $h$ fue elegida la acción $a$.
 
-En al algoritmo GEBR (Algoritmo~\ref{algorithm:GEBR}) se tiene un jugador $i$ para el cual se calculará la mejor respuesta $\sigma^*_i$ ante una estrategia fija $\sigma_{-i}$ del jugador $-i$. Este algoritmo tiene $3$ partes, primero se recorre el árbol del juego mediante DFS para determinar las profundidades de los conjuntos de información por cada uno de los jugadores, esto es el Algoritmo \ref{algorithm:gebr-pass1}. Estas listas se ordenan de forma decreciente.
+En al algoritmo GEBR (Algoritmo~\ref{algorithm:GEBR}) se tiene un jugador $i$ para el cual se calculará la mejor respuesta $\sigma^*_i$ ante una estrategia fija $\sigma_{-i}$ del jugador $-i$. Este algoritmo tiene $3$ partes, primero se recorre el árbol del juego mediante búsqueda por profundidad, para determinar las profundidades de los conjuntos de información por cada uno de los jugadores, esto es el Algoritmo \ref{algorithm:gebr-pass1}. Estas listas se ordenan de forma decreciente.
 
-La segunda parte del algoritmo GEBR consiste en recorrer el árbol varias veces, una vez por cada profundidad diferente, de mayor a menor, como se presenta en el Algoritmo~\ref{algorithm:gebr-pass2}. En el recorrido a profundidad $d$, se calculan los valore $t_I[a]$ y $b_I[a]$ para todos los conjuntos de información $I$ a una profundidad $d$ y toda acción $a \in A(I)$. Estos arreglos nos permiten calcular la utilidad contrafactual (Definición \ref{def:utilidad-contrafactual}) en los conjuntos de información $I$. En efecto, note que $t_I[a] = u_i((\sigma^*_i|_{I \rightarrow a}, \sigma_{-i}),I) \cdot \pi^{\sigma_{-i}}(I)$ y $b_I[a] = \pi^{\sigma_{-i}}(I)$. Es importante destacar que $\sigma^*_i$ se obtiene al tomar alguna acción $a \in  \argmax_{a \in A(I)} \frac{t[a]}{b[a]}$ (se utiliza una estrategia pura como mejor respuesta por lo visto en el Capítulo \ref{chapter:explotabilidad}). Luego, durante el recorrido hecho para la profundidad $d$, ya se conoce el valor $\sigma^*_i(I')$ para todos los $I'$ a una profundidad $d' > d$, por lo que es posible calcular  $u_i((\sigma^*_i|_{I \rightarrow a}, \sigma_{-i}),I)$.
+La segunda parte del algoritmo GEBR consiste en recorrer el árbol varias veces, una vez por cada profundidad diferente, de mayor a menor, como se presenta en el Algoritmo~\ref{algorithm:gebr-pass2}. En el recorrido a profundidad $d$, se calculan los valore $t_I[a]$ y $b_I[a]$ para todos los conjuntos de información $I$ a una profundidad $d$ y toda acción $a \in A(I)$. Estos arreglos permiten calcular la utilidad contrafactual (Definición \ref{def:utilidad-contrafactual}) en los conjuntos de información $I$. En efecto, note que $t_I[a] = u_i((\sigma^*_i|_{I \rightarrow a}, \sigma_{-i}),I) \cdot \pi^{\sigma_{-i}}(I)$ y $b_I[a] = \pi^{\sigma_{-i}}(I)$. Observe que $\sigma^*_i$ se obtiene al tomar alguna acción $a \in  \argmax_{a \in A(I)} \frac{t[a]}{b[a]}$ (se utiliza una estrategia pura como mejor respuesta por lo visto en el Capítulo \ref{chapter:explotabilidad}). Luego, durante el recorrido hecho para la profundidad $d$, ya se conoce el valor $\sigma^*_i(I')$ para todos los $I'$ a una profundidad $d' > d$, por lo que es posible calcular  $u_i((\sigma^*_i|_{I \rightarrow a}, \sigma_{-i}),I)$.
 
 La última parte del algoritmo consiste en calcular el valor esperado $u_i(\sigma^*_i, \sigma_{-i})$, esto se puede obtener al utilizar el Algoritmo~\ref{algorithm:gebr-pass2} con $d = -1$. Finalmente, la explotabilidad de la estrategia $\sigma$ se obtiene al sumar las ganancias esperadas de $u_1(\sigma_1, \sigma^*_2)$ y $u_2(\sigma^*_1, \sigma_2)$ (Algoritmo~\ref{algorithm:explotabilidad}).
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{\textit{Counterfactual Regret Minimization} (CFR) con \textit{chance-sampled}}
 \label{algorithm:CFR}
 \begin{algorithmic}[1]
@@ -59,7 +59,7 @@ La última parte del algoritmo consiste en calcular el valor esperado $u_i(\sigm
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Explotabilidad}
 \label{algorithm:explotabilidad}
 \begin{algorithmic}[1]
@@ -74,7 +74,7 @@ La última parte del algoritmo consiste en calcular el valor esperado $u_i(\sigm
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Generilized Expectimax Best Response (GEBR)}
 \label{algorithm:GEBR}
 \begin{algorithmic}[1]
@@ -89,7 +89,7 @@ La última parte del algoritmo consiste en calcular el valor esperado $u_i(\sigm
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}{H}
 \caption{Generilized Expectimax Best Response (GEBR): primer recorrido}
 \label{algorithm:gebr-pass1}
 \begin{algorithmic}[1]
@@ -107,8 +107,7 @@ La última parte del algoritmo consiste en calcular el valor esperado $u_i(\sigm
 \end{algorithmic}
 \end{algorithm}
 
-
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Generilized Expectimax Best Response (GEBR): segundos recorridos}
 \label{algorithm:gebr-pass2}
 \begin{algorithmic}[1]
@@ -142,7 +141,4 @@ La última parte del algoritmo consiste en calcular el valor esperado $u_i(\sigm
 \end{algorithmic}
 \end{algorithm}
 
-
-
-
-
+La complejidad de este algoritmo es $\mathcal{O(ND)}$ donde $N$ es el número de nodos del árbol y $D$ es su profundidad. Debido a la alta complejidad asintótica, se utilizó este algoritmo únicamente para calcular la explotabilidad de la estrategia final.

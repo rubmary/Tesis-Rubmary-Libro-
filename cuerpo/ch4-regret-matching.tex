@@ -104,6 +104,7 @@ Un procedimiento adaptativo es \textbf{universalmente consistente} para el jugad
 El procedimiento es definido a continuación. A tiempo $t$, definimos
 \begin{alignat}{1}
 D_i^t(k)\ &=\ \frac{1}{t} \sum_{\tau = 1}^{t} u_i(k, s_{-i}^{\tau}) - u_i(s_{\tau}) \,, \\
+\label{eq:diferencia-pago-ri}
 R_i^t(k)\ &=\ [D_i^t(k)]^+\ =\ \max\{0, D_i^t(k)\} \,.
 \end{alignat}
 Luego, la distribución de probabilidad a tiempo $t+1$, $p_{t+1}^i \in \Delta(S_i)$, es definida como sigue:
@@ -139,7 +140,7 @@ Por otra parte, los procedimientos A y B también son universalmente consistente
 
 \begin{theorem}
 \label{theo:a-b-universalmente-consistentes}
-En un procedimiento adaptativo de \textit{Regret Matching}, si el \textit{regret} incondicional converge a $0$, entonces el procedimiento es universalmente consistente.
+En un procedimiento adaptativo de \textit{Regret Matching}, si el \textit{regret} condicional converge a $0$, entonces el procedimiento es universalmente consistente.
 \end{theorem}
 
 \section{Evaluación Empírica de Regret Matching}
@@ -175,7 +176,7 @@ El problema de programación lineal es presentado en la Ecuación~\ref{apex:eq:p
 (z^*, x_1^*, x_2^*)\ =\ (w^*, y^*_1, y^*_2)\ =\ \left(0, \frac{1}{2}, \frac{1}{2} \right) \,.
 \end{alignat}
 
-La Tabla~\ref{table:resultados-rm-matching-pennies} muestra los resultados experimentales obtenidos. Note que la explotabilidad siempre es menor que $0.008$. La Figura~\ref{fig:regret-rm-matching-pennies} muestra el \textit{regret} con respecto al número de iteraciones en cada juego. Se observa como el \textit{regret} tiende a cero en cada una de las gráficas.
+La Tabla~\ref{table:resultados-rm-matching-pennies} muestra los resultados experimentales obtenidos. Note que la explotabilidad siempre es menor que $0,008$. La Figura~\ref{fig:regret-rm-matching-pennies} muestra el \textit{regret} con respecto al número de iteraciones en cada juego. Se observa como el \textit{regret} tiende a cero en cada una de las gráficas.
  
 \begin{table}[t]
 \caption{Resultados experimentales del juego matching pennies.}
@@ -212,7 +213,7 @@ La Tabla~\ref{table:resultados-rm-RPS} muestra el resumen de los resultados para
     \toprule
     & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \midrule
     Ganancia esperada $u(\sigma)$         & -0,000012 & 0,000004 & 0,000022 \\
-    Explotabilidad $\varepsilon_{\sigma}$ &  0,006 & 0,01 & 0,009 \\
+    Explotabilidad $\varepsilon_{\sigma}$ &  0,006 & 0,010 & 0,009 \\
     Tiempo $T$                            & 12,198 & 0,345 & 0,049 \\
     Iteraciones $I$                       & 4.519.054,1 & 6.601,3 &  19.321,1 \\
     $T/I$                                 & $2,70{\times}10^{-6}$ & $5,23{\times}10^{-5}$ & $2,54{\times}10^{-6}$\\
@@ -273,7 +274,7 @@ Esta solución corresponde a la estrategia en la que el jugador $1$ elige las po
     \toprule
     & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \midrule
     Ganancia esperada $u(\sigma)$ & 0,333 & 0,334 & 0,334  \\
-    Explotabilidad $\varepsilon_{\sigma}$ & 0,01 & 0,007 & 0,004 \\
+    Explotabilidad $\varepsilon_{\sigma}$ & 0,010 & 0,007 & 0,004 \\
     Tiempo $T$ & 319,179 & 11,275 & 0,237  \\
     Iteraciones $I$ & 108.319.272,4 & 75.250,2 & 84.318,5 \\
     $T/I$ & $2,95 {\times} 10^{-6}$ & $1,50 {\times} 10^{-4}$ & $2,81 {\times} 10^{-6}$ \\
@@ -304,10 +305,10 @@ En este juego no se conoce un equilibrio de Nash teóricamente, para valores arb
 \begin{tabular}{l r r r}
     \toprule
     & \multicolumn{1}{c}{A} & \multicolumn{1}{c}{B} & \multicolumn{1}{c}{C} \\ \midrule
-    Ganancia esperada $u(\sigma)$ & 0,000219 & -0,000502 & 0,000024 \\
-    Explotabilidad $\varepsilon_{\sigma}$ & 0,01 & 0,011 & 0,009  \\
-    Tiempo $T$ &  875,533 &  79.358 & 0.166 \\
-    Iteraciones $I$ &  190.222.305,3 & 66.378,4  & 48.613,5 \\
+    Ganancia esperada $u(\sigma)$ & 0,000219 & 0,000150 & 0,000024 \\
+    Explotabilidad $\varepsilon_{\sigma}$ & 0,010 & 0,010 & 0,009  \\
+    Tiempo $T$ &  875,533 &  70,453 & 0,166 \\
+    Iteraciones $I$ &  190.222.305,3 & 58.794,4  & 48.613,5 \\
     $T/I$ & $4,60{\times}10^{-6}$ & $1,20{\times}10^{-3}$ & $3,41{\times}10^{-6}$\\
     \bottomrule
 \end{tabular}

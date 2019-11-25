@@ -2,28 +2,40 @@
 \begingroup
 \renewcommand{\arraystretch}{1.5}
 \begin{tabular}{l p{12cm}}
-$S_i$ & Conjunto de estrategias puras del jugador $i$ \\
-$s$ & Perfil estratégico puro \\
-$s_i$ & Estrategia pura del jugador $i$ \\
-$s_{-i}$ & Perfil estratégico $s$ excluyendo la estrategia del jugador $i$ \\
-$\Delta(A)$ & Conjunto de distribuciones de probabilidad del conjunto $A$ \\
-$|A|$ & Cardinalidad (número de elementos) del conjunto A \\
-$\Delta^n$ & Simplex $n$-dimensional \\
-$\sigma_i$ & Estrategia mixta del jugador $i$ \\
-$\sigma_i(s_i)$ & Probabilidad de elegir $s_i$ dada la estrategia mixta $\sigma_i$ \\
-$\sigma$ & Perfil estratégico mixto \\
-$\sigma(s)$ & Probabilidad de que se elija el perfil estratégico $s$ bajo $\sigma$ \\
-$u_i$ & Función de pago (utilidad) del jugador $i$ \\
-$u_i(\sigma)$ & Ganancia esperada del jugador $i$ dado $\sigma$ \\
-$h \sqsubset h'$ & La historia (secuencia) $h$ es prefijo de la historia $h'$ \\ 
-$\pi^{x}(h)$ & Probabilidad de alcanzar la historia $h$ dado $x$ \\
-$\pi^c(h)$ & Probabilidad de que ocurra $h$ dado que todos los jugadores juegan para alcanzar $h$ \\
-$\pi^x(I)$ & Probabilidad de alcanzar el conjunto de información $I$ dado $x$ \\
-$\pi^x(h, h')$ & Probabilidad de ir de la historia $h$ a la historia $h'$ dado $x$ \\
-$\varepsilon_{\sigma}$ & Explotabilidad del perfil estratégico mixto $\sigma$ \\
-$R_i^T$ & \textit{Regret} promedio general del jugador $i$ a tiempo $T$ \\
-$\bar\sigma^T_i$ & Estrategia promedio del tiempo $1$ al tiempo $T$ del jugador $i$ \\
-$u_i(\sigma, I)$ & Utilidad contrafactual del jugador $i$, dado el conjunto de información $I$ y el perfil estratégico $\sigma$ \\
-$R^T_{i, imm}(I)$ & Regret contrafactual inmediato del conjunto de información $I$
+$S_i$ & Conjunto de estrategias puras del jugador $i$. \\
+$s$ & Perfil estratégico puro. \\
+$s_i$ & Estrategia pura del jugador $i$. \\
+$s_{-i}$ & Perfil estratégico $s$ excluyendo la estrategia del jugador $i$. \\
+$|A|$ & Cardinalidad (número de elementos) del conjunto A. \\
+$\Delta(A)$ & Conjunto de distribuciones de probabilidad del conjunto $A$. \\
+$\Delta^n$ & Simplex $n$-dimensional. \\
+$\sigma_i$ & Estrategia mixta del jugador $i$. \\
+$\sigma_i(s_i)$ & Probabilidad de elegir $s_i$ dada la estrategia mixta $\sigma_i$. \\
+$\sigma$ & Perfil estratégico mixto. \\
+$\sigma(s)$ & Probabilidad de que se elija el perfil estratégico $s$ bajo $\sigma$. \\
+$u_i$ & Función de pago (utilidad) del jugador $i$. \\
+$u_i(\sigma)$ & Ganancia esperada del jugador $i$ dado $\sigma$. \\
+$h \sqsubset h'$ & La historia (secuencia) $h$ es prefijo de la historia $h'$. \\ 
+$\varepsilon_{\sigma}$ & Explotabilidad del perfil estratégico mixto $\sigma$. \\
+$\sigma_{I \rightarrow a}$ & Perfil estratégico idéntico a $\sigma$ pero en el conjunto de información $I$ siempre es elegida la acción $a$. \\
+$R_i^T$ & \textit{Regret} promedio general del jugador $i$ a tiempo $T$. \\
+$\bar\sigma^T_i$ & Estrategia promedio del tiempo $1$ al tiempo $T$ del jugador $i$. \\
+$u_i(\sigma, I)$ & Utilidad contrafactual del jugador $i$, dado el conjunto de información $I$ y el perfil estratégico $\sigma$. \\
+$R^T_{i, imm}(I)$ & Regret contrafactual inmediato del conjunto de información $I$.
+\end{tabular}
+\endgroup
+
+\begingroup
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{l p{12cm}}
+$\pi^{\sigma}(h)$ & Probabilidad de alcanzar la historia $h$ dado el perfil estratégico $\sigma$. \\
+$\pi^{\sigma_i}(h)$ & Probabilidad de alcanzar la historia $h$ dado que todos los jugadores juegan para alcanzar $h$ (incluyendo los nodos de azar), con excepción del jugador $i$ que utiliza $\sigma$. \\
+$\pi^c(h)$ & Probabilidad de alcanzar la historia $h$ dado que todos los jugadores juegan para alcanzar $h$. \\
+$\pi^{\sigma_{-i}}(h)$ & Probabilidad de alcanzar la historia $h$ dado que todos los jugadores utilizan el perfil estratégico $\sigma$, menos el jugador $i$ que juega para alcanzar $h$. Incluye también las probabilidades de los nodo de azar \\
+$\pi^{\sigma}(I)$ & Probabilidad de alcanzar el conjunto de información $I$ dado el perfil estratégico $\sigma$. \\
+$\pi^{\sigma_i}(I)$ & Probabilidad de alcanzar el conjunto de información $I$ dado que todos los jugadores juegan para alcanzar $h$ (incluyendo los nodos de azar), con excepción del jugador $i$ que utiliza $\sigma$. \\
+$\pi^c(I)$ & Probabilidad de alcanzar el conjunto de información $I$ dado que todos los jugadores juegan para alcanzar $h$. \\
+$\pi^{\sigma_{-i}}(I)$ & Probabilidad de alcanzar el conjunto de información $I$ dado que todos los jugadores utilizan el perfil estratégico $\sigma$, menos el jugador $i$ que juega para alcanzar $h$. Incluye también las probabilidades de los nodo de azar \\
+$\pi^{\sigma}(h, h')$ & Probabilidad de que ocurra la historia $h'$, dado que ocurrió la historia $h$. \\
 \end{tabular}
 \endgroup

@@ -694,6 +694,7 @@ level 3/.style={sibling distance=6.5mm, level distance=12.5mm},
 \label{fig:kuhn-poker-estrategias}
 \end{center}
 \end{figure}
+
 \section{Perfect Recall}
 
 El concepto de \textit{perfect recall} hace referencia a juegos en los cuales, en cualquier punto todo jugador \textit{recuerda} lo que sabía previamente \cite[p.~203]{bib:course-game-theory}. En particular, cada jugador recuerda los movimientos públicos que se han hecho durante el juego. La definición de \textit{perfect recall} puede ser dada mediante el árbol del juego \cite{bib:conceptos-basicos} o mediante la subsecuencia correspondiente a los nodos de un jugador \cite[p.~203]{bib:course-game-theory} y \cite[p.~44]{bib:handbook-blai}. Sin embargo, se utiliza una definición equivalente, proporcionada en la Definición \ref{def:perfect-recall}.
@@ -723,9 +724,7 @@ Los juegos presentados previamente: Ejemplo \ref{ex:game-allocation}, Ejemplo \r
 Considere un juego de dos jugadores de suma cero en el cual el jugador $1$ consta de $2$ personas: Alicia y su esposo Bernardo, y el jugador $2$ consta de una sóla persona: Zoe. Se tienen dos cartas con los números $1$ y $2$ que son repartidas aleatoriamente entre Alicia y Zoe. La persona con la carta más alta recibe \$1 de la persona con la carta más baja, y ésta decide si sigue jugando (C) o para el juego (P). Si el juego continúa, Bernardo, sin saber el resultado de la repartición inicial de las cartas, decide si Alicia y Zoe intercambian (I) sus cartas o mantienen las mismas cartas (M). Nuevamente, quien posea la carta más alta recibe \$1 de quien posea la carta más baja, y el juego termina.
 \end{example}
 
- La Figura \ref{fig:imperfect-recall} representa el juego en forma extensiva. 
- %Donde P representa la acción de parar el juego y C de continuarlo; $M$ representa la acción de mantener las cartas obtenidas inicialmente e $I$ representa la acción de intercambiar las cartas. 
- Note que cuando es el turno de Bernardo, él no sabe quien tiene la carta más alta, cosa que su esposa sí sabía en el turno anterior. Al considerar a la pareja como un sólo jugador, se obtiene que el jugador $1$ \textit{olvidó} como fueron repartidas las cartas. En efecto, el jugador $1$ tiene dos conjuntos de información $I^1_1 = \{(2-1) \}$ e $I^2_1 = \{(2-1,\ C),\ (1-2,\ C) \}$. En particular, no se cumple la primera condición (Ecuación \ref{eq:condicion-1}), pues la secuencia $(2-1) \sqsubset (2-1,\ C)$, pero no existe una subsecuencia de $(1-2,\ C)$ que pertenezca a $I^1_1$.
+ La Figura \ref{fig:imperfect-recall} representa el juego en forma extensiva. Note que cuando es el turno de Bernardo, él no sabe quien tiene la carta más alta, cosa que su esposa sí sabía en el turno anterior. Al considerar a la pareja como un sólo jugador, se obtiene que el jugador $1$ \textit{olvidó} como fueron repartidas las cartas. En efecto, el jugador $1$ tiene dos conjuntos de información $I^1_1 = \{(2-1) \}$ e $I^2_1 = \{(2-1,\ C),\ (1-2,\ C) \}$. En particular, no se cumple la primera condición (Ecuación \ref{eq:condicion-1}), pues la secuencia $(2-1) \sqsubset (2-1,\ C)$, pero no existe una subsecuencia de $(1-2,\ C)$ que pertenezca a $I^1_1$.
 
 \begin{figure}[h]
 \begin{center}

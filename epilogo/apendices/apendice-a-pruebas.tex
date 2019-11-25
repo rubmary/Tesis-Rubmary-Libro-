@@ -234,6 +234,50 @@ Entonces
 Obteniendo $\pi^{\sigma^b_i}(z) = \pi^{\sigma^m_i}(z)$, que era lo que se quería demostrar.
 \end{proof}
 
+\section*{Capítulo III}
+
+\begin{reptheorem}{theo:cota-ganancia-esperada}
+Sea $\sigma^* = (\sigma^*_1, \sigma^*_2)$ un equilibrio de Nash de un juego de dos jugadores de suma cero, tal que $u_1(\sigma) = u$. Entonces $u_i(\sigma^*) \leq u_i(\sigma^*_i, \sigma_{-i})$, para cualquier estrategia $\sigma_{-i}$.  
+\end{reptheorem}
+
+\begin{proof}
+Como $\sigma^*$ es un equilibrio de Nash, $\sigma^*_{-i}$ es mejor respuesta a $\sigma^*_i$ y por lo tanto, para cualquier estrategia $\sigma_{-i}$ se obtiene que:
+\begin{alignat}{2}
+    & u_{-i}(\sigma^*) = u_{-i}(\sigma^*_i, \sigma^*_{-i}) \geq u_{-i}(\sigma^*_i, \sigma_{-i}) \\
+    \label{eq:juego-suma-cero}
+    \implies\ & -u_i(\sigma^*) \geq -u_i(\sigma^*_i, \sigma_{-i}) \\
+    \label{eq:multiplicar-1}
+    \implies\ & u_i(\sigma^*) \leq u_i(\sigma^*_i, \sigma_{-i})
+\end{alignat}
+
+La inecuación~\ref{eq:juego-suma-cero} se obtiene al estar en un juego para dos jugadores de suma cero y la inecuación~\ref{eq:multiplicar-1} se obtiene al multiplicar por menos y cambiar la orientación de la desigualdad.
+\end{proof}
+
+\begin{reptheorem}{theo:EN-intercambiabilidad}
+Sean $\sigma = (\sigma_1, \sigma_2)$ y $\sigma' = (\sigma'_1, \sigma'_2)$ equilibrios de Nash en un juego de dos jugadores con suma cero. Entonces $\sigma'' = (\sigma_1, \sigma'_2)$ y $\sigma''' = (\sigma'_1, \sigma_2)$ son también equilibrios de Nash. Además, $u_i(\sigma) = u_i(\sigma') = u_i(\sigma'') = u_i(\sigma''')$, para $i \in \{1, 2\}$.
+\end{reptheorem}
+
+\begin{proof}
+
+Note que:
+\begin{itemize}
+    \item $u_i(\sigma_i, \sigma_{-i}) \leq u_i(\sigma_i, \sigma'_{-i})$ ocurre porque $\sigma$ es un equilibrio de Nash y el Teorema~\ref{theo:cota-ganancia-esperada}.
+    \item $u_i(\sigma_i, \sigma'_{-i}) \leq u_i(\sigma'_i, \sigma'_{-i})$ ocurre porque $\sigma'$ es un equilibrio de Nash y entonces $\sigma'_i$ es mejor respuesta a $\sigma'_{-i}$.
+    \item  $u_i(\sigma'_i, \sigma'_{-i}) \leq u_i(\sigma'_i, \sigma_{-i})$ ocurre porque $\sigma'$ es un equilibrio de Nash y el Teorema~\ref{theo:cota-ganancia-esperada}.
+    \item $u_i(\sigma'_i, \sigma_{-i}) \leq u_i(\sigma_i, \sigma_{-i})$ ocurre porque $\sigma$ es un equilibrio de Nash y entonces $\sigma_i$ es mejor respuesta a $\sigma_{-i}$.
+\end{itemize}
+
+De lo anterior se obtiene que:
+\begin{alignat}{1}
+\label{eq:desigualdes-EN}
+u_i(\sigma_i, \sigma_{-i})\ \leq\ u_i(\sigma_i, \sigma'_{-i})\ \leq\ u_i(\sigma'_i, \sigma'_{-i})\ \leq\ u_i(\sigma'_i, \sigma_{-i})\ \leq\ u_i(\sigma_i, \sigma_{-i}) \,.
+\end{alignat}
+
+% La primera desigualdad, $u_i(\sigma_i, \sigma_{-i}) \leq u_i(\sigma_i, \sigma'_{-i})$, ocurre porque $\sigma$ es un equilibrio de Nash y el Teorema~\ref{theo:cota-ganancia-esperada}. La segunda desigualdad, $u_i(\sigma_i, \sigma'_{-i}) \leq u_i(\sigma'_i, \sigma'_{-i})$, ocurre porque $\sigma'$ es un equilibrio de Nash y entonces $\sigma'_i$ es mejor respuesta a $\sigma'_{-i}$. La tercera desigualdad,  $u_i(\sigma'_i, \sigma'_{-i}) \leq u_i(\sigma'_i, \sigma_{-i})$ ocurre porque $\sigma'$ es un equilibrio de Nash y el Teorema~\ref{theo:cota-ganancia-esperada}. La última desigualdad, $u_i(\sigma'_i, \sigma_{-i}) \leq u_i(\sigma_i, \sigma_{-i})$, ocurre porque $\sigma$ es un equilibrio de Nash y entonces $\sigma_i$ es mejor respuesta a $\sigma_{-i}$.
+
+Luego, todas las desigualdades en \ref{eq:desigualdes-EN} se cumplen como igualdad. Es decir $u_i(\sigma) = u_i(\sigma') = u_i(\sigma'') = u_i(\sigma''')$. Además $u_i(\sigma_i, \sigma'_{-i}) = u_i(\sigma'_i, \sigma'_{-i}) \geq u_i(\sigma''_i. \sigma'_{-i})$ y $u_i(\sigma'_i, \sigma_{-i}) = u_i(\sigma_i, \sigma_{-i}) \geq u_i(\sigma''_i. \sigma_{-i})$, para cualquier estrategia de $\sigma''_i$ del jugador $i$, por lo tanto $\sigma_i$ es mejor respuesta a $\sigma'_{-i}$ y $\sigma'_{i}$ es mejor respuesta a $\sigma_{i}$, para $i = 1, 2$ y por lo tanto $(\sigma'')$ y $\sigma'''$ también son equilibrios de Nash.
+\end{proof}
+
 \section*{Capítulo IV}
 
 \begin{reptheorem}{theo:no-regret}
@@ -476,15 +520,44 @@ Al sumar las desigualdades \ref{eq:star1} y \ref{eq:star2} se obtiene que:
 Análogamente se tiene que $u_2(\bar{\sigma}^T) + 2\varepsilon \geq u_2(\bar{\sigma_1}^T, \sigma_2)$, con lo que se concluye que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
 \end{proof}
 
+\begin{reptheorem}{theo:a-b-universalmente-consistentes}
+En un procedimiento adaptativo de \textit{Regret Matching}, si el \textit{regret} condicional converge a $0$, entonces el procedimiento es universalmente consistente.
+\end{reptheorem}
+
+\begin{proof}
+Se demostrará, como en el teorema anterior, que el \textit{regret} incondicional tiende a $0$. De la Ecuación~\ref{eq:diferencia-pago} se tiene que:
+\begin{alignat}{1}
+  D_i^t(j, k)\ =\ \frac{1}{t} \sum_{\substack{1\leq \tau \leq t \\s^\tau_i = j}} u_i(k, s_{-i}^{\tau}) - u_i(s^{\tau})\,
+\end{alignat}
+si se suman los $D_i^t(j, k)$ sobre $j \in S_i$, se obtiene:
+\begin{alignat}{1}
+  \sum_{j \in S_i} D_i^t(j, k)\ =\ \sum_{j \in S_i}{\left( \frac{1}{t} \sum_{\substack{1\leq \tau \leq t \\s^\tau_i = j}} u_i(k, s_{-i}^{\tau}) - u_i(s^{\tau}) \right)}\ =\ \frac{1}{t} \sum_{1\leq \tau \leq t} u_i(k, s_{-i}^{\tau}) - u_i(s^{\tau}) \,.
+\end{alignat}
+De la Ecuación~\ref{eq:diferencia-pago-ri} se obtiene el último miembro de la igualdad es igual a $D_i^t(k)$. Luego:
+\begin{alignat}{1}
+    \sum_{j \in S_i} D_i^t(j, k)\ =\ D_i^t(k) \,.
+\end{alignat}
+
+Por otra parte, utilizando la desigualdad triangular en $\mathbb{R}$, se tiene que
+\begin{alignat}{1}
+    \sum_{j \in S_i} \max \left\{ 0, D^t_i(j, k)\right\} \geq \max\left\{0, \sum_{j \in S_i} D^t_i(j, k)\right\},
+\end{alignat}
+al sustituir por las definiciones de $R_i^t(j, k)$ y $R_i^t(k)$ se concluye que:
+\begin{alignat}{1}
+    \sum_{j \in S_i} R_i^t(j, k) \geq R_i^t(k) \,.
+\end{alignat}
+
+Luego como $R_i^t(j, k) \rightarrow 0$ cuando $t \rightarrow \infty$ para todo $j, k \in S_i$, entonces $\sum_{j \in S_i} R_i^t(j, k) \rightarrow 0$ cuando $t \rightarrow \infty$ y por lo tanto $R_i^t(k) \rightarrow 0$ cuando $t \rightarrow \infty$. Luego si el \textit{regret} condicional converge a 0, entonces el \textit{regret} incondicional también converge a $0$ y por lo tanto el procedimiento es universalmente consistente.
+\end{proof}
 
 \section*{Capítulo V}
 
 \begin{reptheorem}{theo:regret-nash}
-En un juego de $2$ jugadores de suma cero si el average overall regret a tiempo $T$ es menor que $\varepsilon$ entonces $\sigma^{-T}$ es un $2\varepsilon$-equilibrio de Nash
+En un juego de $2$ jugadores de suma cero si el \textit{regret} promedio general a tiempo $T$ es menor que $\varepsilon$ entonces $\sigma^{-T}$ es un $2\varepsilon$-equilibrio de Nash
 \end{reptheorem}
 
 \begin{proof}
-Se probará que la probabilidad de alcanzar $z$ bajo $\bar{\sigma}_i^T$ viene dada por el promedio de alcanzar $z$ en cada estrategia. Sean $h_1 \sqsubset h_2 \sqsubset h_3 \sqsubset ... \sqsubset h_m \sqsubset z$ todos los prefijos de $z$ correspondientes al jugador $i$, es decir $P(h_k) = i\ \forall k : 1 \leq k \leq m$ y sean $a_1, a_2, ..., a_m$ las acciones correspondientes en $z$ en cada historia respectiva. Luego:
+Se probará que la probabilidad de alcanzar $z$ bajo $\bar{\sigma}_i^T$ viene dada por el promedio de alcanzar $z$ en  cada estrategia. Sean $h_1 \sqsubset h_2 \sqsubset h_3 \sqsubset ... \sqsubset h_m \sqsubset z$ todos los prefijos de $z$ correspondientes al jugador $i$, es decir $P(h_k) = i\ \forall k : 1 \leq k \leq m$ y sean $a_1, a_2, ..., a_m$ las acciones correspondientes en $z$ en cada historia respectiva. Luego:
 \begin{alignat}{2}
 \pi^{\bar{\sigma}_i^T}(z)\ &=\ \prod_{k = 1}^m \bar{\sigma}_i^T(I(h_k))(a_k) \\	&=\ \prod_{k = 1}^m \frac{\sum_{t = 1}^{T}  \pi^{\sigma_i^t}(I(h_k))\sigma^t_i(I(h_k))(a)}{\sum_{t = 1}^T \pi^{\sigma_i^t}(I(h_k))}
 \end{alignat}
@@ -500,8 +573,7 @@ Además, se tiene que, para cualquier jugador $i$ y cualquier estrategia de $\si
 \begin{alignat}{2}
 \frac{1}{T} \sum_{t = 1}^T u_i(\sigma'_i, \sigma_{-i}^t)\ &=\ \frac{1}{T} \sum_{t = 1}^T \left( \sum_{z \in Z} \pi^{\sigma'_i}(z) \pi^{\sigma_{-i}^t}(z) \pi^c(z) \right) \\
 	&=\ \sum_{z \in Z} u_i(z) \pi^{\sigma'_i}(z) \pi^c(z) \left( \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma_{-i}^t}(z) \right) \\
-	&=\ \sum_{z \in Z} u_i(z) \pi^{\sigma'_i}(z) \pi^{\bar{\sigma}_i^T}(z) \pi^c(z) \\
-	&=\ u_i(\sigma'_i, \bar{\sigma}_{-i}^T) \,.
+	&=\ \sum_{z \in Z} u_i(z) \pi^{\sigma'_i}(z) \pi^{\bar{\sigma}_i^T}(z) \pi^c(z)\ =\ u_i(\sigma'_i, \bar{\sigma}_{-i}^T) \,.
 \end{alignat}
 
 Por otra parte, como $R_2^T \leq \varepsilon$, para todo $\sigma'_2 \in B_2$ se tiene que:
@@ -511,7 +583,7 @@ Por otra parte, como $R_2^T \leq \varepsilon$, para todo $\sigma'_2 \in B_2$ se 
 	\implies\ & \frac{1}{T} \sum_{t = 1}^T u_2(\sigma^t) + \varepsilon\ \geq\ u_2(\bar{\sigma}_1^T, \sigma'_2) \,.
 \end{alignat}
 
-Luego, como se cumple para cualquier $\sigma'_2$, se cumple para $\sigma_2^t$ para $t = 1, 2, ..., T$, obteniendo:
+Como se cumple para cualquier estrategia $\sigma'_2$, se cumple para $\sigma_2^t$ para $t = 1, 2, ..., T$, obteniendo:
 \begin{alignat}{2}
 \frac{1}{T} \sum_{t = 1}^T u_2(\sigma^t) + \varepsilon\ & \geq\ \frac{1}{T} \sum_{t = 1}^T u_2(\bar{\sigma}_1^T, \sigma_2^t) \\
 &=\ \frac{1}{T} \sum_{t = 1}^T \sum_{z \in Z} u_2(z) \pi^{\bar{\sigma}_1^T}\pi^{\sigma_2^t}(z) \pi^c(z) \\
@@ -520,8 +592,7 @@ Luego, como se cumple para cualquier $\sigma'_2$, se cumple para $\sigma_2^t$ pa
 &=\ u_2(\bar{\sigma}^T) \,.
 \end{alignat}
 
-Como $\Gamma$ es un juego de suma cero, se tiene que $u_2(
-\sigma) = -u_1(\sigma)$ para toda estrategia $\sigma$, luego:
+Como $\Gamma$ es un juego de suma cero, se tiene que $u_2(\sigma) = -u_1(\sigma)$ para cualquier estrategia $\sigma$, luego:
 \begin{alignat}{2}
 	& \frac{1}{T} \sum_{t = 1}^T u_2(\sigma^t) + \varepsilon\ \geq\  u_2(\bar{\sigma}^T) \\
 	\implies\ & \frac{1}{T} \sum_{t = 1}^T -u_1(\sigma^t) + \varepsilon\ \geq\  -u_1(\bar{\sigma}^T) \\
@@ -540,12 +611,7 @@ Luego, se obtiene que:
 	\implies\ & u_1(\bar{\sigma}^T) + 2\varepsilon\ \geq\ u_1(\sigma'_1, \bar{\sigma}_2^T) \,.
 \end{alignat}
 
-Análogamente, se demuestra que:
-\begin{alignat}{1}
-	u_2(\bar{\sigma}^T)\ + 2\varepsilon\ \geq\ u_2( \bar{\sigma}_1^T, \sigma'_2) \,.
-\end{alignat}
-
-Concluyendo que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
+Análogamente, se demuestra que $u_2(\bar{\sigma}^T)\ + 2\varepsilon\ \geq\ u_2( \bar{\sigma}_1^T, \sigma'_2)$ concluyendo que $\bar{\sigma}^T$ es un $2\varepsilon$-equilibrio de Nash.
 \end{proof}
 
 \begin{reptheorem}{theo:esperanza-MCCFR}
@@ -561,6 +627,5 @@ $E_{j \sim q_j} [\tilde{u}_i(\sigma, I | j)]\ =\ u_i(\sigma, I)$
     & =\ \sum_{ \substack{h \in I \\ z \in Z} } \left(\frac{\sum_{j | z \in Q_j} q_j }{q(z)}\right) \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)} \\
     & =\ \sum_{ \substack{h \in I \\ z \in Z} } \frac{\pi^{\sigma_{-i}}(h) \pi^{\sigma}(h, z) u_i(z)}{\pi^{\sigma_{-i}}(I)}  = u_i(\sigma, I) \label{eq:lemma-final-eq}
 \end{alignat}
-
-La ecuación \ref{eq:def-esperanza} se obtiene de la definición de $\tilde{u}_i(\sigma, I | j)$. \ref{eq:reorder-sum-1} y \ref{eq:reorder-sum-2} se obtienen al reordenar las sumatorias y considerando que la unión de los bloques generan a $Z$. La ecuación \ref{eq:lemma-final-eq}.
+La ecuación \ref{eq:def-esperanza} se obtiene de la definición de $\tilde{u}_i(\sigma, I | j)$. \ref{eq:reorder-sum-1} y \ref{eq:reorder-sum-2} se obtienen al reordenar las sumatorias y considerando que la unión de los bloques generan a $Z$. La ecuación \ref{eq:lemma-final-eq} es la definición de utilidad contrafactual.
 \end{proof}

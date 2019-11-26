@@ -41,7 +41,7 @@ Fijemos un número $\mu > 0$ suficientemente grande. Sea $j \in S_i$ la última 
 \begin{alignat}{1}
 \label{eq:proc-A}
   \begin{cases}
-    p_{t+1}^i(k)\ :=\  \frac{1}{\mu} R_t^i(j, k) & \text{ si $k \neq j$} \,, \\
+    p_{t+1}^i(k)\ :=\  \frac{1}{\mu} R_i^t(j, k) & \text{ si $k \neq j$} \,, \\
     p_{t+1}^i(j)\ :=\ 1 - \sum_{k \in S_i, k \neq j} p_{t+1}^i(k) & \text{si $k=j$} \,.
   \end{cases}
 \end{alignat}
@@ -66,14 +66,14 @@ Entonces, $R_i^t(j, k)$ converge a $0$ para cada $i$ y cada $j, k \in S_i$, con 
 
 \subsection*{Procedimiento B: Vector Invariante de Probabilidad}
 
-Este procedimiento es una variación del anterior. Sin embargo, a tiempo $t+1$ las probabilidades de transición de la estrategia utilizada por el jugador $i$ son determinadas por la matriz estocástica (derecha) $M^i_t$ definida en \eqref{eq:proc-A}; i.e., $M^i_t(j,k)=\frac{1}{\mu}R^i_t(j,k)$ si $k\neq j$, y $M^i_t(j,j)=1-\frac{1}{\mu}\sum_{k\in S_i,k\neq j} R^i_t(j,k)$ si $k=j$.
+Este procedimiento es una variación del anterior. Sin embargo, a tiempo $t+1$ las probabilidades de transición de la estrategia utilizada por el jugador $i$ son determinadas por la matriz estocástica (derecha) $M^i_t$ definida en \eqref{eq:proc-A}; i.e., $M^i_t(j,k)=\frac{1}{\mu}R^t_i(j,k)$ si $k\neq j$, y $M^i_t(j,j)=1-\frac{1}{\mu}\sum_{k\in S_i,k\neq j} R^t_i(j,k)$ si $k=j$.
 
 Considere un vector (fila) invariante de probabilidad $q^i_t$ (dicho vector siempre existe), donde $q^i_t\in \Delta(S_i)$, para la matriz $M^t$. Es decir, $q^i_t$ satisface $q^i_t \times M^i_t = q^i_t$, i.e., para todo $j$:
 \begin{alignat}{1}
 \label{eq:def-inv-vector}
   q^i_t(j)\ 
     =\ \sum_{k\in S_i} q^i_t(k) M^i_t(k,j)\ 
-    =\ \bigg[\sum_{k \in S_i, k \neq j} q^i_t(k)\frac{1}{\mu}R^i_t(k,j)\bigg] + q_i^t(j)\biggl[1 - \frac{1}{\mu}\sum_{k \in S_i, k \neq j} R^i_t(j,k)\biggr]\,.
+    =\ \bigg[\sum_{k \in S_i, k \neq j} q^i_t(k)\frac{1}{\mu}R^t_i(k,j)\bigg] + q_i^t(j)\biggl[1 - \frac{1}{\mu}\sum_{k \in S_i, k \neq j} R^t_i(j,k)\biggr]\,.
 \end{alignat}
 
 \begin{theorem}
@@ -81,7 +81,7 @@ Considere un vector (fila) invariante de probabilidad $q^i_t$ (dicho vector siem
 Sea $R_t^i(j, j) = 0$. El vector $q_t^i$, definido en \ref{eq:def-inv-vector}, cumple que:
 \begin{alignat}{1}
 \label{eq:proc-B}
-q^i_t(j)\sum_{k \in S_i} R^i_t(j,k)\ =\ \sum_{k \in S_i} q_t^i(k)R_i^t(k,j) \,.
+q^i_t(j)\sum_{k \in S_i} R^t_i(j,k)\ =\ \sum_{k \in S_i} q_t^i(k)R_i^t(k,j) \,.
 \end{alignat}
 \end{theorem}
 

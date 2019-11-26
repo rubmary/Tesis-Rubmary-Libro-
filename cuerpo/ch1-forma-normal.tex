@@ -95,8 +95,8 @@ Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta
 En el juego piedra, papel o tijera, la ganancia esperada del jugador $i$ cuando utiliza la estrategia $\sigma = (\sigma_1, \sigma_2)$, viene dada por:
 \begin{alignat}{1}
 	u_i(\sigma)\ &=\ \sigma_i(\mathcal{R}) \left( \sigma_{-i}(\mathcal{R}) u_i(\mathcal{R}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{R}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{R}, \mathcal{S}) \right) \\ \nonumber
-    &+\ \sigma_i(\mathcal{P}) \left(\sigma_{-i}(\mathcal{R}) u_1(\mathcal{P}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{P}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{P}, \mathcal{S})\right) \\ \nonumber
-	&+\ \sigma_i(\mathcal{S}) \left(  \sigma_{-i}(\mathcal{R})  u_1(\mathcal{S}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{S}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{S}, \mathcal{S})\right)\,.
+    &+\ \sigma_i(\mathcal{P}) \left(\sigma_{-i}(\mathcal{R}) u_i(\mathcal{P}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{P}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{P}, \mathcal{S})\right) \\ \nonumber
+	&+\ \sigma_i(\mathcal{S}) \left(  \sigma_{-i}(\mathcal{R})  u_i(\mathcal{S}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{S}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{S}, \mathcal{S})\right)\,.
 \end{alignat}
 
 Al sustituir las utilidades de las estrategias puras y eliminar los términos nulos, se obtiene:
@@ -109,14 +109,14 @@ Al sustituir las utilidades de las estrategias puras y eliminar los términos nu
 
 En particular, para la estrategia presentada previamente $\sigma = (\sigma_1, \sigma_2)$, con $\sigma_1 = \left( \frac{1}{2}, \frac{1}{2}, 0 \right)$ y $\sigma_2 = \left(\frac{1}{3}, \frac{1}{2}, \frac{1}{6} \right)$, las ganancias esperadas del primer y segundo jugador son iguales a:
 \begin{alignat}{1}
-    u_1(\sigma)\ &=\ \frac{1}{2} \left(\frac{1}{6} - \frac{1}{2}\right) + \frac{1}{2} \left( \frac{1}{3} -\frac{1}{6} \right) + 0 \left( \frac{1}{2} - \frac{1}{6} \right)\ =\ -\frac{1}{12} \\
+    u_1(\sigma)\ &=\ \frac{1}{2} \left(\frac{1}{6} - \frac{1}{2}\right) + \frac{1}{2} \left( \frac{1}{3} -\frac{1}{6} \right) + 0 \left( \frac{1}{2} - \frac{1}{3} \right)\ =\ -\frac{1}{12} \\
     u_2(\sigma)\ &=\ \frac{1}{3}\left(0 -\frac{1}{2} \right) + \frac{1}{2} \left( \frac{1}{2} - 0 \right) + \frac{1}{6} \left( \frac{1}{2} - \frac{1}{2} \right)\ =\ \frac{1}{12}\,.
 \end{alignat}
 
 Calculemos ahora las mejores respuesta a $\sigma_1$ y $\sigma_2$. Supongamos que el jugador $1$ utiliza $\sigma_1$ y sea $\sigma^*_2 = (x, y, z)$ la mejor respuesta a $\sigma_1$. Entonces la ganancia esperada del jugador $2$ viene dada por:
 \begin{alignat}{2}
 u_2(\sigma_1, \sigma^*_2)\ &=\ x\left(0 -\frac{1}{2}\right) + y\left(\frac{1}{2} - 0\right) + z\left(\frac{1}{2} - \frac{1}{2}\right) \\
-u_2(\sigma_1, \sigma^*_2)\ &=\ -\frac{1}{2}x + \frac{1}{2}y
+u_2(\sigma_1, \sigma^*_2)\ &=\ -\frac{1}{2}x + \frac{1}{2}y \,.
 \end{alignat}
 
 Luego, la mejor respuesta a $\sigma_1$ se obtiene al maximizar $f(x, y) = -\frac{1}{2}x + \frac{1}{2}y$, con $x+y+z =1$ y $x, y, z \geq 0$. Es claro que la función se maximiza en dicho dominio cuando $x = z = 0$ y $y = 1$. Luego $\sigma^*_2 = (0, 1, 0)$; i.e., la estrategia en el que el jugador $2$ siempre elige papel. En este caso existe una única mejor respuesta a $\sigma_1 = \left(\frac{1}{2}, \frac{1}{2}, 0\right)$, cuyo soporte tiene un único elemento: $\text{support}(\sigma^*_2) = \{\mathcal{P}\}$.

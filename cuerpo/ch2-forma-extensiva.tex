@@ -101,9 +101,9 @@ Se puede observar que los nodos unidos por líneas punteadas son indistinguibles
 Un juego finito en \textbf{forma extensiva} con \textbf{información incompleta} tiene los siguientes componentes:
 \begin{itemize}[]
   \item Un conjunto finito $N$ de \textbf{jugadores}.
-  \item Un conjunto finito $H$ de secuencias, las posible \textbf{historias} de acciones, tal que la secuencia vacía está en $H$, y cada prefijo de una secuencia en $H$ también está en $H$. $Z \subseteq H$ son las historias terminales (aquellas que no son prefijo de ninguna otra secuencia). $A(h) = \{ a : (h, a) \in H \}$ son las acciones disponibles después de una historia no terminal $h \in H$.
+  \item Un conjunto finito $H$ de secuencias, las posible \textbf{historias} de acciones, tal que la secuencia vacía está en $H$, y cada prefijo de una secuencia en $H$ también está en $H$. $Z \subseteq H$ son las historias terminales (aquellas que no son prefijo de ninguna otra secuencia). $A(h) = \{ a : (h, a) \in H \}$ son las acciones disponibles después de una historia no terminal $h \in H$. Si la historia $h$ es prefijo de la historia $h'$ escribimos $h\sqsubseteq h'$, y si $h$ es un prefijo propio de $h'$ escribimos $h\sqsubset h'$.
   \item Una función $P$ que asigna a cada historia no terminal (cada elemento de $H \setminus Z)$ un elemento de $N \cup \{c \}$. $P$ es la \textbf{función de jugador}. $P(h)$ es el jugador que toma una acción después de la historia $h$. Si $P(h) = c$ entonces la acción tomada después de la historia $h$ es determinada por el azar. Este tipo de nodos serán denominados \textbf{nodos de azar}.
-  \item Una función $f_c$ que asocia con cada historia $h$, para la cual $P(h) = c$, una medida de probabilidad $f_c(.|h)$ sobre $A(h)$: $f_c(a|h)$ es la probabilidad de que la acción $a$ ocurra dado $h$.  Cada medida de probabilidad es independiente de cualquier otra de estas medidas.
+  \item Una función $f_c$ que asocia con cada historia $h$, para la cual $P(h) = c$, una medida de probabilidad $f_c(\cdot|h)$ sobre $A(h)$: $f_c(a|h)$ es la probabilidad de que la acción $a$ ocurra dado $h$.  Cada medida de probabilidad es independiente de cualquier otra de estas medidas.
   \item Para cada jugador $i \in N$, una partición $\mathcal{I}_i$ de $\{h \in H : P(h) = i\}$ con la propiedad de que $A(h) = A(h')$ siempre que $h$ y $h'$ estén en el mismo bloque de la partición. Para $I_i \in \mathcal{I}_i$ se denota por $A(I_i)$ el conjunto $A(h)$ y por $P(I_i)$ el jugador $P(h)$ para cualquier $h \in I_i$. $\mathcal{I}_i$ es la \textbf{partición de información} del jugador $i$, un conjunto $I_i \in \mathcal{I}_i$ es un \textbf{conjunto de información} del jugador $i$.
   \item Para cada jugador $i \in N$, una función de utilidad $u_i$ de los estados terminales $Z$ a los reales $\mathbb{R}$. Si $N = \{1,2\}$ y $u_1 = -u_2$, se dice que se tiene un \textbf{juego de dos jugadores de suma cero en forma extensiva}. Se define $\Delta_{u,i} = \max_z u_i(z) - \min_z u_i(z)$ como el rango de utilidades del jugador $i$.
 \end{itemize}
@@ -511,16 +511,6 @@ El perfil $\sigma\in\Sigma$ es un \textbf{equilibrio de Nash} si y sólo si $\si
 
 En el Ejemplo~\ref{ex:informacion-incompleta} se tienen $4$ estrategias puras para el jugador $1$ (Tabla \ref{table:estrategias-puras}). Una estrategia mixta $\sigma^m_1$ es una distribución de probabilidad sobre el conjunto $\{s_1, s_2, s_3, s_4\}$, donde las probabilidades son $\sigma^m_1(s_1)$, $\sigma^m_1(s_2)$, $\sigma^m_1(s_3)$ y $\sigma^m_1(s_4)$. Por otra parte una estrategia de comportamiento $\sigma^b_1$ son dos distribuciones de probabilidad, $\sigma^b_1(I^1)$ y $\sigma^b_1(I_2)$, sobre los conjuntos $A(I^1) = \{L, R\}$ y $A(I^2) = \{l, r\}$ respectivamente.
 
-Sea $\sigma$ un perfil estratégico mixto o de comportamiento. Sea  $\sigma_{-i} = (\sigma_j)_{j \neq i}$ la combinación de todas las estrategias de $\sigma$ excepto $\sigma_i$. Sea $\pi^{\sigma_i}(h)$ la probabilidad de alcanzar $h$ dado que el jugador $i$ utiliza la estrategia $\sigma_i$ y que los demás jugadores juegan para alcanzar $h$. Note que $\pi^{\sigma_i}(h)$ es la probabilidad de que para todo prefijo propio $h' \sqsubset h$ tal que $P(h') = i$, el $i$-ésimo jugador elija la acción $a$ correspondiente en $h$; i.e., $(h', a) \sqsubseteq h$.
-
-Sea $\pi^c(h)$ la probabilidad de alcanzar $h$ asumiendo que todos los jugadores juegan para alcanzar $h$, es decir:
-\begin{alignat}{1}
-\pi^c(h)\ =\ \prod_{(h', a) \sqsubset h : P(h') = c} f_c(a | h') \, .
-\end{alignat}
-
-Sea $\pi^{\sigma}(h) = \prod_{i \in N \cup {c}} \pi^{\sigma_i}(h)$ la probabilidad de que la historia $h$ ocurra si todos los jugadores eligen las acciones acorde al perfil estratégico  $\sigma$.  Sea $\pi^{\sigma_{-i}}(h) = \frac{\pi^{\sigma}(h)}{\pi^{\sigma_{i}}(h)}$ el producto de todas las contribuciones de los jugadores (incluyendo las elecciones en las historias de azar) excepto el jugador $i$. Sean $\pi^{\sigma}(I) = \sum_{h \in I},  \pi^\sigma(h)$, $\pi^{\sigma_i}(I) = \sum_{h \in I},  \pi^{\sigma_i}(h)$ y $\pi^{\sigma_{-i}}(h) = \sum_{h \in I},  \pi^{\sigma_{-i}}(h)$ la probabilidad de alcanzar el conjunto de información $I$ dado la estrategia $\sigma$, $\sigma_{i}$ y $\sigma_{-i}$, respectivamente.
-
-Para un perfil estratégico $\sigma$, sea $u_i(\sigma) = \sum_{z \in Z} u_i(z)\pi^{\sigma}(z)$ la ganancia esperada del jugador $i$ cuando todos los jugadores utilizan el perfil estratégico $\sigma$. Sea $I(h)$ el conjunto de información al que pertenece $h$, como los conjuntos de información son una partición de las historias correspondientes a cada jugador $I(h)$ está bien definida. La notación presentada es la utilizada en \cite{bib:cfr}.
 
 \subsection*{Equilibrio de Nash en el Juego de Kuhn Poker}
 
@@ -694,6 +684,31 @@ level 3/.style={sibling distance=6.5mm, level distance=12.5mm},
 \label{fig:kuhn-poker-estrategias}
 \end{center}
 \end{figure}
+
+
+\section{Probabilidad de Alcanzar una Historia y un Conjunto de Información}
+\label{sec:probabilidad-historia}
+
+Sea $\sigma$ un perfil estratégico mixto o de comportamiento el cual agrega una estrategia $\sigma_i$ para cada jugador $i$.
+%descompuesto de la forma $\sigma=(\sigma_i,\sigma_{-i})$ donde $\sigma_i$ es la estrategia para el jugador $i$ y $\sigma_{-i} = (\sigma_j)_{j \neq i}$ es la combinación de todas las estrategias de $\sigma$ excepto $\sigma_i$.
+Definimos la probabilidad de alcanzar la historia $h$ cuando los jugadores utilizan $\sigma$ como la multiplicación de la probabilidad de que cada acción $a$ en la historia $h$ ocurra, cuando dicha acción es seleccionada por un jugador $i$ o por el azar, según sea el caso. Formalmente, en símbolos, dicha probabilidad se expresa de la siguiente forma:
+\begin{alignat}{1}
+  \pi^{\sigma}(h)\
+    =\ \prod_{i\in N} \left\{ \prod_{(h',a)\sqsubseteq h : P(h')=i} \sigma_i(h')(a) \right\}\ \times \prod_{(h',a)\sqsubseteq h : P(h')=c} f_c(a|h') \,. 
+\end{alignat}
+En esta expresión la historia $h$ es descompuesta en prefijos $(h',a)$ los cuales definen los términos en el producto; término para $(h',a)$ es $\sigma_i(h')(a)$ cuando le toca jugar a $i$ (i.e., $P(h')=i$) o $f_c(a|h')$ cuando le toca jugar al azar (i.e., $P(h')=c$).
+
+La probabilidad $\pi^{\sigma}(h)$ la podemos expresar como un producto de probabilidades para cada jugador $i\in N$ y una probabilidad $\pi^c(h)$ que corresponde al azar la cual no depende de $\sigma$:
+\begin{alignat}{1}
+  \pi^{\sigma}(h)\ =\ \left\{\prod_{i\in N} \pi^{\sigma}_i(h)\right\} \times \pi^c(h)
+\end{alignat}
+donde $\pi^{\sigma}_i(h) = \prod_{(h',a)\sqsubseteq h : P(h')=i} \sigma_i(h')(a)$ y $\pi^c(h)=\prod_{(h',a)\sqsubseteq h : P(h')=c} f_c(a|h')$. Estas probabilidades les podemos dar interpretación: $\pi^\sigma_i(h)$ es la probabilidad de alcanzar la historia $h$ cuando el jugador $i$ utilizar la estrategia $\sigma_i$ y los otros jugadores, incluyendo el azar, juegan para alcanzar $h$, y $\pi^c(h)$ es la probabilidad de alcanzar la historia $h$ cuando todos los jugadores juegan para alcanzar $h$. Similarmente, definimos $\pi^{\sigma}_{-i}(h)=\pi^{\sigma}(h) / \pi^{\sigma}_i(h)$ que puede interpretarse como la probabilidad de alcanzar $h$ cuando todos los jugadores excepto $i$ utilizan $\sigma_{-i}$, y el jugador $i$ juega para alcanzar la historia $h$.
+
+Las probabilidades arriba definidas pueden agregarse para definir probabilidades de alcanzar conjuntos de información, ya que un conjunto de información no es otra cosa que un subconjunto de historias. Así, definimos, 
+$\pi^\sigma(I)=\sum_{h\in I}\pi^\sigma(h)$, $\pi^\sigma_i(I)=\sum_{h\in I}\pi^\sigma_i(h)$, y $\pi^\sigma_{-i}(I)=\sum_{h\in I}\pi^\sigma_{-i}(h)$.
+
+
+Finalmente, para un perfil estratégico $\sigma$, definimos la ganancia esperada del jugador $i$ cuando todos los jugadores utilizan $\sigma$ como $u_i(\sigma) = \sum_{z \in Z} u_i(z)\pi^{\sigma}(z)$. 
 
 \section{Perfect Recall}
 

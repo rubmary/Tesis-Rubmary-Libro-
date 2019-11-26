@@ -1,27 +1,28 @@
 \chapter{Counterfactual Regret Minimization}
 \label{chapter:cfr}
 
-El objetivo de este capítulo es presentar un algoritmo que permita encontrar un equilibrio de Nash en juegos en forma extensiva no determinista con información incompleta y probarlo empíricamente en distintos juegos. Aunque todo juego en forma extensiva puede ser representado en forma normal, esto no es de mucho interés pues la forma normal puede tener un tamaño exponencialmente más grande al tamaño del árbol. Se verá como el concepto de minimización del \textit{regret} puede ser extendido a juegos secuenciales, sin necesidad de la forma normal explícita. Los conceptos, procedimientos y teoremas mostrados en esta sección, son presentados en \cite{bib:cfr}.
+El objetivo de este capítulo es presentar un algoritmo que permite encontrar un equilibrio de Nash en juegos en forma extensiva no determinista con información incompleta y probarlo empíricamente en distintos juegos. Aunque todo juego en forma extensiva puede ser representado en forma normal, esto no es de mucho interés pues la forma normal puede tener un tamaño exponencialmente más grande al tamaño del árbol. Se verá como el concepto de minimización del \textit{regret} puede ser extendido a juegos secuenciales, sin necesidad de la forma normal explícita. Los conceptos, procedimientos y teoremas mostrados en esta sección, son presentados en \cite{bib:cfr}.
 
 \section{Descomposición del Regret}
 
-La primera definición clave es la de \textit{regret}. Para esto, es necesario considerar jugar repetidamente un juego en forma extensiva. Sea $\sigma_i^t$ la estrategia usada por el jugador $i$ a tiempo $t$. La Definición \ref{def:average-overall-regret}, presenta el concepto de \textit{regret} promedio general.
+La primera definición clave es la de \textit{regret} promedio que se calcula en repeticiones sucesivas del juego. Sea $\sigma_i^t$ la estrategia usada por el jugador $i$ a tiempo $t$. La Definición \ref{def:average-overall-regret}, presenta el concepto de \textit{regret} promedio general.
 
 \begin{definition}
 \label{def:average-overall-regret}
-El \textbf{regret promedio general} del jugador $i$ a tiempo $T$ es:
+Considere $T$ repeticiones de un juego en forma extensiva indexadas en tiempo por $t=1,2,\ldots,T$. Sea $\sigma^t$ el perfil estratégico de comportamiento utilizado por los jugadores a tiempo $t$ (i.e., $\sigma^t$ consiste de una estrategia de comportamiento $\sigma^t_i$ para cada jugador $i$, cf.\ Def.~\ref{def:estrategia-comportamiento}) . El \textbf{regret promedio general} del jugador $i$ a tiempo $T$ es:
 \begin{alignat}{1}
-R_i^T\ =\ \max_{\sigma^*_i \in B_i} \, \frac{1}{T}\, \sum_{t = 1}^T \, u_i(\sigma_i^*, \sigma_{-i}^t) - u_i(\sigma^t) \,.
+R_i^T\ =\ \max_{\sigma^*_i \in B_i} \, \frac{1}{T}\, \sum_{t = 1}^T \, u_i(\sigma_i^*, \sigma_{-i}^t) - u_i(\sigma^t)
 \end{alignat}
+donde $B_i$ es el conjunto de estrategias de comportamiento para el jugador $i$.
 \end{definition}
 
-$R_i^T$ representa el promedio de lo que el jugador $i$ dejó de ganar al haber utilizado la estrategia $\sigma^t_i$ en vez de la estrategia $\sigma^*_i$ en cada repetición del juego, donde $\sigma^*_i$ es la estrategia que maximiza, en promedio, la ganancia esperada del jugador $i$ si éste utiliza una estrategia (mixta) constante.
+$R_i^T$ representa el promedio de lo que el jugador $i$ dejó de ganar al haber utilizado la estrategia $\sigma^t_i$ en vez de la estrategia $\sigma^*_i$ en cada repetición del juego, donde $\sigma^*_i$ es la estrategia que maximiza, en promedio, la ganancia del jugador $i$ en las $T$ repeticiones del juego, si éste utiliza una estrategia de comportamiento constante.
 
 Se denotará con $\bar{\sigma}_i^{T}$ la estrategia promedio del jugador $i$, i.e, para cada conjunto de información $I \in \mathcal{I}_i$ y para cada acción $a \in A(I)$ se define:
 \begin{alignat}{1}
-\bar{\sigma}_i^{T}(I)(a)\ =\ \frac{\sum_{t = 1}^T \pi^{\sigma^t_i}(I)\,\sigma^t_i(I)(a)}{\sum_{t = 1}^T \pi^{\sigma_i^t}(I)} \,
+\bar{\sigma}_i^{T}(I)(a)\ =\ \frac{\sum_{t = 1}^T \pi^{\sigma^t}_i(I)\,\sigma^t(I)(a)}{\sum_{t = 1}^T \pi^{\sigma^t}_i(I)} \,
 \end{alignat}
-donde $\sigma^t_i$ es la estrategia utilizada por el jugador $i$ a tiempo $t$ y $\pi^{\sigma_i^t}(I) = \sum_{h \in I} \pi^{\sigma_i^t}$ y $\pi^{\sigma_i^t}(h)$ es la probabilidad de alcanzar $h$ si el jugador $i$ utiliza $\sigma_i^t$ y todos los demás jugadores (incluyendo el azar) juegan para alcanzar $h$.
+donde $\sigma^t_i$ es la estrategia utilizada por el jugador $i$ a tiempo $t$ y $\pi^{\sigma}_i(I) = \sum_{h \in I} \pi^{\sigma}_i(h)$ es la probabilidad de alcanzar el conjunto de información $I$ cuando el jugador $i$ utilizar $\sigma_i$ y los otros jugadores (incluyendo el azar) juegan para alcanzar $I$.
 
 Esta estrategia es el promedio ponderado de las probabilidades $\sigma^t(I)(a)$ con respecto a que tan probable es alcanzar $I$ dado $\sigma_i^t$. La relación entre el \textit{regret} promedio general y el concepto de solución se muestra en el siguiente teorema.
 
@@ -36,22 +37,22 @@ Luego, un algoritmo que lleve el \mbox{\textit{regret}} promedio general a cero 
 \label{def:utilidad-contrafactual}
 Sea $\sigma$ un perfil estratégico e $I \in \mathcal{I}_i$ un conjunto de información del jugador $i$, la \textbf{utilidad contrafactual} del par $(\sigma,I)$ es la ganancia esperada dado que el conjunto $I$ es alcanzado y todos los jugadores juegan con la estrategia $\sigma$ con excepción del jugador $i$ que juega para alcanzar $I$. Formalmente: 
 \begin{alignat}{1}
-u_i(\sigma, I)\ =\ \frac{\sum_{h \in I, z \in Z} \pi^{\sigma_{-i}}(h)\, \pi^{\sigma}(h, z)\, u_i(z)}{\pi^{\sigma_{-i}}(I)}
+u_i(\sigma, I)\ =\ \frac{\sum_{h \in I, z \in Z} \pi^{\sigma}_{-i}(h)\, \pi^{\sigma}(h, z)\, u_i(z)}{\pi^{\sigma}_{-i}(I)}
 \end{alignat}
-donde $Z$ denota el conjunto de historias terminales, $\pi^{\sigma_{-i}}(h)$ denota la probabilidad de alcanzar $h$ dado que todos los jugadores utilizan $\sigma$ excepto el jugador $i$ que juega para alcanzar $h$, i.e. $\pi^{\sigma_{-i}}(h) = \frac{\pi^{\sigma}(h)}{\pi^{\sigma_i}(h)}$ y $\pi^{\sigma}(h, h')$ denota la probabilidad de ir de la historia $h$ a la historia $h'$ dado el perfil estratégico $\sigma$, es decir, $\pi^{\sigma}(h, h') = \frac{\pi^{\sigma}(h')}{\pi^{\sigma}(h)}$ si $h \sqsubset h'$ y  $\pi^{\sigma}(h, h') = 0$ en caso contrario.
+donde $Z$ denota el conjunto de historias terminales, $\pi^{\sigma}_{-i}(h)$ denota la probabilidad de alcanzar $h$ dado que todos los jugadores utilizan $\sigma$ excepto el jugador $i$ que juega para alcanzar $h$ (cf.\ \ref{sec:probabilidad-historia}), y $\pi^{\sigma}(h,h')$ denota la probabilidad de ir de la historia $h$ a la historia $h'$ dado el perfil estratégico $\sigma$; i.e., $\pi^{\sigma}(h,h')=\pi^{\sigma}(h')/\pi^{\sigma}(h)$ si $h \sqsubseteq h'$, y $\pi^{\sigma}(h, h') = 0$ en caso contrario.
 \end{definition}
 
-Además, para toda acción $a$ en $A(I)$, se define $\sigma|_{I \rightarrow a}$ como el perfil estratégico que es idéntico a $\sigma$ excepto que el jugador $i$ siempre elige $a$ en el conjunto de información $I$.
+Ahora definiremos la medida de \emph{regret} contrafactual inmediato del jugador $i$ que permite medir el arrepentimiento del jugador de no haber utilizado la acción $a$ cada vez que encontró el conjunto de información $I$. Para esto, comenzamos definiendo la estrategia $\sigma_{I\rightarrow a}$, para una estrategia dada $\sigma$, como aquella estrategia que es idéntica a $\sigma$ excepto que el jugador $i$ siempre elige la acción $a$ en el conjunto de información $I$ (notar que no hace falta hacer explicito al jugador $i$ ya que un conjunto de información siempre está identificado con un único jugador).
 
 \begin{definition}
 \label{def:regret-inmediato}
 El \textbf{regret contrafactual inmediato} es:
 \begin{alignat}{1}
-R_{i, \text{imm}}^T(I)\ =\  \max_{a \in A(I)} \, \frac{1}{T} \, \sum_{t = 1}^T \, \pi^{\sigma_{-i}^t}(I) \biggl[ u_i(\sigma^t|_{I \rightarrow a}, I) - u_i(\sigma^t, I) \biggr]\,.
+R_{i, \text{imm}}^T(I)\ =\  \max_{a \in A(I)} \, \frac{1}{T} \, \sum_{t = 1}^T \, \pi^{\sigma^t}_{-i}(I) \biggl[ u_i(\sigma^t|_{I \rightarrow a}, I) - u_i(\sigma^t, I) \biggr]\,.
 \end{alignat}
 \end{definition}
 
-Intuitivamente, el \textit{regret} contrafactual inmediato es el arrepentimiento del jugador $i$ en su decisión sobre el conjunto de información $I$, en términos de la utilidad contrafactual, con un término de ponderación adicional para la probabilidad contrafactual que $I$ alcanzaría en esa ronda si el jugador hubiera intentado hacer eso. Usualmente, es de mayor interés el \textit{regret} cuando es positivo, por lo que se define $R_{i, \text{imm}}^{T, +} (I) = \max\{R^T_{i, \text{imm}} (I), 0\}$. Luego, se tiene el siguiente resultado:
+El \textit{regret} contrafactual inmediato es el arrepentimiento del jugador $i$ en su decisión sobre el conjunto de información $I$, en términos de la utilidad contrafactual, con un término de ponderación adicional para la probabilidad contrafactual que $I$ alcanzaría en esa ronda si el jugador hubiera intentado hacer eso. Usualmente, es de mayor interés el \textit{regret} cuando es positivo, por lo que se define $R_{i, \text{imm}}^{T, +} (I) = \max\{R^T_{i, \text{imm}} (I), 0\}$. 
 
 \begin{theorem}[\cite{bib:cfr}]
 \begin{alignat}{1}
@@ -94,16 +95,16 @@ Si $|u| = \max_{t \in \{1, 2, ... T\}} \max_{a, a' \in A}\bigl[u^t(a) - u^t(a')\
 
 El algoritmo CFR es una aplicación del algoritmo \textit{Regret Minimization} de forma independiente a cada conjunto de información. En particular, se mantiene para cada conjunto de información $I \in \mathcal{I}_i$ y cada acción $a \in A(I)$, la medida de regret:
 \begin{alignat}{1}
-R_i^T(I, a)\ =\ \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma^t_{-i}}(I)\biggl[u_i(\sigma^t|_{I \rightarrow a}, I) - u_i(\sigma^t, I)\biggr]
+R_i^T(I, a)\ =\ \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma^t}_{-i}(I)\biggl[u_i(\sigma^t|_{I \rightarrow a}, I) - u_i(\sigma^t, I)\biggr]
 \end{alignat}
 
-Se define $R_i^{T, +}(I, a) = \max\{R_i^T(I, a), 0\}$, luego la estrategia $\sigma^{T+1}_i$ elegida por el jugador $i$ a tiempo $T+1$ es:
+Para $R_i^{T, +}(I, a) = \max\{R_i^T(I, a), 0\}$, definimos la estrategia $\sigma^{T+1}_i$ elegida por el jugador $i$ a tiempo $T+1$:
 \begin{alignat}{1}
 \label{eq:cfr-regret-matching}
 \sigma_i^{T+1}(I)(a)\ =\
 \begin{cases}
-\frac{R_i^{T, +}(I, a)}{\sum_{a' \in A(I) R_i^{T, +}(I, a')}}\ & \text{si } \sum_{a' \in A(I) R_i^{T, +}(I, a')} > 0 \,, \\
-\frac{1}{|A(I)|}\ & \text{en otro caso.} 
+\frac{R_i^{T, +}(I, a)}{\sum_{a' \in A(I)} R_i^{T, +}(I, a')} & \text{si } \sum_{a' \in A(I) R_i^{T, +}(I, a')} > 0 \,, \\
+\frac{1}{|A(I)|} & \text{en otro caso.} 
 \end{cases}
 \end{alignat}
 
@@ -124,7 +125,7 @@ En la versión presentada del algoritmo CFR es necesario recorrer el árbol comp
 
 La idea general es restringir los estados terminales alcanzados en cada iteración, pero manteniendo el mismo valor esperado para la utilidad contrafactual. Sea $\mathcal{Q} = \{Q_1,..., Q_r\}$ un conjunto de subconjuntos de $Z$ (el conjunto de nodos terminales en el árbol) tal que su unión sea igual a $Z$. Cada uno de estos conjuntos será llamado un bloque. Sea $q_j > 0$ la probabilidad de considerar el bloque $Q_j$ en la iteración actual donde $\sum_{j = 1}^r {q_j} = 1$, y sea $q(z) = \sum_{j | j \in Q_i} q_j$ la probabilidad de considerar el nodo terminal $z$ para la iteración actual. La utilidad contrafactual muestreada, cuando se actualiza el bloque $j$ se define como
 \begin{alignat}{1}
-\tilde{u}_i(\sigma, I | j)\ =\ \sum_{h \in I, z \in Q_j} \frac{\pi^{\sigma_{-i}}(h)\,\pi^{\sigma}(h, z)\, u_i(z)}{q(z)\,\pi^{\sigma_{-i}}(I)} \,.
+\tilde{u}_i(\sigma, I | j)\ =\ \sum_{h \in I, z \in Q_j} \frac{\pi^{\sigma}_{-i}(h)\,\pi^{\sigma}(h, z)\, u_i(z)}{q(z)\,\pi^{\sigma}_{-i}(I)} \,.
 \end{alignat}
 
 Lo interesante es que la esperanza de la utilidad contrafactual muestreada coincide con la utilidad contrafactual, como se muestra a continuación.
@@ -134,21 +135,21 @@ Lo interesante es que la esperanza de la utilidad contrafactual muestreada coinc
 $E_{j \sim q_j} [\tilde{u}_i(\sigma, I | j)]\ =\ u_i(\sigma, I)$.
 \end{theorem}
 
-Si se elige un único bloque $Q_1=Z$, $\mathcal{Q} = \{Q_1\}$, que contiene todas las historias terminales y para el cual $q_1=1$, la utilidad contrafactual muestreada se convierte en la utilidad contrafactual, y se obtiene el algoritmo original que se denomina \textit{vanilla} CFR. Por otra parte, si los bloques son separados eligiendo una única acción en cada nodo de azar (siguiendo la distribución de probabilidad correspondiente al nodo) se obtiene un algoritmo que se denomina \textit{chance-sampled} CFR.
+Si se elige un único bloque $Q_1=Z$, $\mathcal{Q} = \{Q_1\}$, que contiene todas las historias terminales y para el cual $q_1=1$, la utilidad contrafactual muestreada se convierte en la utilidad contrafactual, y se obtiene el algoritmo original que se denomina \textit{vanilla} CFR. Por otra parte, si los bloques son separados eligiendo una única acción en cada nodo de azar (siguiendo la distribución de probabilidad correspondiente al nodo) se obtiene un algoritmo que se denomina \textbf{chance-sampled CFR}.
 
 \section{Detalles de Implementación y Ejecución}
 
-Los algoritmos y la representación de los juegos fueron implementados en el lenguaje C++, utilizando la librería estándar y una librería adicional denominada \textit{Boost} \cite{bib:boost} para obtener funciones de hash de los diferentes tipos de datos utilizados. Para la representación de los juegos se utilizó una clase abstracta llamada \functionname{Game} que contiene las funciones virtuales necesarias para recorrer el árbol del juego de forma \textbf{implícita} (como obtener la acciones de una historia dada y la utilidad de un nodo terminal, entre otras). Estas funciones son implementadas en las clases derivadas según las reglas de cada juego.
+Los algoritmos y la representación de los juegos fueron implementados en el lenguaje C++, utilizando la librería estándar y la librería \textit{Boost} \cite{bib:boost} que ofrece funciones de hash para los diferentes tipos de datos utilizados. Para la representación de los juegos se utilizó una clase abstracta llamada \functionname{Game} que contiene las funciones virtuales necesarias para recorrer el árbol de juego de forma \textbf{implícita} (como obtener la acciones de una historia dada y la utilidad de un nodo terminal, entre otras). Estas funciones son implementadas en las clases derivadas según las reglas de cada juego.
 
 Los juegos implementados fueron: \textit{One Card Poker} (OCP), dudo, un juego de dados, y una versión del juego de dominó para $2$ personas. Se crearon varias instancias por cada juego de acuerdo a los parámetros de inicialización que reciben cada uno de ellos. Para la resolución de cada instancia se utilizó el algoritmo \textbf{\textit{chance-sampled} CFR}, el cual se describe con detalle en el Algoritmo~\ref{algorithm:CFR} (Apéndice~\ref{apex:chapter:algoritmos}).
 
-Para evaluar la convergencia de los algoritmos y la estrategia obtenida se utilizaron las métricas de \textit{regret} y explotabilidad, respectivamente. Para calcular la explotabilidad en estos juegos se implementó el algoritmo propuesto en \cite{bib:thesis-marc-lanctot}, denominado \textit{Generalized Expectimax Best Response} (GEBR) (Algoritmos \ref{algorithm:explotabilidad}, \ref{algorithm:GEBR}, \ref{algorithm:gebr-pass1} y \ref{algorithm:gebr-pass2} del Apéndice~\ref{apex:chapter:algoritmos}).
+Para evaluar la convergencia de los algoritmos y la estrategia obtenida se utilizaron las métricas de \textit{regret} y explotabilidad respectivamente. Para calcular la explotabilidad en estos juegos se implementó el algoritmo propuesto en \cite{bib:thesis-marc-lanctot}, denominado \textit{Generalized Expectimax Best Response} (GEBR) (Algoritmos \ref{algorithm:explotabilidad}, \ref{algorithm:GEBR}, \ref{algorithm:gebr-pass1} y \ref{algorithm:gebr-pass2} del Apéndice~\ref{apex:chapter:algoritmos}).
 
-Cabe destacar que todos los juegos fueron representados mediantes árboles con la raíz como único nodo de azar. Algunos juegos tienen esta representación de forma natural (como el Kuhn Póker o el dudo) y otros juegos pueden tener nodos de azar distintos a la raíz. Sin embargo, siempre es posible transformarlos a un árbol que represente el mismo juego donde todos los nodos de azar son condensados en la raíz y cada hijo de la raíz representa una elección por cada uno de los nodos de azar del árbol original. En esta representación se asume que todas las decisiones aleatorias se toman al inicio del juego. La implementación de la clase \textit{Game} y de los algoritmos se realizaron suponiendo a la raíz como único nodo de azar en el juego.
+Cabe destacar que todos los juegos fueron representados mediantes árboles con la raíz como único nodo de azar. Algunos juegos tienen esta representación de forma natural (como el Kuhn Póker o el dudo) y otros juegos pueden tener nodos de azar distintos a la raíz. Sin embargo, siempre es posible transformar un árbol de juego cualquiera en un árbol de juego donde el único nodo de azar (si lo hay) sea la raíz. En esta representación se asume que todas las decisiones aleatorias se toman al inicio del juego. La implementación de la clase \textit{Game} y de los algoritmos se realizaron suponiendo a la raíz como único nodo de azar en el juego.
 
-Las ejecuciones de los algoritmos se realizaron en \textit{Amazon Web Services} (AWS), utilizando el servicio \textit{Amazon Elastic Compute Cloud} (Amazon EC2), instanciando máquinas virtuales con las siguientes caracteríscas: procesador Intel Broadwell E5-2686v4, 8CPUs y 32Gb de memoria RAM. Para cada instancia se iteró sobre el árbol durante $10$ horas aproximadamente, una vez finalizado el tiempo se calculó la explotabilidad con la estrategia obtenida. En este trabajo, se considera que una instancia de un juego está resuelta si la explotabilidad es no mayor que el $1\%$ de la mínima utilidad positiva posible.
+Las ejecuciones de los algoritmos se realizaron en \textit{Amazon Web Services} (AWS), utilizando el servicio \textit{Amazon Elastic Compute Cloud} (Amazon EC2), instanciando máquinas virtuales con las siguientes caracteríscas: procesador Intel Broadwell E5-2686v4, 8CPUs y 32Gb de memoria RAM. Para cada instancia se iteró sobre el árbol durante $10$ horas aproximadamente. Una vez finalizado el tiempo, se calculó la explotabilidad de la estrategia obtenida. En este trabajo, se considera que una instancia de un juego está \textbf{resuelta} si la explotabilidad es no mayor que el $1\%$ de la mínima utilidad positiva posible.
 
-Por cada juego se presenta una tabla que resume los resultados. Estas tablas contienen el número de nodos del árbol ($N$), el número de conjuntos de información con más de una acción posible ($I$), el valor del juego usando la estrategia obtenida ($u({\sigma})$), la explotabilidad de la estrategia ($\varepsilon_{\sigma}$), el número de iteraciones realizadas durante el tiempo de entrenamiento y la última columna indica si el juego fue resuelto o no. También se muestra la gráfica del \textit{regret} con respecto al número de iteraciones sobre algunas de las instancias de cada juego. Las gráficas completas pueden ser encontradas en el Apéndice~\ref{apex:chapter:experimentos-cfr}.
+Por cada juego se presenta una tabla que resume los resultados. Estas tablas contienen el número de nodos del árbol ($N$), el número de conjuntos de información con más de una acción posible ($I$), el valor del juego usando la estrategia obtenida ($u({\sigma})$), la explotabilidad de la estrategia ($\varepsilon_{\sigma}$), el número de iteraciones realizadas durante el tiempo de entrenamiento, y la última columna indica si el juego fue resuelto o no. También se muestra la gráfica del \textit{regret} con respecto al número de iteraciones sobre algunas de las instancias de cada juego. Las gráficas de \textit{regret} para cada instancia de cada juego están en el Apéndice~\ref{apex:chapter:experimentos-cfr}.
 
 \subsection*{One-Card Poker}
 \textit{One-Card Poker}, abreviado OCP($N$), es la versión generalizada del juego Kuhn Póker, explicado en el Capítulo \ref{section:kuhn-poker}. En este juego, cada jugador recibe una carta de un mazo de $N$ cartas y luego pueden apostar o retirarse según las mismas reglas del Kuhn Póker. Note que OCP(3) es equivalente al Kuhn Póker. El árbol de este juego tiene $9N(N-1)+1$ nodos (incluyendo el nodo inicial, que es el nodo de azar) y hay $4N$ conjuntos de información entre ambos jugadores. 
@@ -174,9 +175,9 @@ La Tabla \ref{table:resultados-CFR-OCP} muestra un resumen de los resultados de 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.48\textwidth]{graficas/cfr/ocp/OCP(3).png}
-    \includegraphics[width=0.48\textwidth]{graficas/cfr/ocp/OCP(200).png}
-    \caption{Gráficas del \textit{regret} con respecto al número de iteraciones de los juegos \textit{One Card Poker} $(200)$ y \textit{One Card Poker} $(3)$}
+    \includegraphics[width=0.48\textwidth]{graficas/cfr/ocp/OCP(1000).png}
+    \includegraphics[width=0.48\textwidth]{graficas/cfr/ocp/OCP(5000).png}
+    \caption{Gráficas del \textit{regret} con respecto al número de iteraciones de los juegos \textit{One Card Poker} $(1000)$ y \textit{One Card Poker} $(5000)$}
     \label{fig:cfr-regret-ocp-200}
 \end{figure}
 
@@ -248,7 +249,7 @@ Usualmente se utilizan $28$ piezas, donde las piezas pueden tener entre $0$ y $6
 
 En este juego no es fácil calcular el tamaño del árbol y el número de conjuntos de información, principalmente porque las acciones posibles en un estado dependen tanto de la mano del jugador como de las piezas en la mesa. En el Kuhn Póker siempre hay $2$ acciones posibles (${pasar, apostar}$) y en el Dudo las acciones disponibles dependen únicamente de la última apuesta y no dependen de los dados que tengan los jugadores. Así que estos parámetros fueron determinados recorriendo el árbol del juego mediante búsqueda en profundidad.
 
-La Tabla~\ref{table:resultados-CFR-domino} muestra el resumen de los resultados del juego dominó. En este caso no fue posible resolver la instancia Domino$(3, 4)$ con respecto a los juegos de dominó. La Gráfica~\ref{fig:cfr-regret-domino-3-3} muestra el \textit{regret} con respecto al número de iteraciones del juego Domino$(3, 3)$. Al igual que en las gráficas anteriores, se observa como el regret crece al principio para luego converger a $0$.
+La Tabla~\ref{table:resultados-CFR-domino} muestra el resumen de los resultados del juego dominó. En este caso no fue posible resolver la instancia Domino$(3, 4)$. La Gráfica~\ref{fig:cfr-regret-domino-3-3} muestra el \textit{regret} con respecto al número de iteraciones del juego Domino$(3, 3)$. Al igual que en las gráficas anteriores, se observa como el regret crece al principio para luego converger a $0$.
 
 \begin{table}[h]
     \centering

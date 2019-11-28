@@ -689,26 +689,24 @@ level 3/.style={sibling distance=6.5mm, level distance=12.5mm},
 \section{Probabilidad de Alcanzar una Historia y un Conjunto de Información}
 \label{sec:probabilidad-historia}
 
-Sea $\sigma$ un perfil estratégico mixto o de comportamiento el cual agrega una estrategia $\sigma_i$ para cada jugador $i$.
-%descompuesto de la forma $\sigma=(\sigma_i,\sigma_{-i})$ donde $\sigma_i$ es la estrategia para el jugador $i$ y $\sigma_{-i} = (\sigma_j)_{j \neq i}$ es la combinación de todas las estrategias de $\sigma$ excepto $\sigma_i$.
-Definimos la probabilidad de alcanzar la historia $h$ cuando los jugadores utilizan $\sigma$ como la multiplicación de la probabilidad de que cada acción $a$ en la historia $h$ ocurra, cuando dicha acción es seleccionada por un jugador $i$ o por el azar, según sea el caso. Formalmente, en símbolos, dicha probabilidad se expresa de la siguiente forma:
+Sea $\sigma$ un perfil estratégico mixto o de comportamiento el cual agrega una estrategia $\sigma_i$ para cada jugador $i$. Definimos la probabilidad de alcanzar la historia $h$ cuando los jugadores utilizan $\sigma$ como la multiplicación de la probabilidad de que cada acción $a$ en la historia $h$ ocurra, cuando dicha acción es seleccionada por un jugador $i$ o por el azar, según sea el caso. Formalmente, en símbolos, dicha probabilidad se expresa de la siguiente forma:
 \begin{alignat}{1}
-  \pi^{\sigma}(h)\
+  \pi^\sigma(h)\
     =\ \prod_{i\in N} \left\{ \prod_{(h',a)\sqsubseteq h : P(h')=i} \sigma_i(h')(a) \right\}\ \times \prod_{(h',a)\sqsubseteq h : P(h')=c} f_c(a|h') \,. 
 \end{alignat}
 En esta expresión la historia $h$ es descompuesta en prefijos $(h',a)$ los cuales definen los términos en el producto; término para $(h',a)$ es $\sigma_i(h')(a)$ cuando le toca jugar a $i$ (i.e., $P(h')=i$) o $f_c(a|h')$ cuando le toca jugar al azar (i.e., $P(h')=c$).
 
-La probabilidad $\pi^{\sigma}(h)$ la podemos expresar como un producto de probabilidades para cada jugador $i\in N$ y una probabilidad $\pi^c(h)$ que corresponde al azar la cual no depende de $\sigma$:
+La probabilidad $\pi^\sigma(h)$ la podemos expresar como un producto de probabilidades para cada jugador $i\in N$ y una probabilidad $\pi^c(h)$ que corresponde al azar la cual no depende de $\sigma$:
 \begin{alignat}{1}
-  \pi^{\sigma}(h)\ =\ \left\{\prod_{i\in N} \pi^{\sigma}_i(h)\right\} \times \pi^c(h)
+  \pi^\sigma(h)\ =\ \left\{\prod_{i\in N} \pi^\sigma_i(h)\right\} \times \pi^c(h)
 \end{alignat}
-donde $\pi^{\sigma}_i(h) = \prod_{(h',a)\sqsubseteq h : P(h')=i} \sigma_i(h')(a)$ y $\pi^c(h)=\prod_{(h',a)\sqsubseteq h : P(h')=c} f_c(a|h')$. Estas probabilidades les podemos dar interpretación: $\pi^\sigma_i(h)$ es la probabilidad de alcanzar la historia $h$ cuando el jugador $i$ utilizar la estrategia $\sigma_i$ y los otros jugadores, incluyendo el azar, juegan para alcanzar $h$, y $\pi^c(h)$ es la probabilidad de alcanzar la historia $h$ cuando todos los jugadores juegan para alcanzar $h$. Similarmente, definimos $\pi^{\sigma}_{-i}(h)=\pi^{\sigma}(h) / \pi^{\sigma}_i(h)$ que puede interpretarse como la probabilidad de alcanzar $h$ cuando todos los jugadores excepto $i$ utilizan $\sigma_{-i}$, y el jugador $i$ juega para alcanzar la historia $h$.
+donde $\pi^\sigma_i(h) = \prod_{(h',a)\sqsubseteq h : P(h')=i} \sigma_i(h')(a)$ y $\pi^c(h)=\prod_{(h',a)\sqsubseteq h : P(h')=c} f_c(a|h')$. Estas probabilidades les podemos dar interpretación: $\pi^\sigma_i(h)$ es la probabilidad de alcanzar la historia $h$ cuando el jugador $i$ utilizar la estrategia $\sigma_i$ y los otros jugadores, incluyendo el azar, juegan para alcanzar $h$, y $\pi^c(h)$ es la probabilidad de alcanzar la historia $h$ cuando todos los jugadores juegan para alcanzar $h$. Similarmente, definimos $\pi^\sigma_{-i}(h)=\pi^\sigma(h) / \pi^\sigma_i(h)$ que puede interpretarse como la probabilidad de alcanzar $h$ cuando todos los jugadores excepto $i$ utilizan $\sigma_{-i}$, y el jugador $i$ juega para alcanzar la historia $h$.
 
 Las probabilidades arriba definidas pueden agregarse para definir probabilidades de alcanzar conjuntos de información, ya que un conjunto de información no es otra cosa que un subconjunto de historias. Así, definimos, 
 $\pi^\sigma(I)=\sum_{h\in I}\pi^\sigma(h)$, $\pi^\sigma_i(I)=\sum_{h\in I}\pi^\sigma_i(h)$, y $\pi^\sigma_{-i}(I)=\sum_{h\in I}\pi^\sigma_{-i}(h)$.
 
 
-Finalmente, para un perfil estratégico $\sigma$, definimos la ganancia esperada del jugador $i$ cuando todos los jugadores utilizan $\sigma$ como $u_i(\sigma) = \sum_{z \in Z} u_i(z)\pi^{\sigma}(z)$. 
+Finalmente, para un perfil estratégico $\sigma$, definimos la ganancia esperada del jugador $i$ cuando todos los jugadores utilizan $\sigma$ como $u_i(\sigma) = \sum_{z \in Z} u_i(z)\pi^\sigma(z)$. 
 
 \section{Perfect Recall}
 
@@ -797,7 +795,7 @@ Se dice que dos estrategias $\sigma$ y $\sigma'$ son equivalentes si la probabil
 Sea $s_i \in S_i$ una estrategia pura del jugador $i$ e $I_i \in \mathcal{I}$ un conjunto de información de dicho jugador. Se dice que $I_i$ es alcanzable bajo $s_i$ si existe una historia $h \in H$ tal que $h \in I_i$ y para toda historia (prefijo) $h' \sqsubset h$ se cumple que: si $P(h') = i$, entonces $(h', s_i(I(h')))$ $\sqsubset$ $h$ y si $P(h') = c$ entonces existe una acción $a$ tal que $(h', a) \sqsubset h$ y la probabilidad de elegir la acción $a$ en $h'$ es positiva, i.e., $f_c(a|h') > 0$. 
 \end{definition}
 
-La definición anterior puede ser aplicada tanto a perfiles estratégicos como a estrategias para un jugador en particular, utilizando la definición de $\pi^{\sigma}(z)$ correspondiente. Las preguntas que se desean responder son las siguientes: (i) ?`Dada una estrategia mixta $\sigma^m$, existe una estrategia de comportamiento $\sigma^b$ tal que $\sigma^m$ y $\sigma^b$ son equivalentes? (ii) ?`Dada una estrategia de comportamiento $\sigma^b$, existe una estrategia mixta $\sigma^m$ tal que $\sigma^b$ y $\sigma^m$ son equivalentes?. Los Teoremas \ref{theo:comportamiento-a-mixta} y \ref{theo:mixta-a-comportamiento} responden estas interrogantes.
+La definición anterior puede ser aplicada tanto a perfiles estratégicos como a estrategias para un jugador en particular, utilizando la definición de $\pi^\sigma(z)$ correspondiente. Las preguntas que se desean responder son las siguientes: (i) ?`Dada una estrategia mixta $\sigma^m$, existe una estrategia de comportamiento $\sigma^b$ tal que $\sigma^m$ y $\sigma^b$ son equivalentes? (ii) ?`Dada una estrategia de comportamiento $\sigma^b$, existe una estrategia mixta $\sigma^m$ tal que $\sigma^b$ y $\sigma^m$ son equivalentes?. Los Teoremas \ref{theo:comportamiento-a-mixta} y \ref{theo:mixta-a-comportamiento} responden estas interrogantes.
 
 El Teorema \ref{theo:comportamiento-a-mixta} establece que si para cualquier camino de la raíz a un nodo no se pasa $2$ o más veces el mismo conjunto de información, entonces para cualquier estrategia de comportamiento existe una estrategia mixta equivalente. Por otra parte, el Teorema \ref{theo:mixta-a-comportamiento} establece que si todos los jugadores tienen \textit{perfect recall} entonces para toda estrategia mixta existe una estrategia de comportamiento equivalente. En particular, si se tiene \textit{perfect recall} entonces ningún camino pasa por el mismo conjunto de información más de una vez y, por lo tanto, para cualquier estrategia de comportamiento también existe una estrategia de comportamiento equivalente. En efecto, las estrategias de comportamiento es una forma compacta de representar las estrategias mixtas en este tipo de juegos.
 

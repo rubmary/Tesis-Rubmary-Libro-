@@ -22,7 +22,7 @@ Se denotará con $\bar{\sigma}_i^{T}$ la estrategia promedio del jugador $i$, i.
 \begin{alignat}{1}
 \bar{\sigma}_i^{T}(I)(a)\ =\ \frac{\sum_{t = 1}^T \pi^{\sigma^t}_i(I)\,\sigma^t(I)(a)}{\sum_{t = 1}^T \pi^{\sigma^t}_i(I)} \,
 \end{alignat}
-donde $\sigma^t_i$ es la estrategia utilizada por el jugador $i$ a tiempo $t$ y $\pi^{\sigma}_i(I) = \sum_{h \in I} \pi^{\sigma}_i(h)$ es la probabilidad de alcanzar el conjunto de información $I$ cuando el jugador $i$ utilizar $\sigma_i$ y los otros jugadores (incluyendo el azar) juegan para alcanzar $I$.
+donde $\sigma^t_i$ es la estrategia utilizada por el jugador $i$ a tiempo $t$ y $\pi^\sigma_i(I) = \sum_{h \in I} \pi^\sigma_i(h)$ es la probabilidad de alcanzar el conjunto de información $I$ cuando el jugador $i$ utilizar $\sigma_i$ y los otros jugadores (incluyendo el azar) juegan para alcanzar $I$.
 
 Esta estrategia es el promedio ponderado de las probabilidades $\sigma^t(I)(a)$ con respecto a que tan probable es alcanzar $I$ dado $\sigma_i^t$. La relación entre el \textit{regret} promedio general y el concepto de solución se muestra en el siguiente teorema.
 
@@ -37,9 +37,9 @@ Luego, un algoritmo que lleve el \mbox{\textit{regret}} promedio general a cero 
 \label{def:utilidad-contrafactual}
 Sea $\sigma$ un perfil estratégico e $I \in \mathcal{I}_i$ un conjunto de información del jugador $i$, la \textbf{utilidad contrafactual} del par $(\sigma,I)$ es la ganancia esperada dado que el conjunto $I$ es alcanzado y todos los jugadores juegan con la estrategia $\sigma$ con excepción del jugador $i$ que juega para alcanzar $I$. Formalmente: 
 \begin{alignat}{1}
-u_i(\sigma, I)\ =\ \frac{\sum_{h \in I, z \in Z} \pi^{\sigma}_{-i}(h)\, \pi^{\sigma}(h, z)\, u_i(z)}{\pi^{\sigma}_{-i}(I)}
+u_i(\sigma, I)\ =\ \frac{\sum_{h \in I, z \in Z} \pi^\sigma_{-i}(h)\, \pi^\sigma(h, z)\, u_i(z)}{\pi^\sigma_{-i}(I)}
 \end{alignat}
-donde $Z$ denota el conjunto de historias terminales, $\pi^{\sigma}_{-i}(h)$ denota la probabilidad de alcanzar $h$ dado que todos los jugadores utilizan $\sigma$ excepto el jugador $i$ que juega para alcanzar $h$ (cf.\ \ref{sec:probabilidad-historia}), y $\pi^{\sigma}(h,h')$ denota la probabilidad de ir de la historia $h$ a la historia $h'$ dado el perfil estratégico $\sigma$; i.e., $\pi^{\sigma}(h,h')=\pi^{\sigma}(h')/\pi^{\sigma}(h)$ si $h \sqsubseteq h'$, y $\pi^{\sigma}(h, h') = 0$ en caso contrario.
+donde $Z$ denota el conjunto de historias terminales, $\pi^\sigma_{-i}(h)$ denota la probabilidad de alcanzar $h$ dado que todos los jugadores utilizan $\sigma$ excepto el jugador $i$ que juega para alcanzar $h$ (cf.\ \ref{sec:probabilidad-historia}), y $\pi^\sigma(h,h')$ denota la probabilidad de ir de la historia $h$ a la historia $h'$ dado el perfil estratégico $\sigma$; i.e., $\pi^\sigma(h,h')=\pi^\sigma(h')/\pi^\sigma(h)$ si $h \sqsubseteq h'$, y $\pi^\sigma(h, h') = 0$ en caso contrario.
 \end{definition}
 
 Ahora definiremos la medida de \emph{regret} contrafactual inmediato del jugador $i$ que permite medir el arrepentimiento del jugador de no haber utilizado la acción $a$ cada vez que encontró el conjunto de información $I$. Para esto, comenzamos definiendo la estrategia $\sigma_{I\rightarrow a}$, para una estrategia dada $\sigma$, como aquella estrategia que es idéntica a $\sigma$ excepto que el jugador $i$ siempre elige la acción $a$ en el conjunto de información $I$ (notar que no hace falta hacer explicito al jugador $i$ ya que un conjunto de información siempre está identificado con un único jugador).
@@ -125,7 +125,7 @@ En la versión presentada del algoritmo CFR es necesario recorrer el árbol comp
 
 La idea general es restringir los estados terminales alcanzados en cada iteración, pero manteniendo el mismo valor esperado para la utilidad contrafactual. Sea $\mathcal{Q} = \{Q_1,..., Q_r\}$ un conjunto de subconjuntos de $Z$ (el conjunto de nodos terminales en el árbol) tal que su unión sea igual a $Z$. Cada uno de estos conjuntos será llamado un bloque. Sea $q_j > 0$ la probabilidad de considerar el bloque $Q_j$ en la iteración actual donde $\sum_{j = 1}^r {q_j} = 1$, y sea $q(z) = \sum_{j | j \in Q_i} q_j$ la probabilidad de considerar el nodo terminal $z$ para la iteración actual. La utilidad contrafactual muestreada, cuando se actualiza el bloque $j$ se define como
 \begin{alignat}{1}
-\tilde{u}_i(\sigma, I | j)\ =\ \sum_{h \in I, z \in Q_j} \frac{\pi^{\sigma}_{-i}(h)\,\pi^{\sigma}(h, z)\, u_i(z)}{q(z)\,\pi^{\sigma}_{-i}(I)} \,.
+\tilde{u}_i(\sigma, I | j)\ =\ \sum_{h \in I, z \in Q_j} \frac{\pi^\sigma_{-i}(h)\,\pi^\sigma(h, z)\, u_i(z)}{q(z)\,\pi^\sigma_{-i}(I)} \,.
 \end{alignat}
 
 Lo interesante es que la esperanza de la utilidad contrafactual muestreada coincide con la utilidad contrafactual, como se muestra a continuación.

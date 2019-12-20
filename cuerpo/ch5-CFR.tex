@@ -154,7 +154,7 @@ Por cada juego se presenta una tabla que resume los resultados. Estas tablas con
 \subsection*{One-Card Poker}
 \textit{One-Card Poker}, abreviado OCP($N$), es la versión generalizada del juego Kuhn Póker, explicado en el Capítulo \ref{section:kuhn-poker}. En este juego, cada jugador recibe una carta de un mazo de $N$ cartas y luego pueden apostar o retirarse según las mismas reglas del Kuhn Póker. Note que OCP(3) es equivalente al Kuhn Póker. El árbol de este juego tiene $9N(N-1)+1$ nodos (incluyendo el nodo inicial, que es el nodo de azar) y hay $4N$ conjuntos de información entre ambos jugadores. 
 
-La Tabla \ref{table:resultados-CFR-OCP} muestra un resumen de los resultados de las instancias del juego OCP. Se observa que se lograron resolver todas los casos propuestos. La Gráfica~\ref{fig:cfr-regret-ocp-200} muestra el \textit{regret} con respecto al número de iteraciones en el juego OCP$(200)$. Se observa que al principio el regret aumenta debido a que el regret se inicializa en $0$ y empieza a aumentar a medida que se descubren los conjuntos de información. Luego, se observa como converge a $0$ a medida que transcurren las iteraciones.
+La Tabla \ref{table:resultados-CFR-OCP} muestra un resumen de los resultados de las instancias del juego OCP. Se observa que se lograron resolver todas los casos propuestos. La Figura~\ref{fig:cfr-regret-ocp-200} muestra el \textit{regret} con respecto al número de iteraciones de los juegos OCP$(1000)$ y OCP($5000$). Se observa que al principio el regret aumenta debido a que éste se inicializa en $0$ y empieza a crecer a medida que se descubren los conjuntos de información. Luego, se observa como converge a $0$ a medida que transcurren las iteraciones.
 
 \begin{table}[h]
     \centering
@@ -203,7 +203,7 @@ Cuando el jugador $i$ lanza $D_i$ dados hay $\binom{D_i+K-1}{K-1}$ resultados di
 
 Para contar el número total de nodos se puede considerar el lanzamiento de los dados de forma independiente, pues las secuencias posibles de apuestas no dependen del resultado de los dados. Por lo expuesto anteriormente, el número posible de apuestas es igual a $2^{K(D_1+D_2)}$, pero después de cada secuencia siempre se puede decir \say{dudo}, salvo para la secuencia vacía. El número total de nodos (incluyendo nodos terminales y no terminales) es igual a $\binom{D_1+K-1}{K-1}\binom{D_1+K-1}{K-1}(2^{K(D_1+D_2)+1}-1)+1$.
 
-La Tabla~\ref{table:resultados-CFR-dudo} muestra el resumen de los resultados de las instancias del juego dudo. En este juego no se alcanzó la cota deseada para la explotabilidad para las instancias Dudo$(4, 2, 2)$, Dudo$(5, 2, 2)$, Dudo$(6, 1, 2)$ y Dudo$(6, 2, 1)$, siendo la instancia Dudo$(5, 2, 2)$ la que posee la estrategia más explotable con más del $15\%$ de la ganancia posible. Esto debido al bajo número de iteraciones realizadas durante el entrenamiento (menos de $4.000$) por el gran tamaño del árbol. La Gráfica~\ref{fig:cfr-regret-dudo-5-2-2} corresponde al juego Domino$(5, 2, 2)$. Esta tiene un comportamiento similar a la gráfica anterior pero se observa que la convergencia está inconclusa, por lo que la estrategia final encontrada para Dudo$(5, 2, 2)$ tiene alta explotabilidad.
+La Tabla~\ref{table:resultados-CFR-dudo} muestra el resumen de los resultados de las instancias del juego dudo. En este juego no se alcanzó la cota deseada para la explotabilidad para las instancias Dudo$(4, 2, 2)$, Dudo$(5, 2, 2)$, Dudo$(6, 1, 2)$ y Dudo$(6, 2, 1)$, siendo la instancia Dudo$(5, 2, 2)$ la que posee la estrategia más explotable con más del $15\%$ de la ganancia posible. Esto debido al bajo número de iteraciones realizadas durante el entrenamiento (menos de $4.000$) por el gran tamaño del árbol. La Figura~\ref{fig:cfr-regret-dudo-5-2-2} corresponde a los juegos Dudo$(6, 1, 1)$ y Dudo$(5, 2, 2)$. Estas gráficas tiene un comportamiento similar a las anteriores, pero se observa que la convergencia de Dudo$(5, 2, 2)$ está inconclusa, por lo que la estrategia final encontrada para esta instancia tiene alta explotabilidad.
 
 \begin{table}[h]
     \centering
@@ -249,7 +249,7 @@ Usualmente se utilizan $28$ piezas, donde las piezas pueden tener entre $0$ y $6
 
 En este juego no es fácil calcular el tamaño del árbol y el número de conjuntos de información, principalmente porque las acciones posibles en un estado dependen tanto de la mano del jugador como de las piezas en la mesa. En el Kuhn Póker siempre hay $2$ acciones posibles (${pasar, apostar}$) y en el Dudo las acciones disponibles dependen únicamente de la última apuesta y no dependen de los dados que tengan los jugadores. Así que estos parámetros fueron determinados recorriendo el árbol del juego mediante búsqueda en profundidad.
 
-La Tabla~\ref{table:resultados-CFR-domino} muestra el resumen de los resultados del juego dominó. En este caso no fue posible resolver la instancia Domino$(3, 4)$. La Gráfica~\ref{fig:cfr-regret-domino-3-3} muestra el \textit{regret} con respecto al número de iteraciones del juego Domino$(3, 3)$. Al igual que en las gráficas anteriores, se observa como el regret crece al principio para luego converger a $0$.
+La Tabla~\ref{table:resultados-CFR-domino} muestra el resumen de los resultados del juego dominó. En este caso no fue posible resolver la instancia Domino$(3, 4)$. La Figura~\ref{fig:cfr-regret-domino-3-3} muestra el \textit{regret} con respecto al número de iteraciones de los juegos Domino$(3, 3)$ y Domino$(3, 4)$. Al igual que en las gráficas anteriores, se observa como el regret crece al principio para luego converger a $0$.
 
 \begin{table}[h]
     \centering
@@ -258,10 +258,10 @@ La Tabla~\ref{table:resultados-CFR-domino} muestra el resumen de los resultados 
     \begin{tabular}{lrrrrrc}
         \toprule
         Juego & $N$ & $I$ & Iteraciones & $u(\sigma)$ & $\varepsilon_{\sigma}$ (\%) & Resuelto \\ \midrule
-        Domino$(2, 2)$ &         7.321 &     102 & 585.191.577 & 2,4000 & 0,0000 & \cmark \\
-        Domino$(3, 2)$ &    46.534.657 &  88.947 & 436.905.363 & 2,8767 & 0,0292 & \cmark \\
-        Domino$(3, 3)$ &   246.760.993 & 107.854 &  79.751.183 & 2,1539 & 0,3599 & \cmark \\
-        Domino$(3, 4)$ & 1.547.645.185 & 104.050 &  11.984.261 & 3,2034 & 1,3630 & \xmark \\
+        Domino$(2, 2)$ &         7.321 &     102 & 540.186.366 & 2,4000 & 0,0000 & \cmark \\
+        Domino$(3, 2)$ &    46.534.657 &  88.947 & 400.047.334 & 2,8767 & 0,0315 & \cmark \\
+        Domino$(3, 3)$ &   246.760.993 & 107.854 &  72.492.951 & 2,1539 & 0,3854 & \cmark \\
+        Domino$(3, 4)$ & 1.547.645.185 & 104.050 &  11.213.463 & 3,2034 & 1,4871 & \xmark \\
         \bottomrule
     \end{tabular}
 \end{table}

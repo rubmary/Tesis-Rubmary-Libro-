@@ -7,7 +7,7 @@ El objetivo de este capítulo es presentar un algoritmo que permite encontrar un
 
 La primera definición clave es la de \textit{regret} promedio que se calcula en repeticiones sucesivas del juego. Sea $\sigma_i^t$ la estrategia usada por el jugador $i$ a tiempo $t$. La Definición \ref{def:average-overall-regret}, presenta el concepto de \textit{regret} promedio general.
 
-\begin{definition}
+\begin{definition}[\cite{bib:cfr}]
 \label{def:average-overall-regret}
 Considere $T$ repeticiones de un juego en forma extensiva indexadas en tiempo por $t=1,2,\ldots,T$. Sea $\sigma^t$ el perfil estratégico de comportamiento utilizado por los jugadores a tiempo $t$ (i.e., $\sigma^t$ consiste de una estrategia de comportamiento $\sigma^t_i$ para cada jugador $i$, cf.\ Def.~\ref{def:estrategia-comportamiento}) . El \textbf{regret promedio general} del jugador $i$ a tiempo $T$ es:
 \begin{alignat}{1}
@@ -26,14 +26,14 @@ donde $\sigma^t_i$ es la estrategia utilizada por el jugador $i$ a tiempo $t$ y 
 
 Esta estrategia es el promedio ponderado de las probabilidades $\sigma^t(I)(a)$ con respecto a que tan probable es alcanzar $I$ dado $\sigma_i^t$. La relación entre el \textit{regret} promedio general y el concepto de solución se muestra en el siguiente teorema.
 
-\begin{theorem}
+\begin{theorem}[\cite{bib:cfr}]
 \label{theo:regret-nash}
 En un juego de dos jugadores de suma cero si el regret promedio general a tiempo $T$ es menor que $\varepsilon$ entonces $\bar{\sigma}^{T}=(\bar\sigma^T_1,\bar\sigma^T_2)$ es un $2\varepsilon$-equilibrio de Nash.
 \end{theorem}
 
 Luego, un algoritmo que lleve el \mbox{\textit{regret}} promedio general a cero conducirá a un equilibrio de Nash. La idea fundamental consiste en descomponer el \textit{regret} promedio general en un conjunto de términos aditivos de \textit{regret} que puedan ser minimizados de forma independientemente \cite{bib:cfr}. En particular, es necesario introducir un par de conceptos nuevos, la \textit{utilidad contrafactual} y el \textit{regret contrafactual inmediato}. Estos conceptos son de gran importancia porque son las definiciones análogas a la utilidad y el \textit{regret} en los algoritmos de \textit{Regret Matching} presentados en el Capítulo~\ref{chapter:regret-matching}.
 
-\begin{definition}
+\begin{definition}[\cite{bib:cfr}]
 \label{def:utilidad-contrafactual}
 Sea $\sigma$ un perfil estratégico e $I \in \mathcal{I}_i$ un conjunto de información del jugador $i$, la \textbf{utilidad contrafactual} del par $(\sigma,I)$ es la ganancia esperada dado que el conjunto $I$ es alcanzado y todos los jugadores juegan con la estrategia $\sigma$ con excepción del jugador $i$ que juega para alcanzar $I$. Formalmente: 
 \begin{alignat}{1}
@@ -44,7 +44,7 @@ donde $Z$ denota el conjunto de historias terminales, $\pi^\sigma_{-i}(h)$ denot
 
 Ahora definiremos la medida de \emph{regret} contrafactual inmediato del jugador $i$ que permite medir el arrepentimiento del jugador de no haber utilizado la acción $a$ cada vez que encontró el conjunto de información $I$. Para esto, comenzamos definiendo la estrategia $\sigma_{I\rightarrow a}$, para una estrategia dada $\sigma$, como aquella estrategia que es idéntica a $\sigma$ excepto que el jugador $i$ siempre elige la acción $a$ en el conjunto de información $I$ (notar que no hace falta hacer explicito al jugador $i$ ya que un conjunto de información siempre está identificado con un único jugador).
 
-\begin{definition}
+\begin{definition}[\cite{bib:cfr}]
 \label{def:regret-inmediato}
 El \textbf{regret contrafactual inmediato} es:
 \begin{alignat}{1}
@@ -66,7 +66,7 @@ Debido a que minimizar el \textit{regret} contrafactual inmediato conduce a mini
 
 Antes de mostrar el algoritmo principal, denominado \textit{Counterfactual Regret Minimization} (CFR) para los juegos en forma extensiva, es necesario introducir el algoritmo general de \textit{Regret Minimization}. Este algoritmo puede ser descrito en un dominio donde hay un conjunto fijo de acciones $A$, una función de utilidad $u^t : A \rightarrow \mathbb{R}$, y en cada ronda $t$ una distribución de probabilidad $p^t$ es elegida.
 
-\begin{definition}
+\begin{definition}[\cite{bib:cfr}]
 \label{def:regret}
 El \textit{regret} promedio de no haber elegido la acción $a \in A$ hasta tiempo $T$, y en su lugar elegir la acción $a'$ con probabilidad $p^t(a')$ para $t=1,2,\ldots,T$, se define como:
 \begin{alignat}{1}

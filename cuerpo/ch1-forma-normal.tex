@@ -14,9 +14,9 @@ Un juego de N personas en \textbf{forma normal} (o estratégica) es una tupla $\
 \end{definition}
 
 \section{Perfiles Estratégicos, Estrategias Mixtas, y Perfiles Estratégicos Mixtos}
-A continuación se presentan conceptos básicos que denotan las diversas formas en que los jugadores pueden comportarse para un juego en forma normal. Las estrategias puras son la base a partir de las cuales se construyen las estrategias mixtas. Las estrategias puras se agregan en perfiles estratégicos que denotan el comportamiento de todos los jugadores de forma simultánea, y los perfiles estratégicos mixtos agregan las estrategias mixtas \cite{bib:tutorial-existence-nash}.
+A continuación se presentan conceptos básicos que denotan las diversas formas en que los jugadores pueden comportarse para un juego en forma normal: estrategias mixtas, perfiles estratégicos y perfiles estratégicos mixtos. Las estrategias puras son la base a partir de las cuales se construyen las estrategias mixtas. Las estrategias puras se agregan en perfiles estratégicos que denotan el comportamiento de todos los jugadores de forma simultánea, y los perfiles estratégicos mixtos agregan las estrategias mixtas. Además, se introduce el concepto de soporte de una estrategia mixta, el cual permitirá introducir nuevas definiciones y teoremas. Las definiciones son presentadas de forma similar a  \cite{bib:handbook-blai} y \cite{bib:tutorial-existence-nash}, pero se utiliza una notación consistente con la utilizada en los capítulos siguientes.
 
-\begin{definition} Un \textbf{perfil estratégico} (o perfil de acción) es una $N$-tupla formada por una estrategia pura para cada jugador. $S = \Pi_{i \in N}S_i$ es el conjunto de perfiles estratégicos y $s = (s_i)_{i \in N}$ representa un elemento genérico de $S$.  
+\begin{definition}[{\cite[p.~7]{bib:handbook-blai}}] Un \textbf{perfil estratégico} (o perfil de acción) es una $N$-tupla formada por una estrategia pura para cada jugador. $S = \Pi_{i \in N}S_i$ es el conjunto de perfiles estratégicos y $s = (s_i)_{i \in N}$ representa un elemento genérico de $S$.  
 \end{definition}
 
 Se denotará con $s_{-i}$ la combinación de las estrategias de todos los jugadores excepto la del jugador $i$, i.e., $s_{-i} = (s_{i'})_{i' \neq i}$. Frecuentemente se descompone una estrategia $s$ en un par $(s_i,s_{-i})$ donde la primera componente es una estrategia pura para el jugador $i$ y la segunda componente es un vector de estrategias puras para los otros jugadores. Además, los juegos en forma normal pueden representarse como una tabla $N$-dimensional donde cada dimensión está asociada a un jugador y sus filas/columnas corresponden a las acciones de su jugador correspondiente. Cada una de las entradas de la tabla corresponde a un único perfil estratégico (pues representan la intersección de una única acción para cada jugador) y éstas contienen un vector de pagos para cada jugador \cite{bib:introductionCFR}.
@@ -38,17 +38,17 @@ $\mathcal{S}$ (tijera) & $-1,1$ & $1,-1$ & $0,0$ \\ \cline{2-4}
 
 En vez de realizar siempre la misma acción, un jugador puede elegir su jugada de acuerdo a una distribución de probabilidad, la cual se denomina una \textbf{estrategia mixta}. Dado un conjunto finito $A$, se denota con $\Delta(A)$ al conjunto de distribuciones de probabilidad sobre $A$, es decir $\Delta(A) = \{ (x_a)_{a \in A} : \sum_{a \in A} x_a = 1, x_a \geq 0\}$. También se denotará a $\Delta^n$, como el simplex $n$-dimensional, i.e., $\Delta^n = \{ x \in \mathbb{R}^{n+1} : \sum_{0 \leq i \leq n}x_i = 1, x_i \geq 0 \}$.
 
-\begin{definition} Una \textbf{estrategia mixta} del jugador $i$, denotada con $\sigma_i$, es una distribución de probabilidad sobre el conjunto $S_i$; es decir $\sigma_i \in \Delta(S_i)$. Se denota con $\sigma_i(s_i)$ la probabilidad de que el jugador $i$ elija la acción $s_i \in S_i$. 
+\begin{definition}[{\cite[p.~7]{bib:handbook-blai}}] Una \textbf{estrategia mixta} del jugador $i$, denotada con $\sigma_i$, es una distribución de probabilidad sobre el conjunto $S_i$; es decir $\sigma_i \in \Delta(S_i)$. Se denota con $\sigma_i(s_i)$ la probabilidad de que el jugador $i$ elija la acción $s_i \in S_i$. 
 \end{definition}
 
-\begin{definition}
+\begin{definition}[{\cite[p.~7]{bib:handbook-blai}}]
 El \textbf{soporte} (support) de una estrategia mixta $\sigma_i \in \Delta(S_i)$ del jugador $i$ es el conjunto de estrategias puras con una probabilidad positiva de ser elegidas:
 \begin{alignat}{1}
 \text{support}(\sigma_i)\ =\ \{s_i : \sigma_i(s_i) > 0 \} \,.
 \end{alignat}
 \end{definition}
 
-\begin{definition}
+\begin{definition}[{\cite[p.~7]{bib:handbook-blai}}]
 Un \textbf{perfil estratégico mixto} $\sigma$ consiste en una estrategia mixta para cada jugador; es decir, $\sigma \in \Pi_{i \in N} \Delta(S_i)$ es una tupla de forma $\sigma=(\sigma_i)_{i \in N}$.
 \end{definition}
 
@@ -59,7 +59,7 @@ En el juego piedra, papel o tijera una posible estrategia mixta para el jugador 
 \section{Ganancia Esperada y Mejor Respuesta}
 La ganancia esperada del jugador $i$ asociada al perfil estratégico mixto $\sigma$ denota el valor promedio que el jugador $i$ obtendría después de jugar el juego infinitas veces cuando todos los jugadores utilizan las estrategias mixtas especificadas en $\sigma$. 
 
-\begin{definition}
+\begin{definition}[{\cite[p.~8]{bib:handbook-blai}}]
 \label{def:ganancia-esperada}
 La \textbf{ganancia esperada} del jugador $i$ dado un perfil estratégico mixto $\sigma$ es
 \begin{alignat}{1}
@@ -67,7 +67,7 @@ La \textbf{ganancia esperada} del jugador $i$ dado un perfil estratégico mixto 
 \end{alignat}
 \end{definition}
 
-La ganancia esperada del jugador $i$ se puede descomponer como se muestra a continuación. (La demostración de este Teorema y otros contenidos en la tesis se encuentran en el Apéndice~\ref{apex:chapter:pruebas}).
+La ganancia esperada del jugador $i$ se puede descomponer como se muestra a continuación. (La demostración de este Teorema y otros contenidos en la tesis se encuentran en el Apéndice~\ref{apex:chapter:pruebas}). Este Teorema permite representar la ganancia esperada del jugador $i$ como una combinación lineal de las probabilidades correspondientes a su estrategia $\sigma_i$, lo cual será utilizado en la siguiente sección.
 
 \begin{theorem}
 \label{theo:ganancia-esperada}
@@ -79,20 +79,20 @@ u_i(\sigma)\ =\ \sum_{s_i\in S_i} \sigma_i(s_i) \sum_{s_{-i}\in S_{-i}} \sigma_{
 
 Dado un perfil estratégico mixto $\sigma$, tiene sentido preguntarse si el jugador $i$ está jugando de la mejor forma dadas las estrategias seleccionadas por los otros jugadores. A partir de esta pregunta, se define el concepto de mejor respuesta para el jugador $i$ dado un perfil $\sigma_{-i}$ para los otros jugadores.
 
-\begin{definition}
+\begin{definition}[{\cite[p.~11]{bib:handbook-blai}}]
 \label{def:mejor-respuesta}
 Sea $i\in N$ un jugador, $\sigma_i$ una estrategia mixta para el jugador $i$, y $\sigma_{-i}$ un perfil estratégico mixto para el resto de los jugadores. Se dice que $\sigma_i$ es una \textbf{mejor respuesta} con respecto a $\sigma_{-i}$ si y s\'olo si
 $u_i(\sigma_i,\sigma_{-i}) \geq u_i(\sigma'_i,\sigma_{-i})$ para toda estrategia mixta $\sigma'_i$ para el jugador $i$.
 \end{definition}
 
-Una mejor respuesta no es necesariamente única. En efecto, salvo el caso extremo en el que hay una única mejor respuesta, que como se verá debe ser una estrategia pura, el número de mejores respuestas es infinito. Cuando el soporte de una estrategia mixta que es mejor respuesta incluye dos o más estrategias puras (acciones), el agente debe ser indiferente a cualquiera de éstas y cualquier mezcla de estas  acciones también será mejor respuesta \cite{bib:tutorial-existence-nash}.
+Una mejor respuesta no es necesariamente única. En efecto, salvo el caso extremo en el que hay una única mejor respuesta, que como se verá debe ser una estrategia pura, el número de mejores respuestas es infinito. Cuando el soporte de una estrategia mixta que es mejor respuesta incluye dos o más estrategias puras (acciones), el agente debe ser indiferente a cualquiera de éstas y cualquier mezcla de estas  acciones también será mejor respuesta \cite{bib:tutorial-existence-nash}. Esta propiedad es formalizada en el Teorema~\ref{theo:mejor-respuesta} y permite limitar la búsqueda en las estrategias puras cuando se quiere calcular alguna mejor respuesta frente a una estrategia determinada.
 
 \begin{theorem}
 \label{theo:mejor-respuesta}
 Sea $\sigma^*_i$ una estrategia mixta para el jugador $i$ que es mejor respuesta a $\sigma_{-i}$. Cualquier estrategia mixta $\sigma_i$ para el jugador $i$ cuyo soporte sea un subconjunto del soporte de $\sigma^*_i$ es también una mejor respuesta a $\sigma_{-i}$.
 \end{theorem}
 
-En el juego piedra, papel o tijera, la ganancia esperada del jugador $i$ cuando utiliza la estrategia $\sigma = (\sigma_1, \sigma_2)$, viene dada por:
+En el juego piedra, papel o tijera, la ganancia esperada del jugador $i$ cuando utiliza la estrategia $\sigma = (\sigma_1, \sigma_2)$, viene dada por (Teorema~\ref{theo:ganancia-esperada}):
 \begin{alignat}{1}
 	u_i(\sigma)\ &=\ \sigma_i(\mathcal{R}) \left( \sigma_{-i}(\mathcal{R}) u_i(\mathcal{R}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{R}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{R}, \mathcal{S}) \right) \\ \nonumber
     &+\ \sigma_i(\mathcal{P}) \left(\sigma_{-i}(\mathcal{R}) u_i(\mathcal{P}, \mathcal{R}) + \sigma_{-i}(\mathcal{P}) u_i(\mathcal{P}, \mathcal{P})+ \sigma_{-i}(\mathcal{S}) u_i(\mathcal{P}, \mathcal{S})\right) \\ \nonumber
@@ -124,20 +124,20 @@ Luego, la mejor respuesta a $\sigma_1$ se obtiene al maximizar $f(x, y) = -\frac
 De forma similar se obtiene que, si $\sigma^*_1 = (x, y, z)$ es mejor respuesta a $\sigma_2$, entonces $u_1(\sigma^*_1, \sigma_2) = -\frac{1}{3}x + \frac{1}{6}y + \frac{1}{6}z$. Note que en este caso se maximiza la función cuando $y = \alpha$ y $z = 1 -\alpha$, para cualquier $\alpha \in [0, 1]$. Luego, el jugador es indiferente ante las estrategias $\mathcal{P}$ y $\mathcal{S}$, por lo que existen infinitas estrategias que son mejor respuesta a $\sigma_1$. Finalmente se obtiene que $\sigma^*_1$ es mejor respuesta si y sólo si $\sigma^*_1 = (0, \alpha, 1 - \alpha)$ para cualquier  $\alpha \in [0, 1]$, i.e. $\sigma^*_1$ es mejor respuesta si y sólo si $\text{support}(\sigma^*_1) \subseteq \{\mathcal{P}, \mathcal{S} \}$.
 
 \section{Equilibrio de Nash}
-Cuando cada jugador juega con una mejor respuesta frente a las estrategias del resto de los jugadores se dice que tiene un equilibrio de Nash. En un equilibrio de Nash ningún jugador puede mejorar su ganancia esperada cambiando su estrategia de forma aislada. Por otra parte, si el juego es finito, siempre existe al menos un equilibrio de Nash. Un juego es finito si el número de jugadores es finito, y si el conjunto de estrategias puras para cada jugador es también finito. El concepto de equilibrio de Nash es uno de los conceptos de solución más importantes en el área de teoría de juegos no cooperativos, y es el principal concepto de solución utilizado en el presente trabajo.
+Cuando cada jugador juega con una mejor respuesta frente a las estrategias del resto de los jugadores se dice que tiene un equilibrio de Nash. En un equilibrio de Nash ningún jugador puede mejorar su ganancia esperada cambiando su estrategia de forma aislada. Por otra parte, si el juego es finito, siempre existe al menos un equilibrio de Nash (Teorema~\ref{theo:existencia-nash}). Un juego es finito si el número de jugadores es finito, y si el conjunto de estrategias puras para cada jugador es también finito. El concepto de equilibrio de Nash es uno de los conceptos de solución más importantes en el área de teoría de juegos no cooperativos, y es el principal concepto de solución utilizado en el presente trabajo.
 
-\begin{definition}
+\begin{definition}[\cite{bib:nash}]
 \label{def:equilibrio-nash} Un perfil estratégico mixto $\sigma$ es un \textbf{equilibrio de Nash} si y s\'olo si para todo jugador $i$, la estrategia $\sigma_i$ es mejor respuesta del jugador $i$ para $\sigma_{-i}$.
 \end{definition}
 
-\begin{theorem}[\cite{bib:tutorial-existence-nash}]
+\begin{theorem}[\cite{bib:nash}]
 \label{theo:existencia-nash}
 Todo juego finito tiene al menos un equilibrio de Nash.
 \end{theorem}
 
 Es importante destacar que el Teorema \ref{theo:existencia-nash} es cierto al considerar perfiles estratégicos mixtos, pero no al considerar únicamente perfiles estratégicos puros. No todos los juegos tienen algún perfil estratégico puro que sea equilibrio de Nash, como por ejemplo, el juego RPS. Para ver esto, supongamos que el primer jugador juega con alguna estrategia pura, digamos $\mathcal{R}$, luego, la única mejor respuesta a esta estrategia es jugar con la estrategia pura $\mathcal{P}$. Pero esto no es un equilibrio de Nash, pues ahora la mejor respuesta a la estrategia del segundo jugador es que el primer jugador juegue con la estrategia pura $\mathcal{S}$. Análogamente, cuando el primer o segundo jugador juegan con cualquier estrategia pura no se puede obtener un equilibrio de Nash.
 
-En RPS existe un único equilibrio de Nash, que ocurre cuando $\sigma^*_1 = \sigma^*_2 = \left(\frac{1}{3}, \frac{1}{3}, \frac{1}{3} \right)$. En efecto, note que si el jugador $i$ utiliza $\sigma^*_i$, para cualquier estrategia $\sigma_{-i}$, la ganancia del jugador $-i$ viene dada por:
+En RPS existe un único equilibrio de Nash (ver Apéndice \ref{apex:chapter:programacion-lineal}), que ocurre cuando $\sigma^*_1 = \sigma^*_2 = \left(\frac{1}{3}, \frac{1}{3}, \frac{1}{3} \right)$. En efecto, note que si el jugador $i$ utiliza $\sigma^*_i$, para cualquier estrategia $\sigma_{-i}$, la ganancia del jugador $-i$ viene dada por:
 \begin{alignat}{1}
 	u_{-i}(\sigma^*_i, \sigma_{-i})\ =\ \sigma_{-i}(\mathcal{R}) \left( \frac{1}{3} -  \frac{1}{3} \right) + \sigma_{-i}(\mathcal{P}) \left( \frac{1}{3} -  \frac{1}{3} \right) + \sigma_{-i}(\mathcal{S}) \left( \frac{1}{3} -  \frac{1}{3} \right)\ =\ 0 \,.
 \end{alignat}
@@ -150,7 +150,7 @@ Luego, el jugador $-i$ es indiferente ante cualquier estrategia mixta, pues su g
 Aunque el equilibrio de Nash es uno de los principales conceptos de solución, es importante destacar que éste no garantiza el mejor resultado si los jugadores toman sus decisiones en conjunto. Si a los jugadores se les permite correlacionar sus acciones (es decir, trabajar en grupo), pueden existir estrategias con mayores ganancias para ellos. 
 Este tipo de situaciones son las que considera la noción de equilibrio correlacionado que generaliza al equilibrio de Nash. Todo equilibrio de Nash es un equilibrio correlacionado, pero este último permite otras soluciones importantes \cite{bib:correlated-equilibrium}. La relación entre los conceptos de equilibro de Nash y correlacionado se muestra en los Teoremas \ref{theo:nash-correlacionado} y \ref{theo:correlacionado-nash}.
 
-\begin{definition}
+\begin{definition}[\cite{bib:correlated-equilibrium}]
 \label{def:equilibrio-correlacionado}
 Una distribución $\psi\in\Delta(S)$ es un \textbf{equilibrio correlacionado} si y sólo si para cualquier jugador $i$, y para cualesquiera estrategias puras $x, y \in S_i$,
 \begin{alignat}{1}
@@ -172,7 +172,7 @@ Si $\sigma$ es un equilibrio de Nash, entonces $\sigma$ es un equilibrio correla
 Sea $\psi\in\Delta(S)$ un equilibrio correlacionado. Si $\psi$ se factoriza como $\psi=\prod_{i\in N} \sigma_i$ donde $\{\sigma_i\}_{i\in N}$ es un conjunto de estrategias mixtas para cada jugador (i.e., $\psi(s)=\prod_{i \in N} \sigma_i(s_i)$ para todo $s\in S$), entonces $\psi$ es un equilibrio de Nash.
 \end{theorem}
 
-A diferencia del conjunto de equilibrios de Nash, el cual es un conjunto matemáticamente complejo (un conjunto de puntos fijos), el conjunto de equilibrios correlacionados en un conjunto bastante simple. En particular, el conjunto de equilibrios correlacionado es un politopo (generalización de un polígono en $\mathbb{R}^N$) convexo (ver Teorema~\ref{theo:correlacionado-linealidad} abajo). Por lo tanto puede esperarse que existan procedimientos simples para calcular equilibrios correlacionados  \cite{bib:correlated-equilibrium}. En el Capítulo \ref{chapter:regret-matching} se presentan algunos procedimientos que permiten calcular equilibrios correlacionados, y estos procedimientos permiten calcular un equilibrio de Nash cuando los juegos cumplen con ciertas condiciones.
+A diferencia del conjunto de equilibrios de Nash, el cual es un conjunto matemáticamente complejo (un conjunto de puntos fijos), el conjunto de equilibrios correlacionados en un conjunto bastante simple. En particular, el conjunto de equilibrios correlacionado es un politopo (generalización de un polígono en $\mathbb{R}^N$) convexo (ver Teorema~\ref{theo:correlacionado-linealidad} abajo). Por lo tanto puede esperarse que existan procedimientos simples para calcular equilibrios correlacionados  \cite{bib:correlated-equilibrium}. En el Capítulo \ref{chapter:regret-matching} se presentan algunos procedimientos que permiten calcular equilibrios correlacionados, y en particular, estos procedimientos permiten calcular un equilibrio de Nash cuando los juegos son de dos jugadores de suma cero.
 
 \begin{theorem}
 \label{theo:correlacionado-linealidad}
@@ -181,7 +181,7 @@ Sean $\sigma$ y $\sigma'$ dos equilibrios correlacionados, y $\alpha$ un número
 
 \begin{example}[{\cite[p.~67]{bib:teoria-juegos-es}}]
 \label{ex:batalla-sexos}
-Juego \say{batalla de los sexos}. Considere una pareja María y José; ellos tendrán una cita por lo que deben elegir un evento para la cita. A María le gusta el ballet y a José el béisbol. Ellos prefieren ir juntos al mismo evento que ir a eventos diferentes. Sin embargo, cada uno se sentiría más feliz si deciden ir al evento de su preferencia. La Tabla~\ref{table:pagos-batallas-sexo} es la tabla de pagos correspondiente.
+Juego \say{batalla de los sexos}. Considere una pareja María y José; ellos tendrán una cita por lo que deben elegir un evento para la misma. A María le gusta el ballet y a José el béisbol. Ellos prefieren ir juntos al mismo evento que ir a eventos diferentes. Sin embargo, cada uno se sentiría más feliz si deciden ir al evento de su preferencia. La Tabla~\ref{table:pagos-batallas-sexo} es la tabla de pagos correspondiente.
 \end{example}
 
 \begin{table}[h]
@@ -207,11 +207,11 @@ Suponga que María (que será considerada el primer jugador) utiliza una estrate
 u_2(\sigma_1, \sigma_2)\ =\ \frac{2}{3}\beta_1 + 2\left(1-\frac{2}{3} \right)\beta_2\ =\ \frac{2}{3}(\beta_1 + \beta_2)\ =\ \frac{2}{3} \,.
 \end{alignat}
 
-Por otra parte, si José utiliza una estrategia $\sigma_2 = (y, 1-y)$ y María utiliza una estrategia $\sigma_1 = (\theta_1, \theta_2)$ la ganancia esperada para María es igual a $u_2(\sigma_1, \sigma_2) = 2y\theta_1 + (1-y)\theta_2$ y ella será indiferente a la elección de $\theta_1$ y $\theta_2$ cuando $2y = 1-y$, i.e., cuando $y = \frac{1}{3}$. Note que cuando $\sigma_2 = \left(\frac{1}{3}, \frac{2}{3} \right)$, entonces:
+Por otra parte, si José utiliza una estrategia $\sigma_2 = (y, 1-y)$ y María utiliza una estrategia $\sigma_1 = (\theta_1, \theta_2)$ la ganancia esperada para María es igual a $u_2(\sigma_1, \sigma_2) = 2y\theta_1 + (1-y)\theta_2$ y ella será indiferente a la elección de $\theta_1$ y $\theta_2$ cuando $2y = 1-y$, i.e., cuando $y = \frac{1}{3}$. Note que cuando $\sigma_1 = \left(\frac{1}{3}, \frac{2}{3} \right)$, entonces:
 \begin{alignat}{1}
-u_2(\sigma_1, \sigma_2)\ =\ \frac{2}{3}\beta_1 + 2\left(1-\frac{2}{3} \right)\beta_2\ =\ \frac{2}{3}(\beta_1 + \beta_2)\ =\ \frac{2}{3} \,.
+u_1(\sigma_1, \sigma_2)\ =\ 2 \left( \frac{1}{3} \right) \theta_1 + \left(1-\frac{1}{3} \right)\theta_2\ =\ \frac{2}{3}(\theta_1 + \theta_2)\ =\ \frac{2}{3} \,.
 \end{alignat}
 
-Luego se tiene que $\sigma = \left(\left(\frac{2}{3}, \frac{1}{3}\right), \left(\frac{1}{3}, \frac{2}{3}\right)\right)$ es un equilibrio de Nash. Sin embargo, ninguna de las $3$ soluciones parece realmente satisfactoria. Las $2$ primeras son claramente más beneficiosas para uno de los jugadores y la última, aunque podría parecer más justa, proporciona un ganancia esperada menor que las estrategias anteriores para ambos jugadores. ?`Será posible que los jugadores cooperen entre sí para obtener mejores resultados?
+Luego se tiene que $\sigma = \left(\left(\frac{2}{3}, \frac{1}{3}\right), \left(\frac{1}{3}, \frac{2}{3}\right)\right)$ es un tercer equilibrio de Nash. Sin embargo, ninguna de las $3$ soluciones parece realmente satisfactoria. Las $2$ primeras son claramente más beneficiosas para uno de los jugadores y la última, aunque podría parecer más justa, proporciona un ganancia esperada menor que las estrategias anteriores para ambos jugadores. ?`Será posible que los jugadores cooperen entre sí para obtener mejores resultados?
 
 Los jugadores podrían realizar lo siguiente: lanzar una moneda, si el resultado es cara van al ballet y si es sello van al béisbol. En este caso ya no se limitan a estrategias mixtas y están eligiendo una distribución de probabilidad sobre todos los perfiles estratégicos. La distribución propuesta es $\psi \in \Delta(S)$, tal que $\psi(\text{ballet}, \text{ballet}) = \psi(\text{beisbol}, \text{beisbol}) = \frac{1}{2}$ y $\psi(\text{ballet}, \text{beisbol}) = \psi(\text{beisbol}, \text{ballet}) =0$. $\psi$ es un equilibrio correlacionado y ambos jugadores obtendrían una ganancia esperada de $\frac{3}{2}$.

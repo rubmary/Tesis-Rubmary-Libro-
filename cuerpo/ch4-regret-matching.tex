@@ -15,7 +15,7 @@
 
 En la sección~\ref{section:equilibrio-correlacionado} se introdujo el concepto de equilibrio correlacionado (Definición~\ref{def:equilibrio-correlacionado}). Además, se afirma que el conjunto de equilibrios correlacionado es un conjunto simple. A continuación se describen tres procedimientos, dos de los cuales llevan a equilibrios correlacionados \cite{bib:correlated-equilibrium}.
 
-\subsection*{Procedimiento A: Regret Condicional}
+\subsection*{Procedimiento A: Regret Condicional \cite{bib:correlated-equilibrium}}
 
 Sea $\Gamma$ un juego en forma normal el cual es jugado repetidamente a través del tiempo $t = 1, 2, \ldots $. 
 Sea $h_t = (s^\tau)_{\tau = 1}^t \in \prod_{\tau = 1}^{t} S$ la historia del juego al inicio del tiempo $t+1$; i.e., el $s^\tau$ es el perfil estratégico a tiempo $\tau$ que contiene las acciones realizadas por cada jugador. El jugador $i \in N$ elige la estrategia a utilizar a tiempo $t+1$ con una distribución de probabilidad $p_{t+1}^i \in \Delta(S_i)$, definida de la siguiente manera. Para cada par de estrategias $j, k \in S_i$, supongamos que el jugador $i$ remplaza la estrategia $j$ (cada vez que la jugó en el pasado) por la estrategia $k$. Luego, su ganancia a tiempo $1\leq \tau \leq t$ hubiera sido:
@@ -49,7 +49,7 @@ Fijemos un número $\mu > 0$ suficientemente grande. Sea $j \in S_i$ la última 
 La distribución inicial $p_{1}^i \in \Delta(S_i)$, a tiempo $t=1$, es elegida de forma arbitraria. Para cada tiempo $t$, sea $z_t \in \Delta(S)$ la distribución empírica de las $N$-tuplas jugadas hasta tiempo $t$, es decir:
 $z_t(s) = \frac{1}{t} |\{1\leq\tau \leq t : s^{\tau} = s \}|$. El siguiente teorema enuncia que el procedimiento arriba descrito produce un equilibrio correlacionado.
 
-\begin{theorem}[\cite{bib:correlated-equilibrium}]
+\begin{theorem}[{\cite[p.~1131]{bib:correlated-equilibrium}}]
 \label{theo:conv-proc-A}
 Si cada jugador juega de acuerdo al procedimiento descrito por \eqref{eq:proc-A}, entonces la distribución empírica del juego $z_t$ converge (a.s.) cuando $t \rightarrow \infty$ al conjunto de equilibrios correlacionado del juego $\Gamma$.\footnote{Convergencia a.s.\ (almost sure) indica que el conjunto de  secuencias $\{z_t\}_t$ para las cuales la convergencia no se cumple es un conjunto de probabilidad 0.}
 \end{theorem}
@@ -58,7 +58,7 @@ En el procedimiento descrito cada jugador tiene dos opciones en cada período: c
 
 El \textit{regret} juega un papel importante en la elección de la siguiente distribución de probabilidad, lo cual conlleva a la siguiente pregunta: ?`Cuál es la relación entre los \textit{regrets} y el equilibrio correlacionado? Una condición necesaria y suficiente para que la distribución empírica converja al conjunto de equilibrio correlacionado es que todos los \textit{regrets} converjan a cero (Teorema \ref{theo:no-regret}).
 
-\begin{theorem}
+\begin{theorem}[{\cite[p.~1133]{bib:correlated-equilibrium}}]
 \label{theo:no-regret}
 Sea $(s_t)_{t = 1, 2, ...}$ una secuencia de juegos de $\Gamma$.
 Entonces, $R_i^t(j, k)$ converge a $0$ para cada $i$ y cada $j, k \in S_i$, con $j \neq k$, si y sólo si la secuencia de distribuciones empíricas $z_t$ converge al conjunto de equilibrio correlacionado.
@@ -66,7 +66,7 @@ Entonces, $R_i^t(j, k)$ converge a $0$ para cada $i$ y cada $j, k \in S_i$, con 
 
 \subsection*{Procedimiento B: Vector Invariante de Probabilidad}
 
-Este procedimiento es una variación del anterior. Sin embargo, a tiempo $t+1$ las probabilidades de transición de la estrategia utilizada por el jugador $i$ son determinadas por la matriz estocástica (derecha) $M^i_t$ definida en \eqref{eq:proc-A}; i.e., $M^i_t(j,k)=\frac{1}{\mu}R^t_i(j,k)$ si $k\neq j$, y $M^i_t(j,j)=1-\frac{1}{\mu}\sum_{k\in S_i,k\neq j} R^t_i(j,k)$ si $k=j$.
+Este procedimiento es una variación del anterior. Sin embargo, a tiempo $t+1$ las probabilidades de transición de la estrategia utilizada por el jugador $i$ son determinadas por la matriz estocástica (derecha) $M^i_t$ definida en \eqref{eq:proc-A}; i.e., $M^i_t(j,k)=\frac{1}{\mu}R^t_i(j,k)$ si $k\neq j$, y $M^i_t(j,j)=1-\frac{1}{\mu}\sum_{k\in S_i,k\neq j} R^t_i(j,k)$ si $k=j$ \cite[p.~1133]{bib:correlated-equilibrium}.
 
 Considere un vector (fila) invariante de probabilidad $q^i_t$ (dicho vector siempre existe), donde $q^i_t\in \Delta(S_i)$, para la matriz $M^t$. Es decir, $q^i_t$ satisface $q^i_t \times M^i_t = q^i_t$, i.e., para todo $j$:
 \begin{alignat}{1}
@@ -76,7 +76,7 @@ Considere un vector (fila) invariante de probabilidad $q^i_t$ (dicho vector siem
     =\ \bigg[\sum_{k \in S_i, k \neq j} q^i_t(k)\frac{1}{\mu}R^t_i(k,j)\bigg] + q_i^t(j)\biggl[1 - \frac{1}{\mu}\sum_{k \in S_i, k \neq j} R^t_i(j,k)\biggr]\,.
 \end{alignat}
 
-\begin{theorem}
+\begin{theorem}[{\cite[p.~1133]{bib:correlated-equilibrium}}]
 \label{theo:def-proc-B}
 Sea $R_t^i(j, j) = 0$. El vector $q_t^i$, definido en \ref{eq:def-inv-vector}, cumple que:
 \begin{alignat}{1}
@@ -85,7 +85,7 @@ q^i_t(j)\sum_{k \in S_i} R^t_i(j,k)\ =\ \sum_{k \in S_i} q_t^i(k)R_i^t(k,j) \,.
 \end{alignat}
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}[{\cite[p.~1133]{bib:correlated-equilibrium}}]
 \label{theo:conv-proc-B}
 Supongamos que a cada período $t+1$, el jugador $i$ elige las estrategias acorde a un vector de distribución de probabilidad $q_t^i$ que satisface \eqref{eq:proc-B}. Entonces, $R^i_t(j, k)$ converge a cero (a.s.) para todo $j, k \in S_i$ con $j \neq k$.
 \end{theorem}
@@ -114,7 +114,7 @@ Luego, la distribución de probabilidad a tiempo $t+1$, $p_{t+1}^i \in \Delta(S_
 \end{alignat}
 si el denominador es positivo, y de forma arbitraria en caso contrario. Note que las probabilidades son elegidas de forma proporcional a $R_i^t(k)$ que será denominado \textit{regret} incondicional (en contraste al \textit{regret} condicional definido previamente).
 
-\begin{theorem}
+\begin{theorem}[{\cite[p.~1139]{bib:correlated-equilibrium}}]
 \label{theo:conv-proc-C}
 El procedimiento adaptativo definido en \eqref{eq:proc-C} es universalmente consistente para el jugador $i$.
 \end{theorem}

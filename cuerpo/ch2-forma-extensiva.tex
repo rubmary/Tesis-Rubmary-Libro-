@@ -49,7 +49,8 @@ level 2/.style={sibling distance=20mm, level distance=17.5mm},
 
 Es importante diferenciar entre dos tipos de juegos: con información completa (o perfecta) y con información incompleta (o imperfecta). En los juegos con información completa los jugadores tienen toda la información sobre las acciones realizadas previamente de todos los jugadores y del estado actual del juego. El Ejemplo \ref{ex:game-allocation} es un ejemplo de este tipo de juegos; para una definición formal ver \cite[pp. 89--90]{bib:course-game-theory}.
 
-En juegos con información incompleta el jugador no tiene toda la información de las acciones tomadas previamente, e incluso pudo haber olvidado las acciones que él u otro jugador realizaron previamente. Por lo cual, un jugador puede no tener suficiente información para determinar en qué nodo del árbol se encuentra. 
+En juegos con información incompleta el jugador no tiene toda la información de las acciones tomadas previamente, e incluso pudo haber olvidado las acciones que él u otro jugador realizaron previamente. 
+Luego, un jugador puede no tener suficiente información para determinar en qué nodo del árbol se encuentra. 
 
 \begin{example}[{\cite[p.~202]{bib:course-game-theory}}]
 \label{ex:informacion-incompleta}
@@ -62,8 +63,8 @@ Considere un juego de dos jugadores, el jugador $1$ y el jugador $2$, el cual oc
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=45mm, level distance=20mm},
-level 2/.style={sibling distance=35mm, level distance=20mm},
+level 1/.style={sibling distance=40mm, level distance=17.5mm},
+level 2/.style={sibling distance=30mm, level distance=17.5mm},
 level 3/.style={sibling distance=15mm, level distance=15mm},
 ]
 \node[player1] [label=$1$] {}
@@ -116,7 +117,7 @@ En el Ejemplo \ref{ex:informacion-incompleta}, $H = \{ \emptyset, L, R, LA, LB, 
 \subsection*{Juego de Kuhn Poker}
 \label{section:kuhn-poker}
 
-Kuhn Poker es una versión simplificada del juego de Póker definido por Harold W.\ Kuhn \cite{bib:kuhn-poker}, este juego tiene pocos estados ($55$ en total), pero se pueden observar todos los elementos del modelo. Es un juego de dos jugadores (denominados jugador $1$ y jugador $2$), en el cual se barajan tres cartas marcadas con los números $1$, $2$ y $3$. Posteriormente, cada jugador recibe una de ellas, manteniendo su número como información privada. Es decir, un jugador sabe su propio número pero no sabe el número de su oponente. Al inicio del juego cada jugador apuesta una ficha. El juego ocurre por turnos, los cuales se alternan entre los jugadores comenzando por el jugador $1$. En un turno un jugador puede \textit{apostar} o \textit{pasar}. Si un jugador apuesta debe apostar una ficha adicional. Si un jugador pasa después de una apuesta, el oponente gana y toma todas las fichas apostadas. Si hay dos apuestas o dos pases seguidos los jugadores muestran sus cartas y gana el jugador con el número más alto obteniendo todas las fichas apostadas. La Tabla \ref{table:kuhn-poker} presenta un resumen de todas las posibles secuencias con su respectivo pago a cada jugador.
+Kuhn Poker es una versión simplificada del juego de Póker definido por Harold W.\ Kuhn \cite{bib:kuhn-poker}, este juego tiene pocos estados ($55$ en total), pero se pueden observar todos los elementos del modelo. Es un juego de dos jugadores (denominados jugador $1$ y jugador $2$), en el cual se barajan tres cartas marcadas con los números $1$, $2$ y $3$. Posteriormente, cada jugador recibe una de ellas, manteniendo su número como información privada. Es decir, un jugador sabe su propio número pero no sabe el número de su oponente. Al inicio del juego cada jugador apuesta una ficha. El juego ocurre por turnos, los cuales se alternan entre los jugadores comenzando por el jugador $1$. En un turno un jugador puede \textit{apostar} o \textit{pasar}. Si un jugador apuesta debe apostar una ficha adicional. Si un jugador pasa después de una apuesta, el oponente gana y toma todas las fichas apostadas. Si hay dos apuestas o dos pases seguidos los jugadores muestran sus cartas y gana el jugador con el número más alto obteniendo todas las fichas apostadas. La Tabla \ref{table:kuhn-poker} presenta un resumen de todas las posibles secuencias con sus respectivos pagos a cada jugador.
 
 \begin{table}[h]
 \begin{center}
@@ -144,9 +145,9 @@ chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
 player2/.style={circle, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, solid, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=26mm, level distance=25mm},
-level 2/.style={sibling distance=13mm, level distance=14mm},
-level 3/.style={sibling distance=6.5mm, level distance=14mm},
+level 1/.style={sibling distance=26mm, level distance=20mm},
+level 2/.style={sibling distance=13mm, level distance=13mm},
+level 3/.style={sibling distance=6.5mm, level distance=12mm},
 ]
 \node[chance] [label=above:{Nodo de azar}] {} {
 	child {node [player1] (P1) [label=above:{$1, 2$}]{}
@@ -395,7 +396,7 @@ player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
 level 1/.style={sibling distance=40mm, level distance=25mm},
-level 2/.style={sibling distance=15mm, level distance=17.5mm},
+level 2/.style={sibling distance=15mm, level distance=20mm},
 ]
 \node[player1] [label=$1$] {}
 	child { node (A) [player2] [label=above:{$2$}]  {}
@@ -441,8 +442,8 @@ chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=35mm, level distance=30mm},
-level 2/.style={sibling distance=17mm, level distance=17mm},
+level 1/.style={sibling distance=35mm, level distance=25mm},
+level 2/.style={sibling distance=20mm, level distance=20mm},
 ]
 \node[player1] [label=$1$] {}
 	child { node (A) [player2] [label=above:{$2$}]  {}
@@ -549,9 +550,9 @@ chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
 player2/.style={circle, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, solid, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=26mm, level distance=25mm},
-level 2/.style={sibling distance=13mm, level distance=14mm},
-level 3/.style={sibling distance=6.5mm, level distance=14mm},
+level 1/.style={sibling distance=26mm, level distance=20mm},
+level 2/.style={sibling distance=13mm, level distance=13mm},
+level 3/.style={sibling distance=6.5mm, level distance=12mm},
 ]
 \node[chance] [label=above:{Nodo de azar}] {} {
 	child {node [player1] (P1) [label=above:{$1, 2$}]{}
@@ -687,11 +688,10 @@ level 3/.style={sibling distance=6.5mm, level distance=14mm},
 \end{center}
 \end{figure}
 
-
 \section{Probabilidad de Alcanzar una Historia y un Conjunto de Información}
 \label{sec:probabilidad-historia}
 
-Sea $\sigma$ un perfil estratégico mixto o de comportamiento el cual agrega una estrategia $\sigma_i$ para cada jugador $i$. Definimos la probabilidad de alcanzar la historia $h$ cuando los jugadores utilizan $\sigma$ como la multiplicación de la probabilidad de que cada acción $a$ en la historia $h$ ocurra, cuando dicha acción es seleccionada por un jugador $i$ o por el azar, según sea el caso. Formalmente, en símbolos, dicha probabilidad se expresa de la siguiente forma:
+Sea $\sigma$ un perfil estratégico mixto o de comportamiento el cual agrega una estrategia $\sigma_i$ para cada jugador $i$. Definimos la probabilidad de alcanzar la historia $h$ cuando los jugadores utilizan $\sigma$ como la multiplicación de la probabilidad de que cada acción $a$ en la historia $h$ ocurra, cuando dicha acción es seleccionada por un jugador $i$ o por el azar, según sea el caso. Formalmente, en símboles, dicha probabilidad se expresa de la siguiente forma:
 \begin{alignat}{1}
   \pi^\sigma(h)\
     =\ \prod_{i\in N} \left\{ \prod_{(h',a)\sqsubseteq h : P(h')=i} \sigma_i(h')(a) \right\}\ \times \prod_{(h',a)\sqsubseteq h : P(h')=c} f_c(a|h') \,. 
@@ -734,7 +734,7 @@ Intuitivamente, las condiciones presentadas representan las siguientes propiedad
 
 Los juegos presentados previamente: Ejemplo \ref{ex:game-allocation}, Ejemplo \ref{ex:informacion-incompleta} y Kuhn Poker son todos juegos con \textit{perfect recall}. El Ejemplo \ref{ex:imperfect-recall} muestra un juego con \textit{imperfect recall}.
 
-\begin{example} (\cite{bib:kuhn-problem-information})
+\begin{example}[\cite{bib:kuhn-problem-information}]
 \label{ex:imperfect-recall}
 Considere un juego de dos jugadores de suma cero en el cual el jugador $1$ consta de $2$ personas: Alicia y su esposo Bernardo, y el jugador $2$ consta de una sóla persona: Zoe. Se tienen dos cartas con los números $1$ y $2$ que son repartidas aleatoriamente entre Alicia y Zoe. La persona con la carta más alta recibe \$1 de la persona con la carta más baja, y ésta decide si sigue jugando (C) o para el juego (P). Si el juego continúa, Bernardo, sin saber el resultado de la repartición inicial de las cartas, decide si Alicia y Zoe intercambian (I) sus cartas o mantienen las mismas cartas (M). Nuevamente, quien posea la carta más alta recibe \$1 de quien posea la carta más baja, y el juego termina.
 \end{example}
@@ -748,9 +748,9 @@ chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=60mm, level distance=20mm},
-level 2/.style={sibling distance=25mm, level distance=20mm},
-level 3/.style={sibling distance=25mm, level distance=20mm},
+level 1/.style={sibling distance=50mm, level distance=20mm},
+level 2/.style={sibling distance=20mm, level distance=15mm},
+level 3/.style={sibling distance=20mm, level distance=15mm},
 ]
 
 \node[chance] [label = {Nodo de azar}] {}
@@ -831,8 +831,8 @@ chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=40mm, level distance=20mm},
-level 2/.style={sibling distance=20mm, level distance=17.5mm},
+level 1/.style={sibling distance=40mm, level distance=15mm},
+level 2/.style={sibling distance=20mm, level distance=15mm},
 ]
 \node[player1] (A) [label=$1$] {}
 	child { node (B) [player1] [label=left:{$1$}]  {}
@@ -850,7 +850,7 @@ level 2/.style={sibling distance=20mm, level distance=17.5mm},
         edge from parent node[right] {$\ R$}
     };
 \draw [dotted]
-(A.west) .. controls ++(left:+15mm) and ++(90:+5mm) .. (B.north);
+(A.west) .. controls ++(left:+10mm) and ++(90:+5mm) .. (B.north);
 \end{tikzpicture}
 \caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo~\ref{ex:imperfect-recall-2}. Observe que existe una historia que pasa dos veces sobre el mismo conjunto de información.}
 \label{fig:imperfect-recall-2}

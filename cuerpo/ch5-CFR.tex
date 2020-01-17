@@ -93,7 +93,7 @@ Si $|u| = \max_{t \in \{1, 2, ... T\}} \max_{a, a' \in A}\bigl[u^t(a) - u^t(a')\
 \section{Counterfactual Regret Minimization (CFR)}
 \label{section:cfr}
 
-El algoritmo CFR es una aplicación del algoritmo \textit{Regret Minimization} de forma independiente a cada conjunto de información. En particular, se mantiene para cada conjunto de información $I \in \mathcal{I}_i$ y cada acción $a \in A(I)$, la medida de regret:
+El algoritmo CFR \cite{bib:cfr} es una aplicación del algoritmo \textit{Regret Minimization} de forma independiente a cada conjunto de información. En particular, se mantiene para cada conjunto de información $I \in \mathcal{I}_i$ y cada acción $a \in A(I)$, la medida de regret:
 \begin{alignat}{1}
 R_i^T(I, a)\ =\ \frac{1}{T} \sum_{t = 1}^T \pi^{\sigma^t}_{-i}(I)\biggl[u_i(\sigma^t|_{I \rightarrow a}, I) - u_i(\sigma^t, I)\biggr]
 \end{alignat}

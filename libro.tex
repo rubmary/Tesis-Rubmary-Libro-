@@ -25,6 +25,7 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage{subfigure}
+\usepackage{pdfpages}
 
 \decimalcomma
 \allowdisplaybreaks
@@ -83,14 +84,18 @@
 \begin{document}
 \frontmatter
 \maketitle
-\input{preambulo/dedicatoria}
-\input{preambulo/agradecimientos}
+\includepdf[pages=-]{actas/acta_tesis.pdf}
+\includepdf[pages=-]{actas/acta_libro.pdf}
+\setcounter{page}{4}
 \input{preambulo/resumen}
+\input{preambulo/agradecimientos}
+
 \tableofcontents
 \listoffigures
 \listoftables
 \useacronyms
 \input{preambulo/notacion}
+
 \mainmatter
 \input{preambulo/introduccion}
 \input{cuerpo/ch1-forma-normal}

@@ -303,17 +303,17 @@
                     {\bfseries Sartenejas, \@fecha}%%---
                \end{center}%--
           % lomo del libro 2/4
-               \newpage%---
-               \null%---
-               \thispagestyle{empty}%---
-               \begin{tabular}{c}%---
-                    \begin{sideways} \normalsize \parbox{4cm}{\centering USB \\ \MakeTextUppercase{\@carrera}} \end{sideways} \\ 
-                    [0.1cm]%---
-                    \begin{sideways} \normalsize \parbox{12cm}{\centering \MakeTextUppercase{\@titulo}} \end{sideways} \\ 
-                    [0.1cm]%---
-                    \begin{sideways} \normalsize \parbox{5cm}{\centering \MakeTextUppercase{\@autori} \\ \@agno} \end{sideways} \\
-                    [0.1cm]%---
-               \end{tabular}%---
+            %   \newpage%---
+            %   \null%---
+            %   \thispagestyle{empty}%---
+            %   \begin{tabular}{c}%---
+            %         \begin{sideways} \normalsize \parbox{4cm}{\centering USB \\ \MakeTextUppercase{\@carrera}} \end{sideways} \\ 
+            %         [0.1cm]%---
+            %         \begin{sideways} \normalsize \parbox{12cm}{\centering \MakeTextUppercase{\@titulo}} \end{sideways} \\ 
+            %         [0.1cm]%---
+            %         \begin{sideways} \normalsize \parbox{5cm}{\centering \MakeTextUppercase{\@autori} \\ \@agno} \end{sideways} \\
+            %         [0.1cm]%---
+            %   \end{tabular}%---
           \end{titlepage}%---
           % p\'agina del t\'itulo (portada interna) 3/4
           \begin{titlepage} %---
@@ -347,12 +347,12 @@
                \end{center}%--
           \end{titlepage}%---
           % p\'agina de acta de evaluaci\'on (veredicto) 4/4
-          \newpage%---
-          \setcounter{page}{2}%---
-          \null%--
-          \vspace*{\fill}%---
-          {\centering \Huge P\'agina reservada para el acta de evaluaci\'on}
-          \vspace{\fill}%---
+        %   \newpage%---
+        %   \setcounter{page}{2}%---
+        %   \null%--
+        %   \vspace*{\fill}%---
+        %   {\centering \Huge P\'agina reservada para el acta de evaluaci\'on}
+        %   \vspace{\fill}%---
      \else % POSTGRADO
           % caratula del libro (portada de tapa dura) 1/4
           \begin{titlepage}%--
@@ -538,7 +538,7 @@
     \cleardoublepage
   \@mainmatterfalse
   \pagenumbering{roman}%%---
-  \pagestyle{fancy}%%---
+  \pagestyle{plain}%%---
   \if@twoside%---
     \fancyhead[]{}%---
     \fancyhead[RO,LE]{\thepage}%--- 
@@ -626,7 +626,7 @@
                     \if@mainmatter
                       \thispagestyle{empty}%
                     \else
-                      \thispagestyle{fancy}%
+                      \thispagestyle{plain}%
                     \fi
                     \global\@topnum\z@
                     \@afterindentfalse
@@ -871,7 +871,6 @@
 \newcommand\@tocrmarg{2.55em}
 \newcommand\@dotsep{4.5}
 \setcounter{tocdepth}{2}
-
 \newcommand\tableofcontents{%
     \if@twocolumn
       \@restonecoltrue\onecolumn
@@ -1085,10 +1084,33 @@
 \newenvironment{resumen}%%---
      {%---
      \if@pregrado%--
-          \chapter*{\resumenname}%---
-          \vskip 1cm%---
+          \addcontentsline{toc}{chapter}{\MakeTextUppercase{\resumenname}}
+          \vskip 10cm
+          \null%--
+          \begin{center}%--
+               \vskip -1.5cm \logousb \vskip 0.1cm%--
+               {\large {UNIVERSIDAD SIM\'ON BOL\'IVAR}}\\%--
+               {\bfseries DECANATO DE ESTUDIOS PROFESIONALES}\par%--
+               {\bfseries COORDINACI\'ON DE \MakeTextUppercase{\@coord}} \par%--
+               \vskip 0.4cm
+               {\textbf{\MakeTextUppercase{\@titulo}} \par}%%-
+               \vskip 0.4cm
+               {\MakeTextUppercase \@trabajo} \\%---
+               \vskip 0.4cm
+               {Realizado por: \@autor}%--
+               \vskip 0.4cm
+               {Con la asesor\'ia de: \\
+               \@tutor \\
+                \ifcotutor%---
+                    \@cotutor%---
+                \fi%---
+                }%--
+               \vskip 0.4cm
+               {\@fecha}
+               \vskip 0.4cm
+               {\textbf{\MakeTextUppercase{Resumen}} \par}%--
+          \end{center}%--
           \begin{singlespace}%---
-     %%%%%%%%%%%%%%%%%% FALTA HACER RESUMEN PARA PREGRADO
      \else%--
      \if@openright%---
           \cleardoublepage%---

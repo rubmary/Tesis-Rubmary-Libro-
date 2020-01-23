@@ -16,8 +16,8 @@ La Figura \ref{fig:game-allocation} representa el árbol correspondiente al jueg
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=40mm, level distance=20mm},
-level 2/.style={sibling distance=20mm, level distance=17.5mm},
+level 1/.style={sibling distance=50mm, level distance=30mm},
+level 2/.style={sibling distance=25mm, level distance=20mm},
 ]
 \node[player1] [label=$1$]{}
     child { node [player2] [label=left:{$2$}] {}
@@ -63,9 +63,9 @@ Considere un juego de dos jugadores, el jugador $1$ y el jugador $2$, el cual oc
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=40mm, level distance=17.5mm},
-level 2/.style={sibling distance=30mm, level distance=17.5mm},
-level 3/.style={sibling distance=15mm, level distance=15mm},
+level 1/.style={sibling distance=55mm, level distance=30mm},
+level 2/.style={sibling distance=45mm, level distance=25mm},
+level 3/.style={sibling distance=25mm, level distance=20mm},
 ]
 \node[player1] [label=$1$] {}
 	child { node [player2] [label=above:{$2$}]  {}
@@ -90,12 +90,14 @@ level 3/.style={sibling distance=15mm, level distance=15mm},
     };
 \draw[dotted] (A) -- (B);
 \end{tikzpicture}
-\caption{Árbol del juego en forma extensiva presentado en el Ejemplo~\ref{ex:informacion-incompleta}. Los nodos que pertenecen al mismo conjunto de información son unidos por líneas punteadas.}
+\caption{Árbol del juego en forma extensiva presentado en el Ejemplo~\ref{ex:informacion-incompleta}. Los nodos que pertenecen al mismo conjunto de información son unidos por líneas punteadas. El primer jugador tiene $2$ conjuntos de información y el segundo jugador tiene un único conjunto de información.}
 \label{fig:informacion-incompleta}
 \end{center}
 \end{figure}
 
-En la Figura~\ref{fig:informacion-incompleta} se puede observar que los nodos unidos por líneas punteadas son indistinguibles para el jugador $1$, es decir, el jugador no puede saber con exactitud en cual de los dos nodos se encuentra pues él no sabe si el jugador $2$ eligió $A$ o $B$. Este tipo de nodos originan los llamados \textbf{conjuntos de información}; cf.\ Definición~\ref{def:informacion-incompleta} y \cite[p.~200]{bib:course-game-theory}. Un conjunto de información del jugador $i$, denotado por $I_i$, es un conjunto de nodos correspondientes al jugador $i$ (i.e., nodos donde es el turno del jugador $i$) tales que dicho jugador no puede distinguir en cual de esos nodos se encuentra al momento de tomar la decisión. Es decir, el jugador $i$ sabe que se encuentra en algunos de los nodos de $I_i$, pero no sabe en cuál nodo en específico de ese conjunto se encuentra.
+En la Figura~\ref{fig:informacion-incompleta} se puede observar que los nodos unidos por líneas punteadas son indistinguibles para el jugador $1$, es decir, el jugador no puede saber con exactitud en cual de los dos nodos se encuentra pues él no sabe si el jugador $2$ eligió $A$ o $B$. Este tipo de nodos originan los llamados \textbf{conjuntos de información}; cf.\ Definición~\ref{def:informacion-incompleta} y \cite[p.~200]{bib:course-game-theory}.
+
+Un conjunto de información del jugador $i$, denotado por $I_i$, es un conjunto de nodos correspondientes al jugador $i$ (i.e., nodos donde es el turno del jugador $i$) tales que dicho jugador no puede distinguir en cual de esos nodos se encuentra al momento de tomar la decisión. Es decir, el jugador $i$ sabe que se encuentra en algunos de los nodos de $I_i$, pero no sabe en cuál nodo en específico de ese conjunto se encuentra.
 
 El concepto de conjunto de información es intrínseco a los juegos en forma extensiva y no es necesario para juegos en forma normal. Se asumirá que los conjuntos de información vienen definidos de forma explícita en el modelo de juego en forma extensiva. Una definición basada en el árbol del juego puede ser encontrada en \cite{bib:conceptos-basicos}, sin embargo, se utilizará una definición equivalente basada en las secuencias de acciones que se denominarán \textbf{historias}. En particular, se puede establecer una biyección entre las historias del juego y los nodos del árbol.
 
@@ -145,9 +147,9 @@ chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
 player2/.style={circle, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, solid, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=26mm, level distance=20mm},
-level 2/.style={sibling distance=13mm, level distance=13mm},
-level 3/.style={sibling distance=6.5mm, level distance=12mm},
+level 1/.style={sibling distance=26mm, level distance=25mm},
+level 2/.style={sibling distance=13mm, level distance=17.5mm},
+level 3/.style={sibling distance=6.5mm, level distance=15mm},
 ]
 \node[chance] [label=above:{Nodo de azar}] {} {
 	child {node [player1] (P1) [label=above:{$1, 2$}]{}
@@ -395,8 +397,8 @@ chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=40mm, level distance=25mm},
-level 2/.style={sibling distance=15mm, level distance=20mm},
+level 1/.style={sibling distance=45mm, level distance=25mm},
+level 2/.style={sibling distance=15mm, level distance=22.5mm},
 ]
 \node[player1] [label=$1$] {}
 	child { node (A) [player2] [label=above:{$2$}]  {}
@@ -442,7 +444,7 @@ chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=35mm, level distance=25mm},
+level 1/.style={sibling distance=40mm, level distance=30mm},
 level 2/.style={sibling distance=20mm, level distance=20mm},
 ]
 \node[player1] [label=$1$] {}
@@ -550,9 +552,9 @@ chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, solid, thick, minimum size = 4mm},
 player2/.style={circle, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, solid, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=26mm, level distance=20mm},
-level 2/.style={sibling distance=13mm, level distance=13mm},
-level 3/.style={sibling distance=6.5mm, level distance=12mm},
+level 1/.style={sibling distance=26mm, level distance=25mm},
+level 2/.style={sibling distance=13mm, level distance=17.5mm},
+level 3/.style={sibling distance=6.5mm, level distance=15mm},
 ]
 \node[chance] [label=above:{Nodo de azar}] {} {
 	child {node [player1] (P1) [label=above:{$1, 2$}]{}
@@ -748,9 +750,9 @@ chance/.style={circle, draw=black, fill=gray, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=50mm, level distance=20mm},
-level 2/.style={sibling distance=20mm, level distance=15mm},
-level 3/.style={sibling distance=20mm, level distance=15mm},
+level 1/.style={sibling distance=60mm, level distance=25mm},
+level 2/.style={sibling distance=30mm, level distance=25mm},
+level 3/.style={sibling distance=30mm, level distance=25mm},
 ]
 
 \node[chance] [label = {Nodo de azar}] {}
@@ -810,7 +812,7 @@ par de historias $h$ y $h'$ tal que $h'\sqsubset h$ y $P(h)=P(h')=i$, entonces p
 \end{alignat}
 \end{theorem}
 
-El Ejemplo~\ref{ex:imperfect-recall-2} muestra un juego en el que no se cumple la condición del Teorema \ref{theo:comportamiento-a-mixta}, es decir, un juego en el que una historia pasa más de una vez sobre mismo conjunto de información. En este tipo de juegos se obtiene que el poder expresivo de las estrategia mixtas y las estrategias de comportamiento no son comparables.
+El Ejemplo~\ref{ex:imperfect-recall-2} muestra un juego en el que no se cumple la condición del Teorema \ref{theo:comportamiento-a-mixta}, es decir, un juego en el que una historia pasa más de una vez sobre mismo conjunto de información. En este tipo de juegos se observa que el poder expresivo de las estrategia mixtas y las estrategias de comportamiento no son comparables.
 
 \begin{example}[{\cite[p.~44]{bib:handbook-blai}}]
 \label{ex:imperfect-recall-2}
@@ -831,8 +833,8 @@ chance/.style={circle, draw=black, fill=black, thick, minimum size = 6mm},
 player1/.style={circle, draw=black, thick, minimum size = 4mm},
 player2/.style={circle, draw=black, fill=black, thick, minimum size=4mm},
 terminal/.style={rectangle, draw=black, fill=black, thick, minimum size=2mm},
-level 1/.style={sibling distance=40mm, level distance=15mm},
-level 2/.style={sibling distance=20mm, level distance=15mm},
+level 1/.style={sibling distance=60mm, level distance=25mm},
+level 2/.style={sibling distance=30mm, level distance=25mm},
 ]
 \node[player1] (A) [label=$1$] {}
 	child { node (B) [player1] [label=left:{$1$}]  {}
@@ -850,14 +852,14 @@ level 2/.style={sibling distance=20mm, level distance=15mm},
         edge from parent node[right] {$\ R$}
     };
 \draw [dotted]
-(A.west) .. controls ++(left:+10mm) and ++(90:+5mm) .. (B.north);
+(A.west) .. controls ++(left:+15mm) and ++(90:+7.5mm) .. (B.north);
 \end{tikzpicture}
 \caption{Árbol de la forma extensiva del juego con \textit{imperfect recall} presentado en el Ejemplo~\ref{ex:imperfect-recall-2}. Observe que existe una historia que pasa dos veces sobre el mismo conjunto de información.}
 \label{fig:imperfect-recall-2}
 \end{center}
 \end{figure}
 
-Note que la historia $(L, L)$ atraviesa $2$ veces el único conjunto de información del jugador $1$. La situacion se corresponde con que el jugador 1 \textit{olvida} la elección entre $L$ o $R$ que hizo previamente cuan elige $L$ en la raíz. En este juego el jugador $1$ tiene $2$ posibles estrategias puras, elegir $L$ o $R$. Por lo tanto, en una estrategia mixta él elige una de estas $2$ acciones según alguna distribución de probabilidad. Sin embargo, luego de la elección siempre realizará la misma jugada cuando tenga que tomar una decisión. En particular, la historia $(L,R)$ no puede ocurrir y el pago de ($100$, $100$) es irrelevante en el contexto de estrategias mixtas.
+Note que la historia $(L, L)$ atraviesa $2$ veces el único conjunto de información del jugador $1$. La situación se corresponde con que el jugador 1 \textit{olvida} la elección entre $L$ o $R$ que hizo previamente cuando elige $L$ en la raíz. En este juego el jugador $1$ tiene $2$ posibles estrategias puras, elegir $L$ o $R$. Por lo tanto, en una estrategia mixta él elige una de estas $2$ acciones según alguna distribución de probabilidad. Sin embargo, luego de la elección siempre realizará la misma jugada cuando tenga que tomar una decisión. En particular, la historia $(L,R)$ no puede ocurrir y el pago de ($100$, $100$) es irrelevante en el contexto de estrategias mixtas.
 
 En este juego en particular, se tiene que la estrategia $R$ es mejor para el jugador $1$, independientemente de la elección del jugador $2$, y la estrategia pura $D$ del jugador $2$ es mejor respuesta ante cualquier estrategia de $1$. Luego, el único equilibrio de Nash (de estrategias mixtas) es $\sigma = (\sigma_1, \sigma_2)$, donde $\sigma_1(L) = 0$, $\sigma_1(R) = 1$, $\sigma_2(D) = 1$ y $\sigma_2(U) = 0$, cuya ganancia es igual a $2$ para ambos jugadores.
 
